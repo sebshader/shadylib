@@ -12,6 +12,8 @@
 #X obj 143 135 pdgate 5 2;
 #X msg 248 115 bang;
 #X obj 371 108 cyclone/gate;
+#X obj 403 161 pdgate;
+#X text 410 142 defaults to 2;
 #X connect 1 0 9 0;
 #X connect 7 0 9 1;
 #X connect 9 0 2 0;
