@@ -34,6 +34,7 @@
 #X obj 18 294 - 1;
 #X connect 0 0 29 0;
 #X connect 1 0 32 0;
+#X connect 1 0 18 1;
 #X connect 2 0 22 0;
 #X connect 3 0 1 0;
 #X connect 4 0 9 0;
@@ -45,7 +46,6 @@
 #X connect 11 0 21 0;
 #X connect 12 0 20 0;
 #X connect 13 0 10 0;
-#X connect 13 0 18 1;
 #X connect 13 0 19 0;
 #X connect 14 0 15 0;
 #X connect 15 0 13 0;
