@@ -142,7 +142,6 @@
 #X obj 326 722 int;
 #X obj 327 743 % 10;
 #X obj -32 556 outlet;
-#X obj 233 488 print;
 #X connect 0 0 2 0;
 #X connect 0 1 35 0;
 #X connect 1 0 62 0;
