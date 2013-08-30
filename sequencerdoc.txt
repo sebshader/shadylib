@@ -1,0 +1,46 @@
+sequencer doc (to be used with sequencer-help.pd):
+
+by default this sequencer acts as a simple 16 step counter. When the sequencer
+tries to jump to a range outside of ((# of steps + offset) % 16) it will skip to
+the lowest step in that range.
+
+nesting: when the repeat # (in the lower left of the nesting section) is changed
+from 0, it will immediately trigger the nesting to begin. the step will jump to
+the step specified in the lower right number box in the nesting section and when
+it gets back to the original step it will keep jumping to the step in the number
+ box a number of times equal to the repeat #. turning on the yellow toggle will
+ cause the step to jump to the lower-right-number-box step every time, and the 
+ toggle to the right and above the others controls all of the other toggles
+
+when random is on, every step will jump to a random step within the range
+described in the 1st paragraph. with nesting, the step will jump to the
+correct step indicated by the nesting (including the toggle) and when it would
+normally continue it selects a random step.
+
+with this version, every parameter is settable through receives: substitute the
+subpatch # for $0. The subpatch # is sent out of the 2nd outlet when the
+sequencer loads and whenever it receives a message in it's rightmost inlet.
+It's also displayed in the top left number box.
+$0-start: 0-1 value: 0 pauses, 1 starts 
+$0-randlet: 0-1: random on/off
+$0-offset: 0-15: offset 
+$0-steplet: 1-16: # of steps 
+$0-recglob: goes to all steps as tempo in ms 
+$0-tocount: 0-15: set the next step to this (also see the
+next message in the help file) 
+$0-allways: 0-1: all toggles on/off 
+neststep-$0: list of steps to jump to for nesting (assigned to steps 
+sequentially)
+nestrepeat-$0: list of # of repeats for nesting 
+tempo-$0: list: tempo in ms foreach step 
+nestalways-$0: list of 0s and 1s to turn the toggles on/off for each step
+
+There are also several variables to get the current state of the sequencer:
+$0-tempos: array of tempos for each step, 0-15 
+$0-stepreps: array of repeats foreach step, 0-15 
+$0-current: array of the current repeat # for every step, 0-15
+$0-neststeps: array of steps being jumped to for each step, 0-15 
+the value $0-totalws (use the value object to get it): one integer, each bit 
+represents if a toggle is on for that step. for instance, 3 (11 in binary) 
+would mean the toggle is on for steps 0 and 1, while 4 would mean it was on for
+step 2

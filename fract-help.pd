@@ -1,0 +1,26 @@
+#N canvas 223 133 450 300 10;
+#X obj 221 83 int;
+#X obj 198 105 -;
+#X obj 195 62 t f f;
+#X floatatom 197 142 10 0 0 0 - - -;
+#X msg 186 19 512.06;
+#X obj 147 67 fract;
+#X floatatom 129 110 8 0 0 0 - - -;
+#X msg 241 22 34.4;
+#X msg 129 14 -512.06;
+#X msg 275 21 4.0008;
+#X text 52 180 higher precision fractional part \, takes absolute value.
+works up to 6 decimal places;
+#X connect 0 0 1 1;
+#X connect 1 0 3 0;
+#X connect 2 0 1 0;
+#X connect 2 1 0 0;
+#X connect 4 0 2 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 7 0 2 0;
+#X connect 7 0 5 0;
+#X connect 8 0 2 0;
+#X connect 8 0 5 0;
+#X connect 9 0 2 0;
+#X connect 9 0 5 0;

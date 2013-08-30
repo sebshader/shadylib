@@ -1,0 +1,9 @@
+#N canvas 71 40 450 300 10;
+#X obj 39 38 inlet~;
+#X obj 39 69 -~ 0.25;
+#X obj 39 100 cos~;
+#X obj 39 127 outlet~;
+#X text 147 56 take sin(2pi * x);
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;

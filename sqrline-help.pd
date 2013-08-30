@@ -1,0 +1,4 @@
+#N canvas 0 22 450 300 10;
+#X obj 164 126 sqrline;
+#X text 92 90 line \, but takes sqrt first then sqr. see linetest.pd
+;

@@ -1,0 +1,6 @@
+#N canvas 45 97 641 343 10;
+#X text 261 66 like operator~ \, but with phasor~ inlet rather than
+having phase generated in the patch (for phase syncing);
+#X obj 253 185 operatord~;
+#X obj 246 155 operatord~ 40;
+#X obj 255 125 operatord~ 30 80;

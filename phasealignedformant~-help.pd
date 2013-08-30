@@ -1,0 +1,51 @@
+#N canvas 346 148 856 444 10;
+#X obj 211 332 phasealignedformant~;
+#X text 480 195 inlets: phasor~ (or loop~) in (ranged 0 to 1) \, center
+frequency \, fundamental frequency (freq of phasor) \, bandwidth \,
+name of waveshaping (either "gaussian" or "cauchy"). no aliasing protection
+;
+#X msg 62 207 bang;
+#X obj 208 361 outputc~;
+#X obj 279 249 smoother~;
+#X obj 379 232 smoother~;
+#X text 33 187 remember to hit this after changing from 0;
+#X obj 165 239 mtof~;
+#X obj 123 284 dbgr;
+#X obj 205 285 sampphase~;
+#X obj 367 106 metro 50;
+#X obj 267 146 rndmrange 1050 1 20;
+#X obj 335 202 rndmrange 1000 1 5;
+#X obj 201 211 line~;
+#X msg 215 160 \$1 10;
+#X obj 413 137 rndmrange 200 1 50;
+#X obj 366 168 rndmrange 70 1 20;
+#X obj 137 137 once;
+#X text 418 65 from the example in the "Audio examples" folder (paf.control)
+;
+#X obj 367 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+1;
+#X obj 382 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X connect 0 0 3 0;
+#X connect 0 0 3 1;
+#X connect 2 0 9 1;
+#X connect 4 0 0 1;
+#X connect 5 0 0 3;
+#X connect 7 0 8 0;
+#X connect 7 0 9 0;
+#X connect 9 0 0 0;
+#X connect 9 1 0 2;
+#X connect 10 0 11 0;
+#X connect 10 0 12 0;
+#X connect 10 0 15 0;
+#X connect 10 0 16 0;
+#X connect 11 0 4 0;
+#X connect 12 0 5 0;
+#X connect 13 0 7 0;
+#X connect 14 0 13 0;
+#X connect 14 0 17 0;
+#X connect 15 0 10 1;
+#X connect 16 0 14 0;
+#X connect 17 0 2 0;
+#X connect 19 0 0 4;
+#X connect 20 0 10 0;

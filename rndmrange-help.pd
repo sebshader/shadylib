@@ -1,0 +1,8 @@
+#N canvas 0 22 450 300 10;
+#X obj 285 90 rndmrange;
+#X text 51 35 inlets: random trigger \, number of possible values (like
+random) \, number to multiply by \, number to add by.;
+#X text 49 71 arguments: number of possible values \, number to multiply
+by \, number to add by.;
+#X text 129 140 also see randrange in sfruit;
+#X obj 236 186 sfruit/randrange;

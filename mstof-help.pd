@@ -1,0 +1,7 @@
+#N canvas 0 22 450 300 10;
+#X obj 292 83 mstof;
+#X floatatom 292 53 5 0 0 0 - - -;
+#X floatatom 298 103 5 0 0 0 - - -;
+#X text 130 34 ms to frequency or visa-versa;
+#X connect 0 0 2 0;
+#X connect 1 0 0 0;

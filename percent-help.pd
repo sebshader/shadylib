@@ -1,0 +1,36 @@
+#N canvas 20 57 450 300 10;
+#X obj 186 155 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 185 196 percent 1;
+#X obj 179 223 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 238 227 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 243 163 5 0 0 0 - - -;
+#X text 88 29 output out of the left outlet based on right inlet or
+creation argument. left outlet correlates to the percentage while the
+right outlet bangs when the left one doesn't.;
+#X text 273 188 (pseudo random);
+#X obj 140 160 until;
+#X obj 139 121 t b b;
+#X obj 129 214 cup;
+#X msg 140 139 100;
+#X obj 141 92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 123 241 5 0 0 0 - - -;
+#X msg 148 189 1;
+#X msg 115 197 0;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 9 0;
+#X connect 1 1 3 0;
+#X connect 4 0 1 1;
+#X connect 7 0 1 0;
+#X connect 8 0 10 0;
+#X connect 8 1 13 0;
+#X connect 8 1 14 0;
+#X connect 9 0 12 0;
+#X connect 10 0 7 0;
+#X connect 11 0 8 0;
+#X connect 13 0 9 0;
+#X connect 14 0 12 0;

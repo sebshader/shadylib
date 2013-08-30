@@ -1,0 +1,6 @@
+#N canvas 0 22 673 366 10;
+#X obj 39 129 selected;
+#X obj 416 73 osc~;
+#X obj 509 137 phasor~;
+#X text 64 21 to see the indices of the objects you are selecting \,
+requires iemguts;

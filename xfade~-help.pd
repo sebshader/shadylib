@@ -1,0 +1,16 @@
+#N canvas 576 146 645 343 10;
+#X obj 196 105 dbgr;
+#X obj 227 144 dbgr;
+#X obj 177 53 osc~ 5;
+#X msg 245 31 1;
+#X msg 304 90 \; pd dsp 1;
+#X msg 224 18 0;
+#X text 289 25 gate for signals;
+#X obj 236 54 sig~ 1;
+#X obj 207 78 xfade~;
+#X connect 2 0 8 0;
+#X connect 3 0 7 0;
+#X connect 5 0 7 0;
+#X connect 7 0 8 1;
+#X connect 8 0 0 0;
+#X connect 8 1 1 0;

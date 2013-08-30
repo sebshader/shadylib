@@ -1,0 +1,14 @@
+#N canvas 0 22 450 300 10;
+#X text 70 26 ramp a control signal to an audio signal over an amount
+in ms specified by the 2nd inlet or only argument;
+#X text 88 195 <-- second outlet outputs control (in case you are using
+the GUI number box);
+#X obj 151 101 smoother~ 50;
+#X floatatom 157 68 5 0 0 0 - - -;
+#X msg 220 77 10;
+#X floatatom 224 142 5 0 0 0 - - -;
+#X obj 156 153 dbgr;
+#X connect 2 0 6 0;
+#X connect 2 1 5 0;
+#X connect 3 0 2 0;
+#X connect 4 0 2 1;

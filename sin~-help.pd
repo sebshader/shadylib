@@ -1,0 +1,12 @@
+#N canvas 0 22 544 407 10;
+#X obj 200 169 sin~;
+#X text 138 89 one less box to patch;
+#X obj 155 163 cos~;
+#X obj 97 200 oscope~;
+#X obj 97 200 oscope~;
+#X obj 190 133 phasor~ 50;
+#X msg 348 222 \; pd dsp 1;
+#X connect 0 0 4 0;
+#X connect 2 0 3 0;
+#X connect 5 0 2 0;
+#X connect 5 0 0 0;

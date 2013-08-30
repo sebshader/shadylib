@@ -1,0 +1,8 @@
+#N canvas 80 68 450 300 10;
+#X obj 209 40 inlet~;
+#X obj 211 97 outlet~;
+#X obj 211 70 expr~ 1-$v1;
+#X text 45 124 switches 1 and 0 (I find myself needing this quite a
+bit and it's slightly easier to write);
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

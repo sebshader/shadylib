@@ -1,0 +1,20 @@
+#N canvas 238 108 450 300 10;
+#X text 134 82 outlets: loadbang and dsp state (0 and 1);
+#X obj 109 141 banger;
+#X obj 198 181 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 111 177 print sent a;
+#X obj 253 174 s pd;
+#X msg 255 150 dsp 1;
+#X msg 299 151 dsp 0;
+#X text 47 50 sends bang to loadbang. if argument is 1 then it turns
+the dsp on;
+#X text 51 119 toggle sets dsp on \, bang resends bang;
+#X text 90 218 also sends to this:;
+#X obj 219 216 r globalloadbang;
+#X obj 210 239 print sent a global;
+#X connect 1 0 3 0;
+#X connect 1 1 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 0;
+#X connect 10 0 11 0;

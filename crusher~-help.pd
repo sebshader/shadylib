@@ -1,0 +1,15 @@
+#N canvas 57 185 783 478 10;
+#X obj 116 60 crusher~;
+#X text 67 110 bitcrusher: signal in left \, bit depth in right;
+#X obj 116 32 osc~;
+#X obj 114 -15 smoother~;
+#X obj 116 84 dac~;
+#X text 256 19 bit depth range;
+#X obj 182 13 smoother~;
+#X obj 378 6 oscope~;
+#X connect 0 0 4 0;
+#X connect 0 0 4 1;
+#X connect 0 0 7 0;
+#X connect 2 0 0 0;
+#X connect 3 0 2 0;
+#X connect 6 0 0 1;

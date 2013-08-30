@@ -1,0 +1,5 @@
+#N canvas 505 205 450 300 10;
+#X obj 68 127 phasorator~ 4 4;
+#X text 52 99 like operator \, but with phasor~;
+#X obj 81 161 phasorator~ 3;
+#X obj 83 196 phasorator~;

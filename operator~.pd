@@ -1,0 +1,79 @@
+#N canvas 460 207 866 630 10;
+#X obj 21 36 osc~;
+#X obj 20 127 outlet~;
+#X obj 20 12 inlet~;
+#X obj 212 13 inlet;
+#X obj 320 29 initbang;
+#X obj 320 49 t b b b b;
+#X obj 22 173 namecanvas \$0-operator;
+#X obj 338 465 s \$0-operator;
+#X obj 311 178 sel 0 1 2;
+#X msg 350 415 editmode 1 \, mouse 68 4 1 0 \, mouseup 152 55 1 \,
+key 1 8 0 \, key 0 8 0 \, mouse 18 64 1 0 \, mouseup 44 100 0 \, key
+1 8 0 \, key 0 8 0 \, editmode 0;
+#N canvas 851 277 450 300 objectcount 0;
+#X obj 170 39 inlet;
+#X obj 171 201 outlet;
+#X obj 175 126 iemguts/canvasindex;
+#X connect 0 0 2 0;
+#X connect 2 1 1 0;
+#X restore 389 176 pd objectcount;
+#X obj 252 237 list-math +;
+#X obj 331 224 list-math +;
+#X obj 407 227 list-math +;
+#X msg 64 326 obj 65 8 inlet~ \, obj 20 58 *~ \, obj 116 14 inlet~
+\, obj 20 91 +~ \, connect \$1 0 \$2 1 \, connect 0 0 \$2 0 \, connect
+\$2 0 \$4 0 \, connect \$4 0 1 0 \, connect \$3 0 \$4 1;
+#X msg 272 211 0 1 2 3;
+#X msg 335 203 0 1 2 3;
+#X msg 411 206 0 1 2 3;
+#X msg 327 273 obj 65 8 inlet~ \, obj 20 58 *~ \, obj 116 14 inlet
+\, obj 20 91 +~ \$5 \, connect \$1 0 \$2 1 \, connect 0 0 \$2 0 \,
+connect \$2 0 \$4 0 \, connect \$4 0 1 0 \, connect \$3 0 \$4 1;
+#X obj 325 250 list append;
+#X obj 457 152 pack;
+#X obj 421 249 list append;
+#X msg 438 342 obj 65 8 inlet \, obj 20 58 *~ \$6 \, obj 116 14 inlet
+\, obj 20 91 +~ \$5 \, connect \$1 0 \$2 1 \, connect 0 0 \$2 0 \,
+connect \$2 0 \$4 0 \, connect \$4 0 1 0 \, connect \$3 0 \$4 1;
+#X text 507 42 requires iemguts;
+#X obj 383 71 purepd/float_argument \$1;
+#X obj 336 98 purepd/float_argument \$2;
+#X msg 358 126 1;
+#X obj 312 155 f 0;
+#X msg 325 128 2;
+#X connect 2 0 0 0;
+#X connect 3 0 0 1;
+#X connect 4 0 5 0;
+#X connect 5 0 27 0;
+#X connect 5 1 10 0;
+#X connect 5 1 25 0;
+#X connect 5 2 24 0;
+#X connect 5 3 9 0;
+#X connect 8 0 15 0;
+#X connect 8 1 16 0;
+#X connect 8 2 17 0;
+#X connect 9 0 7 0;
+#X connect 10 0 13 1;
+#X connect 10 0 12 1;
+#X connect 10 0 11 1;
+#X connect 11 0 14 0;
+#X connect 12 0 19 0;
+#X connect 13 0 21 0;
+#X connect 14 0 7 0;
+#X connect 15 0 11 0;
+#X connect 16 0 12 0;
+#X connect 17 0 13 0;
+#X connect 18 0 7 0;
+#X connect 19 0 18 0;
+#X connect 20 0 21 1;
+#X connect 21 0 22 0;
+#X connect 22 0 7 0;
+#X connect 24 0 19 1;
+#X connect 24 0 20 1;
+#X connect 24 0 26 0;
+#X connect 25 0 20 0;
+#X connect 25 0 28 0;
+#X connect 26 0 27 1;
+#X connect 27 0 8 0;
+#X connect 28 0 27 1;

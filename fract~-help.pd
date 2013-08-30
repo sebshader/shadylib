@@ -1,0 +1,12 @@
+#N canvas 108 139 450 300 10;
+#X obj 231 126 dbgr;
+#X obj 310 131 dbgr;
+#X text 85 97 audio version of fract;
+#X obj 302 93 wrap~;
+#X obj 241 97 fract~;
+#X obj 262 23 signum~ 34.4;
+#X msg 117 163 \; pd dsp 1;
+#X connect 3 0 1 0;
+#X connect 4 0 0 0;
+#X connect 5 0 3 0;
+#X connect 5 0 4 0;

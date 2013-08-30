@@ -1,0 +1,4 @@
+#N canvas 0 22 450 300 10;
+#X obj 219 136 testro;
+#X text 93 90 quick metro for debugging \, 1st argument is rate. defaults
+to 200 ms;

@@ -1,0 +1,12 @@
+#N canvas 0 22 450 300 10;
+#X obj 137 110 scaler;
+#X text 71 25 scales by multiplying (1st inlet/argument) \, then adding
+(2nd inlet/argument);
+#X floatatom 121 86 5 0 0 0 - - -;
+#X floatatom 138 133 5 0 0 0 - - -;
+#X floatatom 153 70 5 0 0 0 - - -;
+#X floatatom 169 90 5 0 0 0 - - -;
+#X connect 0 0 3 0;
+#X connect 2 0 0 0;
+#X connect 4 0 0 1;
+#X connect 5 0 0 2;

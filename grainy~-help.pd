@@ -1,0 +1,6 @@
+#N canvas 507 390 450 300 10;
+#X obj 108 156 grainy~;
+#X text 39 101 inlets: read point of sound file \, grain size (samples)
+\, and frequency of grains outlets: 2 out of phase readers and 2 hanning
+windows (3 for 1 and 4 for 2);
+#X text 141 39 granular synthesis;

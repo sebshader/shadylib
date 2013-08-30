@@ -1,0 +1,39 @@
+#N canvas 353 134 566 373 10;
+#X msg 356 82 dump;
+#X msg 370 18 rem 44;
+#X msg 166 89 bang;
+#X msg 188 9 22 1;
+#X msg 370 62 clear;
+#X msg 371 38 rem 22;
+#X text 395 80 dump information;
+#X text 410 65 clear everything;
+#X text 415 19 remove a specific number;
+#X text 100 194 weighted probabilities: takes lists of numbers to set
+\, it will add a weighting to a number if it is already in the list.
+anything but a these selectors will trigger weighted to output the
+randomly selected number;
+#X text 75 90 pick a number;
+#X text 19 31 set/add probability for 45;
+#X obj 274 104 weighted;
+#X msg 184 47 44 -6;
+#X msg 187 28 45 4;
+#X text 26 51 absolute value of 6 added;
+#X text 30 8 set/add probability for 22;
+#X msg 238 34 42 0;
+#X msg 124 110 pluto;
+#X floatatom 272 126 5 0 0 0 - - -;
+#X obj 320 128 print;
+#X msg 432 42 rem 22 \, 22 4;
+#X connect 0 0 12 0;
+#X connect 1 0 12 0;
+#X connect 2 0 12 0;
+#X connect 3 0 12 0;
+#X connect 4 0 12 0;
+#X connect 5 0 12 0;
+#X connect 12 0 19 0;
+#X connect 12 1 20 0;
+#X connect 13 0 12 0;
+#X connect 14 0 12 0;
+#X connect 17 0 12 0;
+#X connect 18 0 12 0;
+#X connect 21 0 12 0;

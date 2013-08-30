@@ -1,0 +1,10 @@
+#N canvas 185 40 450 300 10;
+#X obj 158 128 oscope~;
+#X obj 160 103 osc~ 440;
+#X floatatom 158 81 5 0 0 0 - - -;
+#X text 69 43 zoom is in samples (which the right inlet/number box/creation
+argument controls).;
+#X text 68 10 oscilloscope that calculates/writes with multiples of
+a blocksize of 4096;
+#X connect 1 0 0 0;
+#X connect 2 0 1 0;

@@ -1,0 +1,9 @@
+#N canvas 95 118 450 300 10;
+#X obj 226 36 inlet;
+#X obj 232 97 -;
+#X msg 230 68 -1 \$1;
+#X text 287 69 one's compliment;
+#X obj 234 135 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;

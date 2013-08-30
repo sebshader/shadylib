@@ -1,0 +1,22 @@
+#N canvas 164 73 688 358 10;
+#X obj 184 180 show;
+#X msg 167 213 54;
+#X obj 96 147 smoother~;
+#X obj 170 53 banger;
+#X text 36 -9 shows a list in a message box;
+#X text 208 211 <-- if you save the patch \, the value in this box
+will be saved as well;
+#X text 20 90 (connect a message box from the outlet \, and when show
+receives it \, it will show the message).;
+#X msg 365 91 you can see anything;
+#X obj 363 121 show;
+#X msg 370 147;
+#X msg 302 131 set;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 1 0 0;
+#X connect 3 0 1 0;
+#X connect 3 0 10 0;
+#X connect 7 0 8 0;
+#X connect 8 0 9 0;
+#X connect 10 0 9 0;

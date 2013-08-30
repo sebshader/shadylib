@@ -1,0 +1,30 @@
+#N canvas 296 86 810 388 10;
+#X obj 215 56 temposet 30 bpm;
+#X obj 176 151 metro;
+#X obj 156 116 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 190 196 subdivide 7 5;
+#X obj 246 235 cyclecount 7;
+#X obj 249 266 hradio 15 1 0 7 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 197 171 t b b;
+#X msg 302 186 0;
+#X obj 180 271 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 385 204 first inlet is bang \, 2nd (and 1st arg) is how many
+subdivisions to make \, 3rd (and 2nd arg) is the time frame of the
+macro beat in milliseconds. This can be overridden by the presense
+of temposet \, which will set the "globaltempo" global value and globaltempotrigger
+recieve object (to trigger reading the value);
+#X floatatom 209 266 5 0 0 0 - - -;
+#X connect 0 0 1 1;
+#X connect 1 0 6 0;
+#X connect 1 0 8 0;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 5 0;
+#X connect 4 0 10 0;
+#X connect 6 0 3 0;
+#X connect 6 1 7 0;
+#X connect 7 0 4 2;

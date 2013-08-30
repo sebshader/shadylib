@@ -1,0 +1,24 @@
+#N canvas 239 58 450 300 10;
+#X declare -lib iem_tab;
+#X obj 256 101 *~;
+#X obj 324 57 smoother~;
+#X obj 256 60 osc~ 440;
+#X obj 266 162 vu 15 120 empty empty -1 -8 0 10 -66577 -1 1 0;
+#X obj 326 145 rmstodb;
+#X obj 332 175 - 100;
+#X floatatom 333 213 5 0 0 0 - - -;
+#X floatatom 225 154 5 0 0 0 - - -;
+#X obj 256 121 highest~ 1024;
+#X floatatom 380 151 5 0 0 0 - - -;
+#X text 53 18 peak amplitude over an audio block who's size is given
+as the first argument or 2nd inlet \; 2048 samples (about 50 ms @ 44100)
+is the default;
+#X connect 0 0 8 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 1;
+#X connect 5 0 6 0;
+#X connect 8 0 4 0;
+#X connect 8 0 7 0;
+#X connect 8 0 9 0;

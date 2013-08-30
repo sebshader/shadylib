@@ -1,0 +1,8 @@
+#N canvas 10 22 200 200 10;
+#N canvas 28 32 420 300 META 1;
+#X text 10 10 META this is a prototype of a libdir meta file;
+#X text 10 70 LICENSE Pd license;
+#X text 10 30 NAME shadelib;
+#X text 10 50 AUTHOR seb shader mostly;
+#X text 10 90 DESCRIPTION abstractions that I like to use;
+#X restore 10 10 pd META;

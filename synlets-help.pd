@@ -1,0 +1,22 @@
+#N canvas 311 22 450 300 10;
+#X text 18 -30 syncs 2 inlets: waits for a number of bangs in each
+inlet before banging and resetting both;
+#X text 25 3 number of bangs specified by 1st and 2nd arguments \,
+3rd and 4th inlets;
+#X obj 172 76 synlets 2 3;
+#X obj 168 112 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 232 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 175 51 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 193 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X floatatom 223 38 5 0 0 0 - - -;
+#X floatatom 265 42 5 0 0 0 - - -;
+#X connect 2 0 3 0;
+#X connect 2 1 4 0;
+#X connect 5 0 2 0;
+#X connect 6 0 2 1;
+#X connect 7 0 2 2;
+#X connect 8 0 2 3;

@@ -1,0 +1,18 @@
+#N canvas 424 228 450 300 10;
+#X obj 150 96 moses \$1;
+#X obj 137 10 inlet;
+#X obj 223 33 inlet;
+#X obj 144 63 random 100;
+#X obj 151 159 outlet;
+#X msg 151 126 bang;
+#X msg 199 125 bang;
+#X obj 210 160 outlet;
+#X obj 145 37 bang;
+#X connect 0 0 5 0;
+#X connect 0 1 6 0;
+#X connect 1 0 8 0;
+#X connect 2 0 0 1;
+#X connect 3 0 0 0;
+#X connect 5 0 4 0;
+#X connect 6 0 7 0;
+#X connect 8 0 3 0;

@@ -1,0 +1,26 @@
+#N canvas 492 368 655 407 10;
+#X obj 311 93 inlet;
+#X text 171 91 Set receive name;
+#X obj 311 118 symbol \$1;
+#X obj 389 35 loadbang;
+#X obj 389 71 t b b;
+#X obj 393 121 f \$0;
+#X obj 311 152 pack s f;
+#N canvas 0 22 450 300 receive-\$0 0;
+#X obj 145 115 r ;
+#X obj 145 150 s out-1021;
+#X connect 0 0 1 0;
+#X restore 63 138 pd receive-\$0;
+#X obj 83 180 r out-\$0;
+#X obj 83 215 outlet;
+#X msg 311 176 \; pd-receive-\$2 clear \; pd-receive-\$2 obj 145 115
+r \$1 \; pd-receive-\$2 obj 145 150 s out-\$2 \; pd-receive-\$2 connect
+0 0 1 0 \;;
+#X connect 0 0 2 0;
+#X connect 2 0 6 0;
+#X connect 3 0 4 0;
+#X connect 4 0 2 0;
+#X connect 4 1 5 0;
+#X connect 5 0 6 1;
+#X connect 6 0 10 0;
+#X connect 8 0 9 0;

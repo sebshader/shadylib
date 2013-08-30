@@ -1,0 +1,16 @@
+#N canvas 302 162 514 405 10;
+#X obj 85 50 sndfilereader~;
+#X obj 215 131 smoother~;
+#X obj 43 251 outputc~;
+#X obj 103 171 realpass~;
+#X obj 127 118 smoother~ 15;
+#X obj 58 214 /~ 2;
+#X text 116 245 allpass filter with delay able to be greater than 1
+.real coefficients;
+#X connect 0 0 3 0;
+#X connect 0 0 5 0;
+#X connect 1 0 3 2;
+#X connect 3 0 5 0;
+#X connect 4 0 3 1;
+#X connect 5 0 2 0;
+#X connect 5 0 2 1;

@@ -1,0 +1,28 @@
+#N canvas 287 93 651 330 10;
+#X declare -lib moocow;
+#X obj 52 139 sndfilewritermon~;
+#X obj 65 103 osc~ 400;
+#X msg 272 206 \; pd dsp 1;
+#X obj 57 199 show;
+#X msg 48 230 /tmp/test4.wav;
+#X text 147 7 mono soundfile writer;
+#X text 160 28 inlet1: mono signal;
+#X msg 350 107 incr;
+#X msg 317 86 open;
+#X msg 372 81 write;
+#X msg 390 106 stop;
+#X text 138 81 inlet4: flag as symbol;
+#X text 172 45 inlet2: filename;
+#X text 139 64 inlet3: open \, write \, stop \, incr (to increment
+the name);
+#X msg 195 108 /tmp/test.wav;
+#X msg 498 85 -bytes 3;
+#X connect 0 0 3 0;
+#X connect 1 0 0 0;
+#X connect 3 0 4 0;
+#X connect 7 0 0 2;
+#X connect 8 0 0 2;
+#X connect 9 0 0 2;
+#X connect 10 0 0 2;
+#X connect 14 0 0 1;
+#X connect 15 0 0 3;

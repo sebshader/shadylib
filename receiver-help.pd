@@ -1,0 +1,5 @@
+#N canvas 0 22 450 300 10;
+#X obj 190 124 receiver;
+#X text 85 74 changing receive name based on creation argument or inlet
+;
+#X text 116 204 based on Frank Barknecht example patch "sender";

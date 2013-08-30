@@ -1,0 +1,4 @@
+#N canvas 0 22 450 300 10;
+#X obj 141 144 qrtvline~;
+#X text 69 108 vline~ \, but takes rt(4) first then x^4. see linetest.pd
+;

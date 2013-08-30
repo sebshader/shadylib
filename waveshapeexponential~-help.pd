@@ -1,0 +1,24 @@
+#N canvas 134 186 848 537 10;
+#X obj -65 10 smoother~;
+#X obj -45 149 dac~;
+#X obj -64 51 osc~;
+#X obj -46 116 waveshapeexponential~;
+#X obj 87 65 sqrline~;
+#X msg 86 39 \$1 100;
+#X floatatom 95 20 5 0 0 0 - - -;
+#X text 107 117 waveshaping: e^(a(x - 1));
+#X text 123 97 a = index \, x = signal;
+#X text 53 130 then normalization: (2 * e^(a(x - 1))) - (1 + e^(-2a))
+;
+#X text 323 150 ^^ can be thought of as 1/2 the height of the wave
+;
+#X text 385 234 no alias protection!;
+#X obj 39 167 oscope~;
+#X connect 0 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 1 1;
+#X connect 3 0 1 0;
+#X connect 3 0 12 0;
+#X connect 4 0 3 1;
+#X connect 5 0 4 0;
+#X connect 6 0 5 0;
