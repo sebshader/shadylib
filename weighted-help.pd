@@ -24,6 +24,7 @@ randomly selected number;
 #X floatatom 272 126 5 0 0 0 - - -;
 #X obj 320 128 print;
 #X msg 432 42 rem 22 \, 22 4;
+#X text 225 16 this won't do anything;
 #X connect 0 0 12 0;
 #X connect 1 0 12 0;
 #X connect 2 0 12 0;
