@@ -3,7 +3,7 @@
 #X text 67 110 bitcrusher: signal in left \, bit depth in right;
 #X obj 116 32 osc~;
 #X obj 114 -15 smoother~;
-#X obj 116 84 dac~;
+#X obj 134 182 dac~;
 #X text 256 19 bit depth range;
 #X obj 182 13 smoother~;
 #X obj 378 6 oscope~;
