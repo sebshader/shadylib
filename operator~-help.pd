@@ -1,12 +1,19 @@
-#N canvas 208 134 450 300 10;
-#X obj -51 141 operator~ 4 5;
+#N canvas 208 134 790 345 10;
 #X text -49 28 sine wave oscillator. if 2 args are present \, the first
 is multiplication and the next is addition. the signal chain is in
 the same order. if 1 arg is present \, it is assigned to addition.
 whatever is assigned is also turned control-rate.;
-#X obj -46 166 operator~ 5;
-#X obj -45 192 operator~;
 #X text 38 140 multiplies signal by 4 \, then adds 5;
 #X text 35 164 multiplies by the 2nd inlet \, then adds 5;
 #X text -60 119 first inlet is frequency;
 #X text 20 189 everything set by signals;
+#X obj 470 203 operator~ 1 0;
+#X obj 470 156 smoother~;
+#X obj 467 247 outputc~;
+#X text 560 203 same as osc~;
+#X obj -51 141 operator~ 4 5;
+#X obj -46 166 operator~ 5;
+#X obj -45 192 operator~;
+#X connect 5 0 7 0;
+#X connect 5 0 7 1;
+#X connect 6 0 5 0;

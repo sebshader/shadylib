@@ -16,10 +16,10 @@
 #X obj 282 51 inlet~ lin;
 #X obj 34 48 inlet~ lin;
 #X obj 138 299 outlet~;
-#X obj 188 211 delwrite~ \$0-allpass 2000;
 #X obj 289 105 clip~ -1 1;
+#X obj 188 211 delwrite~ \$0-allpass 3000;
 #X connect 0 0 13 0;
-#X connect 0 0 17 0;
+#X connect 0 0 18 0;
 #X connect 1 0 2 0;
 #X connect 1 0 12 1;
 #X connect 2 0 0 1;
@@ -33,7 +33,7 @@
 #X connect 11 0 16 0;
 #X connect 12 0 11 0;
 #X connect 13 0 12 0;
-#X connect 14 0 18 0;
+#X connect 14 0 17 0;
 #X connect 15 0 4 0;
-#X connect 18 0 3 0;
-#X connect 18 0 13 1;
+#X connect 17 0 3 0;
+#X connect 17 0 13 1;

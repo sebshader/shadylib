@@ -9,13 +9,13 @@
 #X msg 161 187 \$1;
 #X obj 1 199 list;
 #X obj 69 154 t b f;
-#X obj 71 248 sel;
-#X obj 69 220 list-dripdex;
+#X obj 59 236 sel;
+#X obj 57 208 list-dripdex;
 #X obj -17 332 list prepend;
 #X obj 0 260 f;
 #X obj -4 297 spigot;
 #X msg 28 278 1;
-#X msg 69 270 0;
+#X msg 57 258 0;
 #X obj -60 402 list prepend;
 #X msg -60 352 bang;
 #X obj -60 372 f;
@@ -63,7 +63,7 @@
 #X connect 10 0 12 1;
 #X connect 11 0 10 1;
 #X connect 12 0 13 0;
-#X restore 78 290 pd add;
+#X restore 66 278 pd add;
 #X obj 162 164 -;
 #X obj 17 178 r \$0-fromnumbers;
 #X obj 545 519 outlet;

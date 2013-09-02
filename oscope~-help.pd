@@ -6,6 +6,5 @@
 argument controls).;
 #X text 68 10 oscilloscope that calculates/writes with multiples of
 a blocksize of 4096;
-#X msg 340 78 \; pd dsp 1;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;

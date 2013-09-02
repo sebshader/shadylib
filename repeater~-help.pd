@@ -1,12 +1,10 @@
-#N canvas 520 101 912 493 10;
+#N canvas 112 103 912 493 10;
 #X obj 204 106 sndfilereader~;
-#X obj 204 258 outputc~;
+#X obj 211 280 outputc~;
 #X msg 191 78 set;
-#X obj 267 17 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X msg 332 210 1;
-#X msg 335 60 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80 80
-;
+#X obj 234 -27 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 304 170 1;
 #X msg 557 188 0;
 #X text 111 346 inlets: 1: signal 2: list of durations \, the first
 of which is the buffer size \, 3: signal cv for pitchshift in semitones
@@ -20,27 +18,36 @@ on a given step \, starting after the buffer is written;
 #X text 488 12 fill the buffer to 1000 ms \, play in reverse for 500
 ms \, play forward for 500 \, reverse again for 1000;
 #X obj 204 214 repeater~;
-#X obj 267 39 iterate 18;
 #X obj 504 172 osc~ 0.34;
 #X obj 502 213 *~ 7;
-#X msg 534 83 1000 1000 500 1000;
-#X msg 269 63 add2 80;
 #X msg 603 186 7;
-#X connect 0 0 13 0;
-#X connect 2 0 5 0;
-#X connect 3 0 14 0;
-#X connect 4 0 13 3;
-#X connect 5 0 13 1;
-#X connect 6 0 16 1;
-#X connect 9 0 13 3;
-#X connect 10 0 17 0;
-#X connect 10 1 9 0;
-#X connect 11 0 10 0;
-#X connect 13 0 1 0;
-#X connect 13 0 1 1;
-#X connect 14 0 18 0;
-#X connect 15 0 16 0;
-#X connect 16 0 13 2;
-#X connect 17 0 13 1;
-#X connect 18 0 5 0;
-#X connect 19 0 16 1;
+#X obj 366 2 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 226 44 100 100 100 100 100 100 100 100 100 100;
+#X msg 359 190 0;
+#X msg 236 19 add2 100;
+#X obj 322 -9 t b b;
+#X msg 534 83 1000 1000 500 1000;
+#X obj 234 -5 iterate 10;
+#X connect 0 0 12 0;
+#X connect 2 0 17 0;
+#X connect 3 0 22 0;
+#X connect 4 0 12 3;
+#X connect 5 0 14 1;
+#X connect 8 0 12 3;
+#X connect 9 0 21 0;
+#X connect 9 1 8 0;
+#X connect 10 0 9 0;
+#X connect 12 0 1 0;
+#X connect 12 0 1 1;
+#X connect 13 0 14 0;
+#X connect 14 0 12 2;
+#X connect 15 0 14 1;
+#X connect 16 0 20 0;
+#X connect 17 0 12 1;
+#X connect 18 0 12 3;
+#X connect 19 0 17 0;
+#X connect 20 0 17 0;
+#X connect 20 1 18 0;
+#X connect 21 0 12 1;
+#X connect 22 0 19 0;

@@ -44,15 +44,15 @@
 #X obj 207 84 sel 0;
 #X msg 208 111 32;
 #X obj 219 137 makefilename %c;
-#X obj 81 414 makefilename;
+#X obj 96 427 makefilename;
 #X obj 26 286 symbol;
 #X msg 140 174 set \$1%s;
 #X obj 23 380 sel symbol;
 #X obj 85 273 symbol;
 #X obj 54 228 t s s;
-#X msg 165 415 set \$1%s;
+#X msg 180 428 set \$1%s;
 #X obj 50 470 symbol;
-#X msg 116 389 set %s;
+#X msg 134 389 set %s;
 #X obj 103 500 list;
 #X obj 13 500 list prepend;
 #X obj 38 9 t s s b;

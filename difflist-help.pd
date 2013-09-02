@@ -1,0 +1,16 @@
+#N canvas 238 482 563 311 10;
+#X floatatom 222 141 5 0 0 0 - - -;
+#X obj 240 50 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 206 66 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 215 104 difflist;
+#X text 227 32 reset;
+#X msg 258 78 4 \, donkey \, donkey \, horse donkey \, 56 72 \, 56
+72 \, 4;
+#X text 271 59 add different atoms;
+#X text 63 64 how many are different?;
+#X connect 1 0 3 1;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 5 0 3 2;
