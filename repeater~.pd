@@ -1,11 +1,11 @@
-#N canvas 394 22 991 815 10;
+#N canvas 396 22 991 815 10;
 #X obj 57 207 inlet~;
 #X obj 287 -106 inlet;
 #X obj 234 335 tabwrite~ \$0-buffer;
 #X obj 73 372 *~ 1;
 #X obj 95 518 outlet~;
-#X msg 123 161 1;
-#X msg 171 173 0;
+#X msg 132 150 1;
+#X msg 193 139 0;
 #X msg 252 307 stop;
 #X obj 609 -107 inlet;
 #X msg 501 141 1 \, \$1 \$2;
@@ -43,7 +43,7 @@
 #X obj 106 231 spigot;
 #X obj 120 186 t b f;
 #X msg 126 208 0;
-#X obj 179 248 spigot;
+#X obj 170 268 spigot;
 #X obj 184 204 t b f;
 #X msg 195 225 0;
 #X msg 159 221 1;
@@ -69,7 +69,7 @@
 #X obj 109 372 snapshot~;
 #X obj 189 367 snapshot~;
 #X obj 137 455 line~;
-#X obj 313 239 del;
+#X obj 320 119 del;
 #X obj 434 544 block~ 64;
 #X obj 663 205 f;
 #X obj 617 227 -;
@@ -103,11 +103,6 @@
 #X obj 490 -10 &;
 #X obj 482 16 sel 1 0;
 #X obj 374 52 sel 2;
-#X obj 331 162 div 64;
-#X obj 337 185 * 64;
-#X obj 339 115 mstos;
-#X obj 338 139 + 63;
-#X obj 339 210 stoms;
 #X obj 667 8 + 1;
 #X connect 0 0 3 0;
 #X connect 0 0 2 0;
@@ -157,7 +152,7 @@
 #X connect 26 0 67 0;
 #X connect 27 0 29 0;
 #X connect 27 0 70 0;
-#X connect 27 1 106 0;
+#X connect 27 1 70 1;
 #X connect 28 0 30 0;
 #X connect 28 1 29 1;
 #X connect 28 2 33 0;
@@ -165,7 +160,7 @@
 #X connect 30 0 40 0;
 #X connect 32 0 66 0;
 #X connect 32 0 96 0;
-#X connect 32 0 109 0;
+#X connect 32 0 104 0;
 #X connect 33 0 30 0;
 #X connect 34 0 26 1;
 #X connect 35 0 3 1;
@@ -261,9 +256,4 @@
 #X connect 102 0 95 0;
 #X connect 102 1 94 0;
 #X connect 103 0 94 0;
-#X connect 104 0 105 0;
-#X connect 105 0 108 0;
-#X connect 106 0 107 0;
-#X connect 107 0 104 0;
-#X connect 108 0 70 1;
-#X connect 109 0 94 1;
+#X connect 104 0 94 1;
