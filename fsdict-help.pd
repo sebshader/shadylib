@@ -8,9 +8,6 @@
 #X msg 67 92 clear;
 #X msg 48 147 5;
 #X msg -86 111 anthony;
-#X text 32 18 dictionary? type thing that stores a unique relationship
-between a number and symbol \, so it can be used kind of like a numbered
-list of symbols if so desired;
 #X obj 181 239 print symbol-identity;
 #X obj 74 207 print float-identity;
 #X text 109 92 clear the whole thing;
@@ -25,8 +22,11 @@ list of symbols if so desired;
 #X text 428 11 remove:;
 #X msg 428 87 rem 5;
 #X msg 421 119 rem 12;
-#X connect 0 0 11 0;
-#X connect 0 1 10 0;
+#X text -31 4 dictionary? type thing that stores a unique relationship
+between a number and symbol \, so it can be used kind of like a numbered
+list of symbols if so desired. 2 element lists set the values;
+#X connect 0 0 10 0;
+#X connect 0 1 9 0;
 #X connect 0 2 2 0;
 #X connect 1 0 0 0;
 #X connect 3 0 0 0;
@@ -34,10 +34,10 @@ list of symbols if so desired;
 #X connect 6 0 0 0;
 #X connect 7 0 0 0;
 #X connect 8 0 0 0;
+#X connect 15 0 0 0;
 #X connect 16 0 0 0;
 #X connect 17 0 0 0;
 #X connect 18 0 0 0;
 #X connect 19 0 0 0;
-#X connect 20 0 0 0;
+#X connect 21 0 0 0;
 #X connect 22 0 0 0;
-#X connect 23 0 0 0;

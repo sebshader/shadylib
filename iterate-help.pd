@@ -6,6 +6,7 @@
 -1;
 #X text 138 34 go from 0 to target number - 1 when banged \, inlet
 also sets this number and outputs it;
+#X text 283 89 right inlet sets float;
 #X connect 1 0 0 0;
 #X connect 2 0 1 0;
 #X connect 3 0 1 0;
