@@ -2,7 +2,6 @@
 #X obj -65 10 smoother~;
 #X obj -45 149 dac~;
 #X obj -64 51 osc~;
-#X obj -46 116 waveshapeexponential~;
 #X obj 87 65 sqrline~;
 #X msg 86 39 \$1 100;
 #X floatatom 95 20 5 0 0 0 - - -;
@@ -14,11 +13,12 @@
 ;
 #X text 385 234 no alias protection!;
 #X obj 39 167 oscope~;
+#X obj -46 116 waveshapex~;
 #X connect 0 0 2 0;
-#X connect 2 0 3 0;
-#X connect 3 0 1 1;
-#X connect 3 0 1 0;
-#X connect 3 0 12 0;
-#X connect 4 0 3 1;
+#X connect 2 0 12 0;
+#X connect 3 0 12 1;
+#X connect 4 0 3 0;
 #X connect 5 0 4 0;
-#X connect 6 0 5 0;
+#X connect 12 0 1 1;
+#X connect 12 0 1 0;
+#X connect 12 0 11 0;

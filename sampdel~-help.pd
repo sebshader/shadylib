@@ -1,0 +1,4 @@
+#N canvas 257 204 450 300 10;
+#X obj 165 64 sampdel~ 4;
+#X text 87 15 delay by number of samples of first argument or message
+inlet;

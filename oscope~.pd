@@ -2,8 +2,8 @@
 #X obj 429 -90 loadbang;
 #X obj 168 -31 inlet~;
 #N canvas 360 82 450 300 (subpatch) 0;
-#X array \$0-scope 6133 float 0;
-#X coords 0 1 6132 -1 200 140 1;
+#X array \$0-scope 1024 float 0;
+#X coords 0 1 1023 -1 200 140 1;
 #X restore 105 120 graph;
 #X obj 446 100 f \$0;
 #X obj 427 186 pack;
@@ -31,8 +31,13 @@
 #X floatatom 333 35 5 0 0 0 - - -;
 #X obj 226 -15 * 4096;
 #X floatatom 306 12 5 0 0 0 - - -;
+#X msg 157 -65 0;
+#X obj 92 -5 tabread \$0-scope;
+#X msg 120 -38 0;
+#X obj 66 25 tabwrite \$0-scope;
 #X connect 0 0 7 0;
 #X connect 0 0 10 0;
+#X connect 0 0 28 0;
 #X connect 1 0 9 0;
 #X connect 3 0 4 1;
 #X connect 4 0 8 0;
@@ -45,6 +50,7 @@
 #X connect 12 0 17 0;
 #X connect 13 0 12 0;
 #X connect 14 0 23 0;
+#X connect 14 0 30 0;
 #X connect 15 0 4 0;
 #X connect 16 0 15 0;
 #X connect 17 0 16 0;
@@ -57,4 +63,7 @@
 #X connect 23 0 26 0;
 #X connect 24 0 9 0;
 #X connect 26 0 24 0;
+#X connect 28 0 31 1;
+#X connect 29 0 31 0;
+#X connect 30 0 29 0;
 #X coords 0 -1 1 1 210 165 2 100 100;
