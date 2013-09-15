@@ -5,5 +5,7 @@ outputc~ also accepts gain as a creation argument;
 #X floatatom 316 131 5 0 1 0 - - -;
 #X obj 255 104 hsl 128 15 0 1 0 0 empty empty empty -2 -8 0 10 -262144
 -1 -1 0 1;
+#X text 77 171 can record too;
+#X text 164 257 outlet is gain;
 #X connect 2 0 0 2;
 #X connect 3 0 2 0;

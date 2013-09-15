@@ -1,15 +1,15 @@
-#N canvas 401 292 737 550 10;
+#N canvas 656 164 737 550 10;
 #X declare -lib iem_tab;
 #X declare -lib iem_tab;
-#X obj 104 120 vu 15 120 empty empty -1 -8 0 10 -8245 -1 1 0;
+#X obj 104 154 vu 15 120 empty empty -1 -8 0 10 -8245 -1 1 0;
 #X obj 104 58 rmstodb;
 #X obj 101 78 - 100;
 #X obj 172 -12 inlet~;
 #X obj 255 1 inlet~;
 #X obj 264 80 rmstodb;
 #X obj 186 82 - 100;
-#X obj 153 120 vu 15 120 empty empty -1 -8 0 10 -8245 -1 1 0;
-#X obj 174 269 dac~;
+#X obj 153 154 vu 15 120 empty empty -1 -8 0 10 -8245 -1 1 0;
+#X obj 195 327 dac~;
 #X obj 359 -8 loadbang;
 #X obj 416 11 f \$2;
 #X obj 111 35 unsig~ 20;
@@ -29,7 +29,7 @@
 #X obj 567 387 del 300;
 #X obj -9 19 highest~;
 #X text 410 377 what was this for?;
-#X obj 168 102 tgl 14 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle
+#X obj 176 103 tgl 14 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle
 dsp 0 5 1 9 -262144 -195568 -33289 0 1;
 #N canvas 366 514 482 356 dsp 0;
 #X obj 11 7 inlet;
@@ -70,14 +70,24 @@ dsp 0 5 1 9 -262144 -195568 -33289 0 1;
 #X obj 1 213 hip~;
 #X obj 249 30 sigenv~ 7;
 #X obj 116 16 sigenv~ 7;
+#X obj 112 116 bng 15 250 50 0 empty empty Start_rec. 17 7 0 10 -258113
+-4160 -1;
+#X obj 112 133 bng 15 250 50 0 empty empty Stop_rec. 17 7 0 10 -4034
+-4160 -1;
+#X msg 177 379 open -bytes 3 \$1 \, start;
+#X obj 174 355 savepanel;
+#X obj 224 415 writesf~ 2;
+#X msg 267 355 stop;
 #X connect 1 0 2 0;
 #X connect 2 0 0 0;
 #X connect 3 0 26 0;
 #X connect 3 0 33 0;
 #X connect 3 0 35 0;
+#X connect 3 0 40 0;
 #X connect 4 0 16 0;
 #X connect 4 0 32 0;
 #X connect 4 0 34 0;
+#X connect 4 0 40 1;
 #X connect 5 0 6 0;
 #X connect 6 0 7 0;
 #X connect 9 0 10 0;
@@ -110,4 +120,9 @@ dsp 0 5 1 9 -262144 -195568 -33289 0 1;
 #X connect 33 0 8 0;
 #X connect 34 0 12 0;
 #X connect 35 0 11 0;
-#X coords 0 -1 1 1 98 145 1 100 100;
+#X connect 36 0 39 0;
+#X connect 37 0 41 0;
+#X connect 38 0 40 0;
+#X connect 39 0 38 0;
+#X connect 41 0 40 0;
+#X coords 0 -1 1 1 98 180 1 100 100;

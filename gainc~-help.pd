@@ -1,0 +1,10 @@
+#N canvas 0 22 450 300 10;
+#X obj 206 133 gainc~;
+#X obj 198 94 osc~ 400;
+#X obj 261 96 osc~ 200;
+#X text 138 47 like outputc~ without recording or dac~;
+#X obj 223 189 dac~;
+#X connect 0 0 4 0;
+#X connect 0 1 4 1;
+#X connect 1 0 0 0;
+#X connect 2 0 0 1;
