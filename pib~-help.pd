@@ -1,0 +1,10 @@
+#N canvas 376 173 450 300 10;
+#X obj 320 134 pib~;
+#X obj 326 174 print;
+#X obj 305 59 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 306 87 metro 2;
+#X text 124 108 time into the current block;
+#X connect 0 0 1 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;

@@ -1,0 +1,3 @@
+#N canvas 58 129 450 300 10;
+#X obj 204 134 ttempo;
+#X text 264 94 tap the tempo in ms!;
