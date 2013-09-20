@@ -7,7 +7,7 @@ the GUI number box);
 #X floatatom 157 68 5 0 0 0 - - -;
 #X msg 220 77 10;
 #X floatatom 224 142 5 0 0 0 - - -;
-#X obj 156 153 dbgr;
+#X obj 156 153 dbgr~;
 #X connect 2 0 6 0;
 #X connect 2 1 5 0;
 #X connect 3 0 2 0;

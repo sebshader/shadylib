@@ -24,7 +24,7 @@
 #X text 545 140 decay time;
 #X obj 207 219 *~;
 #X obj 337 225 oscope~;
-#X obj 89 206 dbgr;
+#X obj 89 206 dbgr~;
 #X obj -123 -24 sndfilereader~;
 #X obj 171 220 *~;
 #X obj 237 187 lop~ 100;

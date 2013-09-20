@@ -5,7 +5,7 @@
 #X floatatom 150 60 5 0 0 0 - - -;
 #X floatatom 192 70 5 0 0 0 - - -;
 #X obj 87 67 signum~;
-#X obj 140 136 dbgr;
+#X obj 140 136 dbgr~;
 #X connect 0 0 5 0;
 #X connect 2 0 0 1;
 #X connect 3 0 0 2;

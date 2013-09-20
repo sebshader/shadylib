@@ -1,6 +1,6 @@
 #N canvas 0 22 450 300 10;
 #X text 173 89 GUI sig~ \, argument initializes;
 #X obj 199 167 signum~ 6;
-#X obj 202 215 dbgr;
 #X msg 324 189 \; pd dsp 1;
-#X connect 1 0 2 0;
+#X obj 202 215 dbgr~;
+#X connect 1 0 3 0;

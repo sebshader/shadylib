@@ -10,7 +10,6 @@ name of waveshaping (either "gaussian" or "cauchy"). no aliasing protection
 #X obj 379 232 smoother~;
 #X text 33 187 remember to hit this after changing from 0;
 #X obj 165 239 mtof~;
-#X obj 123 284 dbgr;
 #X obj 205 285 sampphase~;
 #X obj 367 106 metro 50;
 #X obj 267 146 rndmrange 1050 1 20;
@@ -22,30 +21,31 @@ name of waveshaping (either "gaussian" or "cauchy"). no aliasing protection
 #X obj 137 137 once;
 #X text 418 65 from the example in the "Audio examples" folder (paf.control)
 ;
-#X obj 367 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 367 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 382 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
+#X obj 123 284 dbgr~;
 #X connect 0 0 3 0;
 #X connect 0 0 3 1;
-#X connect 2 0 9 1;
+#X connect 2 0 8 1;
 #X connect 4 0 0 1;
 #X connect 5 0 0 3;
 #X connect 7 0 8 0;
-#X connect 7 0 9 0;
-#X connect 9 0 0 0;
-#X connect 9 1 0 2;
-#X connect 10 0 11 0;
-#X connect 10 0 12 0;
-#X connect 10 0 15 0;
-#X connect 10 0 16 0;
-#X connect 11 0 4 0;
-#X connect 12 0 5 0;
-#X connect 13 0 7 0;
-#X connect 14 0 13 0;
-#X connect 14 0 17 0;
-#X connect 15 0 10 1;
-#X connect 16 0 14 0;
-#X connect 17 0 2 0;
-#X connect 19 0 0 4;
-#X connect 20 0 10 0;
+#X connect 7 0 20 0;
+#X connect 8 0 0 0;
+#X connect 8 1 0 2;
+#X connect 9 0 10 0;
+#X connect 9 0 11 0;
+#X connect 9 0 14 0;
+#X connect 9 0 15 0;
+#X connect 10 0 4 0;
+#X connect 11 0 5 0;
+#X connect 12 0 7 0;
+#X connect 13 0 12 0;
+#X connect 13 0 16 0;
+#X connect 14 0 9 1;
+#X connect 15 0 13 0;
+#X connect 16 0 2 0;
+#X connect 18 0 0 4;
+#X connect 19 0 9 0;

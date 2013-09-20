@@ -1,5 +1,4 @@
 #N canvas 93 107 642 448 10;
-#X obj 273 163 dbgr;
 #X obj 232 101 operator~;
 #X obj 227 130 sigenv~ 7;
 #X obj 262 52 smoother~;
@@ -10,9 +9,10 @@ argument/ inlet will make the RMS window bigger (and less responsive)
 \, and visa-versa.;
 #X floatatom 321 110 5 0 0 0 - - -;
 #X obj 202 183 oscope~;
-#X connect 1 0 2 0;
-#X connect 2 0 0 0;
-#X connect 2 0 7 0;
-#X connect 3 0 1 1;
-#X connect 4 0 1 0;
-#X connect 6 0 2 1;
+#X obj 276 160 dbgr~;
+#X connect 0 0 1 0;
+#X connect 1 0 6 0;
+#X connect 1 0 7 0;
+#X connect 2 0 0 1;
+#X connect 3 0 0 0;
+#X connect 5 0 1 1;
