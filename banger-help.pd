@@ -13,6 +13,7 @@ the dsp on;
 #X text 90 218 also sends to this:;
 #X obj 219 216 r globalloadbang;
 #X obj 210 239 print sent a global;
+#X text 178 97 inlet: to dsp;
 #X connect 1 0 3 0;
 #X connect 1 1 2 0;
 #X connect 5 0 4 0;

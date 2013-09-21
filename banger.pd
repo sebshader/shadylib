@@ -1,8 +1,7 @@
 #N canvas 264 117 450 300 10;
 #X obj 152 44 loadbang;
-#X obj 5 7 cnv 15 90 18 empty empty Banger 3 7 0 14 -1 -187456 0;
-#X obj 59 8 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
-;
+#X obj 59 6 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 -262144 -1 -1
+0 1;
 #X msg 262 206 \; pd dsp \$1 \;;
 #X obj 306 16 r pd;
 #X obj 305 36 route dsp;
@@ -12,22 +11,25 @@
 #X obj 220 172 clip 0 1;
 #X obj 354 173 outlet;
 #X obj 190 14 inlet;
-#X obj 77 8 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
+#X obj 77 6 bng 15 250 50 0 \$0-bang \$0-NOTHING empty 17 7 0 10 -262144
+-1 -1;
 #X obj 221 138 sel 0;
 #X obj 99 165 s globalloadbang;
-#X connect 0 0 8 0;
+#X obj 169 135 r \$0-tog;
+#X obj 356 81 s \$0-totog;
+#X obj 105 120 r \$0-bang;
 #X connect 0 0 7 0;
-#X connect 0 0 14 0;
-#X connect 2 0 9 0;
+#X connect 0 0 6 0;
+#X connect 0 0 13 0;
+#X connect 3 0 4 0;
 #X connect 4 0 5 0;
-#X connect 5 0 6 0;
-#X connect 5 0 10 0;
-#X connect 6 0 2 0;
-#X connect 8 0 13 0;
-#X connect 9 0 3 0;
-#X connect 11 0 2 0;
-#X connect 12 0 7 0;
-#X connect 12 0 14 0;
-#X connect 13 1 9 0;
-#X coords 0 -1 1 1 90 23 1 5 5;
+#X connect 4 0 9 0;
+#X connect 5 0 15 0;
+#X connect 7 0 12 0;
+#X connect 8 0 2 0;
+#X connect 10 0 15 0;
+#X connect 12 1 8 0;
+#X connect 14 0 8 0;
+#X connect 16 0 6 0;
+#X connect 16 0 13 0;
+#X coords 0 -1 1 1 90 18 1 5 5;
