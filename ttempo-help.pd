@@ -1,3 +1,6 @@
-#N canvas 58 129 450 300 10;
+#N canvas 360 136 450 300 10;
 #X obj 204 134 ttempo;
-#X text 264 94 tap the tempo in ms!;
+#X obj 210 111 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 264 94 tap the tempo in ms;
+#X connect 1 0 0 0;

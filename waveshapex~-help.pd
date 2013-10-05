@@ -14,6 +14,7 @@
 #X text 385 234 no alias protection!;
 #X obj 39 167 oscope~;
 #X obj -46 116 waveshapex~;
+#X msg 431 80 \; pd dsp 1;
 #X connect 0 0 2 0;
 #X connect 2 0 12 0;
 #X connect 3 0 12 1;

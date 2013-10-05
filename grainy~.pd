@@ -1,4 +1,4 @@
-#N canvas 406 105 683 718 12;
+#N canvas 406 105 683 718 10;
 #X obj 7 378 +~;
 #X obj 8 330 samphold~;
 #X obj 444 203 +~ 0.5;

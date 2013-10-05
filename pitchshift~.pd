@@ -55,8 +55,6 @@
 #X obj 117 239 /;
 #X obj 368 76 t b b;
 #X obj 150 210 / 2;
-#X msg 156 127 bang;
-#X msg 272 70;
 #X obj 149 262 min;
 #X obj 73 332 lp4_butt~ 22050 5;
 #X text 4 314 just a lil' antialiasing filter;
@@ -102,7 +100,7 @@
 #X connect 37 0 48 0;
 #X connect 38 0 46 0;
 #X connect 39 0 42 0;
-#X connect 40 0 59 0;
+#X connect 40 0 57 0;
 #X connect 42 0 34 0;
 #X connect 43 0 45 0;
 #X connect 43 0 48 0;
@@ -115,12 +113,11 @@
 #X connect 51 0 55 0;
 #X connect 52 0 53 0;
 #X connect 52 1 53 1;
-#X connect 53 0 58 0;
+#X connect 53 0 56 0;
 #X connect 54 0 42 0;
 #X connect 54 1 51 0;
 #X connect 55 0 52 1;
-#X connect 55 0 58 1;
-#X connect 56 0 51 0;
-#X connect 58 0 61 0;
-#X connect 59 0 41 0;
-#X connect 61 0 59 1;
+#X connect 55 0 56 1;
+#X connect 56 0 59 0;
+#X connect 57 0 41 0;
+#X connect 59 0 57 1;

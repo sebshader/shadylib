@@ -27,7 +27,6 @@
 #X obj 119 -39 inlet;
 #X obj 158 -39 inlet;
 #X obj 219 -34 inlet;
-#X obj 3 203;
 #X text -167 -35 todo: implement pause;
 #X connect 0 0 13 0;
 #X connect 1 0 15 0;

@@ -1,10 +1,8 @@
 #N canvas 80 68 450 300 10;
-#X obj 211 70 -;
-#X msg 211 47 1 \$1;
 #X obj 211 24 inlet;
 #X obj 211 97 outlet;
 #X text 45 124 switches 1 and 0 (I find myself needing this quite a
 bit);
+#X obj 211 55 expr 1 - $f1;
 #X connect 0 0 3 0;
-#X connect 1 0 0 0;
-#X connect 2 0 1 0;
+#X connect 3 0 1 0;

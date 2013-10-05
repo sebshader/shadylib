@@ -41,5 +41,4 @@ accept negative numbers for split points;
 #X connect 14 0 0 3;
 #X connect 15 0 13 0;
 #X connect 16 0 0 0;
-#X connect 19 0 7 0;
 #X connect 19 0 10 0;

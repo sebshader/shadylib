@@ -1,9 +1,7 @@
 #N canvas 0 22 450 300 10;
-#X msg 194 69 1000 \$1;
-#X obj 198 100 /;
 #X obj 198 41 inlet;
 #X obj 201 137 outlet;
 #X text 155 176 ms to frequency and back;
-#X connect 0 0 1 0;
-#X connect 1 0 3 0;
-#X connect 2 0 0 0;
+#X obj 201 96 expr 1000/$f1;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

@@ -10,6 +10,7 @@
 #X obj 170 47 smoother~;
 #X obj 349 79 mtof;
 #X obj 283 19 banger;
+#X text 79 199 downsampling at samplerate (no resampling);
 #X connect 0 0 2 0;
 #X connect 0 0 2 1;
 #X connect 1 0 0 0;
