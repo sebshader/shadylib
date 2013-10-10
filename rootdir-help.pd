@@ -1,0 +1,8 @@
+#N canvas 0 22 645 334 10;
+#X obj 232 86 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X symbolatom 221 138 50 0 0 0 - - -;
+#X obj 223 108 rootdir;
+#X text 313 82 get the directory of the very root canvas;
+#X connect 0 0 2 0;
+#X connect 2 0 1 0;

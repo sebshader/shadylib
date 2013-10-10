@@ -1,0 +1,22 @@
+#N canvas 691 65 507 330 10;
+#X obj -3442 100 patchdepth;
+#X msg -3484 76 bang;
+#X obj -3445 74 loadbang;
+#N canvas 246 183 450 300 theres_a_patchdepth_in_here 0;
+#X obj 29 18 inlet;
+#X obj 47 99 patchdepth;
+#X obj 57 143 outlet;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X restore -3577 185 pd theres_a_patchdepth_in_here;
+#X msg -3566 149 bang;
+#X floatatom -3581 217 5 0 0 0 - - -;
+#X obj -3440 124 print patch_depth;
+#X text -3700 8 get the depth of the patch that [patchdepth] is in
+(how many levels of parent patches there are between the patch patchdepth
+is in and the root canvas);
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 5 0;
+#X connect 4 0 3 0;
