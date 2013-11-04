@@ -9,7 +9,7 @@
 #X text 273 134 <--from ekext \, just counts up;
 #X obj 88 101 route set size;
 #X msg 304 237 add2 \$1;
-#X obj 248 -6 inlet;
+#X obj 256 -7 inlet;
 #X obj 92 29 inlet;
 #X obj 88 140 list split 1;
 #X obj 57 249 symbol \$1;
@@ -17,7 +17,7 @@
 #X msg 132 327 add2 \$1;
 #X msg 19 313 add2 \$1 sinesum;
 #X obj 169 140 t b b b b;
-#X text 289 -7 # of partials;
+#X text 297 -8 # of partials;
 #X obj 304 190 outlet;
 #X obj 304 215 inlet;
 #X obj 259 312 symbol;
@@ -32,7 +32,7 @@
 #X obj 132 274 sel 0;
 #X obj 132 299 f 4096;
 #X obj 240 53 clip 1 22050;
-#X obj 263 12 int;
+#X obj 256 12 int;
 #X connect 0 0 2 0;
 #X connect 1 0 31 0;
 #X connect 2 0 5 0;

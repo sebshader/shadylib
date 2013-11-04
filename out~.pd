@@ -22,7 +22,7 @@
 #X obj 376 115 - 100;
 #X obj -9 19 highest~;
 #X obj 176 103 tgl 14 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle
-dsp 0 5 1 9 -262144 -195568 -33289 0 1;
+dsp 0 5 1 9 -225271 -195568 -33289 1 1;
 #N canvas 366 514 482 356 dsp 0;
 #X obj 11 7 inlet;
 #X obj 92 226 select 0 1;

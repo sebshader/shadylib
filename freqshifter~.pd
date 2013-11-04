@@ -10,6 +10,7 @@
 #X obj 33 179 -~;
 #X obj 347 9 inlet;
 #X obj 155 71 sin~;
+#X obj 185 185 outlet~;
 #X connect 0 0 1 0;
 #X connect 0 1 2 0;
 #X connect 1 0 8 0;
@@ -18,6 +19,7 @@
 #X connect 5 0 0 0;
 #X connect 6 0 3 0;
 #X connect 6 0 10 0;
+#X connect 6 0 11 0;
 #X connect 7 0 6 0;
 #X connect 8 0 4 0;
 #X connect 9 0 6 1;
