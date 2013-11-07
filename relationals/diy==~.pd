@@ -1,0 +1,90 @@
+#N canvas 353 201 1282 677 10;
+#X obj 93 350 table \$0-conditional 2;
+#X obj 115 232 tabread~ \$0-conditional;
+#X obj 639 129 s \$0-conditional;
+#X obj 639 78 loadbang;
+#X obj 111 44 inlet~;
+#X msg 640 103 0 1 0;
+#X obj 314 227 tabread~ \$0-conditional;
+#X obj 246 377 outlet~;
+#X obj 245 293 +~ -1;
+#X obj 245 316 abs~;
+#X obj 526 47 t b b;
+#X obj 655 508 s pd-\$0-dynamic;
+#X obj 492 83 numargs;
+#X obj 492 107 sel 0 1;
+#X obj 505 175 t b b;
+#X obj 411 381 s cond-\$0;
+#X obj 539 132 t b b;
+#X obj 525 23 initbang;
+#X obj 868 105 f \$1;
+#N canvas 882 325 450 300 \$0-dynamic 0;
+#X obj 20 30 inlet~;
+#X obj 130 30 inlet;
+#X obj 20 200 outlet~;
+#X obj 130 200 outlet~;
+#X obj 20 90 +~ -4;
+#X obj 20 120 *~ -1;
+#X obj 20 150 +~ 1;
+#X obj 130 60 * -1;
+#X obj 130 90 + 1;
+#X obj 130 120 +~ -3;
+#X connect 0 0 4 0;
+#X connect 0 0 9 0;
+#X connect 1 0 7 0;
+#X connect 4 0 5 0;
+#X connect 5 0 6 0;
+#X connect 6 0 2 0;
+#X connect 7 0 4 1;
+#X connect 7 0 8 0;
+#X connect 8 0 9 1;
+#X connect 9 0 3 0;
+#X restore 110 99 pd \$0-dynamic;
+#X obj 868 154 t f f;
+#X obj 868 130 * -1;
+#X obj 900 182 + 1;
+#X obj 882 213 pack;
+#X msg 637 365 clear \, obj 20 30 inlet~ \, obj 130 30 inlet~ \, obj
+20 200 outlet~ \, obj 130 200 outlet~ \, obj 20 90 +~ \, obj 20 120
+*~ -1 \, obj 20 150 +~ 1 \, obj 130 60 *~ -1 \, obj 130 90 +~ 1 \,
+obj 130 120 +~ \, connect 0 0 4 0 \, connect 4 0 5 0 \, connect 5 0
+6 0 \, connect 6 0 2 0 \, connect 1 0 7 0 \, connect 7 0 4 1 \, connect
+7 0 8 0 \, connect 8 0 9 1 \, connect 0 0 9 0 \, connect 9 0 3 0;
+#X obj 96 384 namecanvas cond-\$0;
+#X msg 869 258 clear \, obj 20 30 inlet~ \, obj 130 30 inlet \, obj
+20 200 outlet~ \, obj 130 200 outlet~ \, obj 20 90 +~ \$1 \, obj 20
+120 *~ -1 \, obj 20 150 +~ 1 \, obj 130 60 * -1 \, obj 130 90 + 1 \,
+obj 130 120 +~ \$2 \, connect 0 0 4 0 \, connect 4 0 5 0 \, connect
+5 0 6 0 \, connect 6 0 2 0 \, connect 1 0 7 0 \, connect 7 0 4 1 \,
+connect 7 0 8 0 \, connect 8 0 9 1 \, connect 0 0 9 0 \, connect 9
+0 3 0;
+#X msg 290 328 obj 217 39 inlet~ \, connect 4 0 19 0 \, connect 19
+0 1 0 \, connect 19 1 6 0 \, connect 29 0 19 1;
+#X msg 494 262 obj 217 39 inlet \, connect 4 0 19 0 \, connect 19 0
+1 0 \, connect 19 1 6 0 \, connect 29 0 19 1;
+#X connect 1 0 8 0;
+#X connect 3 0 5 0;
+#X connect 5 0 2 0;
+#X connect 6 0 8 0;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 12 0;
+#X connect 10 1 3 0;
+#X connect 12 0 13 0;
+#X connect 13 0 14 0;
+#X connect 13 1 16 0;
+#X connect 14 0 27 0;
+#X connect 14 1 24 0;
+#X connect 16 0 28 0;
+#X connect 16 1 18 0;
+#X connect 17 0 10 0;
+#X connect 18 0 21 0;
+#X connect 20 0 23 0;
+#X connect 20 1 22 0;
+#X connect 21 0 20 0;
+#X connect 22 0 23 1;
+#X connect 23 0 26 0;
+#X connect 24 0 11 0;
+#X connect 26 0 11 0;
+#X connect 27 0 15 0;
+#X connect 28 0 15 0;

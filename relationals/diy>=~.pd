@@ -1,0 +1,63 @@
+#N canvas 310 104 1057 583 10;
+#X obj 118 202 tabread~ \$0-conditional;
+#X obj 111 44 inlet~;
+#X obj 118 264 outlet~;
+#X obj 490 90 s \$0-conditional;
+#X obj 463 38 t b b;
+#X obj 570 363 s pd-\$0-dynamic;
+#X obj 429 74 numargs;
+#X obj 429 98 sel 0 1;
+#X obj 377 189 t b b;
+#X obj 348 372 s cond-\$0;
+#X obj 476 123 t b b;
+#X obj 462 14 initbang;
+#X obj 65 383 table \$0-conditional 2;
+#X obj 71 358 namecanvas cond-\$0;
+#N canvas 512 191 450 300 \$0-dynamic 0;
+#X obj 20 30 inlet~;
+#X obj 20 200 outlet~;
+#X obj 130 30 inlet~;
+#X obj 20 150 +~;
+#X obj 130 60 *~ -1;
+#X obj 130 80 +~ 1;
+#X connect 0 0 3 0;
+#X connect 2 0 4 0;
+#X connect 3 0 1 0;
+#X connect 4 0 5 0;
+#X connect 5 0 3 1;
+#X restore 125 128 pd \$0-dynamic;
+#X msg 601 186 clear \, obj 20 30 inlet~ \, obj 20 200 outlet~ \, obj
+130 30 inlet \, obj 20 150 +~ \$1 \, obj 130 60 * -1 \, obj 130 80
++ 1 \, connect 0 0 3 0 \, connect 2 0 4 0 \, connect 4 0 5 0 \, connect
+5 0 3 1 \, connect 3 0 1 0;
+#X obj 537 136 f \$1;
+#X obj 550 159 * -1;
+#X obj 553 185 + 1;
+#X msg 566 297 clear \, obj 20 30 inlet~ \, obj 20 200 outlet~ \, obj
+130 30 inlet~ \, obj 20 150 +~ \, obj 130 60 *~ -1 \, obj 130 80 +~
+1 \, connect 0 0 3 0 \, connect 2 0 4 0 \, connect 4 0 5 0 \, connect
+5 0 3 1 \, connect 3 0 1 0;
+#X msg 227 319 obj 180 77 inlet~ \, connect 1 0 14 0 \, connect 14
+0 0 0 \, connect 23 0 14 1;
+#X msg 431 253 obj 180 77 inlet \, connect 1 0 14 0 \, connect 14 0
+0 0 \, connect 23 0 14 1;
+#X msg 491 64 0 0 1;
+#X connect 0 0 2 0;
+#X connect 4 0 6 0;
+#X connect 4 1 22 0;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 1 10 0;
+#X connect 8 0 20 0;
+#X connect 8 1 19 0;
+#X connect 10 0 21 0;
+#X connect 10 1 16 0;
+#X connect 11 0 4 0;
+#X connect 15 0 5 0;
+#X connect 16 0 17 0;
+#X connect 17 0 18 0;
+#X connect 18 0 15 0;
+#X connect 19 0 5 0;
+#X connect 20 0 9 0;
+#X connect 21 0 9 0;
+#X connect 22 0 3 0;
