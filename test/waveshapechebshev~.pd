@@ -1,5 +1,0 @@
-#N canvas 565 86 496 404 10;
-#X obj 174 48 inlet~;
-#X obj 302 90 inlet~;
-#X text 309 68 polynomial #;
-#X obj 149 378 outlet~;
