@@ -1,0 +1,6 @@
+#N canvas 349 92 450 300 10;
+#X obj 102 84 numhelpabs 4 8 7 gertrude fuzz face;
+#X text 63 32 gives the number of arguments in the containing canvas
+when banged: see inside;
+#X obj 95 137 numhelpabs poodle;
+#X obj 260 147 numhelpabs;

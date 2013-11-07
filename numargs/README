@@ -1,0 +1,8 @@
+numargs: simple (my 1st!) pd external to give the number of arguments of the
+containing canvas.
+
+to make it you may (probably will) need to edit the makefile in this (the
+numargs) folder to fit your system, I only have OSX at the moment. check the
+system and type the appropriate command (e.g. "make pd_darwin"). Alternatively
+get the Pd library template and edit it. (it is GPL licensed and I'm releasing
+this under the BSD license, didn't want them conflicting)
