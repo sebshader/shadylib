@@ -1,4 +1,4 @@
-#N canvas 363 223 522 322 10;
+#N canvas 363 223 656 443 10;
 #X text 107 99 bpm;
 #X text 175 99 ms;
 #X obj 155 -6 inlet;
@@ -16,13 +16,13 @@
 #X obj 43 43 /;
 #X obj 165 104 bng 8 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 253 37 f \$1;
-#X obj 286 68 select bpm;
-#X obj 331 36 symbol \$2;
-#X text 284 33 tempo;
+#X obj 235 -14 f \$1;
+#X obj 332 55 select bpm;
+#X obj 331 6 symbol \$2;
+#X text 284 3 tempo;
 #X obj 216 114 int;
-#X obj 237 64 pack;
-#X obj 215 86 route 0 1;
+#X obj 223 13 pack;
+#X obj 222 38 route 0 1;
 #X text 115 129 /3;
 #X text 164 129 /4;
 #X floatatom 153 147 7 0 0 0 - - -;
@@ -34,16 +34,17 @@
 #X obj 48 129 / 3;
 #X obj 41 176 * 3;
 #X text 140 99 int;
-#X obj 342 6 inlet;
-#X obj 265 8 t b b;
-#X msg 286 90 1;
-#X msg 342 93 0;
+#X obj 342 -24 inlet;
+#X obj 265 -22 t b b;
+#X msg 332 77 1;
+#X msg 388 80 0;
 #X msg 43 20 60000 \$1;
 #X obj 229 241 outlet;
 #X obj 48 223 t b f;
-#X obj 254 -16 loadbang;
+#X obj 254 -46 loadbang;
 #X obj 111 277 v globaltempo;
 #X obj 26 252 s globaltempotrigger;
+#X obj 336 26 spigot;
 #X connect 2 0 4 0;
 #X connect 3 0 12 0;
 #X connect 3 0 39 0;
@@ -65,9 +66,10 @@
 #X connect 13 0 10 1;
 #X connect 14 0 19 0;
 #X connect 15 0 20 1;
+#X connect 15 0 43 1;
 #X connect 16 0 35 0;
 #X connect 16 1 36 0;
-#X connect 17 0 16 0;
+#X connect 17 0 43 0;
 #X connect 19 0 4 0;
 #X connect 20 0 21 0;
 #X connect 21 0 4 0;
@@ -89,4 +91,5 @@
 #X connect 39 0 42 0;
 #X connect 39 1 41 0;
 #X connect 40 0 34 0;
+#X connect 43 0 16 0;
 #X coords 0 -1 1 1 100 80 1 100 86;
