@@ -4,13 +4,13 @@
 #X obj 138 145 percents 50 75;
 #X obj 288 183 print right;
 #X obj 205 177 print mid;
-#X text 36 47 percent distribution with increasing percentage words
-to 0.1 of a %. a bang in the right inlet will allow a list of weights
-in \, after which the leftmost inlet will give the number of the element
-chosen;
 #X msg 215 125 20 40 60 80;
+#X text 36 47 percent distribution with increasing percentage words
+to 0.1 of a %. right inlet will allow a list of weights in \, after
+which the leftmost outlet will give the number of the element chosen
+;
 #X connect 0 0 2 0;
 #X connect 2 0 1 0;
 #X connect 2 1 4 0;
 #X connect 2 2 3 0;
-#X connect 6 0 2 1;
+#X connect 5 0 2 1;
