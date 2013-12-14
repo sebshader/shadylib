@@ -1,0 +1,15 @@
+#N canvas 0 22 473 399 10;
+#X obj 169 166 whitephase~;
+#X text 46 24 uses sampphase (still needs phase reset at right inlet
+when initializing);
+#X msg 232 139 bang;
+#X text 29 76 like phasor~ \, but constrained to integer periods that
+are distributed with noise~;
+#X obj 166 125 smoother~;
+#X obj 175 195 cos~;
+#X obj 168 218 outputc~;
+#X connect 0 0 5 0;
+#X connect 2 0 0 1;
+#X connect 4 0 0 0;
+#X connect 5 0 6 0;
+#X connect 5 0 6 1;

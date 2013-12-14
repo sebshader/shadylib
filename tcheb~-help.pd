@@ -1,16 +1,17 @@
-#N canvas 0 22 556 331 10;
+#N canvas 331 90 556 331 10;
 #X obj 196 213 tcheb~;
-#X obj 189 179 phasor~;
+#X obj 166 166 phasor~;
 #X obj 185 245 outputc~;
-#X obj 187 139 smoother~;
+#X obj 164 126 smoother~;
 #X text 77 17 like waveshapetch~ \, but instead of taking a signal
 it takes a phasor as the fundamental frequency of a sinewave. this
 way \, the artifacts of the acos~ aren't present;
 #X obj 183 84 mtof;
 #X floatatom 179 58 5 0 0 0 - - -;
 #X obj 255 167 smoother~ 100;
-#X obj 253 97 loadbang;
-#X msg 250 123 4;
+#X obj 244 71 loadbang;
+#X msg 241 97 4;
+#X obj 309 247 waveshapetch~;
 #X connect 0 0 2 0;
 #X connect 0 0 2 1;
 #X connect 1 0 0 0;
