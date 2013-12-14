@@ -146,6 +146,8 @@
 #X obj 636 406 r \$0-fromnumbers;
 #X obj 123 136 abs;
 #X msg 234 421;
+#X text 27 25 todo: make this better \, namely the interface with adding
+weights (don't make it necessary to remove them first);
 #X connect 0 0 27 0;
 #X connect 1 0 70 1;
 #X connect 2 0 4 0;
