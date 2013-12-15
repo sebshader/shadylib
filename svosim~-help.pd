@@ -1,0 +1,28 @@
+#N canvas 55 336 792 433 10;
+#X obj 185 141 svosim~;
+#X obj 156 196 outputc~;
+#X text 228 163 2nd outlet: phase;
+#X text 84 66 fundamental;
+#X obj 238 71 smoother~;
+#X text 242 54 center freq.;
+#X obj 244 196 oscope~;
+#X obj 331 72 smoother~;
+#X text 340 50 duty cycle (0-1);
+#X obj 173 44 smoother~;
+#X obj 44 83 smoother~;
+#X obj 55 38 mtof;
+#X floatatom 64 3 5 0 0 0 - - -;
+#X text 198 27 decay factor (0 - 1);
+#X text 336 116 phase~ set (necessary after setting frequency after
+startup \, uses sampphase~);
+#X msg 304 118 bang;
+#X connect 0 0 1 0;
+#X connect 0 0 1 1;
+#X connect 0 0 6 0;
+#X connect 4 0 0 2;
+#X connect 7 0 0 3;
+#X connect 9 0 0 1;
+#X connect 10 0 0 0;
+#X connect 11 0 10 0;
+#X connect 12 0 11 0;
+#X connect 15 0 0 4;
