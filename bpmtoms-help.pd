@@ -1,0 +1,7 @@
+#N canvas 0 22 450 300 10;
+#X obj 215 108 bpmtoms;
+#X text 84 28 convenience for expr 60000/ $f1;
+#X floatatom 225 81 5 0 0 0 - - -;
+#X floatatom 215 140 5 0 0 0 - - -;
+#X connect 0 0 3 0;
+#X connect 2 0 0 0;

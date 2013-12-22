@@ -23,7 +23,7 @@
 #X floatatom 744 136 5 0 0 0 - #0-intemp15 #0-outtemp15;
 #X msg 145 379 bang;
 #X obj 355 106 tgl 15 0 \$0-started \$0-start empty 17 7 0 10 -258113
--4034 -1 0 1;
+-4034 -1 1 1;
 #X obj 55 85 sel 1;
 #X text 677 105 tempo (ms);
 #X text 527 105 counter;
@@ -2298,4 +2298,5 @@
 #X connect 186 0 181 0;
 #X connect 210 0 211 0;
 #X connect 211 0 156 1;
+#X connect 211 0 148 0;
 #X coords 0 -1 1 1 580 114 2 200 100;
