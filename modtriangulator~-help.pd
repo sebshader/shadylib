@@ -5,11 +5,11 @@
 #X obj 238 16 smoother~;
 #X obj 316 17 smoother~;
 #X obj 413 28 smoother~;
-#X text 285 157 this will alias.;
+#X text 389 155 this will alias.;
 #X msg 367 -3 1;
 #X msg 244 -9 131;
-#X text 300 227 default range 0 - 1;
-#X text 270 187 inlets: frequency \, center offset (-1 to 1) \, amplitude
+#X text 327 269 default range 0 - 1;
+#X text 297 229 inlets: frequency \, center offset (-1 to 1) \, amplitude
 * 2 \, number to add \, phase set;
 #X msg 420 3 -0.5;
 #X text 486 35 <-- play with this (-1 - 1);
