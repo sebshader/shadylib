@@ -1,9 +1,8 @@
-#N canvas 349 119 893 701 10;
+#N canvas 222 57 924 721 10;
 #X obj 53 321 seqbank;
 #X msg 65 288 clear 1;
 #X text 116 288 clears the whole line;
 #X msg 67 206 2 0 9 8 77 465 34 0 0 0 68;
-#X text 234 204 starting at row 2 column 1 \, enter;
 #X msg 71 227 0 7 8 2 3;
 #X text 138 231 now starting at row 0 column 7;
 #X msg 69 262 1 14 7 6 4 4;
@@ -28,20 +27,23 @@
 #X text 289 584 it is also possible to address the numberboxes directly:
 each numberbox has receive name \$0-nbx\$2\$1r \, where \$0 is subpatch
 # \, \$2 is the row # and \$1 is the column #;
-#X connect 0 0 14 0;
-#X connect 0 1 15 0;
-#X connect 0 2 16 0;
-#X connect 0 3 17 0;
-#X connect 0 3 22 1;
+#X text 504 640 you can also read directly from the array: \$0-seqbank
+;
+#X text 234 204 starting at row 2 column 0 \, enter;
+#X connect 0 0 13 0;
+#X connect 0 1 14 0;
+#X connect 0 2 15 0;
+#X connect 0 3 16 0;
+#X connect 0 3 21 1;
 #X connect 1 0 0 0;
 #X connect 3 0 0 0;
-#X connect 5 0 0 0;
-#X connect 7 0 0 0;
-#X connect 9 0 10 0;
-#X connect 10 0 0 0;
-#X connect 11 0 9 0;
-#X connect 13 0 0 0;
-#X connect 18 0 0 1;
-#X connect 20 0 13 0;
+#X connect 4 0 0 0;
+#X connect 6 0 0 0;
+#X connect 8 0 9 0;
+#X connect 9 0 0 0;
+#X connect 10 0 8 0;
+#X connect 12 0 0 0;
+#X connect 17 0 0 1;
+#X connect 19 0 12 0;
+#X connect 20 0 21 0;
 #X connect 21 0 22 0;
-#X connect 22 0 23 0;
