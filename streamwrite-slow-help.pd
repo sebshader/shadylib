@@ -1,0 +1,22 @@
+#N canvas 467 29 750 476 10;
+#X obj 179 215 streamwrite-slow;
+#X obj 181 249 print result;
+#X text 55 86 write streamwrite formatted messages 1 at a time;
+#X msg 171 165 reset;
+#X text 160 141 clears list;
+#X msg 78 157 bang;
+#X text 71 140 output list;
+#X obj 93 257 streamread;
+#X msg 259 144 1000 hello \, 2000 these \, 3000 will \, 4000 come \,
+5000 every \, 6000 second;
+#X obj 83 286 print stream;
+#X obj 191 290 print done;
+#X msg 101 226 1;
+#X connect 0 0 1 0;
+#X connect 0 0 7 1;
+#X connect 3 0 0 0;
+#X connect 5 0 0 0;
+#X connect 7 0 9 0;
+#X connect 7 1 10 0;
+#X connect 8 0 0 1;
+#X connect 11 0 7 0;

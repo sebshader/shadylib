@@ -1,0 +1,6 @@
+#N canvas 223 147 450 300 10;
+#X obj 78 134 streamwrite;
+#X text 22 14 works with streamwrite to write and read streams of anything
+except the letter k \, which it uses to delimit messages;
+#X text 81 116 see streamwrite-help for an example:;
+#X obj 209 51 streamread;
