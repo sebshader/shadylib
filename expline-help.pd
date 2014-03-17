@@ -1,5 +1,4 @@
-#N canvas 96 58 495 329 10;
-#X obj 143 119 expline;
+#N canvas 861 298 495 329 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array explinetest 1000 float 3;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13.5 0 0 0 0 0 0 0 0 0 0
@@ -45,14 +44,18 @@
 #X obj 209 136 loadbang;
 #X msg 140 83 15 \, 0 400;
 #X obj 100 264 tabwrite explinetest;
-#X msg 212 41 \; explinetest const 0;
+#X msg 332 70 \; explinetest const 0;
 #X msg 69 115 15 \, 0 400;
-#X connect 0 0 9 0;
-#X connect 2 0 3 0;
-#X connect 3 0 9 1;
-#X connect 4 0 9 0;
-#X connect 5 0 0 1;
-#X connect 6 0 0 0;
-#X connect 7 0 2 0;
-#X connect 8 0 0 0;
-#X connect 11 0 4 0;
+#X obj 143 119 expline;
+#X text 35 3 2nd inlet: time to ramp (same behavior as line);
+#X text 68 19 1st inlet: list \, set \, or float (like line);
+#X text 31 43 1st argument or 3rd inlet: grain size;
+#X connect 1 0 2 0;
+#X connect 2 0 8 1;
+#X connect 3 0 8 0;
+#X connect 4 0 11 1;
+#X connect 5 0 11 0;
+#X connect 6 0 1 0;
+#X connect 7 0 11 0;
+#X connect 10 0 3 0;
+#X connect 11 0 8 0;

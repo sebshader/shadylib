@@ -5,7 +5,7 @@
 #X obj 203 138 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 187 260 spigot;
-#X obj 216 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 216 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 151 118 0;
 #X text 31 117 0 outputs last list;
@@ -24,8 +24,6 @@ inlet right outlet: the overall number of events;
 #X text 34 23 record a series of timestamp-events;
 #X text 222 373 every event has the format: t <time in ms (1 float)>
 <whatever the event was>;
-#X text 13 457 see this for something that reads the info back in time:
-;
 #X obj 67 346 print playback;
 #X msg 68 279 1;
 #X text 64 259 play back;
@@ -33,19 +31,19 @@ inlet right outlet: the overall number of events;
 #X obj 324 91 metro 300;
 #X obj 67 314 streamread;
 #X obj 201 171 streamwrite;
-#X connect 0 0 27 1;
-#X connect 3 0 27 0;
+#X connect 0 0 26 1;
+#X connect 3 0 26 0;
 #X connect 4 0 12 0;
-#X connect 4 0 26 1;
+#X connect 4 0 25 1;
 #X connect 5 0 4 1;
-#X connect 6 0 27 0;
-#X connect 8 0 27 1;
-#X connect 10 0 25 0;
+#X connect 6 0 26 0;
+#X connect 8 0 26 1;
+#X connect 10 0 24 0;
 #X connect 13 0 10 0;
-#X connect 17 0 27 1;
-#X connect 22 0 26 0;
-#X connect 25 0 0 0;
-#X connect 26 0 21 0;
-#X connect 26 1 24 0;
-#X connect 27 0 4 0;
-#X connect 27 1 15 0;
+#X connect 17 0 26 1;
+#X connect 21 0 25 0;
+#X connect 24 0 0 0;
+#X connect 25 0 20 0;
+#X connect 25 1 23 0;
+#X connect 26 0 4 0;
+#X connect 26 1 15 0;
