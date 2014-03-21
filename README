@@ -2,13 +2,12 @@ plans
 
 This is a pure data library that I always add to whenever I want to either
 do something myself or make something that hasn't been made in pd. Planned 
-additions as of this writing are: a buzz~ that does not pop, a vosim with sweep-
-able formant, bandlimited wavetables (as an external), dynamic inlet types for 
-more oscillators and maybe a system to im-plement them, musical structure 
-abstractions, an abstraction to join the endpoints of a table at the same sample 
-value in a nice way, some pure data type foolery like encoding a float as an int 
-for the purpose of more index precision for arrays, an external to get infor-
-mation about pd (like if it's running 32 or 64 bit). I may also want to change 
+additions as of this writing are: a buzz~ that does not pop, bandlimited wavetables
+ (as an external), dynamic inlet types for more oscillators and maybe a system to 
+implement them, musical structure abstractions, an abstraction to join the endpoints 
+of a table at the same sample value in a nice way, some pure data type foolery like 
+encoding a float as an int for the purpose of more index precision for arrays, an 
+external to get information about pd (like if it's running 32 or 64 bit). I may also want to change 
 repeater into 2 seperate abstractions later, one for writing to the array and 
 one for reading it. Finally, I would like to implement a state-saving system 
 where states of abstractions are stored in files that are in the same directory 
