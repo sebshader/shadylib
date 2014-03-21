@@ -1,0 +1,43 @@
+#N canvas 861 301 563 374 10;
+#X obj 227 237 songfm;
+#X msg 293 117 120;
+#X obj 27 178 r test;
+#X obj 25 214 print test;
+#X msg 287 76 0 section1.txt;
+#X obj 18 117 bng 15 250 50 0 empty empty play 17 7 0 10 -262144 -1
+-1;
+#X msg 39 79 rewind \, bang;
+#X msg 307 200 clear;
+#X msg 92 175 dump;
+#X msg 185 79 1 section2.txt;
+#X msg 300 163 remove 0;
+#X text 349 197 clear song list;
+#X text 30 10 songfm: qlist wrapper for holding song form. takes in
+a list of files and then sequences them;
+#X text 327 113 set bpm of time units in text file;
+#X msg 157 132 stop;
+#X text 152 113 stop at current section;
+#X text 33 60 stop \, rewind \, play;
+#X text 84 151 get list of sections;
+#X obj 265 269 print done;
+#X obj 176 276 print section;
+#X text 179 46 add a file to positions 0 and 1 (these should be in
+the help folder);
+#X text 362 165 remove section at pos 0;
+#X msg 81 116 goto 1;
+#X text 69 99 goto certain section;
+#X obj 409 76 loadbang;
+#X connect 0 0 19 0;
+#X connect 0 1 18 0;
+#X connect 1 0 0 2;
+#X connect 2 0 3 0;
+#X connect 4 0 0 1;
+#X connect 5 0 0 0;
+#X connect 6 0 0 0;
+#X connect 7 0 0 1;
+#X connect 8 0 0 0;
+#X connect 9 0 0 1;
+#X connect 10 0 0 1;
+#X connect 14 0 0 0;
+#X connect 22 0 0 0;
+#X connect 24 0 1 0;
