@@ -1,4 +1,4 @@
-#N canvas 402 70 907 816 10;
+#N canvas 402 58 907 816 10;
 #X obj 143 111 inlet~;
 #X obj 130 614 outlet~;
 #X obj 180 205 phasor~;
@@ -56,6 +56,8 @@
 #X text 452 67 when the fraction of samples are equal \, special treatment
 is needed? not sure about the maths on this;
 #X obj 246 370 -~;
+#X obj 436 136 ==~ 0;
+#X obj 486 139 ==~ 0;
 #X connect 0 0 35 0;
 #X connect 2 0 4 1;
 #X connect 2 0 14 0;
@@ -76,6 +78,7 @@ is needed? not sure about the maths on this;
 #X connect 9 0 3 0;
 #X connect 9 0 36 1;
 #X connect 9 0 45 0;
+#X connect 9 0 57 0;
 #X connect 10 0 22 0;
 #X connect 11 0 12 0;
 #X connect 12 0 17 0;
@@ -111,6 +114,7 @@ is needed? not sure about the maths on this;
 #X connect 35 0 36 0;
 #X connect 35 0 47 0;
 #X connect 35 0 48 0;
+#X connect 35 0 56 0;
 #X connect 36 0 42 1;
 #X connect 37 0 1 0;
 #X connect 38 0 43 0;
@@ -135,3 +139,5 @@ is needed? not sure about the maths on this;
 #X connect 52 0 55 1;
 #X connect 53 0 52 1;
 #X connect 55 0 25 0;
+#X connect 56 0 47 0;
+#X connect 57 0 45 0;
