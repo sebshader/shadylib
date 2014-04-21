@@ -1,4 +1,4 @@
-#N canvas 354 157 871 717 10;
+#N canvas 290 22 657 517 10;
 #X obj 152 136 tcheb~;
 #X obj 143 70 osc~;
 #X obj 189 90 smoother~;
@@ -9,8 +9,9 @@
 #X obj 157 110 *~;
 #X obj 175 38 smoother~;
 #X msg 176 -4 0.75;
-#X text 431 -36 chebyshev waveshaper that goes up to 256 should be
-around O(ln n) maybe?;
+#X text 282 23 chebyshev waveshaper that goes up to 256 should be around
+O(ln n) maybe?;
+#X obj 268 248 oscope~;
 #X connect 0 0 6 0;
 #X connect 1 0 7 0;
 #X connect 2 0 0 1;
@@ -18,6 +19,7 @@ around O(ln n) maybe?;
 #X connect 5 0 6 1;
 #X connect 6 0 4 1;
 #X connect 6 0 4 0;
+#X connect 6 0 11 0;
 #X connect 7 0 0 0;
 #X connect 8 0 7 1;
 #X connect 9 0 1 1;

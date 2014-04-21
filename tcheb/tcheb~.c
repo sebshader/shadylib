@@ -22,11 +22,9 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	unsigned int l = x->lngth;
 	unsigned int dir = x->instruct;
 	unsigned int newo;
-	t_sample inord, t1, t2, tin;
+	t_sample inord, t1, t2, tin, temp;
 	while(n--) {
-		t1 = *in1; 
-		if (t1 < -1.0) t1 = -1.0; else if (t1 > 1.0) t1 = 1.0;
-		t2 = 2.0*t1*t1 - 1.0; inord = *in2++;
+		inord = *in2++;
 		if (inord < 1.0) inord = 1.0;
 		else if (inord > MAX_HARM) inord = MAX_HARM;
 		newo = ((unsigned int) (inord)) + 1;
@@ -40,22 +38,24 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			}
 		}
 		newo = dir;
+		t1 = *in1++; 
+		if (t1 < -1.0) t1 = -1.0; else if (t1 > 1.0) t1 = 1.0;
+		t2 = 2.0*t1*t1 - 1.0; 
 		tin = t1;
 		for(unsigned int i = 0; i < l; i++) {
 			if(newo & 1) {
 			/* 2t(n)*t(m) = t(n+m) + t(n-m) for m = n - 1 and n. odd and even
 				idea is from fxt */
-				t_sample temp = 2.0*t1;
+				temp = 2.0*t1;
 				t1 = temp*t1 - 1.0;
 				t2 = temp*t2 - tin;
 			} else {
-				t_sample temp = 2.0*t2;
+				temp = 2.0*t2;
 				t1 = temp*t1 - tin;
 				t2 = temp*t2 - 1.0;
 			}
 			newo >>= 1;
 		}
-		in1++;
 		/* i'm not really prepared to use the pd cosine table
 		but im gonna do it anyway */
 		inord = (inord - floorf(inord)) * COSTAB_2;
@@ -98,41 +98,3 @@ void tcheb_tilde_setup(void) {
 		0);
 	CLASS_MAINSIGNALIN(tcheb_tilde_class, t_tcheb_tilde, dumf);
 }
-
-/*
-void ntobstring (char *ar, unsigned int num, unsigned int length);
-
-int main (int argc, char* argv[]) {
-	char binstring[10];
-	
-	if(argc < 2){
-		printf("must enter a number in order to get binary instructions\n");
-		exit(0);
-	}
-	unsigned int num = atoi(argv[1]), instr, lngth;
-	if (num > MAX_HARM) {
-		printf("number over %i, setting to %i\n", MAX_HARM, MAX_HARM);
-		num = MAX_HARM;
-	}
-	for(lngth = 0, instr = 0; num > 1; lngth++, num = (num + 1) >> 1) {
-		instr <<= 1; // an integer stack, seems I can start at 2 though
-		instr = (1 & num) | instr;
-		printf("instr is %i\n", instr);
-	}
-	//only update num if it changes by an integer
-	ntobstring(binstring, instr, lngth);
-	//for (int i = 0; i < 12; i++) printf("index %i is %i\n", i, binstring[i]);
-	printf("%.*s\n", lngth, binstring);
-	return(0);
-}
-
-
-
-void ntobstring (char *ar, unsigned int num, unsigned int length) {
-	for(int i = 1; i <= length; i++) {
-		if((1 << (length-i)) & num)
-			ar[i - 1] = 49;
-		else ar[i - 1] = 48;
-	}
-}
-*/
