@@ -1,0 +1,24 @@
+todo: make cubic interpolation scheme 4 tabramp (tabramp4hs | tabramp4?)
+change all objects to dynamically create signal or control inlets/outlets
+depending on arguments.
+
+self-contained state saving! perhaps sssad-based
+
+external:
+bandlimited wavetables of arbitrary degree
+(2d arrays and/or table-filling fft algorithm) that update as they are changed
+(could have the fft executed sample-by sample in the case of frequency mod, what 
+frequency and sample are we at, etc.)
+figure out formant mode for wavetables? like massive
+a better many that dynamically allocates voices a la supercollider.
+system for dynamic inlets, outlets, subpatches, etc.
+make an inlet~ that accepts messages also
+change sampphase~ in order to not have to reset phase when the frequency goes
+from 0 to nonzero
+repeater~ -> loop~-based?
+external to give the existence of an object or not
+some pure data type foolery like encoding a float as an intfor the purpose of
+more index precision for arrays, 
+an external to get information about pd (like if it's running 32 or 64 bit).
+change repeater into 2 seperate abstractions later? one for writing to the array
+and one for reading it?

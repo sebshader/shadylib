@@ -1,4 +1,4 @@
-#N canvas 340 22 476 346 10;
+#N canvas 340 22 536 428 10;
 #X obj 182 217 loop~;
 #X obj 233 75 samplerate~;
 #X obj 228 53 loadbang;

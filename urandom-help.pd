@@ -1,24 +1,22 @@
 #N canvas 466 235 450 300 10;
-#X declare -lib moocow;
-#X declare -lib moocow;
 #X obj 209 173 print;
 #X obj 215 118 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 49 26 interface to urandom utility \, fetches 3 bytes nd runs
+#X text 61 50 interface to urandom utility \, fetches 3 bytes nd runs
 it through [mod (1st argument/ right inlet)] (will probably only work
 on unixy things?);
 #X obj 201 142 urandom 4;
 #X floatatom 371 114 5 0 0 0 - - -;
+#X obj 336 135 urandom;
 #X obj 335 172 print;
 #X obj 307 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 357 63 loadbang;
 #X msg 361 90 2;
-#X obj 336 135 urandom;
 #X connect 1 0 3 0;
 #X connect 3 0 0 0;
-#X connect 4 0 9 1;
-#X connect 6 0 9 0;
-#X connect 7 0 8 0;
-#X connect 8 0 4 0;
-#X connect 9 0 5 0;
+#X connect 4 0 5 1;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 8 0 9 0;
+#X connect 9 0 4 0;

@@ -1,8 +1,18 @@
 numargs: simple (my 1st!) pd external to give the number of arguments of the
 containing canvas.
 
-tcheb~: this is a chebyshev waveshaper. I wanted a chebyshev waveshaper where the order
-(n)could be modulated. There is linear interpolation for fractional values of n.
+tcheb~: this is a chebyshev waveshaper. I wanted a chebyshev waveshaper where
+the order (n) could be modulated. There is linear interpolation for fractional
+values of n.
+
+delwritec~: delwrite~ with clear
+delread~: delread~ clone
+tabread4hs~: tabread~ clone with hermite spline interpolation from nusmuk
+(updated to new tabread4 onset inlet)
+vdhs~: hermite spline interpolated delay tap
+
+the delay reading objects can only be used with delwritec~ (can't use delwrite~)
+and visa-versa
 
 to make it you may (probably will) need to edit the makefile in this (the
 numargs) folder to fit your system, I only have OSX at the moment. check the

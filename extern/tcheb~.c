@@ -22,7 +22,8 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	unsigned int l = x->lngth;
 	unsigned int dir = x->instruct;
 	unsigned int newo;
-	t_sample inord, t1, t2, tin, temp;
+	t_sample inord;
+	double t1, t2, tin, temp;
 	while(n--) {
 		inord = *in2++;
 		if (inord < 1.0) inord = 1.0;
@@ -38,7 +39,7 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			}
 		}
 		newo = dir;
-		t1 = *in1++; 
+		t1 = (double)*in1++; 
 		if (t1 < -1.0) t1 = -1.0; else if (t1 > 1.0) t1 = 1.0;
 		t2 = 2.0*t1*t1 - 1.0; 
 		tin = t1;
@@ -71,7 +72,7 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		inord = 1.0 - acos((inord - floorf(inord))*2.0 - 1.0)/M_PI;
 		*/
 		inord = (inord - floorf(inord));
-		*out++ = t1*(1.0 - inord) + t2*inord;
+		*out++ = (t_sample)(t1*(1.0 - inord) + t2*inord);
 		
 		
 	}

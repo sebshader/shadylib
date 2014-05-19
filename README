@@ -1,23 +1,5 @@
-plans
-
 This is a pure data library that I always add to whenever I want to either do
-something myself or make something that hasn't been made in pd. Planned
-additionare: bandlimited wavetables (as an external), dynamic inlet types for
-more oscillators and maybe a system to implement them, musical structure
-abstractions, an abstraction to join the endpoints of a table at the same sample
-value in a nice way, some pure data type foolery like encoding a float as an int
-for the purpose of more index precision for arrays, an external to get
-information about pd (like if it's running 32 or 64 bit). I may also want to
-change repeater into 2 seperate abstractions later, one for writing to the array
-and one for reading it. Finally, I would like to implement a state-saving system
-where states of abstractions are stored in files that are in the same directory
-as the root canvas. For awhile I was thinking of a system where it would use
-files in this directory if there were not a subpatch of a certain name within
-the root patch, where the abstraction could save data otherwise. sssad could be
-used for this. For real finally, it might be interesting to make subpatches have
-the same attributes as externals. the advantages would be use of arguments while
-being able to keep them in the same contained patch. Changes to one could be
-applied to many.
+something myself or make something that hasn't been made in pd. 
 
 to install just put this library in your search path and use [import shadelib]
 

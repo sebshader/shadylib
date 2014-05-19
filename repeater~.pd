@@ -109,7 +109,7 @@
 #X obj 676 172 tabread4 \$0-buffer;
 #X obj 670 92 tabread4 \$0-buffer;
 #X obj 379 263 expr 64000/$f1;
-#X text 713 304 todo: switch to live [loop] object interaction?;
+#X text 713 304 todo: switch to [loop~] object interaction?;
 #X connect 0 0 3 0;
 #X connect 0 0 2 0;
 #X connect 0 0 65 0;

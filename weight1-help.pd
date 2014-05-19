@@ -1,0 +1,13 @@
+#N canvas 147 24 450 300 10;
+#X obj 198 91 weight1;
+#X text 33 11 take a list of value-weight pars for a one-time weighting
+;
+#X msg 181 38 44 10 45 1;
+#X floatatom 200 126 5 0 0 0 - - -;
+#X obj 301 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 269 49 22 1 80 4;
+#X connect 0 0 3 0;
+#X connect 0 0 4 0;
+#X connect 2 0 0 0;
+#X connect 5 0 0 0;

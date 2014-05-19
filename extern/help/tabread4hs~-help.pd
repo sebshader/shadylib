@@ -1,0 +1,27 @@
+#N canvas 395 152 677 412 10;
+#X floatatom 222 156 5 0 0 0 - - -;
+#X text 228 137 offset;
+#X obj 105 231 outputc~;
+#X obj 118 128 phasor~;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array anything 20 float 3;
+#A 0 -0.414288 -0.242859 -0.071429 0.0857148 0.27143 0.342859 0.371431
+0.357145 -0.0428574 0 0.157144 0.157144 0.128572 0.0571432 -0.0285716
+-0.100001 -0.285716 -0.485717 -0.671433 -0.300002;
+#X coords 0 1 20 -1 200 140 1 0 0;
+#X restore 358 81 graph;
+#X obj 108 193 tabread4hs~ anything;
+#X obj 118 171 +~ 1;
+#X obj 116 86 signum~;
+#X obj 230 239 oscope~;
+#X text 61 15 updated tabread4c~ from nusmuk-audio that has right inlet
+for offset (uses hermite spline);
+#X obj 118 152 *~ 5;
+#X connect 0 0 5 1;
+#X connect 3 0 10 0;
+#X connect 5 0 2 0;
+#X connect 5 0 2 1;
+#X connect 5 0 8 0;
+#X connect 6 0 5 0;
+#X connect 7 0 3 0;
+#X connect 10 0 6 0;

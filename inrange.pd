@@ -24,6 +24,7 @@
 #X obj 110 259 sel 1 0;
 #X obj 156 291 f;
 #X obj 158 320 outlet;
+#X text 201 249 this should have been done with 2 [moses]s;
 #X connect 0 0 14 0;
 #X connect 1 0 16 0;
 #X connect 2 0 17 0;

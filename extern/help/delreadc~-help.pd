@@ -1,0 +1,18 @@
+#N canvas 297 106 487 592 10;
+#X text 67 22 this is an exact clone of delwrite~. it was necessary
+because delread accesses the delwrite~ class \, not delwritec~;
+#X obj 63 124 delwritec~ may 2000;
+#X obj 96 210 delreadc~ may 1000;
+#X obj 102 253 oscope~;
+#X msg 96 170 1000;
+#X msg 150 172 2000;
+#X obj 59 73 osc~ 330;
+#X msg 360 337 \; pd dsp 1;
+#X msg 114 91 clear;
+#X text 158 85 hit this and you should see a pause in the output;
+#X text 186 175 now a 2 second pause;
+#X connect 2 0 3 0;
+#X connect 4 0 2 0;
+#X connect 5 0 2 0;
+#X connect 6 0 1 0;
+#X connect 8 0 1 0;

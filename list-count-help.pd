@@ -1,4 +1,4 @@
-#N canvas 0 22 619 366 10;
+#N canvas 499 32 619 366 10;
 #X obj 239 133 list-count 44;
 #X msg 254 79 44 3 55 44 55 55;
 #X msg 333 102 55;
@@ -11,12 +11,12 @@
 #X text 39 287 must use a symbol argument if you're looking for symbols
 ;
 #X msg 192 103 symbol gertrude;
-#X msg 146 128 symbol marie;
+#X msg 91 115 symbol marie;
 #X connect 0 0 5 0;
 #X connect 1 0 0 0;
-#X connect 2 0 0 1;
-#X connect 3 0 0 1;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
 #X connect 6 0 7 0;
 #X connect 8 0 6 0;
-#X connect 10 0 6 1;
-#X connect 11 0 6 1;
+#X connect 10 0 6 0;
+#X connect 11 0 6 0;
