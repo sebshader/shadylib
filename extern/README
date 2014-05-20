@@ -7,6 +7,7 @@ values of n.
 
 delwritec~: delwrite~ with clear
 delread~: delread~ clone
+sampphase~: phasor~ that only changes frequency at phase reset optionally
 tabread4hs~: tabread~ clone with hermite spline interpolation from nusmuk
 (updated to new tabread4 onset inlet)
 vdhs~: hermite spline interpolated delay tap
@@ -15,7 +16,4 @@ the delay reading objects can only be used with delwritec~ (can't use delwrite~)
 and visa-versa
 
 to make it you may (probably will) need to edit the makefile in this (the
-numargs) folder to fit your system, I only have OSX at the moment. check the
-system and type the appropriate command (e.g. "make pd_darwin"). Alternatively
-get the Pd library template and edit it. (it is GPL licensed and I'm releasing
-this under the BSD license, didn't want them conflicting)
+numargs) folder to fit your system, I only have OSX at the moment.
