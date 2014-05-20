@@ -13,8 +13,6 @@ figure out formant mode for wavetables? like massive
 a better many that dynamically allocates voices a la supercollider.
 system for dynamic inlets, outlets, subpatches, etc.
 make an inlet~ that accepts messages also
-change sampphase~ in order to not have to reset phase when the frequency goes
-from 0 to nonzero
 repeater~ -> loop~-based?
 external to give the existence of an object or not
 some pure data type foolery like encoding a float as an intfor the purpose of
