@@ -1,0 +1,22 @@
+#N canvas 200 231 450 300 10;
+#X text 17 28 this object uses objects from mrpeach (udpreceive \,
+OSC \, etc.) to break OSC messages into FUDI and use the first part
+as a receive name. argument is a port and the inlet goes to udpreceive
+;
+#X text 70 103 the address basically turns into a list and sends the
+list like lispatch;
+#X obj 49 185 r test1;
+#X obj 47 214 route more stuff;
+#X obj 220 221 route more stuff;
+#X obj 222 192 r test2;
+#X obj 30 240 print moretest1;
+#X obj 78 278 print stufftest1;
+#X obj 203 247 print moretest2;
+#X obj 273 273 print stufftest2;
+#X obj 164 148 dispatchOSC 9000;
+#X connect 2 0 3 0;
+#X connect 3 0 6 0;
+#X connect 3 1 7 0;
+#X connect 4 0 8 0;
+#X connect 4 1 9 0;
+#X connect 5 0 4 0;

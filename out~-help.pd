@@ -2,9 +2,8 @@
 #X declare -lib iem_tab;
 #X declare -lib iem_tab;
 #X obj 44 7 sndfilereader~;
-#X text 280 98 dac~ with meters. Arguments: High pass filter frequency
-(to eliminate dc) 3 by default \, and envelope follower response for
-metering (as a lowpass filter frequency) \, 7 by default;
 #X obj 57 122 out~;
-#X connect 0 0 2 0;
-#X connect 0 1 2 1;
+#X text 280 98 dac~ with meters. Argument: envelope follower response
+for metering (as a lowpass filter frequency) \, 7 by default;
+#X connect 0 0 1 0;
+#X connect 0 1 1 1;

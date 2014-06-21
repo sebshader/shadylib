@@ -4,3 +4,10 @@ something myself or make something that hasn't been made in pd.
 to install just put this library in your search path and use [import shadelib]
 
 ... can't believe I didn't think of a better name
+
+Licensing: I would like to release everything under a BSD license but don't
+think I can using externals that are licensed as GPL. Therefore everything that
+uses externals licensed under GPL is GPL, and everything that only uses PD
+vanilla or externals licensed under BSD is BSD.
+
+documentation for the sequencer is in sequencerdoc.txt

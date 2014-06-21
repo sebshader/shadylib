@@ -1,0 +1,18 @@
+#N canvas 270 112 450 300 10;
+#X obj 42 130 anything;
+#X obj 40 162 print;
+#X msg 84 101 bang;
+#X msg 150 101 symbol chuck;
+#X msg 95 52 list woodrow wilson;
+#X obj 50 52 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 118 21 bob;
+#X msg 135 76 wilson pickett;
+#X text 228 41 stores any common data type;
+#X connect 0 0 1 0;
+#X connect 2 0 0 1;
+#X connect 3 0 0 1;
+#X connect 4 0 0 1;
+#X connect 5 0 0 0;
+#X connect 6 0 0 1;
+#X connect 7 0 0 1;

@@ -17,6 +17,7 @@
 #X obj 331 31 f \$2;
 #X obj 259 54 f \$1;
 #X obj 422 32 loadbang;
+#X obj 450 67 inlet;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 3 0 0 2;
@@ -35,3 +36,4 @@
 #X connect 16 0 14 0;
 #X connect 17 0 15 0;
 #X connect 17 0 16 0;
+#X connect 18 0 0 4;
