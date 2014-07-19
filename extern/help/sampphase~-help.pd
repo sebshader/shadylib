@@ -8,7 +8,7 @@
 #X obj 342 154 dbgr~;
 #X msg 395 74 0.5;
 #X msg 430 69 1;
-#X obj 301 70 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 301 70 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 304 88 hold \$1;
 #X obj 261 193 oscope~;
@@ -21,7 +21,7 @@
 #X text -16 72 also works with signals;
 #X msg 159 75 1000;
 #X obj 122 174 dbgr~;
-#X obj 42 101 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 42 101 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 34 122 hold \$1;
 #X obj 37 148 sampphase~ 0 1;
@@ -30,35 +30,30 @@
 off at creation \, but "hold 1" turns hold on and "hold 0" off;
 #X msg 198 100 -44;
 #X msg 170 105 -1;
-#X obj 12 212 print~;
-#X obj -5 167 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
 #X obj 497 171 phasor~;
 #X obj 477 192 oscope~;
 #X floatatom 144 121 5 0 0 0 - - -;
 #X floatatom 545 143 5 0 0 0 - - -;
 #X obj 258 127 sampphase~ 22;
-#X connect 2 0 33 0;
-#X connect 4 0 33 0;
-#X connect 5 0 33 0;
-#X connect 7 0 33 1;
-#X connect 8 0 33 1;
+#X connect 2 0 31 0;
+#X connect 4 0 31 0;
+#X connect 5 0 31 0;
+#X connect 7 0 31 1;
+#X connect 8 0 31 1;
 #X connect 9 0 10 0;
-#X connect 10 0 33 0;
+#X connect 10 0 31 0;
 #X connect 15 0 22 1;
 #X connect 16 0 22 0;
-#X connect 16 0 29 0;
-#X connect 18 0 33 0;
+#X connect 16 0 27 0;
+#X connect 18 0 31 0;
 #X connect 20 0 21 0;
 #X connect 21 0 22 0;
 #X connect 22 0 14 0;
-#X connect 22 0 27 0;
 #X connect 22 1 19 0;
-#X connect 25 0 33 0;
-#X connect 26 0 33 0;
-#X connect 28 0 27 0;
-#X connect 29 0 30 0;
-#X connect 31 0 22 1;
-#X connect 32 0 29 1;
-#X connect 33 0 11 0;
-#X connect 33 1 6 0;
+#X connect 25 0 31 0;
+#X connect 26 0 31 0;
+#X connect 27 0 28 0;
+#X connect 29 0 22 1;
+#X connect 30 0 27 1;
+#X connect 31 0 11 0;
+#X connect 31 1 6 0;

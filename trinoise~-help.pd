@@ -1,0 +1,15 @@
+#N canvas 456 47 750 565 10;
+#X text 78 107 3rd inlet is 2nd inlet of sampphase~;
+#X text 53 50 inlets are: 2+3/ 1st +2nd arguments are * and + value
+for 0 - 1 valued noise scaled into a frequency generator;
+#X obj 225 179 trinoise~;
+#X obj 226 273 oscope~;
+#X floatatom 266 139 5 0 0 0 - - -;
+#X msg 305 153 1;
+#X floatatom 205 136 5 0 0 0 - - -;
+#X text 18 207 output is linearly interpolated random values (at the
+rate of the frequency generator);
+#X connect 2 0 3 0;
+#X connect 4 0 2 1;
+#X connect 5 0 2 2;
+#X connect 6 0 2 0;

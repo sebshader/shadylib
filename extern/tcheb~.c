@@ -2,7 +2,7 @@
 #include <math.h>
 
 #define MAX_HARM 255.0
-#define COSTAB_2 (COSTABSIZE >> 1)
+//#define COSTAB_2 (COSTABSIZE >> 1)
 static t_class* tcheb_tilde_class;
 
 typedef struct _tcheb_tilde {
@@ -57,20 +57,6 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			}
 			newo >>= 1;
 		}
-		/* i'm not really prepared to use the pd cosine table
-		but im gonna do it anyway */
-		/*
-		inord = (inord - floorf(inord)) * COSTAB_2;
-		newo = (unsigned int)(inord);
-		inord = inord - newo;
-		newo += COSTAB_2;
-		inord = (cos_table[newo + 1] - cos_table[newo])*inord + cos_table[newo];
-		inord = inord * 0.5 + 0.5;
-		*out++ = t1*(1.0 - inord) + t2*inord;
-		*/
-		/*
-		inord = 1.0 - acos((inord - floorf(inord))*2.0 - 1.0)/M_PI;
-		*/
 		inord = (inord - floorf(inord));
 		*out++ = (t_sample)(t1*(1.0 - inord) + t2*inord);
 		

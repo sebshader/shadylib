@@ -1,0 +1,16 @@
+#N canvas 363 265 450 300 10;
+#X text 156 103 trigger: list of ms \, # of hits \, feedback;
+#X text 2 61 simple repeater;
+#X obj 95 50 sndfilereader~;
+#X obj 157 197 outputc~;
+#X text 22 8 this helpfile does exactly what delwritec~-help.pd does
+;
+#X obj 217 144 srepeater~ 4000;
+#X obj 115 144 srepeater~ 4000;
+#X msg 312 129 200 4 1.25;
+#X connect 2 0 6 0;
+#X connect 2 1 5 0;
+#X connect 5 0 3 1;
+#X connect 6 0 3 0;
+#X connect 7 0 5 1;
+#X connect 7 0 6 1;

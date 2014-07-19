@@ -1,5 +1,4 @@
 #N canvas 499 32 619 366 10;
-#X obj 239 133 list-count 44;
 #X msg 254 79 44 3 55 44 55 55;
 #X msg 333 102 55;
 #X msg 299 108 44;
@@ -10,13 +9,19 @@
 #X msg -21 71 33 gertrude gertrude marie gertrude marie;
 #X text 39 287 must use a symbol argument if you're looking for symbols
 ;
-#X msg 192 103 symbol gertrude;
-#X msg 91 115 symbol marie;
-#X connect 0 0 5 0;
-#X connect 1 0 0 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
-#X connect 6 0 7 0;
-#X connect 8 0 6 0;
-#X connect 10 0 6 0;
-#X connect 11 0 6 0;
+#X msg 48 96 symbol gertrude;
+#X msg 48 125 symbol marie;
+#X text 109 236 right inlet changes selector;
+#X msg 133 134 symbol gertrude;
+#X msg 167 113 symbol marie;
+#X obj 239 133 list-count 44;
+#X connect 0 0 14 0;
+#X connect 1 0 14 0;
+#X connect 2 0 14 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 9 0 5 0;
+#X connect 10 0 5 0;
+#X connect 12 0 5 1;
+#X connect 13 0 5 1;
+#X connect 14 0 4 0;
