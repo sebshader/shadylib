@@ -153,7 +153,6 @@ t_int *neadsr_perform(t_int *w)
 {
     t_float *out = (t_float *)(w[3]);
     t_neadsrctl *ctl = (t_neadsrctl *)(w[1]);
-    t_float cattack = ctl->c_cattack;
     t_float sustain = ctl->c_sustain;
     t_float state = ctl->c_state;
     t_float target = ctl->c_target;
@@ -163,10 +162,10 @@ t_int *neadsr_perform(t_int *w)
 		t_stage release = ctl->c_release;
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else if (release.lin != 1.0) {
-			t_float mlin = release.lin/(1 - release.lin);
+			t_float mlin = release.lin*(release.op - 1)/(1 - release.lin);
 			while(n--){
 				*out++ = state;
-				state = (state + mlin)*release.op - mlin;
+				state = state*release.op + mlin;
 				if(state <= 0.0) {
 					state = 0.0;
 					while(n) {
@@ -191,13 +190,13 @@ t_int *neadsr_perform(t_int *w)
 		goto done;
 	} else if (target == 1.0f){
 		/* attack */
-		t_stage attack = ctl->c_attack;
-		if (attack.lin != 1.0) {
-			t_float mlin = attack.lin/(1 - attack.lin);
+		t_float cattack = ctl->c_cattack;
+		if (ctl->c_attack.lin != 1.0) {
+			t_float mlin = (1 - cattack)/(1 - ctl->c_attack.lin);
 			while(n){
 				n--;/*put outside of while so n != -1*/
 				*out++ = state;
-				state = 1 - (1 - state + mlin)*cattack + mlin;
+				state = state*cattack + mlin;
 				if(state >= 1.0) {
 					state = 1.0;
 					target = sustain;
@@ -217,30 +216,33 @@ t_int *neadsr_perform(t_int *w)
 			}
 		}
 	}
-	if (target != 0.0f) {
+	if (target != 0.0f && n) {
 		/*decay*/
 		t_stage decay = ctl->c_decay;
-		t_float msus = 1 - sustain;
 		if(state == sustain) {
 			while(n--) *out++ = state;
 			goto done;
 		} else if (decay.lin != 1.0) {
-			t_float mlin = decay.lin*msus/(1 - decay.lin);
-			while((state > sustain) && n) {
-				n--;
-				*out++ = state;
-				state = (state - sustain + mlin)*decay.op - mlin;
-				if(state <= 0.0) state = sustain;
-				else state += sustain;
-			}
-			while((state < sustain) && n) {
-				n--;
-				*out++ = state;
-				state = (state - sustain - mlin)*decay.op + mlin;
-				if(state >= 0.0) state = sustain;
-				else state += sustain;
+			t_float mlin = 1 - decay.lin;
+			if(state > sustain) {
+				mlin = (1 - decay.op)*(sustain*mlin - decay.lin)/mlin;
+				do {
+					n--;
+					*out++ = state;
+					state = state*decay.op + mlin;
+					if(state < sustain) state = sustain;
+				} while(n && state > sustain);
+			} else if (state < sustain) {
+				mlin = (1 - decay.op)*(sustain*mlin + decay.lin)/mlin;
+				do {
+					n--;
+					*out++ = state;
+					state = state*decay.op + mlin;
+					if(state < sustain) state = sustain;
+				} while(n && state > sustain);
 			}
 		} else {
+			t_float msus = 1 - sustain;
 			while((state > sustain) && n) {
 				n--;
 				*out++ = state;

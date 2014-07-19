@@ -133,21 +133,19 @@ static t_int *nead_perform(t_int *w)
   /* interprete arguments */
     t_float *out    = (t_float *)(w[3]);
     t_neadctl *ctl  = (t_neadctl *)(w[1]);
-    t_float cattack = ctl->c_cattack;
-    t_stage decay   = ctl->c_decay;
     t_float state   = ctl->c_state;
     char target = ctl->c_target;
     t_int n = (t_int)(w[2]);
 
     
 	if(target){
-		t_stage attack = ctl->c_attack;
-		if (attack.lin != 1.0) {
-			t_float mlin = attack.lin/(1 - attack.lin);
+		t_float cattack = ctl->c_cattack;
+		if (ctl->c_attack.lin != 1.0) {
+			t_float mlin = (1 - cattack)/(1 - ctl->c_attack.lin);
 			while(n){
 				n--;/*put outside of while so n != -1*/
 				*out++ = state;
-				state = 1 - (1 - state + mlin)*cattack + mlin;
+				state = state*cattack + mlin;
 				if(state >= 1.0) {
 					state = 1.0;
 					target = 0;
@@ -168,12 +166,13 @@ static t_int *nead_perform(t_int *w)
 		}
 	}
 	if(!target) {
+		t_stage decay = ctl->c_decay;
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else if (decay.lin != 1.0) {
-			t_float mlin = decay.lin/(1 - decay.lin);
+			t_float mlin = decay.lin*(decay.op - 1)/(1 - decay.lin);
 			while(n--){
 				*out++ = state;
-				state = (state + mlin)*decay.op - mlin;
+				state = state*decay.op + mlin;
 				if(state <= 0.0) {
 					state = 0.0;
 					while(n) {

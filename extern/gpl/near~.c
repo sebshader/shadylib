@@ -71,7 +71,7 @@ static void near_attack(t_near *x, t_symbol *s, int argc, t_atom *argv) {
 					if(x->x_ctl.c_target == 1.0) {
 						char tdirect = x->direct;
 						x->direct = 1;
-						nead_float(x, 1.0);
+						near_float(x, 1.0);
 						x->direct = tdirect;
 					}
 			break;
@@ -104,7 +104,7 @@ static void near_any(t_near *x, t_symbol *s, int argc, t_atom *argv) {
 					if(x->x_ctl.c_target == 1.0) {
 						char tdirect = x->direct;
 						x->direct = 1;
-						nead_float(x, 1.0);
+						near_float(x, 1.0);
 						x->direct = tdirect;
 					}
 			}
@@ -133,21 +133,20 @@ static t_int *near_perform(t_int *w)
   /* interprete arguments */
     t_float *out    = (t_float *)(w[3]);
     t_nearctl *ctl  = (t_nearctl *)(w[1]);
-    t_float cattack = ctl->c_cattack;
     t_float state   = ctl->c_state;
     char target = ctl->c_target;
     t_int n = (t_int)(w[2]);
 
     
 	if(target){
-		t_stage attack = ctl->c_attack;
+		t_float cattack = ctl->c_cattack;
 		if(state == 1.0) {
 			while(n--) *out++ = 1.0;
-		} else if (attack.lin != 1.0) {
-			t_float mlin = attack.lin/(1 - attack.lin);
+		} else if (ctl->c_attack.lin != 1.0) {
+			t_float mlin = (1 - cattack)/(1 - ctl->c_attack.lin);
 			while(n--){
 				*out++ = state;
-				state = 1 - (1 - state + mlin)*cattack + mlin;
+				state = state*cattack + mlin;
 				if(state >= 1.0) {
 					state = 1.0;
 					while (n) {
@@ -175,10 +174,10 @@ static t_int *near_perform(t_int *w)
 		t_stage release = ctl->c_release;
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else if (release.lin != 1.0) {
-			t_float mlin = release.lin/(1 - release.lin);
+			t_float mlin = release.lin*(release.op - 1)/(1 - release.lin);
 			while(n--){
 				*out++ = state;
-				state = (state + mlin)*release.op - mlin;
+				state = state*release.op + mlin;
 				if(state <= 0.0) {
 					state = 0.0;
 					while(n) {
