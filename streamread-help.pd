@@ -1,4 +1,4 @@
-#N canvas 223 147 450 300 10;
+#N canvas 530 286 450 300 10;
 #X obj 78 134 streamwrite;
 #X text 22 14 works with streamwrite to write and read streams of anything
 except the letter k \, which it uses to delimit messages;

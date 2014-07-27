@@ -1,0 +1,33 @@
+#N canvas 377 196 795 596 10;
+#X obj 226 149 stream-map;
+#X text 34 15 like list-map but for streams;
+#X obj 322 130 list split 1;
+#X obj 323 180 *;
+#X obj 328 216 list;
+#X obj 223 214 print mapped;
+#X obj 103 116 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 138 190 spigot;
+#X msg 136 214 1;
+#X obj 121 306 print metro'd;
+#X obj 134 236 streamread;
+#X obj 482 61 temposet 60 bpm;
+#X text 362 205 transforms the stream into ms from beats;
+#X msg 109 72 k 0.25 woohhoo random message k 1 beat units k 1.5 snare
+k 2.5 snare k 3 snare k 4 done;
+#X connect 0 0 5 0;
+#X connect 0 0 10 1;
+#X connect 0 1 2 0;
+#X connect 2 0 3 0;
+#X connect 2 1 4 1;
+#X connect 2 2 4 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 1;
+#X connect 6 0 7 1;
+#X connect 6 0 10 0;
+#X connect 7 0 8 0;
+#X connect 8 0 10 0;
+#X connect 10 0 9 0;
+#X connect 10 1 7 0;
+#X connect 11 0 3 1;
+#X connect 13 0 0 0;

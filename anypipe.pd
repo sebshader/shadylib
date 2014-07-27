@@ -11,7 +11,7 @@
 #X msg 62 109 flush;
 #X msg 105 104 clear;
 #X obj 150 323 outlet;
-#X obj 62 78 route lush clear;
+#X obj 62 78 route flush clear;
 #X connect 0 0 12 0;
 #X connect 1 0 8 1;
 #X connect 2 0 8 0;

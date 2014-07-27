@@ -12,7 +12,7 @@
 #X obj 41 102 int;
 #X obj 130 104 bng 8 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 152 235 outlet;
+#X obj 52 245 outlet;
 #X obj 43 43 /;
 #X obj 165 104 bng 8 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -40,16 +40,12 @@
 #X msg 388 80 0;
 #X msg 43 20 60000 \$1;
 #X obj 225 244 outlet;
-#X obj 48 223 t b f;
 #X obj 254 -46 loadbang;
-#X obj 111 277 v globaltempo;
-#X obj 26 252 s globaltempotrigger;
 #X obj 336 26 spigot;
 #X obj 288 243 outlet;
 #X obj 353 242 outlet;
 #X connect 2 0 4 0;
 #X connect 3 0 12 0;
-#X connect 3 0 39 0;
 #X connect 4 0 3 0;
 #X connect 4 0 19 1;
 #X connect 4 0 26 0;
@@ -68,10 +64,10 @@
 #X connect 13 0 38 0;
 #X connect 14 0 19 0;
 #X connect 15 0 20 1;
-#X connect 15 0 43 1;
+#X connect 15 0 40 1;
 #X connect 16 0 35 0;
 #X connect 16 1 36 0;
-#X connect 17 0 43 0;
+#X connect 17 0 40 0;
 #X connect 19 0 4 0;
 #X connect 20 0 21 0;
 #X connect 21 0 4 0;
@@ -79,12 +75,12 @@
 #X connect 24 0 28 0;
 #X connect 25 0 31 0;
 #X connect 26 0 27 0;
-#X connect 26 0 45 0;
+#X connect 26 0 42 0;
 #X connect 27 0 24 0;
 #X connect 28 0 4 0;
 #X connect 29 0 25 0;
 #X connect 30 0 29 0;
-#X connect 30 0 44 0;
+#X connect 30 0 41 0;
 #X connect 31 0 4 0;
 #X connect 33 0 5 0;
 #X connect 34 0 17 0;
@@ -92,8 +88,6 @@
 #X connect 35 0 20 0;
 #X connect 36 0 20 0;
 #X connect 37 0 13 0;
-#X connect 39 0 42 0;
-#X connect 39 1 41 0;
-#X connect 40 0 34 0;
-#X connect 43 0 16 0;
+#X connect 39 0 34 0;
+#X connect 40 0 16 0;
 #X coords 0 -1 1 1 100 80 1 100 86;

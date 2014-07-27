@@ -1,0 +1,8 @@
+#N canvas 530 173 450 300 10;
+#X obj 267 121 globaltempr;
+#X floatatom 255 150 5 0 0 0 - - -;
+#X floatatom 105 18 5 0 0 0 - - -;
+#X text 185 26 first argument sets global tempo;
+#X obj 95 49 globaltemps 50;
+#X connect 0 0 1 0;
+#X connect 2 0 4 0;
