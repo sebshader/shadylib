@@ -1,6 +1,6 @@
 Standard Improved BSD License
 
-Copyright (c) 2013, Sebastian Shader, Miller Puckette, others. All rights
+Copyright (c) 2014, Sebastian Shader, Miller Puckette, others. All rights
 reserved.
 
 Redistribution and use in source and binary forms, with or without

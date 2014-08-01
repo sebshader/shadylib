@@ -1,4 +1,4 @@
-#N canvas 34 98 766 476 10;
+#N canvas 441 261 766 476 10;
 #X obj 89 301 delwritec~ anna 4000;
 #X obj 179 223 delreadc~ anna 2000;
 #X obj 157 61 sndfilereader~;
