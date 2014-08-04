@@ -1,5 +1,5 @@
 #include "m_pd.h"
-#include "math.h"
+#include <math.h>
 
 #define UNITBIT32 1572864.  /* 3*2^19; bit 32 has place value 1 */
 
@@ -49,6 +49,8 @@
 #define TRUE 1
 #define FALSE 0
 
+#define NORMHIPART 1094189056 //will this work on big-endian?
+
 union tabfudge
 {
     double tf_d;
@@ -93,33 +95,33 @@ static t_int *sampphase_perform(t_int *w)
     int n = (int)(w[5]);
     unsigned char bool = x->x_samptrue;
     union tabfudge tf;
-    tf.tf_d = UNITBIT32;
-    int normhipart = tf.tf_i[HIOFFSET];
     tf.tf_d = x->x_phase + (double)UNITBIT32;
-    
-    t_float conv = x->x_conv;
+	t_float conv = x->x_conv;
 	
     if (bool) {
     	t_float samp = x->x_held;
     	while (n--) {
-    		tf.tf_d += samp * conv;
-    		if ((tf.tf_i[HIOFFSET] != normhipart) ||\
-				 (samp == 0.0 && *in != 0.0)) samp = *in;
+    		if ((*in != 0.0 && samp == 0.0) ||\
+				 (tf.tf_i[HIOFFSET] != NORMHIPART)) samp = *in;
 			in++;
-			tf.tf_i[HIOFFSET] = normhipart;
+			tf.tf_i[HIOFFSET] = NORMHIPART;
     		*out1++ = tf.tf_d - UNITBIT32;
     		*out2++ = samp;
+    		tf.tf_d += samp * conv;
 		}
 		x->x_held = samp;
     } else {
+    	double dphase = tf.tf_d;
     	while (n--) {
-    		tf.tf_d += *in * conv;
-    		tf.tf_i[HIOFFSET] = normhipart;
-    		*out2++ = *in++;
-    		*out1++ = tf.tf_d - UNITBIT32;
+    		tf.tf_i[HIOFFSET] = NORMHIPART;
+        	dphase += *in * conv;
+        	*out2++ = *in++;
+        	*out1++ = tf.tf_d - UNITBIT32;
+        	tf.tf_d = dphase;
     	}
 	}
-    x->x_phase = out1[-1];
+    tf.tf_i[HIOFFSET] = NORMHIPART;
+   	x->x_phase = tf.tf_d - UNITBIT32;
     return (w+6);
 }
 
@@ -131,12 +133,12 @@ static void sampphase_dsp(t_sampphase *x, t_signal **sp)
     dsp_add(sampphase_perform, 5, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
 }
 
-static void sampphase_ft1(t_sampphase*x, t_float f)
+static void sampphase_ft1(t_sampphase *x, t_float f)
 {
     x->x_phase = f;
 }
 
-static void sampphase_hold(t_sampphase*x, t_float f)
+static void sampphase_hold(t_sampphase *x, t_float f)
 {
     x->x_samptrue = (f != 0.);
 }

@@ -72,8 +72,8 @@ static inline t_float scalerange (t_float a) {
 	return (a - ENVELOPE_RANGE)/ENVELOPE_MAX;
 }
 
-static void ain2reala(t_float *a) {
-	*a = exp((1 - *a)*log(ENVELOPE_RANGE));
+static inline t_float ain2reala(t_float a) {
+	return pow(ENVELOPE_RANGE, 1 - a);
 }
 
 static void ms2samps(t_float time, t_stage *stage)
@@ -87,11 +87,11 @@ static void f2axfade (t_float a, t_stage *stage) {
 	if(a > 1.0) a = 1.0;
 	else if(a < 0.0) a = 0.0;
 	if(a != 1.0) { /*exponential*/
-		ain2reala(&a);
+		a = ain2reala(a);
 		if(stage->lin != a) stage->lin = a;
 		else return;
-		stage->op = exp(log(stage->lin) / stage->nsamp);
-		stage->base = (1 - stage->op)/(1 - stage->lin);
+		stage->op = exp2(log2(a)/stage->nsamp);
+		stage->base = (1 - stage->op)/(1 - a);
 	} else { /*linear*/
 		if(stage->lin != 1.0)stage->lin = 1.0;
 		else return;
@@ -105,7 +105,7 @@ static void ms2axfade (t_float time, t_stage *stage) {
 	if(samp < 1) samp = 1;
 	stage->nsamp = samp;
 	if (stage->lin != 1.0) {
-		stage->op = exp(log(stage->lin) / samp);
+		stage->op = exp2(log2(stage->lin)/samp);
 		stage->base = (1 - stage->op)/(1 - stage->lin);
 	} else {
 		stage->base = 1.0/samp;
@@ -117,10 +117,10 @@ static void f2dxfade(t_float a, t_stage *stage) {
 	if(a > 1.0) a = 1.0;
 	else if(a < 0.0) a = 0.0;
 	if(a != 1.0) {/*exponential*/
-		ain2reala(&a);
+		a = ain2reala(a);
 		if(stage->lin != scalerange(a)) stage->lin = scalerange(a);
 		else return;
-		stage->op = exp(log(a) / stage->nsamp);
+		stage->op = exp2(log2(a)/stage->nsamp);
 		stage->base = (1 - stage->op)/(1 - stage->lin);
 	} else {/*linear*/
 		if(stage->lin != 1.0)stage->lin = 1.0;
@@ -135,10 +135,10 @@ static void ms2dxfade (t_float time, t_stage *stage) {
 	if(samp < 0) samp = 0;
 	stage->nsamp = samp;
 	if(stage->lin != 1.0) {
-		stage->op = exp(log(stage->lin*ENVELOPE_MAX + ENVELOPE_RANGE) / samp);
+		stage->op = exp2(log2(stage->lin*ENVELOPE_MAX + ENVELOPE_RANGE)/samp);
 		stage->base = (1 - stage->op)/(1 - stage->lin);
 	} else {
-		stage->base = 1.0/stage->nsamp;
+		stage->base = 1.0/samp;
 		stage->op = 1.0;
 	}
 }
@@ -147,10 +147,10 @@ static void f2rxfade(t_float a, t_stage *stage) {
 	if(a > 1.0) a = 1.0;
 	else if(a < 0.0) a = 0.0;
 	if(a != 1.0) {/*exponential*/
-		ain2reala(&a);
+		a = ain2reala(a);
 		if(stage->lin != scalerange(a)) stage->lin = scalerange(a);
 		else return;
-		stage->op = exp(log(a) / stage->nsamp);
+		stage->op = exp2(log2(a)/stage->nsamp);
 		stage->base = stage->lin*(stage->op - 1)/(1 - stage->lin);
 	} else {/*linear*/
 		if(stage->lin != 1.0)stage->lin = 1.0;
@@ -165,10 +165,10 @@ static void ms2rxfade (t_float time, t_stage *stage) {
 	if(samp < 0) samp = 0;
 	stage->nsamp = samp;
 	if(stage->lin != 1.0) {
-		stage->op = exp(log(stage->lin*ENVELOPE_MAX + ENVELOPE_RANGE) / samp);
+		stage->op = exp2(log2(stage->lin*ENVELOPE_MAX + ENVELOPE_RANGE)/samp);
 		stage->base = stage->lin*(stage->op - 1)/(1 - stage->lin);
 	} else {
-		stage->base = -1.0/stage->nsamp;
+		stage->base = -1.0/samp;
 		stage->op = 1.0;
 	}
 }
