@@ -1,0 +1,47 @@
+#N canvas 125 58 683 505 10;
+#X obj 68 207 oscope~;
+#X msg -7 -80 20;
+#X obj 95 141 dbgr~;
+#X obj 126 9 sig~ 0;
+#X floatatom 131 -13 5 0 0 0 - - -;
+#X msg 153 52 times 1500;
+#X msg 192 36 times 0 5;
+#X msg 162 82 times 1500 2;
+#X text 282 105 sending 0 as the first argument to "times" stops the
+ramp where it is \, 0 as the second argument makes everything jump
+to 0;
+#X msg 26 33 hold 1;
+#X msg 33 12 hold 0;
+#X text 308 26 the "hold (nonzero)" message causes moop to only sample
+the transposition at phase crossings;
+#X text 23 -87 can also use a float if the signal isn't there (like
+most pd objects);
+#X text 230 -107 successor to loop~;
+#X text 419 164 right outlet is current phase;
+#X text 36 142 samples;
+#X text 258 -60 moop~ is a sample looper that takes a transposition
+in the signal of it's left inlet and the message "times". the first
+argument to times is the milliseconds to ramp (regardless of transposition)
+\, and the second is the number of times to ramp \, which defaults
+to 1 if the second argument isn't there.;
+#X msg 351 78 times -1500 2;
+#X text 319 292 2nd arg is to hold or not;
+#X text 79 -47 set range;
+#X msg -2 -42 range 44000;
+#X text 322 57 negative periods start at "range" and go backwards;
+#X text 381 225 range is also 1st arg;
+#X msg 189 16 times -1500 0;
+#X obj 128 102 moop~ 0 1;
+#X connect 1 0 24 0;
+#X connect 3 0 24 0;
+#X connect 4 0 3 0;
+#X connect 5 0 24 0;
+#X connect 6 0 24 0;
+#X connect 7 0 24 0;
+#X connect 9 0 24 0;
+#X connect 10 0 24 0;
+#X connect 17 0 24 0;
+#X connect 20 0 24 0;
+#X connect 23 0 24 0;
+#X connect 24 0 2 0;
+#X connect 24 1 0 0;

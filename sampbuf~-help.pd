@@ -1,0 +1,14 @@
+#N canvas 329 92 450 300 10;
+#X msg 358 114 bang;
+#X msg 181 91 some_other_snd.aiff;
+#X obj 183 143 sampbuf~ pants some_sound.wav;
+#X floatatom 183 188 5 0 0 0 - - -;
+#X text 217 186 from soundfiler;
+#X text 37 141 generates error probly:;
+#X text 68 13 simple wrapper for soundfiler: 1st argument is buffer
+\, 2nd is the name of the soundfile. the 1st inlet is the soundfile
+name \, 2nd inlet queries the buffer length \, and the outlet reports
+it;
+#X connect 0 0 2 1;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;

@@ -4,10 +4,10 @@
 #X obj 139 12 inlet;
 #X obj 175 85 list-drip;
 #X obj 175 247 outlet;
-#X obj 223 126 inlet;
+#X obj 248 57 inlet;
 #X obj 206 157 *;
 #X obj 274 108 f \$1;
-#X obj 267 50 loadbang;
+#X obj 274 87 loadbang;
 #X obj 179 226 bang;
 #X obj 286 257 outlet;
 #X obj 145 54 list split 1;
@@ -22,8 +22,7 @@
 #X connect 1 1 6 0;
 #X connect 2 0 14 0;
 #X connect 3 0 1 0;
-#X connect 5 0 6 1;
-#X connect 5 0 13 1;
+#X connect 5 0 17 0;
 #X connect 6 0 0 1;
 #X connect 7 0 17 0;
 #X connect 8 0 7 0;
