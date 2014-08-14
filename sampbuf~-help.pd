@@ -9,6 +9,8 @@
 \, 2nd is the name of the soundfile. the 1st inlet is the soundfile
 name \, 2nd inlet queries the buffer length \, and the outlet reports
 it;
+#X text 35 69 also sends (name of buffer)-rdr a bang once initialized
+;
 #X connect 0 0 2 1;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;

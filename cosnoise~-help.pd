@@ -1,13 +1,10 @@
 #N canvas 312 126 706 433 10;
-#X text 78 107 3rd inlet is 2nd inlet of sampphase~;
 #X text 18 207 output is cosine interpolated random values (at the
 rate of the frequency generator);
 #X obj 461 195 cosnoise~;
 #X obj 471 248 oscope~;
-#X text 53 50 inlets are: 1+2/ 1st +2nd arguments are * and + value
-for 0 - 1 valued noise scaled into a frequency generator;
-#X floatatom 443 145 5 0 0 0 - - -;
-#X floatatom 500 149 5 0 0 0 - - -;
-#X connect 2 0 3 0;
-#X connect 5 0 2 0;
-#X connect 6 0 2 1;
+#X obj 456 118 smoother~;
+#X text 53 50 1st inlet is frequency;
+#X text 78 107 2nd inlet is 2nd inlet of phasor~;
+#X connect 1 0 2 0;
+#X connect 3 0 1 0;

@@ -1,0 +1,8 @@
+#N canvas 436 284 450 300 10;
+#X text 237 11 computes 2^(in/12);
+#X obj 179 118 transpose~;
+#X obj 182 77 signum~;
+#X msg 288 102 \; pd dsp 1;
+#X obj 188 139 dbgr~;
+#X connect 1 0 4 0;
+#X connect 2 0 1 0;

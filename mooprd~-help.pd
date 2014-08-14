@@ -1,8 +1,4 @@
-#N canvas 0 22 944 491 10;
-#X obj 421 333 loadbang;
-#X obj 420 357 s buffer-rdr;
-#X text 505 350 hit this to make mooprd~ read a regular array in canvasses
-above it;
+#N canvas 157 22 944 491 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array buffer 100 float 3;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -19,8 +15,6 @@ above it;
 #X msg 443 149 tempo 400;
 #X msg 371 19 set buffer;
 #X text 135 186 transposition (signal or float);
-#X text 504 407 alternatively use the set message;
-#X text 509 150 number to multiply 1st member of list messages by;
 #X text 499 123 list or float: same as "times" message to moop~;
 #X msg 449 122 1500 2;
 #X msg 452 97 hold 1;
@@ -32,10 +26,16 @@ periods;
 #X text 445 19 set array;
 #X msg 450 44 onset 60;
 #X text 506 44 same as second inlet of tabread4~;
-#X connect 0 0 1 0;
-#X connect 9 0 5 1;
-#X connect 10 0 5 1;
-#X connect 15 0 5 1;
-#X connect 16 0 5 1;
-#X connect 19 0 5 1;
-#X connect 22 0 5 1;
+#X text 509 150 number to multiply 1st member of "times" (list) messages
+by;
+#X msg 443 170 range;
+#X text 484 169 range is set by the buffer length until a range message
+(for moop~) is sent. after that \, all range messages need to be sent
+manually;
+#X connect 6 0 2 1;
+#X connect 7 0 2 1;
+#X connect 10 0 2 1;
+#X connect 11 0 2 1;
+#X connect 14 0 2 1;
+#X connect 17 0 2 1;
+#X connect 20 0 2 1;
