@@ -1,0 +1,16 @@
+#N canvas 395 383 450 300 10;
+#X obj 170 44 inlet~;
+#X obj 175 89 max~ 0;
+#X obj 159 118 phasor~;
+#X obj 138 213 outlet~;
+#X obj 196 209 outlet~;
+#X obj 254 215 outlet~;
+#X obj 271 21 inlet;
+#X obj 202 167 dsrand~ \$1;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 2 0 7 0;
+#X connect 6 0 2 1;
+#X connect 7 0 4 0;
+#X connect 7 1 5 0;

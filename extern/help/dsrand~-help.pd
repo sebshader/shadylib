@@ -1,0 +1,16 @@
+#N canvas 486 119 450 300 10;
+#X obj 237 128 dsrand~ 500;
+#X text 68 13 random number generator that pulls random numbers every
+time it's input is less than the sample before (like samphold~). uses
+linear congruential method. the seed can be specified by an argument
+or the message "seed somenumber". the seed is taken modulo 1.67772e+07
+;
+#X obj 301 157 dbgr~;
+#X text 57 188 the right output is the old value that used to be in
+the left outlet \, the left outlet is the new value when a number is
+pulled;
+#X obj 250 108 phasor~ 1;
+#X obj 231 158 dbgr~;
+#X connect 0 0 5 0;
+#X connect 0 1 2 0;
+#X connect 4 0 0 0;

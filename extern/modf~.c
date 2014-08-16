@@ -38,7 +38,7 @@ static void sigmodf_dsp(t_modf *x, t_signal **sp)
 void modf_tilde_setup(void)
 {
     sigmodf_class = class_new(gensym("modf~"), (t_newmethod)sigmodf_new, 0,
-        sizeof(t_modf), 0, A_DEFFLOAT, 0);
+        sizeof(t_modf), 0, 0);
     CLASS_MAINSIGNALIN(sigmodf_class, t_modf, x_f);
     class_addmethod(sigmodf_class, (t_method)sigmodf_dsp, gensym("dsp"), A_CANT, 0);
 }

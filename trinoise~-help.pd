@@ -1,13 +1,11 @@
-#N canvas 456 47 750 565 10;
-#X text 53 50 inlets are: 2+3/ 1st +2nd arguments are * and + value
-for 0 - 1 valued noise scaled into a frequency generator;
-#X obj 225 179 trinoise~;
-#X obj 226 273 oscope~;
-#X msg 305 153 1;
-#X floatatom 205 136 5 0 0 0 - - -;
-#X text 18 207 output is linearly interpolated random values (at the
-rate of the frequency generator);
-#X text 78 107 2nd inlet is 2nd inlet of sampphase~;
-#X connect 1 0 2 0;
-#X connect 3 0 1 1;
-#X connect 4 0 1 0;
+#N canvas 700 226 674 430 10;
+#X obj 120 -182 smoother~;
+#X obj 123 -52 oscope~;
+#X text 213 -137 same stuff as shnoise~ except that there are 2 dsrands
+on the inside so 2nd arg is number to add to the 1st arg(and seed)
+to get the second seed. defaults to 845011 for no reason;
+#X obj 127 -115 trinoise~;
+#X text 238 -174 creates a triangular distribution (numbers around
+0 are more likely);
+#X connect 0 0 3 0;
+#X connect 3 1 1 0;
