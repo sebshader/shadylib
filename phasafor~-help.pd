@@ -1,8 +1,4 @@
-#N canvas 492 134 856 444 10;
-#X text 480 195 inlets: phasor~ (or loop~) in (ranged 0 to 1) \, center
-frequency \, fundamental frequency (freq of phasor) \, bandwidth \,
-name of waveshaping (either "gaussian" or "cauchy"). no aliasing protection
-;
+#N canvas 148 104 856 444 10;
 #X obj 208 361 outputc~;
 #X obj 279 249 smoother~;
 #X obj 379 232 smoother~;
@@ -20,26 +16,29 @@ name of waveshaping (either "gaussian" or "cauchy"). no aliasing protection
 #X obj 382 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 123 284 dbgr~;
-#X obj 211 332 phasafor~;
 #X obj 367 106 metro 500;
 #X obj 428 134 rndmrange 2 250 250;
-#X connect 2 0 15 1;
-#X connect 3 0 15 3;
-#X connect 4 0 5 0;
-#X connect 4 0 14 0;
-#X connect 5 0 15 0;
-#X connect 5 1 15 2;
+#X text 480 195 inlets: phasor~ (or loop~) in (ranged 0 to 1) \, center
+frequency \, fundamental frequency (freq of phasor) \, bandwidth \,
+1 for cauchy waveshaping \, 0 for gaussian;
+#X obj 211 332 phasafor~;
+#X connect 1 0 17 1;
+#X connect 2 0 17 3;
+#X connect 3 0 4 0;
+#X connect 3 0 13 0;
+#X connect 4 0 17 0;
+#X connect 4 1 17 2;
+#X connect 5 0 1 0;
 #X connect 6 0 2 0;
 #X connect 7 0 3 0;
-#X connect 8 0 4 0;
+#X connect 8 0 7 0;
 #X connect 9 0 8 0;
-#X connect 10 0 9 0;
-#X connect 12 0 15 4;
-#X connect 13 0 16 0;
-#X connect 15 0 1 0;
-#X connect 15 0 1 1;
-#X connect 16 0 6 0;
-#X connect 16 0 7 0;
-#X connect 16 0 10 0;
-#X connect 16 0 17 0;
-#X connect 17 0 16 1;
+#X connect 11 0 17 4;
+#X connect 12 0 14 0;
+#X connect 14 0 5 0;
+#X connect 14 0 6 0;
+#X connect 14 0 9 0;
+#X connect 14 0 15 0;
+#X connect 15 0 14 1;
+#X connect 17 0 0 0;
+#X connect 17 0 0 1;

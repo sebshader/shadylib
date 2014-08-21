@@ -18,11 +18,11 @@
 #X msg 301 283 range \$1;
 #X obj 139 395 outlet~;
 #X obj -31 100 inlet~;
-#X obj 135 292 list prepend times;
+#X obj 137 247 list prepend times;
 #X obj 119 42 list split 1;
 #X obj 120 18 sel 0;
 #X obj 129 64 * 1;
-#X obj 136 268 list append;
+#X obj 138 223 list append;
 #X obj 39 -58 route set hold tempo onset range negjmp;
 #X obj 304 175 - 3;
 #X obj 125 345 +~ 1;
@@ -35,6 +35,7 @@
 #X obj 322 116 spigot 1;
 #X msg 384 91 0;
 #X obj 300 155 change;
+#X obj 152 285 list trim;
 #X connect 1 0 24 0;
 #X connect 2 0 32 0;
 #X connect 3 0 26 0;
@@ -55,7 +56,7 @@
 #X connect 15 0 14 0;
 #X connect 16 0 3 0;
 #X connect 18 0 3 0;
-#X connect 19 0 3 0;
+#X connect 19 0 36 0;
 #X connect 20 0 22 0;
 #X connect 20 1 23 1;
 #X connect 21 1 22 1;
@@ -84,3 +85,4 @@
 #X connect 33 0 35 0;
 #X connect 34 0 33 1;
 #X connect 35 0 25 0;
+#X connect 36 0 3 0;

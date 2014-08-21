@@ -1,11 +1,13 @@
 #N canvas 443 50 681 439 10;
 #X obj 134 246 print result;
-#X msg 124 161 63 100 150 67 96 180 60 78 72;
 #X obj 124 200 list-sortmul 3;
 #X floatatom 236 62 5 0 0 0 - - -;
 #X text 306 158 list to sort;
 #X text 271 63 inner list size (also first arg);
 #X text 82 31 sorts a list based on the first item of the sublist;
-#X connect 1 0 2 0;
-#X connect 2 0 0 0;
-#X connect 3 0 2 1;
+#X msg 110 146 63 100 150 67 96 180 60 20;
+#X msg 144 127 63 100 150 67 96 180 60;
+#X connect 1 0 0 0;
+#X connect 2 0 1 1;
+#X connect 6 0 1 0;
+#X connect 7 0 1 0;
