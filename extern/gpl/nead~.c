@@ -22,15 +22,14 @@
 typedef struct neadctl {
 	t_stage c_attack;
 	t_stage c_decay;
-	t_float c_linr; //holds the state to release from
-	t_float c_state;
-	char c_target;
+	t_sample c_linr; //holds the state to release from
+	t_sample c_state;
+	int c_target;
 } t_neadctl;
 
 typedef struct nead {
 	t_object x_obj;
 	t_neadctl x_ctl;
-	t_float x_sr;
 } t_nead;
 
 static void nead_float(t_nead *x, t_floatarg f) {
@@ -95,11 +94,11 @@ static void nead_any(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 
 t_int *nead_perform(t_int *w)
 {
-    t_float *out = (t_float *)(w[3]);
+    t_sample *out = (t_float *)(w[3]);
     t_neadctl *ctl = (t_neadctl *)(w[1]);
-    t_float state = ctl->c_state;
-    t_int n = (t_int)(w[2]);
-    char target = ctl->c_target;
+    t_sample state = ctl->c_state;
+    int n = (int)(w[2]);
+    int target = ctl->c_target;
     t_stage stage;
 	if (target){
 		/* attack */
@@ -144,14 +143,12 @@ t_int *nead_perform(t_int *w)
 
 void nead_dsp(t_nead *x, t_signal **sp)
 {
-    x->x_sr = sp[0]->s_sr;
     dsp_add(nead_perform, 3, &x->x_ctl, sp[0]->s_n, sp[0]->s_vec);
 }                                  
 
 t_class *nead_class;
 
-void *nead_new(t_floatarg attack, t_floatarg decay)
-{
+void *nead_new(t_floatarg attack, t_floatarg decay) {
     t_nead *x = (t_nead *)pd_new(nead_class);
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("attack"));  
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("decay"));  

@@ -1,12 +1,10 @@
-#N canvas 125 58 683 505 10;
-#X obj 68 207 oscope~;
+#N canvas 275 98 1043 597 10;
+#X obj 211 266 oscope~;
 #X msg -7 -80 20;
-#X obj 95 141 dbgr~;
-#X obj 126 9 sig~ 0;
-#X floatatom 131 -13 5 0 0 0 - - -;
-#X msg 153 52 times 1500;
+#X obj 106 14 sig~ 0;
+#X floatatom 111 -8 5 0 0 0 - - -;
 #X msg 192 36 times 0 5;
-#X msg 162 82 times 1500 2;
+#X msg -11 69 times 1500 2;
 #X text 282 105 sending 0 as the first argument to "times" stops the
 ramp where it is \, 0 as the second argument makes everything jump
 to 0;
@@ -14,34 +12,71 @@ to 0;
 #X msg 33 12 hold 0;
 #X text 308 26 the "hold (nonzero)" message causes moop to only sample
 the transposition at phase crossings;
-#X text 23 -87 can also use a float if the signal isn't there (like
+#X text 10 -125 can also use a float if the signal isn't there (like
 most pd objects);
-#X text 230 -107 successor to loop~;
-#X text 419 164 right outlet is current phase;
-#X text 36 142 samples;
-#X text 258 -60 moop~ is a sample looper that takes a transposition
+#X text 422 -125 successor to loop~;
+#X text 227 247 right outlet is current phase;
+#X text 621 -73 moop~ is a sample looper that takes a transposition
 in the signal of it's left inlet and the message "times". the first
 argument to times is the milliseconds to ramp (regardless of transposition)
 \, and the second is the number of times to ramp \, which defaults
 to 1 if the second argument isn't there.;
-#X msg 351 78 times -1500 2;
-#X text 319 292 2nd arg is to hold or not;
+#X text 375 213 2nd arg is to hold or not;
 #X text 79 -47 set range;
 #X msg -2 -42 range 44000;
-#X text 322 57 negative periods start at "range" and go backwards;
-#X text 381 225 range is also 1st arg;
-#X msg 189 16 times -1500 0;
-#X obj 128 102 moop~ 0 1;
-#X connect 1 0 24 0;
-#X connect 3 0 24 0;
-#X connect 4 0 3 0;
-#X connect 5 0 24 0;
-#X connect 6 0 24 0;
-#X connect 7 0 24 0;
-#X connect 9 0 24 0;
-#X connect 10 0 24 0;
-#X connect 17 0 24 0;
-#X connect 20 0 24 0;
-#X connect 23 0 24 0;
-#X connect 24 0 2 0;
-#X connect 24 1 0 0;
+#X text 320 82 negative periods start at "range" and go backwards;
+#X text 377 196 range is also 1st arg;
+#X obj 703 365 soundfiler;
+#X msg 715 315 read -resize \$1 test;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array test 814032 float 2;
+#X coords 0 1 814032 -1 200 140 1;
+#X restore 480 270 graph;
+#X obj 721 284 openpanel;
+#X obj 722 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X floatatom 200 84 9 0 0 0 - - -;
+#X msg 82 -29 set test;
+#X obj -22 268 oscope~;
+#X obj 124 171 outputc~;
+#X text 23 229 buffer output;
+#X obj 173 140 dbgr~;
+#X msg 162 -28 times -1500 2;
+#X msg 189 16 times 1500 0;
+#X msg 187 -7 times -1500;
+#X obj 134 104 moop~ 44100 0 test;
+#X msg 162 -54 times 15 8000;
+#X floatatom 260 44 5 0 0 0 - - -;
+#X obj 260 63 * 1000;
+#X text 248 -58 tempo sets a number to multiply the first number of
+"times" by (default 1);
+#X msg 160 -102 tempo 200 \, times 2 2;
+#X text 315 67 right inlet is offset \, sampled at phase boundaries
+;
+#X text 241 147 index into buffer relative to onset \, 1 behind where
+tabread4~ should be;
+#X connect 1 0 33 0;
+#X connect 2 0 33 0;
+#X connect 3 0 2 0;
+#X connect 4 0 33 0;
+#X connect 5 0 33 0;
+#X connect 7 0 33 0;
+#X connect 8 0 33 0;
+#X connect 16 0 33 0;
+#X connect 20 0 19 0;
+#X connect 22 0 20 0;
+#X connect 23 0 22 0;
+#X connect 24 0 33 1;
+#X connect 25 0 33 0;
+#X connect 30 0 33 0;
+#X connect 31 0 33 0;
+#X connect 32 0 33 0;
+#X connect 33 0 26 0;
+#X connect 33 0 27 0;
+#X connect 33 0 27 1;
+#X connect 33 1 29 0;
+#X connect 33 2 0 0;
+#X connect 34 0 33 0;
+#X connect 35 0 36 0;
+#X connect 36 0 24 0;
+#X connect 38 0 33 0;

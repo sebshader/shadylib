@@ -22,15 +22,14 @@
 typedef struct nearctl {
 	t_stage c_attack;
 	t_stage c_release;
-	t_float c_state;
-	t_float c_linr; //holds the state to release from
-	char c_target;
+	t_sample c_state;
+	t_sample c_linr; //holds the state to release from
+	int c_target;
 } t_nearctl;
 
 typedef struct near {
 	t_object x_obj;
 	t_nearctl x_ctl;
-	t_float x_sr;
 } t_near;
 
 static void near_float(t_near *x, t_floatarg f) {
@@ -99,7 +98,7 @@ t_int *near_perform(t_int *w)
     t_nearctl *ctl = (t_nearctl *)(w[1]);
     t_float state = ctl->c_state;
     char target = ctl->c_target;
-    t_int n = (t_int)(w[2]);
+    int n = (int)(w[2]);
     t_stage stage;
 	if (!target) {
 		/*release*/
@@ -143,7 +142,6 @@ t_int *near_perform(t_int *w)
 
 void near_dsp(t_near *x, t_signal **sp)
 {
-    x->x_sr = sp[0]->s_sr;
     dsp_add(near_perform, 3, &x->x_ctl, sp[0]->s_n, sp[0]->s_vec);
 }                                  
 

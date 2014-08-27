@@ -60,7 +60,7 @@ typedef struct _dsrand {
 	float x_ahead; //second to last value generated
 	float x_behind; //last value generated
 	int x_state; //current "behind" state (int)
-	t_float x_lastin;
+	t_sample x_lastin;
 } t_dsrand;
 
 // 579 = b/m1, 4037 = b%m1
@@ -92,7 +92,7 @@ static t_int *dsrand_perform(t_int *w) {
     t_sample *out2 = (t_sample *)(w[4]);
     int n = (int)(w[5]);
     float ahead = x->x_ahead, behind = x->x_behind;
-    t_float lastin = x->x_lastin;
+    t_sample lastin = x->x_lastin;
     int state = x->x_state;
     while(n--) {
     	if(*in < lastin) {

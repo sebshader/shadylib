@@ -1,16 +1,16 @@
 #include "m_pd.h"
 #include <math.h>
 
-#define MAX_HARM 255.0
+#define MAX_HARM 254.0
 //#define COSTAB_2 (COSTABSIZE >> 1)
 static t_class* tcheb_tilde_class;
 
 typedef struct _tcheb_tilde {
 	t_object x_obj;
 	t_float dumf;
-	unsigned int ordr;
-	unsigned int lngth;
-	unsigned int instruct;
+	int ordr;
+	int lngth;
+	int instruct;
 } t_tcheb_tilde;
 
 t_int *tcheb_tilde_perform(t_int *w) {
@@ -18,17 +18,17 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	t_sample *in1 = (t_sample*) (w[2]), *in2 = (t_sample*) (w[3]),
 		*out = (t_sample*) (w[4]);
 	int n = (int) (w[5]);
-	unsigned int o = x->ordr;
-	unsigned int l = x->lngth;
-	unsigned int dir = x->instruct;
-	unsigned int newo;
-	t_sample inord;
+	int o = x->ordr;
+	int l = x->lngth;
+	int dir = x->instruct;
+	int newo;
+	float inord; //change floorf below for pd-double
 	double t1, t2, tin, temp;
 	while(n--) {
 		inord = *in2++;
-		if (inord < 1.0) inord = 1.0;
+		if (inord < 0.0) inord = 0.0;
 		else if (inord > MAX_HARM) inord = MAX_HARM;
-		newo = ((unsigned int) (inord)) + 1;
+		newo = (int)(inord) + 2;
 		if(o != newo) {
 			o = newo;
 			
@@ -39,11 +39,11 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			}
 		}
 		newo = dir;
-		t1 = (double)*in1++; 
+		t1 = *in1++; 
 		if (t1 < -1.0) t1 = -1.0; else if (t1 > 1.0) t1 = 1.0;
 		t2 = 2.0*t1*t1 - 1.0; 
 		tin = t1;
-		for(unsigned int i = 0; i < l; i++) {
+		for(int i = 0; i < l; i++) {
 			if(newo & 1) {
 			/* 2t(n)*t(m) = t(n+m) + t(n-m) for m = n - 1 and n. odd and even
 				idea is from fxt */

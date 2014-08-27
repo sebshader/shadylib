@@ -23,16 +23,15 @@ typedef struct neadsrctl {
 	t_stage c_attack;
 	t_stage c_decay;
 	t_stage c_release;
-	t_float c_sustain;
-	t_float c_state;
-	t_float c_linr; //holds the state to release from
-	t_float c_target;
+	t_sample c_sustain;
+	t_sample c_state;
+	t_sample c_linr; //holds the state to release from
+	t_sample c_target;
 } t_neadsrctl;
 
 typedef struct neadsr {
 	t_object x_obj;
 	t_neadsrctl x_ctl;
-	t_float x_sr;
 } t_neadsr;
 
 static void neadsr_float(t_neadsr *x, t_floatarg f) {
@@ -74,7 +73,7 @@ static void neadsr_decay(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
 static void neadsr_sustain(t_neadsr *x, t_floatarg f)
 {
 	if(f>ENVELOPE_MAX) f = ENVELOPE_MAX;
-	if(f<ENVELOPE_RANGE) f = ENVELOPE_RANGE;
+	else if(f<ENVELOPE_RANGE) f = ENVELOPE_RANGE;
 
 	x->x_ctl.c_sustain = f;
 }
@@ -124,12 +123,12 @@ static void neadsr_any(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
 
 t_int *neadsr_perform(t_int *w)
 {
-    t_float *out = (t_float *)(w[3]);
+    t_sample *out = (t_float *)(w[3]);
     t_neadsrctl *ctl = (t_neadsrctl *)(w[1]);
-    t_float state = ctl->c_state;
-    t_float sustain = ctl->c_sustain;
-    t_float target = ctl->c_target;
-    t_int n = (t_int)(w[2]);
+    t_sample state = ctl->c_state;
+    t_sample sustain = ctl->c_sustain;
+    t_sample target = ctl->c_target;
+    int n = (int)(w[2]);
     t_stage stage;
 	if (target == 0.0) {
 		/*release*/
@@ -199,7 +198,6 @@ t_int *neadsr_perform(t_int *w)
 
 void neadsr_dsp(t_neadsr *x, t_signal **sp)
 {
-    x->x_sr = sp[0]->s_sr;
     dsp_add(neadsr_perform, 3, &x->x_ctl, sp[0]->s_n, sp[0]->s_vec);
 }                                  
 

@@ -7,7 +7,7 @@ typedef struct _transpose_tilde
 {
     t_object x_obj;
     t_float x_f;
-    float x_lastin;
+    float x_lastin;//reminder to make this work for pd-double
     float x_lastout;
 } t_transpose_tilde;
 

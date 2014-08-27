@@ -39,8 +39,7 @@ THE POSSIBILITY OF SUCH DAMAGE.
 
 static t_class *tabread4hs_tilde_class;
 
-typedef struct _tabread4hs_tilde
-{
+typedef struct _tabread4hs_tilde {
     t_object x_obj;
     int x_npoints;
     t_word *x_vec;
@@ -49,24 +48,23 @@ typedef struct _tabread4hs_tilde
     t_float x_onset;
 } t_tabread4hs_tilde;
 
-void *tabread4hs_tilde_new(t_symbol *s)
-{
+void *tabread4hs_tilde_new(t_symbol *s) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)pd_new(tabread4hs_tilde_class);
     x->x_arrayname = s;
     x->x_vec = 0;
     outlet_new(&x->x_obj, gensym("signal"));
-    floatinlet_new(&x->x_obj, &x->x_onset);
-    x->x_f = 0;
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
+	x->x_f = 0;
     x->x_onset = 0;
     return (x);
 }
 
-t_int *tabread4hs_tilde_perform(t_int *w)
-{
+t_int *tabread4hs_tilde_perform(t_int *w) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)(w[1]);
-    t_sample *in = (t_sample *)(w[2]);
-    t_sample *out = (t_sample *)(w[3]);
-    int n = (int)(w[4]);    
+    t_sample *in1 = (t_sample *)(w[2]);
+    t_sample *in2 = (t_sample *)(w[3]);
+    t_sample *out = (t_sample *)(w[4]);
+    int n = (int)(w[5]);    
     int maxindex;
     t_word *buf = x->x_vec, *wp;
     double onset = x->x_onset;
@@ -92,11 +90,11 @@ t_int *tabread4hs_tilde_perform(t_int *w)
     }
 #endif
 
-    for (i = 0; i < n; i++)
-    {
-        double findex = *in++ + onset;
+    for (i = 0; i < n; i++) {
+        double findex = *in1++;
+        findex += *in2++;
         int index = findex;
-        t_sample frac,  a,  b,  c,  d;
+        t_sample frac, a, b, c, d;
         double a3,a1,a2;
         if (index < 1)
             index = 1, frac = 0;
@@ -116,49 +114,38 @@ t_int *tabread4hs_tilde_perform(t_int *w)
 
 		*out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
     }
-    return (w+5);
+    return (w+6);
  zero:
     while (n--) *out++ = 0;
 
-    return (w+5);
+    return (w+6);
 }
 
-void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s)
-{
+void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s) {
     t_garray *a;
     
     x->x_arrayname = s;
-    if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class)))
-    {
+    if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
         if (*s->s_name)
             pd_error(x, "tabread4hs~: %s: no such array", x->x_arrayname->s_name);
         x->x_vec = 0;
-    }
-    else if (!garray_getfloatwords(a, &x->x_npoints, &x->x_vec))
-    {
+    } else if (!garray_getfloatwords(a, &x->x_npoints, &x->x_vec)) {
         pd_error(x, "%s: bad template for tabread4hs~", x->x_arrayname->s_name);
         x->x_vec = 0;
-    }
-    else garray_usedindsp(a);
+    } else garray_usedindsp(a);
 }
 
-void tabread4hs_tilde_dsp(t_tabread4hs_tilde *x, t_signal **sp)
-{
+void tabread4hs_tilde_dsp(t_tabread4hs_tilde *x, t_signal **sp) {
     tabread4hs_tilde_set(x, x->x_arrayname);
 
-    dsp_add(tabread4hs_tilde_perform, 4, x,
-        sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+    dsp_add(tabread4hs_tilde_perform, 5, x,
+        sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
 
 }
 
-void tabread4hs_tilde_free(t_tabread4hs_tilde *x)
-{
-}
-
-void tabread4hs_tilde_setup(void)
-{
+void tabread4hs_tilde_setup(void) {
     tabread4hs_tilde_class = class_new(gensym("tabread4hs~"),
-        (t_newmethod)tabread4hs_tilde_new, (t_method)tabread4hs_tilde_free,
+        (t_newmethod)tabread4hs_tilde_new, 0,
         sizeof(t_tabread4hs_tilde), 0, A_DEFSYM, 0);
     CLASS_MAINSIGNALIN(tabread4hs_tilde_class, t_tabread4hs_tilde, x_f);
     class_addmethod(tabread4hs_tilde_class, (t_method)tabread4hs_tilde_dsp,
@@ -166,4 +153,3 @@ void tabread4hs_tilde_setup(void)
     class_addmethod(tabread4hs_tilde_class, (t_method)tabread4hs_tilde_set,
         gensym("set"), A_SYMBOL, 0);
 }
-

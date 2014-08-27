@@ -65,10 +65,10 @@ static t_class *sampphase_class;
 typedef struct _sampphase
 {
     t_object x_obj;
-    unsigned char x_samptrue;
+    int x_samptrue;
     double x_phase;
-    float x_conv;
-    float x_held;
+    double x_conv;
+    t_sample x_held;
     float x_f;      /* scalar frequency */
 } t_sampphase;
 
@@ -89,17 +89,17 @@ static void *sampphase_new(t_floatarg f, t_floatarg t)
 static t_int *sampphase_perform(t_int *w)
 {
     t_sampphase *x = (t_sampphase *)(w[1]);
-    t_float *in = (t_float *)(w[2]);
-    t_float *out1 = (t_float *)(w[3]);
-    t_float *out2 = (t_float *)(w[4]);
+    t_sample *in = (t_sample *)(w[2]);
+    t_sample *out1 = (t_sample *)(w[3]);
+    t_sample *out2 = (t_sample *)(w[4]);
     int n = (int)(w[5]);
-    unsigned char bool = x->x_samptrue;
+    int bool = x->x_samptrue;
     union tabfudge tf;
     tf.tf_d = x->x_phase + (double)UNITBIT32;
-	t_float conv = x->x_conv;
+	double conv = x->x_conv;
 	
     if (bool) {
-    	t_float samp = x->x_held;
+    	t_sample samp = x->x_held;
     	while (n--) {
     		if ((*in != 0.0 && samp == 0.0) ||\
 				 (tf.tf_i[HIOFFSET] != NORMHIPART)) samp = *in;

@@ -1,4 +1,4 @@
-#N canvas 757 201 657 517 10;
+#N canvas 630 173 657 517 10;
 #X obj 152 136 tcheb~;
 #X obj 143 70 osc~;
 #X obj 101 -21 smoother~;
@@ -11,8 +11,9 @@ around O(ln n) maybe?;
 #X obj 220 24 smoother~ 500;
 #X obj 203 74 clip~ 0 1;
 #X obj 356 301 oscope~;
-#X connect 0 0 6 0;
 #X connect 0 0 10 0;
+#X connect 0 0 6 0;
+#X connect 0 0 6 1;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 0 0;
