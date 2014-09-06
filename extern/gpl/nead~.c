@@ -36,7 +36,7 @@ static void nead_float(t_nead *x, t_floatarg f) {
 	if(f == 0.0) {
     	if(x->x_ctl.c_target) {
     		x->x_ctl.c_target = 0;
-    		x->x_ctl.c_linr = x->x_ctl.c_state;
+    		x->x_ctl.c_linr = x->x_ctl.c_state*x->x_ctl.c_decay.base;
     	}
     } else {
     	x->x_ctl.c_target = 1;
@@ -110,7 +110,7 @@ t_int *nead_perform(t_int *w)
 			if(state >= 1.0) {
 				state = 1.0;
 				target = 0;
-				ctl->c_linr = state;
+				ctl->c_linr = ctl->c_decay.base;
 				break;
 			}
 		}
@@ -120,7 +120,7 @@ t_int *nead_perform(t_int *w)
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else {
 			stage = ctl->c_decay;
-			stage.base *= ctl->c_linr;
+			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
 				state = state*stage.op + stage.base;

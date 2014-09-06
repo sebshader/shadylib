@@ -38,7 +38,7 @@ static void neadsr_float(t_neadsr *x, t_floatarg f) {
 	if(f == 0.0) {
 		if(x->x_ctl.c_target != 0.0) {
 			x->x_ctl.c_target = 0.0;
-			x->x_ctl.c_linr = x->x_ctl.c_state;
+			x->x_ctl.c_linr = x->x_ctl.c_state*x->x_ctl.c_release.base;
     	}
     } else {
     	x->x_ctl.c_target = 1.0;
@@ -135,7 +135,7 @@ t_int *neadsr_perform(t_int *w)
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else {
 			stage = ctl->c_release;
-			stage.base *= ctl->c_linr;
+			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
 				state = state*stage.op + stage.base;
