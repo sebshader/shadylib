@@ -73,7 +73,7 @@ static inline t_float scalerange (t_float a) {
 }
 
 static inline t_float ain2reala(t_float a) {
-	return pow(ENVELOPE_RANGE, 1 - a);
+	return exp2(log2(ENVELOPE_RANGE)*(1 - a));
 }
 
 static void ms2samps(t_float time, t_stage *stage)
