@@ -12,11 +12,7 @@ frequency and sample are we at, etc.)
 figure out formant mode for wavetables? like massive
 a better many that dynamically allocates voices a la supercollider.
 system for dynamic inlets, outlets, subpatches, etc.
-make an inlet~ that accepts messages also
-repeater~ -> loop~-based?
-external to give the existence of an object or not
-some pure data type foolery like encoding a float as an intfor the purpose of
-more index precision for arrays, 
 an external to get information about pd (like if it's running 32 or 64 bit).
+repeater~ -> loop~-based?
 change repeater into 2 seperate abstractions later? one for writing to the array
 and one for reading it?

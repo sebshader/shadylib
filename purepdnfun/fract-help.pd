@@ -11,6 +11,9 @@
 #X msg 275 21 4.0008;
 #X text 52 180 higher precision fractional part \, takes absolute value.
 works up to 6 decimal places;
+#X text 93 216 i have no idea why this works \, or even if it is higher
+precision... the display is at least;
+#X text 138 267 quite expensive;
 #X connect 0 0 1 1;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
