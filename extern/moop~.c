@@ -66,6 +66,7 @@ typedef struct _moop {
 	t_symbol *x_arrayname;
 	t_float x_tonset;//temporary onset
     t_float x_f;
+    
     t_float x_tperiod; //period without samplerate
     t_float x_tempo; //number to * the period in ms by
     t_float x_trns; //held transposition
@@ -94,9 +95,8 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 				return;
 			} else {
 				x->x_phase = 0.0;
-				x->x_tperiod = 1000/(time*(x->x_tempo))
+				x->x_tperiod = 1000/(time*(x->x_tempo));
 				x->x_period = x->x_tperiod/x->x_sr;
-				x->x_time = time;
 				if(time < 0.0) x->x_sample = x->x_range;
 				else x->x_sample = 0.0;
 				x->x_buf.x_onset = x->x_tonset;
@@ -216,7 +216,7 @@ static t_int *moop_perform(t_int *w) {
 					goto done;
 				}
 				tf.tf_i[HIOFFSET] = NORMHIPART;
-				trns = copysign(exp2(*in/12), period);
+				trns = copysign(exp2(tin/12), period);
 				sample = (period > 0) ? 0 : range;
 				buffer.x_onset = x->x_tonset;
 			}
@@ -246,10 +246,7 @@ static t_int *moop_perform(t_int *w) {
 				buffer.x_onset = x->x_tonset;
 			}
 			tout = moop_rd(buffer, sample);
-			if(*in != tin) {
-				tin = *in;
-				trns = copysign(exp2(tin/12), period);
-			}
+			trns = copysign(exp2(tin/12), period);
 		}
 	}
 	tf.tf_d -= UNITBIT32;
@@ -268,10 +265,8 @@ static t_int *moop_perform(t_int *w) {
 
 static void moop_dsp(t_moop *x, t_signal **sp) {
 	moop_tilde_set(x, x->x_arrayname);
-	if(sp[0]->s_sr != x->x_sr) {
-		x->x_sr = sp[0]->s_sr;
-		x->x_period = x->x_tperiod/x->x_sr;
-	}
+	x->x_sr = sp[0]->s_sr;
+	x->x_period = x->x_tperiod/x->x_sr;
 	dsp_add(moop_perform, 6, x, sp[0]->s_vec, sp[1]->s_vec, 
 		sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
 }

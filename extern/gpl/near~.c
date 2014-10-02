@@ -135,10 +135,7 @@ t_int *near_perform(t_int *w)
 				state = state*stage.op + stage.base;
 				if(state <= 0.0) {
 					state = 0.0;
-					while(n) {
-						n--;
-						*out++ = state;
-					}
+					for(;n;n--) *out++ = state;
 				}
 			}
 		}
@@ -151,10 +148,7 @@ t_int *near_perform(t_int *w)
 				state = state*stage.op + stage.base;
 				if(state >= 1.0) {
 					state = 1.0;
-					while(n) {
-						n--;
-						*out++ = state;
-					}
+					for(;n;n--) *out++ = state;
 				}
 			}
 	}

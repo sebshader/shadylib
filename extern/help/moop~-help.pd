@@ -2,7 +2,7 @@
 #X obj 211 266 oscope~;
 #X msg -7 -80 20;
 #X obj 106 14 sig~ 0;
-#X floatatom 111 -8 5 0 0 0 - - -, f 5;
+#X floatatom 111 -8 5 0 0 0 - - -;
 #X msg 192 36 times 0 5;
 #X msg -11 69 times 1500 2;
 #X text 282 105 sending 0 as the first argument to "times" stops the
@@ -29,13 +29,13 @@ to 1 if the second argument isn't there.;
 #X obj 703 365 soundfiler;
 #X msg 715 315 read -resize \$1 test;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array test 4e+06 float 2;
-#X coords 0 1 4e+06 -1 200 140 1;
+#X array test 1.52627e+07 float 2;
+#X coords 0 1 1.52627e+07 -1 200 140 1;
 #X restore 480 270 graph;
 #X obj 721 284 openpanel;
 #X obj 722 253 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom 200 84 9 0 0 0 - - -, f 9;
+#X floatatom 200 84 9 0 0 0 - - -;
 #X msg 82 -29 set test;
 #X obj -22 268 oscope~;
 #X obj 124 171 outputc~;
@@ -45,7 +45,7 @@ to 1 if the second argument isn't there.;
 #X msg 187 -7 times -1500;
 #X obj 134 104 moop~ 44100 0 test;
 #X msg 162 -54 times 15 8000;
-#X floatatom 260 44 5 0 0 0 - - -, f 5;
+#X floatatom 260 44 5 0 0 0 - - -;
 #X obj 260 63 * 1000;
 #X text 248 -58 tempo sets a number to multiply the first number of
 "times" by (default 1);

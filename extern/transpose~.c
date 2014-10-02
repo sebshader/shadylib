@@ -7,8 +7,6 @@ typedef struct _transpose_tilde
 {
     t_object x_obj;
     t_float x_f;
-    float x_lastin;//reminder to make this work for pd-double
-    float x_lastout;
 } t_transpose_tilde;
 
 static void *transpose_tilde_new(void)
@@ -16,8 +14,6 @@ static void *transpose_tilde_new(void)
     t_transpose_tilde *x = (t_transpose_tilde *)pd_new(transpose_tilde_class);
     outlet_new(&x->x_obj, &s_signal);
     x->x_f = 0;
-    x->x_lastin = 0;
-    x->x_lastout = 1;
     return (x);
 }
 
@@ -27,18 +23,7 @@ t_int *transpose_tilde_perform(t_int *w)
     t_sample *out = (t_sample *)(w[2]);
     t_transpose_tilde *x = (t_transpose_tilde *)(w[3]);
     int n = (int)(w[4]);
-    float f = x->x_lastout, tin = x->x_lastin;
-    while (n--)
-    {
-        if(tin != *in) {
-        	tin = *in;
-			f = exp2f(tin/12);
-		}
-		in++;
-        *out++ = f;
-    }
-    x->x_lastout = f;
-    x->x_lastin = tin;
+    while (n--) *out++ = exp2f(*in++/12);
     return (w+5);
 }
 
