@@ -29,6 +29,7 @@ typedef struct nearctl {
 
 typedef struct near {
 	t_object x_obj;
+	t_float x_sr;
 	t_nearctl x_ctl;
 } t_near;
 
@@ -45,26 +46,36 @@ static void near_float(t_near *x, t_floatarg f) {
 }
 
 static void near_attack(t_near *x, t_symbol *s, int argc, t_atom *argv) {
-	switch(argc) {
-		default:;
-		case 2: 
-			ms2samps(atom_getfloat(argv), &(x->x_ctl.c_attack));
-			f2axfade(atom_getfloat(argv + 1), &(x->x_ctl.c_attack));
-			break;
-		case 1: ms2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack));
-		case 0:;
+	t_int samps;
+	int abool;
+	if(argc > 0) {
+		samps = ms2samps(atom_getfloat(argv), x->x_sr);
+		abool = samps == x->x_ctl.c_attack.nsamp;
+		if(argc > 1) {
+			x->x_ctl.c_attack.nsamp = samps;
+			f2axfade(atom_getfloat(argv + 1), &(x->x_ctl.c_attack), 
+				abool);
+		} else if(!abool) {
+			x->x_ctl.c_attack.nsamp = samps;
+			ms2axfade(&(x->x_ctl.c_attack));
+		}
 	}
 }
 
 static void near_release(t_near *x, t_symbol *s, int argc, t_atom *argv) {
-	switch(argc) {
-		default:;
-		case 2:
-			ms2samps(atom_getfloat(argv), &(x->x_ctl.c_release));
-			f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_release));
-			break;
-		case 1: ms2rxfade(atom_getfloat(argv), &(x->x_ctl.c_release));
-		case 0:;
+	t_int samps;
+	int abool;
+	if(argc > 0) {
+		samps = ms2samps(atom_getfloat(argv), x->x_sr);
+		abool = samps == x->x_ctl.c_release.nsamp;
+		if(argc > 1) {
+			x->x_ctl.c_release.nsamp = samps;
+			f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_release), 
+				abool);
+		} else if(!abool) {
+			x->x_ctl.c_release.nsamp = samps;
+			ms2rxfade(&(x->x_ctl.c_release));
+		}
 	}
 }
 
@@ -73,20 +84,33 @@ static void near_any(t_near *x, t_symbol *s, int argc, t_atom *argv) {
 		switch(argc) {
 			default:;
 			case 2: if(argv[1].a_type == A_FLOAT) {
-				f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_release));
+				f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_release), 1);
 			}
 			case 1: if(argv[0].a_type == A_FLOAT) {
-				f2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack));
+				f2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack), 1);
 			}
 			case 0:;
 		}
 	} else {
+		t_int samps;
 		switch(argc) {
 			default:;
 			case 2: 
-				if(argv[1].a_type == A_FLOAT) ms2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_release));
+				if(argv[1].a_type == A_FLOAT) {
+					samps = ms2samps(atom_getfloat(argv + 1), x->x_sr);
+					if(samps != x->x_ctl.c_release.nsamp){
+						x->x_ctl.c_release.nsamp = samps;
+						ms2rxfade(&(x->x_ctl.c_release));
+					}
+				}
 			case 1: 
-				if(argv[0].a_type == A_FLOAT) ms2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack));
+				if(argv[0].a_type == A_FLOAT) {
+					samps = ms2samps(atom_getfloat(argv), x->x_sr);
+					if(samps != x->x_ctl.c_attack.nsamp){
+						x->x_ctl.c_attack.nsamp = samps;
+						ms2axfade(&(x->x_ctl.c_attack));
+					}
+				}
 			case 0:;
 		}
 	}
@@ -142,6 +166,22 @@ t_int *near_perform(t_int *w)
 
 void near_dsp(t_near *x, t_signal **sp)
 {
+	if(sp[0]->s_sr != x->x_sr) {/*need to recalculate everything*/
+		t_stage thistage;
+		float factor = sp[0]->s_sr/x->x_sr;
+		x->x_sr = sp[0]->s_sr;
+		thistage = x->x_ctl.c_attack;
+		thistage.nsamp *= factor;
+		/*should be better because they are low powers/roots? idk tho*/
+		thistage.op = pow(thistage.op, 1.0/factor);
+		thistage.base = (1 - thistage.op)/(1 - thistage.lin);
+		x->x_ctl.c_attack = thistage;
+		thistage = x->x_ctl.c_release;
+		thistage.nsamp *= factor;
+		thistage.op = pow(thistage.op, 1.0/factor);
+		thistage.base = thistage.lin*(1 - thistage.op)/(1 - thistage.lin);
+		x->x_ctl.c_release = thistage;
+	}
     dsp_add(near_perform, 3, &x->x_ctl, sp[0]->s_n, sp[0]->s_vec);
 }                                  
 
@@ -155,11 +195,11 @@ void *near_new(t_floatarg attack, t_floatarg release)
     outlet_new(&x->x_obj, gensym("signal"));
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = 0;
-    ms2samps(attack, &(x->x_ctl.c_attack));
-    f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)), &(x->x_ctl.c_attack)); /* 1/3 by default */
-    ms2samps(release, &(x->x_ctl.c_release));
-    f2rxfade(0.0, &(x->x_ctl.c_release));
-	
+    x->x_sr = sys_getsr();
+    x->x_ctl.c_attack.nsamp = ms2samps(attack, x->x_sr);
+    f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)), &(x->x_ctl.c_attack), 0); /* 1/3 by default */
+    x->x_ctl.c_release.nsamp = ms2samps(release, x->x_sr);
+    f2rxfade(0.0, &(x->x_ctl.c_release), 0);
 	return (void *)x;
 }
 
@@ -169,7 +209,7 @@ void near_tilde_setup(void)
     	0, sizeof(t_near), 0,  A_DEFFLOAT, A_DEFFLOAT, 0);
     class_addmethod(near_class, (t_method)near_float,
 		    gensym("float"), A_FLOAT, 0);
-    class_addmethod(near_class, (t_method)near_dsp, gensym("dsp"), 0); 
+    class_addmethod(near_class, (t_method)near_dsp, gensym("dsp"), A_CANT, 0); 
     class_addmethod(near_class, (t_method)near_attack,
 		    gensym("attack"), A_GIMME, 0);
    class_addmethod(near_class, (t_method)near_release,

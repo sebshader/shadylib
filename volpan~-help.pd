@@ -7,6 +7,8 @@
 #X obj 175 71 smoother~;
 #X obj 248 189 dac~;
 #X text 106 34 inside are a few comments;
+#X obj 314 184 gainc~;
+#X text 325 155 also see:;
 #X connect 0 0 1 2;
 #X connect 0 1 1 1;
 #X connect 1 0 6 0;

@@ -1,3 +1,30 @@
+NOTE: this library is currently undergoing heavy revision, using it is
+inadvisable until I can put a proper release together. (many things will
+change!)
+specifically, these objects are being considered for consolidation, removal, or
+to be coded as externals:
+buzz~
+cyclout
+expclip~
+fsdict? ([text] object?)
+stream objects (again, lists of lists, [text] object?)
+highest~
+inrange
+modtriangulatord~ + triangulatord~ - combine into 1
+modtriangulator + triangulator - same
+combfilter~ - combine with normcomb~ (with flag)
+nrcombfilter~
+operatord~
+operator~
+phasorator~
+phasoratord~
+percents
+repeater~
+change srepeater~ to handle hold mode
+change moop~ to handle hold mode
+svosim~ (figure a good algorithm out)
+weight1/weighted
+
 This is a pure data library that I always add to whenever I want to either do
 something myself or make something that hasn't been made in pd. 
 

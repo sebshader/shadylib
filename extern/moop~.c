@@ -66,9 +66,11 @@ typedef struct _moop {
 	t_symbol *x_arrayname;
 	t_float x_tonset;//temporary onset
     t_float x_f;
+    t_float x_tperiod; //period without samplerate
     t_float x_tempo; //number to * the period in ms by
     t_float x_trns; //held transposition
-    t_sample x_range;
+    t_float x_sr; //samplerate
+    t_sample x_range; //sample to jump to on negative times
     int x_num; //current number of repetitions
     int x_hold; //sample & hold transposition or not?
     double x_phase; //keep track of time passed
@@ -92,7 +94,9 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 				return;
 			} else {
 				x->x_phase = 0.0;
-				x->x_period = 1000/(time*x->x_tempo*sys_getsr());
+				x->x_tperiod = 1000/(time*(x->x_tempo))
+				x->x_period = x->x_tperiod/x->x_sr;
+				x->x_time = time;
 				if(time < 0.0) x->x_sample = x->x_range;
 				else x->x_sample = 0.0;
 				x->x_buf.x_onset = x->x_tonset;
@@ -264,6 +268,10 @@ static t_int *moop_perform(t_int *w) {
 
 static void moop_dsp(t_moop *x, t_signal **sp) {
 	moop_tilde_set(x, x->x_arrayname);
+	if(sp[0]->s_sr != x->x_sr) {
+		x->x_sr = sp[0]->s_sr;
+		x->x_period = x->x_tperiod/x->x_sr;
+	}
 	dsp_add(moop_perform, 6, x, sp[0]->s_vec, sp[1]->s_vec, 
 		sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
 }
@@ -277,9 +285,10 @@ static void *moop_new(t_floatarg range, t_floatarg hold, t_symbol *s) {
     moop_range(x, range);
 	moop_hold(x, hold);
 	x->x_tempo = 1;
+	x->x_sr = sys_getsr();
 	x->x_arrayname = s;
 	x->x_phase = 0.0;
-	x->x_period = 0.0;
+	x->x_tperiod = 0.0;
 	x->x_sample = 0.0;
 	x->x_num = 0;
 	x->x_f = 0;
