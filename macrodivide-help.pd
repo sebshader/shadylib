@@ -8,7 +8,7 @@
 #X floatatom 97 127 5 0 0 0 - - -;
 #X floatatom 170 78 5 0 0 0 - - -;
 #X obj 107 -93 banger;
-#X msg 219 73 11;
+#X msg 176 57 11;
 #X floatatom 128 77 5 0 0 0 - - -;
 #X obj 116 -68 t b b;
 #X obj 116 -42 del 50;

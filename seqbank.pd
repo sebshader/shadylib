@@ -305,19 +305,17 @@
 #X floatatom 644 107 5 0 0 0 Subpatch: #0-this #0-goblegoblegock;
 #X obj 244 380 s \$0-this;
 #X obj 103 130 hradio 36 1 0 16 \$0-Nohradio \$0-hrad empty 0 -8 0
-10 -4160 -262144 -1 14;
+10 -4160 -262144 -1 0;
 #X obj 60 418 s \$0-hrad;
 #X obj 320 337 inlet;
 #X obj 279 422 outlet;
 #X obj -151 410 t f f f;
-#X floatatom -1 513 5 0 0 0 - - -;
 #X obj 241 333 loadbang;
 #X connect 3 0 11 0;
 #X connect 4 0 43 0;
 #X connect 4 0 46 0;
 #X connect 4 1 28 0;
 #X connect 5 0 26 0;
-#X connect 5 0 47 0;
 #X connect 7 0 10 1;
 #X connect 8 0 10 0;
 #X connect 8 1 37 0;
@@ -361,5 +359,5 @@
 #X connect 46 0 5 0;
 #X connect 46 1 13 0;
 #X connect 46 2 14 0;
-#X connect 48 0 39 0;
+#X connect 47 0 39 0;
 #X coords 0 -1 1 1 582 216 1 100 100;

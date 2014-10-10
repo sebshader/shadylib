@@ -20,10 +20,11 @@
 #X obj 167 118 transpose~;
 #X obj 197 190 /~;
 #X obj 284 65 route phase set;
-#X msg 325 98 set \$1;
+#X msg 308 134 set \$1;
 #X obj 90 280 tabread4hs~ \$1;
 #X obj 222 313 tabread4hs~ \$1;
 #X obj 239 115 abs~;
+#X obj 313 106 symbol;
 #X connect 0 0 22 0;
 #X connect 0 1 4 0;
 #X connect 0 1 13 0;
@@ -47,7 +48,7 @@
 #X connect 18 0 12 0;
 #X connect 19 0 0 1;
 #X connect 20 0 1 1;
-#X connect 20 1 21 0;
+#X connect 20 1 25 0;
 #X connect 20 2 22 1;
 #X connect 20 2 23 1;
 #X connect 21 0 22 0;
@@ -55,3 +56,4 @@
 #X connect 22 0 2 0;
 #X connect 23 0 5 0;
 #X connect 24 0 1 0;
+#X connect 25 0 21 0;

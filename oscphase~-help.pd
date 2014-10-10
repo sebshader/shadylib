@@ -1,7 +1,7 @@
 #N canvas 276 235 749 497 10;
 #X obj 149 146 oscphase~;
 #X obj 150 171 cos~;
-#X obj 86 278 outputc~;
+#X obj 84 305 outputc~;
 #X obj 212 180 dbgr~;
 #X obj 214 212 dbgr~;
 #X obj 205 296 oscope~;
@@ -11,7 +11,7 @@ phase);
 #X obj 213 239 dbgr~;
 #X text 280 246 4th: high frequency;
 #X obj 163 225 -~;
-#X obj 199 276 /~;
+#X obj 169 267 /~;
 #X obj 188 243 -~;
 #X text 280 179 2nd outlet: current frequency;
 #X obj 143 70 mtof;

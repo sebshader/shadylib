@@ -1,4 +1,4 @@
-#N canvas 861 298 495 329 10;
+#N canvas 679 163 495 329 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array explinetest 1000 float 3;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 13.5 0 0 0 0 0 0 0 0 0 0

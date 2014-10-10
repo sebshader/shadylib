@@ -12,6 +12,7 @@
 #X obj 112 86 mstof;
 #X obj 223 172 realpass~;
 #X obj 185 233 /~ 2;
+#X text 316 183 inlets: signal \, delay time \, coefficient;
 #X connect 0 0 3 0;
 #X connect 0 0 5 0;
 #X connect 0 1 10 0;

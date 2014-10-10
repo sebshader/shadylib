@@ -1,4 +1,4 @@
-#N canvas 373 249 674 397 10;
+#N canvas 470 264 674 397 10;
 #X obj 270 68 modtriangulator~;
 #X obj 54 111 oscope~;
 #X text 375 76 <-- samphold trigger;

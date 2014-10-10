@@ -1,6 +1,6 @@
 #N canvas 777 22 663 514 10;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array explinetest 1000 float 3;
+#X array powlinetest 1000 float 3;
 #A 0 0 11.6189 0 0 0 0 11.4973 0 0 0 0 11.3743 0 0 0 0 11.25 0 0 0
 0 11.1243 0 0 0 0 10.9972 0 0 0 0 10.8685 0 0 0 0 10.7384 0 0 0 0 10.6066
 0 0 0 0 10.4732 0 0 0 0 10.338 0 0 0 0 10.2011 0 0 0 0 10.0623 0 0
@@ -58,7 +58,6 @@
 #X msg 156 62 0;
 #X obj 172 142 loadbang;
 #X msg 140 83 15 \, 0 400;
-#X obj 100 264 tabwrite explinetest;
 #X msg 332 70 \; explinetest const 0;
 #X msg 69 115 15 \, 0 400;
 #X text 30 -31 2nd inlet: time to ramp (same behavior as line);
@@ -70,15 +69,16 @@
 #X msg 291 50 4;
 #X obj 143 119 powline 4 5;
 #X msg 77 62 0 \, 15 400;
+#X obj 100 264 tabwrite powlinetest;
 #X connect 1 0 2 0;
-#X connect 2 0 8 1;
-#X connect 3 0 8 0;
-#X connect 4 0 18 1;
-#X connect 5 0 18 0;
+#X connect 2 0 19 1;
+#X connect 3 0 19 0;
+#X connect 4 0 17 1;
+#X connect 5 0 17 0;
 #X connect 6 0 1 0;
-#X connect 7 0 18 0;
-#X connect 10 0 3 0;
-#X connect 16 0 18 2;
-#X connect 17 0 18 2;
-#X connect 18 0 8 0;
-#X connect 19 0 18 0;
+#X connect 7 0 17 0;
+#X connect 9 0 3 0;
+#X connect 15 0 17 2;
+#X connect 16 0 17 2;
+#X connect 17 0 19 0;
+#X connect 18 0 17 0;

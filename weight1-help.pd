@@ -7,6 +7,8 @@
 #X obj 301 123 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 269 49 22 1 80 4;
+#X text 47 183 todo: make external and/or rethink (don't use weighted
+\, which itself must be redone);
 #X connect 0 0 3 0;
 #X connect 0 0 4 0;
 #X connect 2 0 0 0;

@@ -18,7 +18,8 @@
 -1 -1;
 #X msg 359 190 0;
 #X obj 322 -9 t b b;
-#X msg 226 44 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42;
+#X msg 226 44 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42
+91.42 91.42 91.42;
 #X obj 234 -5 iterate 4;
 #X msg 236 19 add2 91.42;
 #X obj 699 149 timer;
@@ -34,6 +35,11 @@ of which is the buffer size \, 3: signal cv for pitchshift in semitones
 not (0) on a given step \, starting after the buffer is written;
 #X text 575 19 record/play for 725 ms \, then reverse for 725 ms twice
 ;
+#X msg 335 76 2000 2000;
+#X text 373 245 buffer is size 132300 right now \, 3 seconds at 44100
+sr;
+#X text 551 299 this object will undergo lotsa changes probably (it's
+kinda rough). may even switch to an external;
 #X connect 0 0 9 0;
 #X connect 2 0 16 0;
 #X connect 3 0 17 0;
@@ -60,3 +66,4 @@ not (0) on a given step \, starting after the buffer is written;
 #X connect 21 0 20 0;
 #X connect 23 0 9 3;
 #X connect 24 0 9 1;
+#X connect 27 0 9 1;

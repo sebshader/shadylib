@@ -1,10 +1,10 @@
 #N canvas 334 118 547 339 10;
 #X floatatom 289 167 5 0 0 0 - - -;
-#X obj 349 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 348 121 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 346 91 reset;
+#X text 368 119 reset;
 #X obj 286 141 streamdiff;
-#X msg 272 106 1 \, 2 \, 3;
+#X msg 216 107 1 \, 2 \, 3;
 #X msg 273 66 1 \, 2 \, 3 \, 4;
 #X msg 318 31 2 \, 3;
 #X msg 357 66 4 \, 4 \, 4;

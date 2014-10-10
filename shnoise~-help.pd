@@ -8,5 +8,7 @@
 #X msg 288 109 0.5;
 #X text 328 107 for phase;
 #X text 153 181 outets: phase \, new value \, old value;
+#X obj 246 160 dbgr~;
+#X connect 0 1 8 0;
 #X connect 2 0 0 0;
 #X connect 5 0 0 1;

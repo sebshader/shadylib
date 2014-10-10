@@ -25,6 +25,8 @@ set \, it will add a weighting to a number with the message add. anything
 but a these selectors will trigger weighted to output the randomly
 selected number. weighting is only in integers.;
 #X msg 247 76 0 6;
+#X text 339 314 this object will change in the future \, probably to
+an external. should share header with dsrand~?;
 #X connect 0 0 10 0;
 #X connect 1 0 10 0;
 #X connect 2 0 10 0;

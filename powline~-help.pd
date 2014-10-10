@@ -1,7 +1,6 @@
 #N canvas 264 33 450 300 10;
-#X obj 123 262 tabwrite~ test;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array test 44100 float 3;
+#X array spowlinetest 44100 float 3;
 #A 0 40 39.8315 39.7617 39.7082 39.663 39.6232 39.5873 39.5542 39.5234
 39.4945 39.4672 39.4412 39.4163 39.3925 39.3696 39.3474 39.326 39.3053
 39.2852 39.2656 39.2465 39.2279 39.2097 39.192 39.1746 39.1576 39.1409
@@ -3457,27 +3456,28 @@
 -1;
 #X msg 111 175 0 500;
 #X msg 307 251 \; pd dsp 1;
-#X text 135 21 powline audio ramp;
+#X text 80 21 powline audio ramp;
 #X text 162 206 rightmost inlet/ argument: power;
 #X obj 77 226 powline~ 4;
 #X floatatom 182 175 5 0 0 0 - - -;
 #X text 157 218 negative numbers are treated as denominators;
-#X connect 2 0 0 0;
-#X connect 2 0 3 0;
-#X connect 3 0 16 0;
-#X connect 4 0 16 0;
-#X connect 5 0 16 1;
-#X connect 6 0 4 0;
-#X connect 6 0 0 0;
-#X connect 7 0 8 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
-#X connect 8 0 16 0;
-#X connect 9 0 12 0;
-#X connect 10 0 16 0;
-#X connect 11 0 10 0;
-#X connect 11 0 0 0;
-#X connect 11 0 9 0;
-#X connect 12 0 16 0;
-#X connect 16 0 0 0;
-#X connect 17 0 16 2;
+#X obj 123 262 tabwrite~ spowlinetest;
+#X connect 1 0 2 0;
+#X connect 1 0 18 0;
+#X connect 2 0 15 0;
+#X connect 3 0 15 0;
+#X connect 4 0 15 1;
+#X connect 5 0 3 0;
+#X connect 5 0 18 0;
+#X connect 6 0 7 0;
+#X connect 6 0 18 0;
+#X connect 7 0 15 0;
+#X connect 7 0 18 0;
+#X connect 8 0 11 0;
+#X connect 9 0 15 0;
+#X connect 10 0 9 0;
+#X connect 10 0 8 0;
+#X connect 10 0 18 0;
+#X connect 11 0 15 0;
+#X connect 15 0 18 0;
+#X connect 16 0 15 2;

@@ -1,4 +1,4 @@
-#N canvas 395 195 809 409 10;
+#N canvas 395 195 880 509 10;
 #X obj -43 29 line~;
 #X msg -40 8 0 \, 44100 1000;
 #X text -94 30 read pt.;
@@ -18,6 +18,22 @@ to read from;
 3rd are hanning-windowed grains;
 #X obj -3 232 outputc~;
 #X text -91 106 grain freq \, negative is backwards;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array myarray 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 449 -47 graph;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array nextarray 100 float 3;
+#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+0;
+#X coords 0 1 99 -1 200 140 1;
+#X restore 448 253 graph;
 #X connect 0 0 7 0;
 #X connect 1 0 0 0;
 #X connect 3 0 7 1;

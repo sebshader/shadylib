@@ -1,14 +1,10 @@
 #N canvas 398 154 527 314 10;
 #X obj 204 106 temposet 200 bpm;
-#X obj 57 177 r globaltempotrigger;
-#X obj 57 208 v globaltempo;
 #X text 22 8 if 2nd argument is the symbol "bpm" 1st argument is tempo
 in bpm. if not \, it's in ms. the bangs are for making the bpm and
 ms tempos integers. left inlet is tempo in ms \, right is bpm. the
 /3 and /4 is in reference to the ms;
-#X floatatom 65 239 5 0 0 0 - - -;
 #X floatatom 209 83 5 0 0 0 - - -;
-#X text -44 137 also sets these whenever tempo changes:;
 #X floatatom 301 87 5 0 0 0 - - -;
 #X floatatom 197 195 5 0 0 0 - - -;
 #X floatatom 266 198 5 0 0 0 - - -;
@@ -20,11 +16,9 @@ ms tempos integers. left inlet is tempo in ms \, right is bpm. the
 #X floatatom 390 199 5 0 0 0 - - -;
 #X text 314 217 ms/3;
 #X text 387 216 ms/4;
-#X connect 0 0 8 0;
-#X connect 0 1 9 0;
-#X connect 0 2 14 0;
-#X connect 0 3 15 0;
-#X connect 1 0 2 0;
-#X connect 2 0 4 0;
-#X connect 5 0 0 0;
-#X connect 7 0 0 1;
+#X connect 0 0 4 0;
+#X connect 0 1 5 0;
+#X connect 0 2 10 0;
+#X connect 0 3 11 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 1;

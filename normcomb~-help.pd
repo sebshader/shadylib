@@ -1,4 +1,4 @@
-#N canvas 0 22 706 474 10;
+#N canvas 268 194 706 474 10;
 #X text 49 24 normalized comb filter (wrapper for combfilter~):;
 #X obj 263 78 noise~;
 #X obj 328 75 phasor~ -10;
@@ -7,11 +7,23 @@
 #X text 8 137 1nd argument/2ndt inlet: delay time (ms);
 #X text 3 112 2nd argument/ 3rd inlet: gain;
 #X text 36 197 normalization is 1 - abs(g);
-#X obj 262 152 normcomb~ 20 -0.8;
 #X obj 386 196 oscope~;
+#X floatatom 403 91 5 0 0 0 - - -;
+#X text 35 161 last inlet: clear delay buffer;
+#X obj 262 152 normcomb~ 20 -0.8;
+#X obj 517 63 hsl 128 15 -0.999 0.999 0 0 empty empty empty -2 -8 0
+10 -262144 -1 -1 11612 1;
+#X floatatom 451 151 5 0 0 0 - - -;
+#X obj 404 113 mtof;
+#X obj 400 138 mstof;
 #X connect 1 0 3 0;
 #X connect 2 0 3 1;
-#X connect 3 0 8 0;
-#X connect 8 0 4 0;
-#X connect 8 0 4 1;
-#X connect 8 0 9 0;
+#X connect 3 0 11 0;
+#X connect 9 0 14 0;
+#X connect 11 0 4 0;
+#X connect 11 0 4 1;
+#X connect 11 0 8 0;
+#X connect 12 0 11 2;
+#X connect 14 0 13 0;
+#X connect 14 0 15 0;
+#X connect 15 0 11 1;

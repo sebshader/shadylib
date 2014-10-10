@@ -1,6 +1,5 @@
 #N canvas 134 186 848 537 10;
 #X obj -65 10 smoother~;
-#X obj -45 149 dac~;
 #X obj -64 51 osc~;
 #X msg 86 39 \$1 100;
 #X floatatom 95 20 5 0 0 0 - - -;
@@ -13,13 +12,13 @@
 #X text 385 234 no alias protection!;
 #X obj 39 167 oscope~;
 #X obj -46 116 waveshapex~;
-#X msg 431 80 \; pd dsp 1;
 #X obj 87 65 line~;
-#X connect 0 0 2 0;
+#X obj -45 149 outputc~;
+#X connect 0 0 1 0;
+#X connect 1 0 10 0;
 #X connect 2 0 11 0;
-#X connect 3 0 13 0;
-#X connect 4 0 3 0;
-#X connect 11 0 1 1;
-#X connect 11 0 1 0;
-#X connect 11 0 10 0;
-#X connect 13 0 11 1;
+#X connect 3 0 2 0;
+#X connect 10 0 9 0;
+#X connect 10 0 12 1;
+#X connect 10 0 12 0;
+#X connect 11 0 10 1;

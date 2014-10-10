@@ -1,7 +1,6 @@
-#N canvas 264 33 476 380 10;
-#X obj 150 317 tabwrite~ test;
+#N canvas 2 294 476 380 10;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array test 44100 float 3;
+#X array srexplinetest 44100 float 3;
 #A 0 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511
 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511 15.1511
 15.1511 15.3013 15.3013 15.3013 15.3013 15.3013 15.3013 15.3013 15.3013
@@ -4680,24 +4679,23 @@
 -1;
 #X msg 111 175 0 500;
 #X obj 77 226 rexpline~;
-#X obj 292 214 loadbang;
 #X msg 290 248 \; pd dsp 1;
-#X connect 2 0 0 0;
-#X connect 2 0 3 0;
-#X connect 3 0 14 0;
-#X connect 4 0 14 0;
-#X connect 5 0 14 1;
-#X connect 6 0 4 0;
-#X connect 6 0 0 0;
-#X connect 8 0 9 0;
-#X connect 8 0 0 0;
-#X connect 9 0 0 0;
-#X connect 9 0 14 0;
+#X obj 150 317 tabwrite~ srexplinetest;
+#X connect 1 0 2 0;
+#X connect 1 0 15 0;
+#X connect 2 0 13 0;
+#X connect 3 0 13 0;
+#X connect 4 0 13 1;
+#X connect 5 0 3 0;
+#X connect 5 0 15 0;
+#X connect 7 0 8 0;
+#X connect 7 0 15 0;
+#X connect 8 0 13 0;
+#X connect 8 0 15 0;
+#X connect 9 0 12 0;
 #X connect 10 0 13 0;
-#X connect 11 0 14 0;
-#X connect 12 0 11 0;
-#X connect 12 0 0 0;
-#X connect 12 0 10 0;
-#X connect 13 0 14 0;
-#X connect 14 0 0 0;
-#X connect 15 0 16 0;
+#X connect 11 0 10 0;
+#X connect 11 0 9 0;
+#X connect 11 0 15 0;
+#X connect 12 0 13 0;
+#X connect 13 0 15 0;

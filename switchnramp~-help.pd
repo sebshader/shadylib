@@ -1,5 +1,5 @@
 #N canvas 572 40 776 685 10;
-#X obj 265 293 tabwrite~ test;
+#X obj 277 316 tabwrite~ test;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array test 500 float 3;
 #A 0 -0.177638 -0.18041 -0.183146 -0.185841 -0.188498 -0.191115 -0.193694
@@ -72,35 +72,35 @@
 #X coords 0 1 500 -1 200 140 1;
 #X restore 440 231 graph;
 #X text 256 16 miller's switch and ramp (from his book);
-#X obj 256 130 *;
+#X obj 291 184 *;
 #X obj 383 78 constant pi;
 #X obj 388 56 loadbang;
-#X obj 262 156 cos;
-#X msg 275 181 jmpval \$1;
-#X obj 191 131 osc~ 100;
-#X obj 185 220 *~;
-#X obj 121 198 rexpline~;
+#X obj 291 204 cos;
+#X msg 291 234 jmpval \$1;
+#X obj 172 213 osc~ 100;
+#X obj 157 236 *~;
+#X obj 157 193 rexpline~;
 #X obj 213 11 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 283 63 5 0 1 0 - - -;
-#X obj 254 92 f 0.75;
-#X text 325 65 set phase;
+#X floatatom 249 112 5 0 1 0 - - -;
+#X obj 217 136 f 0.75;
+#X text 259 131 set phase;
 #X text 347 181 tell switchnramp~ where it will jump to;
-#X msg 370 145 time \$1;
-#X floatatom 382 118 5 0 0 0 - - -;
-#X text 425 113 set time switchnramp~ will take (default 7);
+#X msg 338 154 time \$1;
+#X floatatom 338 133 5 0 0 0 - - -;
+#X text 372 132 set time switchnramp~ will take (default 7);
 #X text 306 416 1st and second args are time and jumpval respectively
 ;
-#X obj 211 247 switchnramp~ 10 0;
+#X obj 192 264 switchnramp~ 10 0;
 #X obj 182 369 outputc~;
 #X obj 179 61 del;
 #X obj 230 50 stoms;
 #X text -7 61 delay a signal block for test;
 #X msg 230 28 64;
-#X msg 142 157 1 \, 0 1000;
-#X floatatom 320 211 8 0 0 0 - - -;
+#X msg 157 169 1 \, 0 1000;
+#X floatatom 356 234 8 0 0 0 - - -;
 #X obj 370 99 * 2;
-#X text 298 226 give bang on trigger;
+#X text 312 257 give bang on trigger;
 #X connect 3 0 6 0;
 #X connect 4 0 28 0;
 #X connect 5 0 4 0;

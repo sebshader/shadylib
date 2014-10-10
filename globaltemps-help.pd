@@ -1,16 +1,16 @@
-#N canvas 484 283 450 300 10;
+#N canvas 484 283 596 279 10;
 #X floatatom 113 38 5 0 0 0 - - -;
 #X obj 274 70 v globaltempo;
 #X obj 276 49 r globaltempotrigger;
 #X floatatom 277 102 5 0 0 0 - - -;
-#X text 97 165 sets global tempo and sends a global trigger. inlet
-is tempo in ms \, argument is tempo in bpm. automatically sends tempo
-in ms (loadbang) \, so don't have one if you don't want certain objects
-to use it's tempo (e.g. subdivide);
 #X obj 126 107 globaltempr;
 #X floatatom 135 132 5 0 0 0 - - -;
 #X obj 113 65 globaltemps 200 bpm;
-#X connect 0 0 7 0;
+#X text 97 165 sets valur globaltempo and sends a globaltempotrigger.
+inlet is tempo in ms \, argument is tempo in bpm. automatically sends
+tempo in ms (loadbang) \, so don't have one if you don't want certain
+objects to use it's tempo (e.g. subdivide);
+#X connect 0 0 6 0;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;
-#X connect 5 0 6 0;
+#X connect 4 0 5 0;

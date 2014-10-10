@@ -2,7 +2,8 @@
 #X obj 267 121 globaltempr;
 #X floatatom 255 150 5 0 0 0 - - -;
 #X floatatom 105 18 5 0 0 0 - - -;
-#X text 185 26 first argument sets global tempo;
 #X obj 95 49 globaltemps 50;
+#X text 69 84 first argument sets global tempo in bpm and sends it
+in ms;
 #X connect 0 0 1 0;
-#X connect 2 0 4 0;
+#X connect 2 0 3 0;
