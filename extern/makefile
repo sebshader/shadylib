@@ -80,12 +80,16 @@ help:
 # delete old build files
 clean:
 	-rm -f *.dll *.pd_* *.o *.obj *~
+	-rm -f ../*.pd_*
 
 # we want to compile all C-files we find in the current directory
 SOURCES=$(sort $(filter %.c, $(wildcard *.c)))
 # each C-files maps will become an external with the given filename-extension
 TARGETS=$(SOURCES:.c=.$(EXTENSION))
 
+install: auto
+	cd gpl && make
+	-mv *.pd_* gpl/*.pd_* ../
 
 # ----------------------- Linux -----------------------
 

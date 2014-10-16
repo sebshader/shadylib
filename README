@@ -1,3 +1,6 @@
+to build the externals, cd into “extern” folder and edit the makefile to reflect 
+your system and setup. then type “make install”.
+
 NOTE: this library is currently undergoing heavy revision, using it is
 inadvisable until I can put a proper release together. (many things will
 change!)
