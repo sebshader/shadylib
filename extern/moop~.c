@@ -64,7 +64,6 @@ typedef struct _moop {
 	t_outlet *x_out2;
 	t_moopbuf x_buf; //buffer info
 	t_symbol *x_arrayname;
-	t_float x_tonset;//temporary onset
     t_float x_f;
     
     t_float x_tperiod; //period without samplerate
@@ -74,6 +73,7 @@ typedef struct _moop {
     t_sample x_range; //sample to jump to on negative times
     int x_num; //current number of repetitions
     int x_hold; //sample & hold transposition or not?
+    int x_inf; //loop indefinitely or not?
     double x_phase; //keep track of time passed
     double x_period; //inverse of samples to play
     double x_sample; //actual sample value to read in buffer
@@ -94,20 +94,20 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 				x->x_num = 0;
 				return;
 			} else {
-				x->x_phase = 0.0;
 				x->x_tperiod = 1000/(time*(x->x_tempo));
 				x->x_period = x->x_tperiod/x->x_sr;
-				if(time < 0.0) x->x_sample = x->x_range;
-				else x->x_sample = 0.0;
-				x->x_buf.x_onset = x->x_tonset;
 			}
 		} else {
-			post("moop~: list must be floats");
+			post("moop~: time must be float");
 			return;
 		}
 		if(argc > 1) 
 			if(argv[1].a_type == A_FLOAT) {
 				t_int num = atom_getfloat(argv + 1);
+				x->x_inf = 0;
+				x->x_phase = 0.0;
+				if(time < 0.0) x->x_sample = x->x_range;
+				else x->x_sample = 0.0;
 				if(num <= 0) {
 					x->x_num = 0;
 					x->x_phase = 0.0;
@@ -116,10 +116,18 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 					if(time < 0.0) num++;
 					x->x_num = num;
 				}
-			} else post("moop~: list must be floats");
-		else
+			} else {
+				x->x_inf = 1;
+				x->x_num = 1;
+			}
+		else {
+			if(time < 0.0) x->x_sample = x->x_range;
+			else x->x_sample = 0.0;
+			x->x_phase = 0.0;
+			x->x_inf = 0;
 			if(time < 0.0) x->x_num = 2;
 			else x->x_num = 1;
+		}
 	}
 }
 
@@ -180,10 +188,11 @@ static t_sample moop_rd(t_moopbuf buf, double findex) {
 static t_int *moop_perform(t_int *w) {
 	t_moop *x = (t_moop *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
-	t_sample *out1 = (t_sample *)(w[3]);
-	t_sample *out2 = (t_sample *)(w[4]);
-	t_sample *out3 = (t_sample *)(w[5]);
-	int n = (int)(w[6]);
+	t_sample *in2 = (t_sample *)(w[3]);
+	t_sample *out1 = (t_sample *)(w[4]);
+	t_sample *out2 = (t_sample *)(w[5]);
+	t_sample *out3 = (t_sample *)(w[6]);
+	int n = (int)(w[7]);
 	union tabfudge tf;
 	t_sample range = x->x_range;
 	double period = x->x_period, sample = x->x_sample;
@@ -191,7 +200,7 @@ static t_int *moop_perform(t_int *w) {
 	tf.tf_d = x->x_phase;
 	t_float trns;
 	t_moopbuf buffer = x->x_buf;
-    t_sample tin, tout;
+    t_sample tin, tin2, tout;
     if(buffer.x_vec) tout = moop_rd(buffer, sample);
     else {
     	tout = 0;
@@ -201,49 +210,52 @@ static t_int *moop_perform(t_int *w) {
 	tf.tf_d += (double)UNITBIT32;
 	if(x->x_hold) {
 		trns = (sample == 0.0) ? copysign(exp2(*in/12), period) : x->x_trns;
-		while (n) {
-			n--;
+		for(;n;n--) {
 			tin = *in++;
+			tin2 = *in2++;
 			*out1++ = tout;
     		*out2++ = sample;
     		*out3++ = tf.tf_d - UNITBIT32;
     		tf.tf_d += period;
     		sample += trns;
     		if (tf.tf_i[HIOFFSET] != NORMHIPART) {
-    			num--;
-				if(!num) {
-					tf.tf_d = 0.0;
-					goto done;
+    			if(!x->x_inf) {
+    				num--;
+					if(!num) {
+						tf.tf_d = 0.0;
+						goto done;
+					}
 				}
 				tf.tf_i[HIOFFSET] = NORMHIPART;
 				trns = copysign(exp2(tin/12), period);
 				sample = (period > 0) ? 0 : range;
-				buffer.x_onset = x->x_tonset;
+				buffer.x_onset = tin2;
 			}
 			tout = moop_rd(buffer, sample);
 		}
 		x->x_trns = trns;
 	} else {
-		tin = *in;
-		trns = copysign(exp2(tin/12), period);
-		while (n) {
-			n--;
-			in++;
+		trns = copysign(exp2(*in/12), period);
+		for(;n;n--) {
+			tin = *in++;
+			tin2 = *in2++;
 			*out1++ = tout;
     		*out2++ = sample;
     		*out3++ = tf.tf_d - UNITBIT32;
     		tf.tf_d += period;		
     		sample += trns;
     		if (tf.tf_i[HIOFFSET] != NORMHIPART) {
-    			num--;
-    			if(!num) {
-					tf.tf_d = 0.0;
-					goto done;
+    			if(!x->x_inf) {
+    				num--;
+					if(!num) {
+						tf.tf_d = 0.0;
+						goto done;
+					}
 				}
     			tf.tf_i[HIOFFSET] = NORMHIPART;
 				if(period > 0) sample = 0;
 				else sample = range;
-				buffer.x_onset = x->x_tonset;
+				buffer.x_onset = tin2;
 			}
 			tout = moop_rd(buffer, sample);
 			trns = copysign(exp2(tin/12), period);
@@ -260,23 +272,23 @@ static t_int *moop_perform(t_int *w) {
 	x->x_buf = buffer;
 	x->x_sample = sample;
 	x->x_phase = tf.tf_d;
-    return (w+7);
+    return (w+8);
 }
 
 static void moop_dsp(t_moop *x, t_signal **sp) {
 	moop_tilde_set(x, x->x_arrayname);
 	x->x_sr = sp[0]->s_sr;
 	x->x_period = x->x_tperiod/x->x_sr;
-	dsp_add(moop_perform, 6, x, sp[0]->s_vec, sp[1]->s_vec, 
-		sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
+	dsp_add(moop_perform, 7, x, sp[0]->s_vec, sp[1]->s_vec, 
+		sp[2]->s_vec, sp[3]->s_vec, sp[4]->s_vec, sp[0]->s_n);
 }
 
 static void *moop_new(t_floatarg range, t_floatarg hold, t_symbol *s) {
 	t_moop *x = (t_moop *)pd_new(moop_class);
-	floatinlet_new(&x->x_obj, &x->x_tonset);
-	outlet_new(&x->x_obj, gensym("signal"));
-    outlet_new(&x->x_obj, gensym("signal"));
-    outlet_new(&x->x_obj, gensym("signal"));
+	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
+	outlet_new(&x->x_obj, &s_signal);
+    outlet_new(&x->x_obj, &s_signal);
+    outlet_new(&x->x_obj, &s_signal);
     moop_range(x, range);
 	moop_hold(x, hold);
 	x->x_tempo = 1;
