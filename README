@@ -1,5 +1,7 @@
 to build the externals, cd into “extern” folder and edit the makefile to reflect 
-your system and setup. then type “make install”.
+your system and setup. then type “make install”. There are fat OSX binaries in 
+the extern/darwin folder though, simply move all of the .pd_darwin files into 
+the main directory if you're on osx
 
 NOTE: this library is currently undergoing heavy revision, using it is
 inadvisable until I can put a proper release together. (many things will
