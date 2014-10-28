@@ -1,5 +1,6 @@
 #include "m_pd.h"
 #include <stdlib.h>
+#include <math.h>
 
 #define MAXPRD 4194304
 
@@ -33,6 +34,7 @@ static void highest_set(t_highest *x, t_floatarg nsamps) {
 
 static void highest_tilde_tick(t_highest *x) {
 	outlet_float(x->x_outlet, x->x_result);
+	x->x_result = 0;
 }
 
 static void highest_tilde_free(t_highest *x)           /* cleanup on free */
@@ -55,15 +57,15 @@ static t_int *highest_tilde_perform(t_int *w) {
 	t_highest *x = (t_highest *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	int n = (int)(w[3]);
-	t_sample result = x->x_result;
+	t_sample result = x->x_result, temp;
+	x->x_count += n;
 	if(x->x_count >= x->x_realperiod) {
 		x->x_count = 0;
-		result = 0;
 		clock_delay(x->x_clock, 0L);
 	}
-	x->x_count += n;
 	while(n--) {
-		if(result < abs(*in)) result = abs(*in);
+		temp = fabs(*in);
+		if(result < temp) result = temp;
 		in++;
 	}
 	
