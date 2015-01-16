@@ -1,5 +1,4 @@
 #include "m_pd.h"
-#include <stdlib.h>
 #include <math.h>
 
 #define MAXPRD 4194304

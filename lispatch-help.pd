@@ -8,7 +8,9 @@
 #X obj 132 212 print num1;
 #X text 54 126 takes an "anything" and sends to a receive based on
 the first item;
+#X msg 229 66 list that works too;
 #X connect 0 0 5 0;
 #X connect 1 0 6 0;
 #X connect 3 0 2 0;
 #X connect 4 0 2 0;
+#X connect 8 0 2 0;

@@ -3,18 +3,8 @@ your system and setup. then type “make install”. There are fat OSX binaries 
 the extern/darwin folder though, simply move all of the .pd_darwin files into 
 the main directory if you're on osx
 
-NOTE: this library is currently undergoing heavy revision, using it is
-inadvisable until I can put a proper release together. (many things will
-change!)
-specifically, these objects are being considered for consolidation, removal, or
+these objects are being considered for consolidation, removal, or
 to be coded as externals:
-buzz~
-cyclout
-expclip~
-fsdict? ([text] object?)
-stream objects (again, lists of lists, [text] object?)
-highest~
-inrange
 modtriangulatord~ + triangulatord~ - combine into 1
 modtriangulator + triangulator - same
 combfilter~ - combine with normcomb~ (with flag)
@@ -26,16 +16,13 @@ phasoratord~
 percents
 repeater~
 change srepeater~ to handle hold mode
-change moop~ to handle hold mode
 svosim~ (figure a good algorithm out)
 weight1/weighted
 
 This is a pure data library that I always add to whenever I want to either do
 something myself or make something that hasn't been made in pd. 
 
-to install just put this library in your search path and use [import shadelib]
-
-... can't believe I didn't think of a better name
+to install just put this library in your search path and use [import shadylib]
 
 Licensing: I would like to release everything under a BSD license but don't
 think I can using externals that are licensed as GPL. Therefore everything that

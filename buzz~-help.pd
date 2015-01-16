@@ -11,11 +11,17 @@
 #X text 253 68 frequency to extend harmonics to;
 #X text 58 110 fundamental;
 #X text 1 27 band-limited impulse generator;
+#X obj 266 234 oscope~;
+#X obj 131 74 mtof;
+#X floatatom 128 49 5 0 0 0 - - -;
 #X connect 0 0 1 0;
 #X connect 0 0 1 1;
+#X connect 0 0 12 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 1;
 #X connect 4 0 5 0;
 #X connect 5 0 8 0;
 #X connect 6 0 0 2;
 #X connect 8 0 3 0;
+#X connect 13 0 2 0;
+#X connect 14 0 13 0;
