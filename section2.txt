@@ -1,2 +1,0 @@
-0 test hellofrom2;
-1 test hellofrom2

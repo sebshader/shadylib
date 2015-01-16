@@ -1,4 +1,4 @@
-todo: make cubic interpolation scheme 4 tabramp (tabramp4hs | tabramp4?)
+todo: 
 change all objects to dynamically create signal or control inlets/outlets
 depending on arguments.
 

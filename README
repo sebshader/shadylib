@@ -5,6 +5,8 @@ the main directory if you're on osx
 
 these objects are being considered for consolidation, removal, or
 to be coded as externals:
+rexpline~
+powline~
 modtriangulatord~ + triangulatord~ - combine into 1
 modtriangulator + triangulator - same
 combfilter~ - combine with normcomb~ (with flag)

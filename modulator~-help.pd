@@ -1,13 +1,13 @@
-#N canvas 346 330 450 300 10;
+#N canvas 351 339 450 300 10;
 #X obj 238 100 modulator~;
 #X obj 253 161 osc~;
 #X obj 254 196 outputc~;
 #X obj 226 30 smoother~;
 #X obj 297 34 smoother~;
 #X obj 370 36 smoother~;
-#X text 18 -3 Same as operator \, but middle inlet is Index instead
-of frequency;
 #X text 305 17 Index;
+#X text 18 -3 Same as operator \, but middle inlet is Index instead
+of multiply;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 0 2 1;
