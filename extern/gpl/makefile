@@ -36,7 +36,7 @@ THE POSSIBILITY OF SUCH DAMAGE. \
 PDROOT=/Applications/Pd-extended.app/Contents/Resources
 
 # here we find the sources of pd (and evtl. the pd.lib)
-PDSRCDIR=/Applications/Pd-extended.app/Contents/Resources/include
+PDSRCDIR=/Applications/Pd-extended.app/Contents/Resources/include/pdextended
 PDLIBDIR=/Applications/Pd-extended.app/Contents/Resources/bin
 
 # this is the filename-extension

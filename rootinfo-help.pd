@@ -1,0 +1,21 @@
+#N canvas 488 87 684 274 10;
+#X obj 154 66 rootinfo;
+#X obj 152 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 203 94 print level;
+#X obj 138 142 print path;
+#N canvas 787 231 450 300 sbpatch 0;
+#X obj 164 76 rootinfo;
+#X obj 162 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 213 104 print level;
+#X obj 148 152 print path;
+#X connect 0 0 3 0;
+#X connect 0 1 2 0;
+#X connect 1 0 0 0;
+#X restore 241 180 pd sbpatch;
+#X text 232 43 rootinfo gives the level of depth and path of the root
+canvas (0 is the current canvas);
+#X connect 0 0 3 0;
+#X connect 0 1 2 0;
+#X connect 1 0 0 0;

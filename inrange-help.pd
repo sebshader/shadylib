@@ -1,6 +1,5 @@
 #N canvas 324 43 450 300 10;
 #X floatatom 197 124 5 0 0 0 - - -;
-#X obj 197 148 inrange 55 44;
 #X floatatom 270 127 5 0 0 0 - - -;
 #X text 63 44 inclusive range \, 2nd and 3rd inlets/1st/2nd args set
 range \, if the first inlet is within the range then it is put out
@@ -8,8 +7,11 @@ of the 1st inlet \, otherwise put out of the 2nd;
 #X floatatom 234 126 5 0 0 0 - - -;
 #X obj 273 175 print not;
 #X obj 199 214 print in range;
-#X connect 0 0 1 0;
-#X connect 1 0 6 0;
-#X connect 1 1 5 0;
-#X connect 2 0 1 2;
-#X connect 4 0 1 1;
+#X obj 197 148 inrange 55;
+#X text 38 91 an arg of 1 number represents the 1st inlet \, with the
+second being 0;
+#X connect 0 0 6 0;
+#X connect 1 0 6 2;
+#X connect 3 0 6 1;
+#X connect 6 0 5 0;
+#X connect 6 1 4 0;
