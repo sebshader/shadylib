@@ -6,8 +6,7 @@
 #X obj 297 34 smoother~;
 #X obj 370 36 smoother~;
 #X text 305 17 Index;
-#X text 18 -3 Same as operator \, but middle inlet is Index instead
-of multiply;
+#X text 18 -3 fm with middle inlet as Index instead of multiply;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 1 0 2 1;

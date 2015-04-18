@@ -10,9 +10,6 @@ bandlimited wavetables of arbitrary degree
 (could have the fft executed sample-by sample in the case of frequency mod, what 
 frequency and sample are we at, etc.)
 figure out formant mode for wavetables? like massive
-a better many that dynamically allocates voices a la supercollider.
 system for dynamic inlets, outlets, subpatches, etc.
-an external to get information about pd (like if it's running 32 or 64 bit).
-repeater~ -> loop~-based?
 change repeater into 2 seperate abstractions later? one for writing to the array
 and one for reading it?
