@@ -27,22 +27,20 @@ static t_int *op_perf0(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
     union tabfudge tf;
+    union tabfudge inter;
     uint32_t casto;
     
     float conv = x->x_conv;
     tf.tf_d = dphase;
-
+	inter.tf_d = 1.0;
     while (n--)
     {
         dphase += *in++ * conv;
         casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*(*mul++) + (*add++);
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*(*mul++) + (*add++);
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;
@@ -57,22 +55,20 @@ static t_int *op_perf1(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
-    union tabfudge tf;
+    union tabfudge tf; 
+    union tabfudge inter;
     uint32_t casto;
     
     float conv = x->x_conv;
     tf.tf_d = dphase;
-
+	inter.tf_d = 1.0;
     while (n--)
     {
         dphase += *in++ * conv;
         casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*(*mul++) + add;
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*(*mul++) + add;
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;
@@ -87,22 +83,20 @@ static t_int *op_perf2(t_int *w) {
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
     union tabfudge tf;
+    union tabfudge inter;
     uint32_t casto;
-    
+
     float conv = x->x_conv;
     tf.tf_d = dphase;
-
+	inter.tf_d = 1.0;
     while (n--)
     {
         dphase += *in++ * conv;
         casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*mul + add;
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*mul + add;
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;

@@ -25,15 +25,15 @@ static t_int *op_perf0(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-	t_sample inter;
+    union tabfudge inter;
 	uint32_t casto;
+	inter.tf_d = 1.0;
     while (n--)
     {
         casto = (uint32_t)(*in++ * 4294967295);
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*(*mul++) + (*add++);
+        /* set the sign bit of double 1.0 */
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*(*mul++) + (*add++);
     }
     return (w+5);
 }
@@ -45,15 +45,14 @@ static t_int *op_perf1(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	t_sample inter;
+	union tabfudge inter;
 	uint32_t casto;
+	inter.tf_d = 1.0;
     while (n--)
     {
         casto = (uint32_t)(*in++ * 4294967295);
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*(*mul++) + add;
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*(*mul++) + add;
     }
     return (w+5);
 }
@@ -65,15 +64,14 @@ static t_int *op_perf2(t_int *w) {
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-	t_sample inter;
+	union tabfudge inter;
 	uint32_t casto;
+	inter.tf_d = 1.0;
     while (n--)
     {
         casto = (uint32_t)(*in++ * 4294967295);
-        if(casto & 2147483648) /* bit 31 */
-        	inter = -1;
-        else inter = 1;
-        *out++ = inter*mul + add;
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        *out++ = inter.tf_d*mul + add;
     }
     return (w+5);
 }

@@ -31,10 +31,10 @@
 
 #if BYTE_ORDER == LITTLE_ENDIAN
 # define HIOFFSET 1     
-//# define LOWOFFSET 0                                                       
+# define LOWOFFSET 0                                                       
 #else                                                                           
 # define HIOFFSET 0    /* word offset to find MSB */                             
-//# define LOWOFFSET 1    /* word offset to find LSB */                            
+# define LOWOFFSET 1    /* word offset to find LSB */                            
 #endif
 
 #define TRUE 1
