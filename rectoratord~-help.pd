@@ -1,0 +1,10 @@
+#N canvas 459 295 450 300 10;
+#X obj 48 66 phasor~;
+#X obj 47 98 rectoratord~ 1 1;
+#X obj 42 127 outputc~;
+#X obj 50 21 smoother~;
+#X text 145 37 like operatord~ but with square wave;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 1 0 2 1;
+#X connect 3 0 0 0;

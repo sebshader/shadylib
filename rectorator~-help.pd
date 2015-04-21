@@ -1,0 +1,14 @@
+#N canvas 925 138 465 471 10;
+#X obj 62 109 rectorator~;
+#X obj 82 181 rectorator~ 0.5 0.5;
+#X obj 279 210 rectorator~ 0.5;
+#X obj 82 256 outputc~;
+#X obj 297 86 smoother~;
+#X obj 345 157 smoother~;
+#X obj 200 291 oscope~;
+#X text 74 37 like operator~ but for a square wave;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X connect 2 0 6 0;
+#X connect 4 0 2 0;
+#X connect 5 0 2 1;

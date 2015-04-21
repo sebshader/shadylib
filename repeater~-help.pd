@@ -10,7 +10,6 @@
 #X obj 683 60 t b b;
 #X obj 683 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 204 214 repeater~;
 #X obj 504 172 osc~ 0.34;
 #X obj 502 213 *~ 7;
 #X msg 603 186 7;
@@ -18,8 +17,7 @@
 -1 -1;
 #X msg 359 190 0;
 #X obj 322 -9 t b b;
-#X msg 226 44 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42
-91.42 91.42 91.42;
+#X msg 226 44 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42;
 #X obj 234 -5 iterate 4;
 #X msg 236 19 add2 91.42;
 #X obj 699 149 timer;
@@ -36,34 +34,35 @@ not (0) on a given step \, starting after the buffer is written;
 #X text 575 19 record/play for 725 ms \, then reverse for 725 ms twice
 ;
 #X msg 335 76 2000 2000;
-#X text 373 245 buffer is size 132300 right now \, 3 seconds at 44100
-sr;
 #X text 551 299 this object will undergo lotsa changes probably (it's
 kinda rough). may even switch to an external;
-#X connect 0 0 9 0;
-#X connect 2 0 16 0;
-#X connect 3 0 17 0;
-#X connect 4 0 9 3;
-#X connect 5 0 11 1;
-#X connect 7 0 24 0;
-#X connect 7 1 23 0;
+#X text 373 245 buffer size is 3000 ms by default \, else specified
+by argument.;
+#X obj 204 214 repeater~ 4000;
+#X connect 0 0 29 0;
+#X connect 2 0 15 0;
+#X connect 3 0 16 0;
+#X connect 4 0 29 3;
+#X connect 5 0 10 1;
+#X connect 7 0 23 0;
+#X connect 7 1 22 0;
 #X connect 8 0 7 0;
-#X connect 9 0 1 0;
-#X connect 9 0 1 1;
-#X connect 10 0 11 0;
-#X connect 11 0 9 2;
-#X connect 12 0 11 1;
-#X connect 13 0 15 0;
-#X connect 14 0 9 3;
-#X connect 15 0 16 0;
-#X connect 15 1 14 0;
-#X connect 16 0 9 1;
-#X connect 17 0 18 0;
-#X connect 18 0 16 0;
-#X connect 19 0 22 0;
+#X connect 9 0 10 0;
+#X connect 10 0 29 2;
+#X connect 11 0 10 1;
+#X connect 12 0 14 0;
+#X connect 13 0 29 3;
+#X connect 14 0 15 0;
+#X connect 14 1 13 0;
+#X connect 15 0 29 1;
+#X connect 16 0 17 0;
+#X connect 17 0 15 0;
+#X connect 18 0 21 0;
+#X connect 19 0 18 0;
+#X connect 19 1 18 1;
 #X connect 20 0 19 0;
-#X connect 20 1 19 1;
-#X connect 21 0 20 0;
-#X connect 23 0 9 3;
-#X connect 24 0 9 1;
-#X connect 27 0 9 1;
+#X connect 22 0 29 3;
+#X connect 23 0 29 1;
+#X connect 26 0 29 1;
+#X connect 29 0 1 0;
+#X connect 29 0 1 1;
