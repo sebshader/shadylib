@@ -1,0 +1,8 @@
+#N canvas 0 23 450 300 10;
+#X text 27 45 1-0switch is just a wrapper for 1 - arg;
+#X text 78 136 put in number to subtract ->;
+#X obj 257 181 1-0switch~;
+#X obj 257 136 smoother~;
+#X obj 259 209 dbgr~;
+#X connect 2 0 4 0;
+#X connect 3 0 2 0;

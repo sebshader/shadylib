@@ -11,6 +11,11 @@ because delread accesses the delwrite~ class \, not delwritec~;
 #X msg 114 91 clear;
 #X text 158 85 hit this and you should see a pause in the output;
 #X text 186 175 now a 2 second pause;
+#X text 9 454 NOTE: delreadc~ needs to be loaded after delwritec~ in
+order to be able to resolve the class pointer! I know of no easy way
+to resolve this (should be with a shared dynamic library perhaps even
+though I have no cross-platform bsd makefile for that \, or make this
+entire library into 1 lib);
 #X connect 2 0 3 0;
 #X connect 4 0 2 0;
 #X connect 5 0 2 0;
