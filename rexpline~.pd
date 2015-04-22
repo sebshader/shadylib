@@ -37,7 +37,7 @@
 #X obj 449 271 sel 1 0;
 #X floatatom 523 243 5 0 0 0 - - -;
 #X msg 354 154 4094 \, 1 \$1;
-#X obj 562 223 r glob-eline-close;
+#X obj 625 231 r glob-eline-close;
 #N canvas 525 242 631 593 array 0;
 #X obj 144 -140 inlet;
 #X obj 220 -239 closebang;
@@ -82,12 +82,10 @@
 #X connect 17 0 18 0;
 #X connect 18 0 6 0;
 #X connect 19 0 17 0;
-#X restore 552 273 pd array;
+#X restore 615 281 pd array;
 #X obj 571 198 t b b;
-#X msg 595 323 obj 348 205 tabread4~ eline \, connect 5 0 44 0 \, connect
-44 0 8 0;
-#X obj 599 360 s \$0-expline;
-#X obj 573 445 namecanvas \$0-expline;
+#X msg 507 383 set eline;
+#X obj 348 205 tabread4~;
 #X connect 0 0 9 0;
 #X connect 1 0 13 0;
 #X connect 1 0 29 1;
@@ -97,6 +95,7 @@
 #X connect 3 0 8 1;
 #X connect 3 0 36 0;
 #X connect 4 0 5 0;
+#X connect 5 0 42 0;
 #X connect 6 0 11 1;
 #X connect 7 0 6 0;
 #X connect 7 0 26 0;
@@ -150,3 +149,4 @@
 #X connect 40 0 41 0;
 #X connect 40 1 39 0;
 #X connect 41 0 42 0;
+#X connect 42 0 8 0;

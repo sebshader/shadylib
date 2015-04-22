@@ -1,14 +1,14 @@
 #include "shadylib.h"
 
-inline t_float scalerange (t_float a) {
+t_float scalerange (t_float a) {
 	return (a - ENVELOPE_RANGE)/ENVELOPE_MAX;
 }
 
-inline t_float ain2reala(t_float a) {
+t_float ain2reala(t_float a) {
 	return exp2(log2(ENVELOPE_RANGE)*(1 - a));
 }
 
-inline t_int ms2samps(t_float time, t_float sr)
+t_int ms2samps(t_float time, t_float sr)
 {
 	t_int samp = (t_int)(sr*time/1000.0);
 	if(samp < 1) samp = 1;

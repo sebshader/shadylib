@@ -33,7 +33,7 @@ bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
 cgmul~.pd		normcomb~.pd		stoms.pd \
 circle~.pd		nrcombfilter~.pd	stream-drip.pd \
-combfilter~.pd		numhelpabs.pd		stream-map.pd \
+combfilter~.pd		stream-map.pd \
 cosinterp~.pd		oscope~.pd		streamdiff.pd \
 crusher~.pd		oscphase~.pd		streamquant.pd \
 customenv.pd		outputc~.pd		streamread-slow.pd \
@@ -50,9 +50,9 @@ gainc~.pd		pulsetrainhng~.pd	testro.pd \
 gate~.pd		realpass~.pd		transpose.pd \
 globaltempr.pd		receiver.pd		trinoise~.pd \
 globaltemps.pd		repeater~.pd		ttempo.pd \
-globeline.pd		rexpline.pd		udispatch.pd \
-globeline~.pd		rexpline~.pd		urandom.pd \
-globphsfr~.pd		rndmrange.pd		volpan~.pd \
+		rexpline.pd		udispatch.pd \
+rexpline~.pd		urandom.pd \
+		rndmrange.pd		volpan~.pd \
 grainy~.pd		sampbuf~.pd		wavepacket~.pd \
 hanning~.pd		selected.pd		waveshapecauchy~.pd \
 if.pd			seqbank.pd		waveshapesincos~.pd \
@@ -70,7 +70,7 @@ MANUAL = sequencerdoc.txt
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = lmap.pd_lua lmap-help.pd
+EXTRA_DIST = lmap.pd_lua lmap-help.pd globeline.pd globphsfr~.pd
 
 # unit tests and related files here, in the 'unittests' subfolder
 UNITTESTS = 
