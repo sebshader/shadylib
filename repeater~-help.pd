@@ -1,68 +1,70 @@
-#N canvas 112 37 912 493 10;
-#X obj 204 106 sndfilereader~;
-#X obj 202 278 outputc~;
-#X msg 168 7 set;
-#X obj 234 -27 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 273 37 912 493 10;
+#X obj 223 110 sndfilereader~;
+#X obj 221 282 outputc~;
+#X msg 187 11 set;
+#X obj 253 -23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 304 170 1;
-#X msg 557 188 0;
-#X text 541 376 table will never play past buffer size;
+#X msg 323 174 1;
+#X msg 576 192 0;
+#X text 560 380 table will never play past buffer size;
 #X obj 683 60 t b b;
 #X obj 683 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 504 172 osc~ 0.34;
-#X obj 502 213 *~ 7;
-#X msg 603 186 7;
-#X obj 381 -18 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 521 217 *~ 7;
+#X msg 622 190 7;
+#X obj 400 -14 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 359 190 0;
-#X obj 322 -9 t b b;
-#X msg 226 44 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42;
-#X obj 234 -5 iterate 4;
-#X msg 236 19 add2 91.42;
-#X obj 699 149 timer;
-#X obj 705 117 t b b;
-#X obj 708 101 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 705 172 5 0 0 0 - - -;
-#X msg 623 107 0 1;
-#X msg 534 83 725 725 725;
-#X text 122 360 inlets: 1: signal 2: list of durations \, the first
+#X msg 378 194 0;
+#X obj 341 -5 t b b;
+#X msg 245 48 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42 200 200
+200 200;
+#X obj 253 -1 iterate 4;
+#X text 141 364 inlets: 1: signal 2: list of durations \, the first
 of which is the buffer size \, 3: signal cv for pitchshift in semitones
 \, 4: list of 1s and 0s which mean whether to play in reverse (1) or
 not (0) on a given step \, starting after the buffer is written;
-#X text 575 19 record/play for 725 ms \, then reverse for 725 ms twice
-;
-#X msg 335 76 2000 2000;
-#X text 551 299 this object will undergo lotsa changes probably (it's
-kinda rough). may even switch to an external;
-#X text 373 245 buffer size is 3000 ms by default \, else specified
+#X msg 354 80 2000 2000;
+#X text 392 249 buffer size is 3000 ms by default \, else specified
 by argument.;
-#X obj 204 214 repeater~ 4000;
-#X connect 0 0 29 0;
-#X connect 2 0 15 0;
-#X connect 3 0 16 0;
-#X connect 4 0 29 3;
-#X connect 5 0 10 1;
-#X connect 7 0 23 0;
-#X connect 7 1 22 0;
+#X obj 223 218 repeater~ 4000;
+#X msg 114 172 hold 0;
+#X msg 158 212 time 20;
+#X obj 523 176 osc~ 1;
+#X msg 255 23 add2 200;
+#X floatatom 302 243 5 0 0 0 - - -;
+#X text 410 298 right outlet: number of the repeat;
+#X msg 112 146 hold 300;
+#X text -38 214 change the time as it's holding;
+#X obj 728 209 ttempo;
+#X msg 718 103 0 1;
+#X text 500 10 record/play for 725 ms twice \, then reverse for 725
+ms twice;
+#X msg 611 96 725 725 1450 725;
+#X text -13 123 hold for a certain amount of ms;
+#X connect 0 0 19 0;
+#X connect 2 0 14 0;
+#X connect 3 0 15 0;
+#X connect 4 0 19 3;
+#X connect 5 0 9 1;
+#X connect 7 0 31 0;
+#X connect 7 1 29 0;
 #X connect 8 0 7 0;
-#X connect 9 0 10 0;
-#X connect 10 0 29 2;
-#X connect 11 0 10 1;
-#X connect 12 0 14 0;
-#X connect 13 0 29 3;
-#X connect 14 0 15 0;
-#X connect 14 1 13 0;
-#X connect 15 0 29 1;
-#X connect 16 0 17 0;
-#X connect 17 0 15 0;
-#X connect 18 0 21 0;
-#X connect 19 0 18 0;
-#X connect 19 1 18 1;
-#X connect 20 0 19 0;
-#X connect 22 0 29 3;
-#X connect 23 0 29 1;
-#X connect 26 0 29 1;
-#X connect 29 0 1 0;
-#X connect 29 0 1 1;
+#X connect 9 0 19 2;
+#X connect 10 0 9 1;
+#X connect 11 0 13 0;
+#X connect 12 0 19 3;
+#X connect 13 0 14 0;
+#X connect 13 1 12 0;
+#X connect 14 0 19 1;
+#X connect 15 0 23 0;
+#X connect 17 0 19 1;
+#X connect 19 0 1 0;
+#X connect 19 0 1 1;
+#X connect 19 1 24 0;
+#X connect 20 0 19 1;
+#X connect 21 0 19 1;
+#X connect 22 0 9 0;
+#X connect 23 0 14 0;
+#X connect 26 0 19 1;
+#X connect 29 0 19 3;
+#X connect 31 0 19 1;
