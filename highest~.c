@@ -1,5 +1,4 @@
-#include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
 
 #define MAXPRD 4194304
 
@@ -18,14 +17,14 @@ typedef struct _highest
     int x_count;
 } t_highest;
 
-static void highest_set(t_highest *x, t_floatarg nsamps) {
+static void highest_set(t_highest *x, t_float nsamps) {
 	x->x_result = 0;
 	x->x_count = 0;
 	if(nsamps != 0.0) {
 		int n = x->x_blocksize;
     	if(nsamps > MAXPRD) nsamps = MAXPRD;
     	x->x_period = nsamps;
-    	if (x->x_period % n) x->x_realperiod =
+    	if ((x->x_period) % n) x->x_realperiod =
         	x->x_period + n - (x->x_period % n);
     	else x->x_realperiod = x->x_period;
     }
@@ -41,15 +40,15 @@ static void highest_tilde_free(t_highest *x)           /* cleanup on free */
     clock_free(x->x_clock);
 }
 
-static void *highest_tilde_new(t_float nsamps) {
+static void *highest_tilde_new(t_floatarg nsamps) {
 	t_highest *x = (t_highest *)pd_new(highest_tilde_class);
 	x->x_outlet = outlet_new(&x->x_obj, &s_float);
     x->x_clock = clock_new(x, (t_method)highest_tilde_tick);
-    x->x_blocksize = 0;
+    x->x_blocksize = 64;
     if(nsamps < 1) x->x_period = 1024;
     else highest_set(x , nsamps);
     x->x_f = 0;
-    return (void *)x;
+    return (x);
 }
 
 static t_int *highest_tilde_perform(t_int *w) {
@@ -88,11 +87,10 @@ static void highest_tilde_dsp(t_highest *x, t_signal **sp)
 void highest_tilde_setup(void)
 {
 	highest_tilde_class = class_new(gensym("highest~"), (t_newmethod)highest_tilde_new, (t_method)highest_tilde_free,
-        sizeof(t_highest), CLASS_DEFAULT, A_DEFFLOAT, 0);
+        sizeof(t_highest), 0, A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(highest_tilde_class, t_highest, x_f);
     class_addmethod(highest_tilde_class, (t_method)highest_tilde_dsp,
         gensym("dsp"), A_CANT, 0);
     class_addmethod(highest_tilde_class, (t_method)highest_set,
         gensym("set"), A_FLOAT, 0);
-    
 }

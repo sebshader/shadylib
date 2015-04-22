@@ -455,7 +455,7 @@ dist: $(DISTDIR)
 		for file in $(UNITTESTS); do \
 			$(INSTALL_DATA) unittests/$$file $(DISTDIR)/unittests; \
 		done
-	tar --exclude-vcs -czpf $(DISTDIR).tar.gz $(DISTDIR)
+	tar --exclude='._*' --exclude='.svn' --exclude='.git' --exclude='.DS_Store' -czpf $(DISTDIR).tar.gz $(DISTDIR)
 
 # make a Debian source package
 dpkg-source:

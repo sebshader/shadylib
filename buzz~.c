@@ -22,7 +22,6 @@ static void maketables(void) {
 	cosectbl = sintbl + BUZZSIZE + 1;
 	double incr = 2*M_PI/BUZZSIZE;
 	double phase;
-	double res;
 	int i;
 	for(i = 0; i <= BUZZSIZE; i++) {
 		phase = i*incr;
