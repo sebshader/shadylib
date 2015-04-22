@@ -61,7 +61,8 @@ linnoise~.pd	whitephase~.pd \
 linterp~.pd		xfade~.pd
 
 # example patches and related files, in the 'examples' subfolder
-EXAMPLES  = purepdnfun colors-plugin.tcl
+# done manually in makefile
+EXAMPLES  =
 
 # manuals and related files, in the 'manual' subfolder
 MANUAL = sequencerdoc.txt
@@ -366,8 +367,10 @@ install-doc:
 install-examples:
 	test -z "$(strip $(EXAMPLES))" || \
 		$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
-		for file in $(EXAMPLES); do \
-			$(INSTALL_DATA) examples/$$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples; \
+		$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun && \
+		$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
+		for file in examples/purepdnfun/*; do \
+			$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
 		done
 
 install-manual:
@@ -442,8 +445,10 @@ dist: $(DISTDIR)
 		$(INSTALL_DATA) $(EXTRA_DIST)    $(DISTDIR)
 	test -z "$(strip $(EXAMPLES))" || \
 		$(INSTALL_DIR) $(DISTDIR)/examples && \
-		for file in $(EXAMPLES); do \
-			$(INSTALL_DATA) examples/$$file $(DISTDIR)/examples; \
+		$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun && \
+		$(INSTALL_DATA) examples/colors-plugin.tcl $(DISTDIR)/examples && \
+		for file in examples/purepdnfun/*; do \
+			$(INSTALL_DATA) $$file $(DISTDIR)/examples/purepdnfun; \
 		done
 	test -z "$(strip $(MANUAL))" || \
 		$(INSTALL_DIR) $(DISTDIR)/manual && \
