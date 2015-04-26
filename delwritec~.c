@@ -18,9 +18,10 @@ static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
 }
 
 static void sigdelwritec_clear(t_sigdelwritec *x) {
-	t_sample *dex = x->x_cspace.c_vec;
-	for(int i = 0; i < (x->x_cspace.c_n + XTRASAMPS); i++) dex[i] = 0;
+	memset((char *)(x->x_cspace.c_vec), 0, 
+		sizeof(t_sample)*(x->x_cspace.c_n + XTRASAMPS));
 }
+
 static t_int *sigdelwritec_perform(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);

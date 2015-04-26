@@ -36,10 +36,11 @@ static t_int *sigvdhs_perform(t_int *w)
     t_sample fn = n-1;
     t_sample *vp = ctl->c_vec, *bp, *wp = vp + ctl->c_phase;
     t_sample zerodel = x->x_zerodel;
+    int idelsamps;
     while (n--)
     {
         t_sample delsamps = x->x_sr * *in++ - zerodel, frac;
-        int idelsamps;
+        
         t_sample a, b, c, d;
         double a3,a1,a2;
         if (delsamps < 1.00001f) delsamps = 1.00001f;
