@@ -16,7 +16,7 @@ fmod~.c			phasorator~.c		transpose~.c \
 pib~.c			triangulatord~.c \
 highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
-rectorator~.c
+rectorator~.c		rcombf~.c		nrcombf~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically

@@ -1,6 +1,0 @@
-#N canvas 0 22 450 300 10;
-#X obj 160 74 nrcombfilter~;
-#X text 73 130 upsampled by 2 \, to avoid decrease in response towards
-the high frequencies;
-#X text 46 33 non-recirculating comb filter. inlets: signal \, delay
-time \, volume after delay \, clear buffer;

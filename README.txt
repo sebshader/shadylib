@@ -1,7 +1,5 @@
 these objects are being considered for consolidation, removal, or
 to be coded as externals:
-combfilter~ - combine with normcomb~ (with flag)
-nrcombfilter~
 svosim~ (figure a good algorithm out)
 
 This is a pure data library that I always add to whenever I want to either do
