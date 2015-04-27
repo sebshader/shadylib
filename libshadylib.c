@@ -1,5 +1,44 @@
 #include "shadylib.h"
 
+int tabmade = 0;
+
+t_float *gaustab; /* e^(-x^2) */
+t_float *couchtab; /* 1/(x^2 + 1) */
+t_float *rexptab; /* (e^(-x) - .001)/.999 to x=ln(.001) */
+
+t_float readtab(t_tabtype type, t_float index) {
+	t_float *tab = rexptab + (type * SHABLESIZE);
+	int iindex;
+	t_float frac, index2;
+	index *= SHABLESIZE;
+	index = fmin(SHABLESIZE - 1, fmax(index, 0));
+	if (index == SHABLESIZE - 1) return tab[SHABLESIZE - 1];
+	else {
+		iindex = index;
+		frac = index - iindex;
+		index = tab[iindex++];
+		index2 = tab[iindex] - index;
+		return index + frac*index2;
+	}
+}
+
+void maketabs(void) {
+	t_float lnths = log(.001)/(SHABLESIZE - 1);
+	t_float incr = 32.f/(SHABLESIZE - 1);
+	t_float sqr;
+	rexptab = getbytes(sizeof(t_float)*SHABLESIZE*3);
+	gaustab = rexptab + SHABLESIZE;
+	couchtab = gaustab + SHABLESIZE;
+	for(int i = 0; i < SHABLESIZE; i++) {
+		rexptab[i] = (exp(lnths*i) - .001)/.999;
+		sqr = incr*i;
+		sqr *= sqr;
+		couchtab[i] = 1/(sqr + 1);
+		gaustab[i] = exp(-(sqr));
+	}
+	tabmade = 1;
+}
+
 t_float scalerange (t_float a) {
 	return (a - ENVELOPE_RANGE)/ENVELOPE_MAX;
 }

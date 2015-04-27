@@ -2,6 +2,8 @@
 #include "shadylib.h"
 #include <string.h>
 
+/*modified from pd source */
+
 static t_class *nrcombf_class;
 
 typedef struct _nrcombf

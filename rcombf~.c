@@ -3,6 +3,7 @@
 #include <string.h>
 
 static t_class *rcombf_class;
+/*modified from pd source */
 
 typedef struct _rcombf
 {

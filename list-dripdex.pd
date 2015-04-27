@@ -25,6 +25,7 @@
 #X msg 431 221 0;
 #X obj 191 151 t a b;
 #X obj 302 209 t a b;
+#X text 121 49 modified with index outlet;
 #X connect 0 0 1 0;
 #X connect 0 1 6 0;
 #X connect 1 0 10 0;

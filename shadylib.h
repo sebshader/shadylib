@@ -159,3 +159,18 @@ EXTERN void f2dxfade(t_float a, t_stage *stage, int samesamp);
 EXTERN void ms2dxfade (t_stage *stage);
 EXTERN void f2rxfade(t_float a, t_stage *stage, int samesamp);
 EXTERN void ms2rxfade (t_stage *stage);
+
+#define SHABLESIZE 2048 /* size of tables in shadylook~ */
+
+/* tables for use by shadylook~ and shadylook */
+EXTERN int tabmade;
+
+typedef enum _tabtype {
+	REXP,
+	GAUS,
+	CAUCH
+} t_tabtype;
+
+EXTERN t_float readtab(t_tabtype type, t_float index);
+
+EXTERN void maketabs(void);

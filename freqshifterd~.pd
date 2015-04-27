@@ -8,6 +8,7 @@
 #X obj 42 80 inlet~;
 #X obj 43 189 -~;
 #X obj 165 81 sin~;
+#X text 170 167 taken from pd examples;
 #X connect 0 0 4 0;
 #X connect 0 0 8 0;
 #X connect 1 0 2 0;

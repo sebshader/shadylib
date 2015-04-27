@@ -1,4 +1,5 @@
 #include "shadylib.h"
+/* taken mostly from pd source code */
 
 typedef struct _moopbuf {
 	int x_npoints;//stuff for reading the array

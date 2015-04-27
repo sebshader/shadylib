@@ -1,4 +1,5 @@
 #include "shadylib.h"
+/* modified from pd source */
 
 /* -------------------------- sampphase~ ------------------------------ */
 static t_class *sampphase_class;

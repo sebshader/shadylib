@@ -1,5 +1,7 @@
 #include "shadylib.h"
 
+/*modified from pd source */
+
 static t_class *sigvdhs_class;
 
 typedef struct _sigvdhs

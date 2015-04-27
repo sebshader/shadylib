@@ -1,4 +1,5 @@
 #include "shadylib.h"
+/*modified from pd source code */
 
 static t_class *sigdelreadc_class;
 

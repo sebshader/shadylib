@@ -14,6 +14,8 @@ by multiplying by 1 - abs(feedback);
 #X obj 316 194 nrcombf~ -n 200 0.8 200;
 #X text 225 105 other args (in order): delay time \, feedforward gain
 \, length of buffer;
+#X text 15 378 if -n is not specified \, an input gain inlet appears
+\, initialized to 1;
 #X connect 0 0 8 0;
 #X connect 0 1 9 0;
 #X connect 3 0 8 0;

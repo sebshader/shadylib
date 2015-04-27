@@ -1,4 +1,4 @@
-#N canvas 438 46 478 358 10;
+#N canvas 438 46 552 454 10;
 #X obj 68 41 inlet;
 #X obj 240 136 inlet;
 #X text 64 16 trigger;
@@ -61,6 +61,7 @@
 #X msg 399 324 0;
 #X msg 200 285 stop;
 #X obj 179 84 b;
+#X text 316 396 taken from pd examples;
 #X connect 0 0 3 0;
 #X connect 1 0 4 1;
 #X connect 1 0 15 1;

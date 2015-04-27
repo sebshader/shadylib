@@ -1,6 +1,7 @@
 #include "shadylib.h"
 
 /* ----------------------------- delwritec~ ----------------------------- */
+/* modified from pd source */
 
 static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
 {

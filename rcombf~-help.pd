@@ -14,6 +14,8 @@ of buffer;
 #X text 187 19 recirculating combfilter using lagrange interpolation
 ;
 #X obj 236 227 rcombf~ -n 2000 0.8 2000;
+#X text 25 388 if -n is not specified \, an input gain inlet appears
+\, initialized to 1;
 #X connect 0 0 10 0;
 #X connect 0 1 4 0;
 #X connect 3 0 4 0;

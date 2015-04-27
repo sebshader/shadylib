@@ -2,43 +2,47 @@
 #X obj 208 361 outputc~;
 #X obj 279 249 smoother~;
 #X obj 379 232 smoother~;
-#X obj 165 239 mtof~;
 #X obj 198 297 sampphase~;
 #X obj 267 146 rndmrange 1050 1 20;
 #X obj 335 202 rndmrange 1000 1 5;
-#X obj 201 211 line~;
-#X msg 215 160 \$1 10;
-#X obj 366 168 rndmrange 70 1 20;
 #X text 418 65 from the example in the "Audio examples" folder (paf.control)
 ;
-#X obj 367 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 367 289 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 382 85 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 123 284 dbgr~;
 #X obj 367 106 metro 500;
-#X obj 428 134 rndmrange 2 250 250;
+#X obj 432 138 rndmrange 2 250 250;
 #X text 480 195 inlets: phasor~ (or loop~) in (ranged 0 to 1) \, center
 frequency \, fundamental frequency (freq of phasor) \, bandwidth \,
 1 for cauchy waveshaping \, 0 for gaussian;
 #X obj 211 332 phasafor~;
-#X connect 1 0 17 1;
-#X connect 2 0 17 3;
-#X connect 3 0 4 0;
-#X connect 3 0 13 0;
-#X connect 4 0 17 0;
-#X connect 4 1 17 2;
-#X connect 5 0 1 0;
-#X connect 6 0 2 0;
-#X connect 7 0 3 0;
-#X connect 8 0 7 0;
-#X connect 9 0 8 0;
-#X connect 11 0 17 4;
-#X connect 12 0 14 0;
-#X connect 14 0 5 0;
-#X connect 14 0 6 0;
-#X connect 14 0 9 0;
-#X connect 14 0 15 0;
-#X connect 15 0 14 1;
-#X connect 17 0 0 0;
-#X connect 17 0 0 1;
+#X obj 180 206 mtof;
+#X obj 190 234 smoother~;
+#X obj 190 92 random 7;
+#X obj 497 363 loadbang;
+#X obj 559 336 table scale 7;
+#X msg 511 394 \; scale 0 2 4 5 7 9 11;
+#X obj 189 127 tabread scale;
+#X obj 186 166 + 40;
+#X connect 1 0 12 1;
+#X connect 2 0 12 3;
+#X connect 3 0 12 0;
+#X connect 3 1 12 2;
+#X connect 4 0 1 0;
+#X connect 5 0 2 0;
+#X connect 7 0 12 4;
+#X connect 8 0 9 0;
+#X connect 9 0 4 0;
+#X connect 9 0 5 0;
+#X connect 9 0 10 0;
+#X connect 9 0 15 0;
+#X connect 10 0 9 1;
+#X connect 12 0 0 0;
+#X connect 12 0 0 1;
+#X connect 13 0 14 0;
+#X connect 14 0 3 0;
+#X connect 15 0 19 0;
+#X connect 16 0 18 0;
+#X connect 19 0 20 0;
+#X connect 20 0 13 0;

@@ -16,7 +16,8 @@ fmod~.c			phasorator~.c		transpose~.c \
 pib~.c			triangulatord~.c \
 highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
-rectorator~.c		rcombf~.c		nrcombf~.c
+rectorator~.c		rcombf~.c		nrcombf~.c \
+shadylook.c		shadylook~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -31,20 +32,20 @@ bangb.pd		modulator~.pd		sndfilewritermon~.pd \
 banger.pd		mstof.pd		sndfilewriterster~.pd \
 bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
-cgmul~.pd		normcomb~.pd		stoms.pd \
-circle~.pd		nrcombfilter~.pd	stream-drip.pd \
-combfilter~.pd		stream-map.pd \
+cgmul~.pd		stoms.pd \
+circle~.pd	stream-drip.pd \
+		stream-map.pd \
 cosinterp~.pd		oscope~.pd		streamdiff.pd \
 crusher~.pd		oscphase~.pd		streamquant.pd \
 customenv.pd		outputc~.pd		streamread-slow.pd \
 cyclecount.pd		out~.pd			streamread.pd \
 dbgr~.pd		percent.pd		streamwrite-slow.pd \
-dispatchOSC.pd		percents.pd		streamwrite.pd \
+dispatchOSC.pd		streamwrite.pd \
 downsample~.pd		phasafor~.pd		subdivide.pd \
 egrains~.pd		phasemod~.pd		svosim~.pd \
 expline.pd		pipebang.pd		switchnramp~.pd \
 expline~.pd		pitchshift~.pd		synlets.pd \
-freqshifterd~.pd	powline.pd		tabsave.pd \
+freqshifterd~.pd	powline.pd		\
 freqshifter~.pd		powline~.pd		temposet.pd \
 gainc~.pd		pulsetrainhng~.pd	testro.pd \
 gate~.pd		realpass~.pd		transpose.pd \
