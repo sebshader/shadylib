@@ -40,15 +40,25 @@ static t_int *op_perf0(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
-        dphase = f1 + frac * (f2 - f1);
+        	#ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), (*add++));
+        	#else
+            dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + (*add++);
+            #endif
         tf.tf_i[HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), (*add++));
+        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + (*add++);
+            #endif
     return (w+5);
 }
 
@@ -81,15 +91,25 @@ static t_int *op_perf1(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
-        dphase = f1 + frac * (f2 - f1);
+        #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + add;
+            #endif
         tf.tf_i[HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), add);
+        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + add;
+            #endif
     return (w+5);
 }
 
@@ -122,15 +142,25 @@ static t_int *op_perf2(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
-        dphase = f1 + frac * (f2 - f1);
+    		#ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, mul, add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*mul + add;
+            #endif
         tf.tf_i[HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, mul, add);
+        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*mul + add;
+            #endif
     return (w+5);
 }
 

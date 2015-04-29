@@ -69,10 +69,17 @@ t_sample powclip_calculate (t_sample in1, t_sample in2) {
 		readpoint = fred;
 		fred -= readpoint;
 		val = base_table[readpoint++];
+	#ifdef FP_FAST_FMA
+		return copysign(fma(fred, (base_table[readpoint] - val), val), in1);
+	} else {
+		return copysign(fma(-in2, pow(absin1, 1.0/in2), absin1)/(1 - in2), in1);
+	} 
+	#else
 		return copysign(val + (base_table[readpoint] - val)*fred, in1);
 	} else {
 		return copysign((absin1 - in2*pow(absin1, 1.0/in2))/(1 - in2), in1);
-	} 
+	}
+	#endif
 }
 
 t_int *powclip_perform(t_int *w)
@@ -110,7 +117,12 @@ t_int *scalarpowclip_perform(t_int *w)
 			readpoint = fred;
 			fred -= readpoint;
 			val = base_table[readpoint++];
+			#ifdef FP_FAST_FMA
+			*out++ = copysign(fma(fred, (base_table[readpoint] - val),
+				val), tin);
+			#else
 			*out++ = copysign(val + (base_table[readpoint] - val)*fred, tin);
+			#endif
 		}
 	} else {
 		double finverse = 1.0/f, fscale = 1/(1 - f);
@@ -118,7 +130,12 @@ t_int *scalarpowclip_perform(t_int *w)
 			tin = *in++;
 			abstin = fabs(tin);
 			if(abstin > 1) abstin = 1;
+			#ifdef FP_FAST_FMA
+			*out++ = copysign(fma(-f, pow(abstin, finverse), abstin)*fscale,
+				tin);
+			#else
 			*out++ = copysign((abstin - f*pow(abstin, finverse))*fscale, tin);
+			#endif
 		} 
 	}
     return (w+5);

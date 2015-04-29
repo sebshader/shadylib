@@ -9,7 +9,12 @@ typedef struct _scaler {
 } t_scaler;
 
 static void scaler_float(t_scaler *x, t_floatarg in) {
+	#ifdef FP_FAST_FMA
+	outlet_float(x->x_obj.ob_outlet, 
+		fma(x->x_mul, in, x->x_add));
+	#else
 	outlet_float(x->x_obj.ob_outlet, x->x_mul*in + x->x_add);
+	#endif
 }
 	
 static void *scaler_new(t_floatarg f1, t_floatarg f2)

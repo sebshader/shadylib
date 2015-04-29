@@ -174,7 +174,7 @@ t_int *neadsr_perform(t_int *w)
 			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
-				state = state*stage.op + stage.base;
+				state = fma(state, stage.op, stage.base);
 				if(state <= 0.0) {
 					state = 0.0;
 					for(;n;n--) *out++ = state;
@@ -189,7 +189,7 @@ t_int *neadsr_perform(t_int *w)
 		while(n){
 			n--;/*put outside of while so n != -1*/
 			*out++ = state;
-			state = state*stage.op + stage.base;
+			state = fma(state, stage.op, stage.base);
 			if(state >= 1.0) {
 				state = 1.0;
 				target = sustain;
@@ -208,7 +208,7 @@ t_int *neadsr_perform(t_int *w)
 			do {
 				n--;
 				*out++ = state;
-				state = state*stage.op + stage.base;
+				state = fma(state, stage.op, stage.base);
 				if(state < sustain) state = sustain;
 			} while(n && state > sustain);
 		} else if (state < sustain) {
@@ -217,7 +217,7 @@ t_int *neadsr_perform(t_int *w)
 			do {
 				n--;
 				*out++ = state;
-				state = state*stage.op + stage.base;
+				state = fma(state, stage.op, stage.base);
 				if(state > sustain) state = sustain;
 			} while(n && state < sustain);
 		}

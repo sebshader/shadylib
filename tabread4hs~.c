@@ -109,10 +109,15 @@ t_int *tabread4hs_tilde_perform(t_int *w) {
         
 		// 4-point, 3rd-order Hermite (x-form)
 		a1 = 0.5f * (c - a);
+		#ifdef FP_FAST_FMA
+		a2 =  fma(2.f, c, fma(0.5f, d, fma(2.5, b, a)));
+		a3 = fma(0.5f, (d - a), 1.5f * (b - c));
+		*out++ =  fma(fma(fma(a3, frac, a2), frac, a1), frac, b);
+		#else
 		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
 		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-
 		*out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
+		#endif
     }
     return (w+6);
  zero:

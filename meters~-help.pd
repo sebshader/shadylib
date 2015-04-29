@@ -1,6 +1,4 @@
 #N canvas 401 199 450 300 10;
-#X declare -lib iem_tab;
-#X declare -lib iem_tab;
 #X obj 188 129 meters~;
 #X obj 182 106 *~ 1;
 #X obj 181 76 osc~ 70;
@@ -8,7 +6,7 @@
 #X text 27 10 out without the hip~ or dac~ \, 1st argument is the frequency
 of the cutoff for the lowpass filter in the envelope follower (default
 7 hz) \, 2nd argument is how long to hold the peak amplitude display
-when over 0 db \, defaults to 2000 (ms);
+when over 0 db \, defaults to 1500 (ms);
 #X connect 1 0 0 0;
 #X connect 1 0 0 1;
 #X connect 2 0 1 0;

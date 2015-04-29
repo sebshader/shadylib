@@ -17,7 +17,8 @@ pib~.c			triangulatord~.c \
 highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
 rectorator~.c		rcombf~.c		nrcombf~.c \
-shadylook.c		shadylook~.c
+shadylook.c		shadylook~.c		rover~.c \
+rminus~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -32,7 +33,7 @@ bangb.pd		modulator~.pd		sndfilewritermon~.pd \
 banger.pd		mstof.pd		sndfilewriterster~.pd \
 bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
-cgmul~.pd		stoms.pd \
+stoms.pd \
 circle~.pd	stream-drip.pd \
 		stream-map.pd \
 cosinterp~.pd		oscope~.pd		streamdiff.pd \
@@ -45,7 +46,7 @@ downsample~.pd		phasafor~.pd		subdivide.pd \
 egrains~.pd		phasemod~.pd		svosim~.pd \
 expline.pd		pipebang.pd		switchnramp~.pd \
 expline~.pd		pitchshift~.pd		synlets.pd \
-freqshifterd~.pd	powline.pd		\
+freqshifterd~.pd	powline.pd		tabsave.pd \
 freqshifter~.pd		powline~.pd		temposet.pd \
 gainc~.pd		pulsetrainhng~.pd	testro.pd \
 gate~.pd		realpass~.pd		transpose.pd \
@@ -72,7 +73,7 @@ MANUAL = sequencerdoc.txt
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = lmap.pd_lua lmap-help.pd globeline.pd globphsfr~.pd
+EXTRA_DIST = lmap.pd_lua lmap-help.pd
 
 # unit tests and related files here, in the 'unittests' subfolder
 UNITTESTS = 

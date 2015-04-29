@@ -24,7 +24,6 @@ static void *sampphase_new(t_floatarg f, t_floatarg t)
     x->x_held = f;
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
     x->x_phase = 0;
-    x->x_conv = 0;
     outlet_new(&x->x_obj, gensym("signal"));
     outlet_new(&x->x_obj, gensym("signal"));
     return (x);
@@ -51,14 +50,22 @@ static t_int *sampphase_perform(t_int *w)
 			tf.tf_i[HIOFFSET] = NORMHIPART;
     		*out1++ = tf.tf_d - UNITBIT32;
     		*out2++ = samp;
+    		#ifdef FP_FAST_FMA
+    		tf.tf_d = fma(samp, conv, tf.tf_d);
+    		#else
     		tf.tf_d += samp * conv;
+    		#endif
 		}
 		x->x_held = samp;
     } else {
     	double dphase = tf.tf_d;
     	while (n--) {
     		tf.tf_i[HIOFFSET] = NORMHIPART;
+    		#ifdef FP_FAST_FMA
+    		dphase = fma(*in, conv, dphase);
+    		#else
         	dphase += *in * conv;
+        	#endif
         	*out2++ = *in++;
         	*out1++ = tf.tf_d - UNITBIT32;
         	tf.tf_d = dphase;

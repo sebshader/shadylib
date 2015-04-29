@@ -1,4 +1,4 @@
-#N canvas 505 22 833 486 10;
+#N canvas 679 51 833 486 10;
 #X msg 237 93 4;
 #X msg 211 74 -4;
 #N canvas 0 22 450 278 (subpatch) 0;
@@ -21,6 +21,7 @@ phase if desired;
 #X text 78 -5 every stage: list of time + curvature;
 #X msg 114 19 600 0.8;
 #X msg 473 93 curves 0.9 0.9 0.9;
+#X msg 182 343 \; pd dsp 1;
 #X connect 0 0 6 0;
 #X connect 0 0 10 0;
 #X connect 1 0 6 0;

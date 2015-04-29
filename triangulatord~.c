@@ -1,7 +1,5 @@
 #include "shadylib.h"
 
-
-
 static t_class *triangulatord_class;
 
 typedef struct _triangulatord {
@@ -28,7 +26,11 @@ static t_int *op_perf0(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, *mul++, *add++);
+        #else
         *out++ = inter*(*mul++) + (*add++);
+        #endif
     }
     return (w+5);
 }
@@ -48,7 +50,11 @@ static t_int *op_perf1(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, *mul++, add);
+        #else
         *out++ = inter*(*mul++) + add;
+        #endif
     }
     return (w+5);
 }
@@ -68,7 +74,11 @@ static t_int *op_perf2(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, mul, add);
+        #else
         *out++ = inter*mul + add;
+        #endif
     }
     return (w+5);
 }

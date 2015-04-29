@@ -1,7 +1,5 @@
 #N canvas 350 250 450 300 10;
 #X obj 137 132 metorate 200;
-#X text 84 19 output a certain number of bangs given by a list of iteration
-number and tempo multiplier;
 #X msg 140 73 3 2;
 #X text 168 67 output 3 times at intervals of 400 (2*200);
 #X msg 205 99 100;
@@ -10,6 +8,8 @@ number and tempo multiplier;
 #X obj 165 168 print;
 #X obj 202 217 for++;
 #X text 127 219 also see:;
-#X connect 0 0 7 0;
-#X connect 2 0 0 0;
-#X connect 4 0 0 1;
+#X text 84 19 output a certain number of numbers given by a list of
+iteration number and tempo multiplier;
+#X connect 0 0 6 0;
+#X connect 1 0 0 0;
+#X connect 3 0 0 1;

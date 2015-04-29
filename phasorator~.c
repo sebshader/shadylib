@@ -28,8 +28,13 @@ static t_int *op_perf0(t_int *w) {
     while (n--)
     {
         tf.tf_i[HIOFFSET] = NORMHIPART;
+        #ifdef FP_FAST_FMA
+        dphase = fma(*in++, conv, dphase);
+        *out++ = fma(tf.tf_d - UNITBIT32, *mul++, *add++);
+        #else
         dphase += *in++ * conv;
         *out++ = (tf.tf_d - UNITBIT32)*(*mul++) + (*add++);
+        #endif
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;
@@ -52,8 +57,13 @@ static t_int *op_perf1(t_int *w) {
     while (n--)
     {
         tf.tf_i[HIOFFSET] = NORMHIPART;
+        #ifdef FP_FAST_FMA
+        dphase = fma(*in++, conv, dphase);
+        *out++ = fma(tf.tf_d - UNITBIT32, *mul++, add);
+        #else
         dphase += *in++ * conv;
         *out++ = (tf.tf_d - UNITBIT32)*(*mul++) + add;
+        #endif
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;
@@ -76,8 +86,13 @@ static t_int *op_perf2(t_int *w) {
     while (n--)
     {
         tf.tf_i[HIOFFSET] = NORMHIPART;
+        #ifdef FP_FAST_FMA
+        dphase = fma(*in++, conv, dphase);
+        *out++ = fma(tf.tf_d - UNITBIT32, mul, add);
+        #else
         dphase += *in++ * conv;
         *out++ = (tf.tf_d - UNITBIT32)*mul + add;
+        #endif
         tf.tf_d = dphase;
     }
     tf.tf_i[HIOFFSET] = NORMHIPART;

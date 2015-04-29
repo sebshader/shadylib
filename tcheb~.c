@@ -37,19 +37,31 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			/* 2t(n)*t(m) = t(n+m) + t(n-m) for m = n - 1 and n. odd and even
 				idea is from fxt */
 				temp = 2.0*t1;
+				#ifdef FP_FAST_FMA
+				t1 = fma(temp, t1, -1.0);
+				t2 = fma(temp, t2, -tin);
+				#else
 				t1 = temp*t1 - 1.0;
 				t2 = temp*t2 - tin;
+				#endif
 			} else {
 				temp = 2.0*t2;
+				#ifdef FP_FAST_FMA
+				t1 = fma(temp, t1, -tin);
+				t2 = fma(temp, t2, -1.0);
+				#else
 				t1 = temp*t1 - tin;
 				t2 = temp*t2 - 1.0;
+				#endif
 			}
 			dir >>= 1;
 		}
 		inord = (inord - floorf(inord));
+		#ifdef FP_FAST_FMA
+		*out++ = (t_sample)(fma(t1, (1.0 - inord), t2*inord);
+		#else
 		*out++ = (t_sample)(t1*(1.0 - inord) + t2*inord);
-		
-		
+		#endif
 	}
 	return (w + 6);
 }

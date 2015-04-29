@@ -1,4 +1,4 @@
-#N canvas 0 22 666 470 10;
+#N canvas 498 252 666 470 10;
 #X obj 216 168 cgmul~;
 #X obj 261 168 creb/cmul~;
 #X text 58 19 gauss' way of doing complex multiplication. uses 1 less
@@ -28,7 +28,7 @@ hasn't been tested;
 #X obj 158 266 /~ 1;
 #X obj 155 286 wrap~;
 #X obj 207 196 *~;
-#X obj 235 197 *~;
+#X obj 238 197 *~;
 #X obj 223 287 sqrt~;
 #X obj 225 308 dbgr~;
 #X connect 0 0 16 0;

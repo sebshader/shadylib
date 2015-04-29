@@ -70,14 +70,26 @@ static t_int *nrcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-       delsamps = b + frac * (
+        #ifdef FP_FAST_FMA
+       delsamps = fma(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fma(
+                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+            )
+        ), b);
+        #else
+        delsamps = b + frac * (
             cminusb - 0.1666667f * (1.-frac) * (
                 (d - a - 3.0f * cminusb) * frac + (d + 2.0f*a - 3.0f*b)
             )
         );
+        #endif
         b = fmax(fmin(*norm++, 1), -1);
         a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
+        #ifdef FP_FAST_FMA
+        *out++ = fma(delsamps, a, f)*b;
+        #else
         *out++ = (f + delsamps*a)*b;
+        #endif
         *wp++ = f;
         if (wp == ep)
         {
@@ -129,13 +141,25 @@ static t_int *nnrcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-       delsamps = b + frac * (
+       #ifdef FP_FAST_FMA
+       delsamps = fma(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fma(
+                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+            )
+        ), b);
+        #else
+        delsamps = b + frac * (
             cminusb - 0.1666667f * (1.-frac) * (
                 (d - a - 3.0f * cminusb) * frac + (d + 2.0f*a - 3.0f*b)
             )
         );
+        #endif
         a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
+        #ifdef FP_FAST_FMA
+        *out++ = fma(delsamps, a, f)/(1 + fabs(a));
+        #else
         *out++ = (f + delsamps*a)/(1 + fabs(a));
+        #endif
         *wp++ = f;
         if (wp == ep)
         {
@@ -208,6 +232,11 @@ static void *nrcombf_new(t_symbol *s, int argc, t_atom *argv)
 		pd_float((t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, 
 			&s_signal), 1.f);
     outlet_new(&x->x_obj, &s_signal);
+    x->x_f = 0;
+    x->c_n = 0;
+    x->c_vec = getbytes(XTRASAMPS * sizeof(t_sample));
+    memset((char *)(x->c_vec), 0, 
+		sizeof(t_sample)*(XTRASAMPS));
     x->norm = norm;
     return(x);
 }

@@ -26,7 +26,11 @@ static t_int *op_perf0(t_int *w) {
         casto = (uint32_t)(*in++ * 4294967295);
         /* set the sign bit of double 1.0 */
         inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, *mul++, *add++);
+        #else
         *out++ = inter.tf_d*(*mul++) + (*add++);
+        #endif
     }
     return (w+5);
 }
@@ -45,7 +49,11 @@ static t_int *op_perf1(t_int *w) {
     {
         casto = (uint32_t)(*in++ * 4294967295);
         inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, *mul++, add);
+        #else
         *out++ = inter.tf_d*(*mul++) + add;
+        #endif
     }
     return (w+5);
 }
@@ -64,7 +72,11 @@ static t_int *op_perf2(t_int *w) {
     {
         casto = (uint32_t)(*in++ * 4294967295);
         inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, mul, add);
+        #else
         *out++ = inter.tf_d*mul + add;
+        #endif
     }
     return (w+5);
 }

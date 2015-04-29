@@ -11,14 +11,14 @@ t_float readtab(t_tabtype type, t_float index) {
 	int iindex;
 	t_float frac, index2;
 	index *= SHABLESIZE;
-	index = fmin(SHABLESIZE - 1, fmax(index, 0));
-	if (index == SHABLESIZE - 1) return tab[SHABLESIZE - 1];
+	index = fmax(index, 0);
+	if (index >= SHABLESIZE - 1) return tab[SHABLESIZE - 1];
 	else {
 		iindex = index;
 		frac = index - iindex;
 		index = tab[iindex++];
 		index2 = tab[iindex] - index;
-		return index + frac*index2;
+		return fma(frac, index2, index);
 	}
 }
 
