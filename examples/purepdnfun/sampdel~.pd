@@ -1,9 +1,9 @@
-#N canvas 0 22 450 300 10;
-#N canvas 455 227 450 300 delwriter 0;
+#N canvas 0 23 450 300 10;
+#N canvas 455 227 450 300 delwriter 1;
 #X obj 120 63 inlet~;
-#X obj 120 156 delwrite~ \$0-delay 5;
 #X obj 129 195 outlet~;
-#X connect 0 0 1 0;
+#X obj 120 156 delwrite~ \$0-delay 0.05;
+#X connect 0 0 2 0;
 #X restore 168 136 pd delwriter;
 #N canvas 423 156 450 300 delreader 0;
 #X obj 140 54 inlet~;

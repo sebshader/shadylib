@@ -18,7 +18,7 @@ highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
 rectorator~.c		rcombf~.c		nrcombf~.c \
 shadylook.c		shadylook~.c		rover~.c \
-rminus~.c
+rminus~.c		voisim~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -43,7 +43,7 @@ cyclecount.pd		out~.pd			streamread.pd \
 dbgr~.pd		percent.pd		streamwrite-slow.pd \
 dispatchOSC.pd		streamwrite.pd \
 downsample~.pd		phasafor~.pd		subdivide.pd \
-egrains~.pd		phasemod~.pd		svosim~.pd \
+egrains~.pd		phasemod~.pd \
 expline.pd		pipebang.pd		switchnramp~.pd \
 expline~.pd		pitchshift~.pd		synlets.pd \
 freqshifterd~.pd	powline.pd		tabsave.pd \
