@@ -1,0 +1,125 @@
+#N canvas 123 23 748 792 12;
+#X obj 45 45 1-0switch;
+#X obj 48 125 ad;
+#X obj 87 125 adsr;
+#X obj 134 125 ar;
+#X obj 45 84 bangb;
+#X text 89 85 Outputs bangs every 64 samples;
+#X text 117 42 switches 1s and 0s;
+#X text 169 124 envelope generators for various line objects;
+#X obj 44 157 banger;
+#X text 151 154 loadbang with dsp switch and bang to trigger loadbang
+;
+#X obj 33 365 dispatchOSC;
+#X text 124 364 receives OSC messages and broadcasts them as fudi;
+#X text 182 13 Control;
+#X obj 39 482 if;
+#X text 78 480 substitutes one number for another in a number stream
+;
+#X obj 36 517 inrange;
+#X text 106 505 if numbers match a range they are sent out of the left
+outlet \, otherwise are sent out the right;
+#X obj 40 553 iterate;
+#X text 102 548 count up to a number instantaneously (until + counter)
+;
+#X obj 40 629 lispatch;
+#X text 117 625 use the first element of a list as the send name \,
+and the reest of the list as a message;
+#X obj 40 679 list-dripdex;
+#X text 137 677 list-drip with index outlet (counts up);
+#X obj 42 715 lmap;
+#X text 87 715 requires pdlua: interface to lua's table datatype;
+#X obj 43 748 macrodivide;
+#X text 134 746 output a count on every nth input count;
+#X obj 41 784 messtro;
+#X text 117 782 send timed messages from a single message box;
+#X obj 42 818 metorate;
+#X text 122 815 output a number of bangs with constant delay;
+#X obj 41 852 mstof;
+#X text 124 852 convert ms to frequency and back;
+#X obj 45 887 mstos;
+#X text 118 882 convert milliseconds to samples;
+#X obj 49 924 multitrigger;
+#X text 157 922 output bang after counting to a number;
+#X obj 50 959 percent;
+#X text 124 958 choose an outlet based on percent chance;
+#X obj 48 992 pipebang;
+#X text 130 992 output timed bangs;
+#X obj 55 1025 powline;
+#X obj 36 398 expline;
+#X text 103 394 exponential line;
+#X text 126 1023 line raised to variable power;
+#X obj 42 1055 receiver;
+#X obj 40 2535 urandom;
+#X text 122 1050 receive with variable receive name;
+#X obj 52 1086 rexpline;
+#X text 131 1084 reverse exponential line;
+#X obj 49 1122 rndmrange;
+#X text 143 1117 pick a random number \, multiply it \, and add to
+it;
+#X obj 56 1155 rootinfo;
+#X text 136 1154 gives depth and path of root canvas;
+#X obj 56 1189 scaler;
+#X text 119 1189 multiply-add box;
+#X obj 50 1219 selected;
+#X text 93 1245 [selected] ^-- discover the index of selected objects
+(uses iemguts);
+#X obj 21 1287 seqbank;
+#X text 81 1506 [seqbank] - a simple 16-step array with 3 rows that
+can be easily edited;
+#X obj 22 1555 sequencer;
+#X text 106 1674 [sequencer] - 16 step sequencer with nesting;
+#X obj 62 1712 shadylook;
+#X text 133 1708 look up reverse exponential \, cauchy \, or gaussian
+functions in a table;
+#X obj 44 1759 show;
+#X text 93 1759 display a message in a message box;
+#X obj 45 1800 sqr;
+#X text 85 1799 square a number;
+#X obj 42 1839 stoms;
+#X text 101 1836 convert samples to ms;
+#X obj 40 1872 stream-drip;
+#X text 137 1870 split a stream into single messages;
+#X obj 43 1908 stream-map;
+#X text 134 1905 perform some operation on each message in a stream
+;
+#X obj 43 1942 streamquant;
+#X text 151 588 count number of something in a list;
+#X obj 42 587 list-count;
+#X text 133 1940 quantize a stream to a grid;
+#X obj 49 1976 streamread;
+#X text 141 1974 play a stream back;
+#X obj 49 2015 streamread-slow;
+#X text 168 2010 play a stream back in order 1 message at a time;
+#X obj 41 2050 streamwrite;
+#X text 143 2050 write a stream;
+#X obj 29 2085 streamwrite-slow;
+#X text 159 2083 manually put in messages to a stream;
+#X obj 81 2116 subdivide;
+#X text 161 2115 create a faster division of a beat;
+#X text 140 2152 2 inlets wait for a certain number of bangs before
+outputting a bang and resetting;
+#X obj 60 2154 synlets;
+#X obj 50 2197 tabsave;
+#X text 129 2199 save a table in a message box;
+#X obj 40 2237 temposet;
+#X text 158 2258 a gui to help with tempo;
+#X obj 43 2339 testro 500;
+#X text 183 2339 quick metro for testing things;
+#X obj 38 2380 transpose;
+#X text 132 2380 semitones to pitch-ratio conversion;
+#X obj 39 2417 ttempo;
+#X text 109 2424 find distance in ms between 2 taps;
+#X obj 56 2480 udispatch;
+#X text 145 2479 listens on a port for fudi udp messages and sends
+them with lispatch;
+#X text 129 2535 Generate random numbers using urandom shell interface
+on unix;
+#X obj 29 182 customenv;
+#X text 272 234 a custom envelope that can be drawn in. Slightly difficult
+to use;
+#X text 323 2607 end;
+#X obj 31 423 globaltempr;
+#X text 124 422 global receive;
+#X obj 34 452 globaltemps;
+#X text 123 450 global send;

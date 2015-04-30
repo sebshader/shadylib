@@ -28,15 +28,15 @@ PDOBJECTS = 1-0switch.pd		lispatch.pd		shnoise~.pd \
 			macrodivide.pd		signum~.pd \
 ad.pd			messtro.pd		sin~.pd \
 adsr.pd			meters~.pd		smoother~.pd \
-ar.pd			metorate.pd		sndfilereader~.pd \
-bangb.pd		modulator~.pd		sndfilewritermon~.pd \
-banger.pd		mstof.pd		sndfilewriterster~.pd \
+ar.pd			metorate.pd		sndfread~.pd \
+bangb.pd		modulator~.pd		sndfwritem~.pd \
+banger.pd		mstof.pd		sndfwrites~.pd \
 bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
 stoms.pd \
 circle~.pd	stream-drip.pd \
-		stream-map.pd \
-cosinterp~.pd		oscope~.pd		streamdiff.pd \
+		stream-map.pd 		list-count.pd \
+cosinterp~.pd		oscope~.pd \
 crusher~.pd		oscphase~.pd		streamquant.pd \
 customenv.pd		outputc~.pd		streamread-slow.pd \
 cyclecount.pd		out~.pd			streamread.pd \
@@ -56,9 +56,9 @@ globaltemps.pd		repeater~.pd		ttempo.pd \
 rexpline~.pd		urandom.pd \
 		rndmrange.pd		volpan~.pd \
 grainy~.pd		sampbuf~.pd		wavepacket~.pd \
-hanning~.pd		selected.pd		waveshapecauchy~.pd \
-if.pd			seqbank.pd		waveshapesincos~.pd \
-iterate.pd		sequencer.pd		waveshapex~.pd \
+hanning~.pd		selected.pd		wscauchy~.pd \
+if.pd			seqbank.pd		wssincos~.pd \
+iterate.pd		sequencer.pd		wsexp~.pd \
 linnoise~.pd	whitephase~.pd \
 linterp~.pd		xfade~.pd
 

@@ -1,18 +1,18 @@
 #N canvas 173 248 541 336 10;
-#X obj 102 52 openpanel;
+#X obj -194 -16 openpanel;
 #X msg -119 139 open /Users/sebshader/Desktop/To The Last.wav;
 #X msg 240 161 start;
-#X obj 223 25 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
+#X obj 223 41 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
 -1;
-#X obj 223 4 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
+#X obj 223 20 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
 -1;
 #X msg -83 96 set open \$1;
 #X obj 81 238 outlet~;
-#X symbolatom 3 3 35 0 0 0 - - -;
+#X symbolatom 3 19 35 0 0 0 - - -;
 #X obj -164 35 splitfilename /;
 #X obj -207 70 splitfilename /;
-#X symbolatom 3 23 35 0 0 0 - - -;
-#X obj 269 25 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
+#X symbolatom 3 39 35 0 0 0 - - -;
+#X obj 269 41 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
 -1;
 #X msg 289 163 stop;
 #X obj -179 12 l2s;
@@ -55,4 +55,4 @@
 #X connect 22 0 4 0;
 #X connect 23 0 3 0;
 #X connect 24 0 11 0;
-#X coords 0 -1 1 1 320 43 2 0 0;
+#X coords 0 -1 1 1 320 60 1 0 0;

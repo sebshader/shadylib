@@ -1,0 +1,21 @@
+#N canvas 775 181 665 543 10;
+#X obj 97 172 *~;
+#X obj 177 78 inlet~;
+#X obj 98 85 inlet~;
+#X text 222 75 index;
+#X obj 100 339 outlet~;
+#X text 68 31 inlet: sine wave going from 1 to -1 (or whatever going
+from -1 to 1);
+#X text 278 168 uses half angle formula to get cos(x/2);
+#X obj 179 106 *~;
+#X obj 96 212 +~ 1;
+#X obj 98 267 rover~ 1;
+#X obj 87 136 scaler~ 0.5 0.5;
+#X connect 0 0 8 0;
+#X connect 1 0 7 0;
+#X connect 1 0 7 1;
+#X connect 2 0 10 0;
+#X connect 7 0 0 1;
+#X connect 8 0 9 0;
+#X connect 9 0 4 0;
+#X connect 10 0 0 0;

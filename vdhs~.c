@@ -16,7 +16,6 @@ typedef struct _sigvdhs
 static void *sigvdhs_new(t_symbol *s)
 {
     t_sigvdhs *x = (t_sigvdhs *)pd_new(sigvdhs_class);
-    if (!*s->s_name) s = gensym("vdhs~");
     x->x_sym = s;
     x->x_sr = 1;
     x->x_zerodel = 0;

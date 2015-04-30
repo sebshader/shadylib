@@ -1,14 +1,18 @@
-these objects are being considered for consolidation, removal, or
-to be coded as externals:
-svosim~ (figure a good algorithm out)
+This is a pure data library
 
-This is a pure data library that I always add to whenever I want to either do
-something myself or make something that hasn't been made in pd. 
+Many abstractions and externals are just ports and modifications of existing
+programs, primarily patches from the pure data help files.
+
+This library was mainly developed against Pd-43.4
+
+Various pure pd abstractions are in the purepdnfun folder within the examples
+folder, which also holds my tcl plugin file for Pd-extended.
 
 to install just put this library in your search path and use [import shadylib]
 
-Licensing: I would like to release everything under a BSD license but don't
+I would have liked to release everything under a BSD license but don't
 think I can using externals that are licensed as GPL.
-problematic .c files: exponential envelopes, buzz~, and makefile
+problematic .c files: exponential envelopes, buzz~, and the makefile
 
-documentation for the sequencer is in sequencerdoc.txt
+documentation for the sequencer is in manual/sequencerdoc.txt
+there is a summary in manual/Overview.pd

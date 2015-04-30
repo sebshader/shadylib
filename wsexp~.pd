@@ -1,0 +1,19 @@
+#N canvas 595 358 622 404 10;
+#X obj 27 -88 inlet~;
+#X obj 30 -8 *~;
+#X obj 110 -66 inlet~;
+#X obj 32 117 outlet~;
+#X text 72 -90 cosine in (or another signal that goes from -1 to 1)
+;
+#X obj 93 -17 max~ 0;
+#X obj 24 74 shadylook~ rexp;
+#X obj 31 -33 *~ 0.144785;
+#X obj 25 -59 +~ 1;
+#X text 191 -57 0.144785 = -1/ln(.001);
+#X connect 0 0 8 0;
+#X connect 1 0 6 0;
+#X connect 2 0 5 0;
+#X connect 5 0 1 1;
+#X connect 6 0 3 0;
+#X connect 7 0 1 0;
+#X connect 8 0 7 0;

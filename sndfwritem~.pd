@@ -1,28 +1,28 @@
-#N canvas 281 110 1067 710 10;
+#N canvas 373 23 1067 710 10;
 #X declare -lib moocow;
 #X msg 261 307 start;
-#X obj 323 124 bng 15 250 50 0 empty empty write 17 7 0 10 -262144
+#X obj 323 141 bng 15 250 50 0 empty empty write 17 7 0 10 -262144
 -1 -1;
-#X obj 323 105 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
+#X obj 323 122 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
 -1;
-#X symbolatom 103 105 35 0 0 0 - - -;
+#X symbolatom 103 122 35 0 0 0 - - -;
 #X obj -92 100 splitfilename /;
 #X obj -117 79 splitfilename /;
-#X symbolatom 103 125 35 0 0 0 - - -;
-#X obj 370 124 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
+#X symbolatom 103 142 35 0 0 0 - - -;
+#X obj 370 141 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
 -1;
 #X msg 271 357 stop;
 #X obj -28 206 l2s;
-#X obj 279 157 t b b;
+#X obj 13 156 t b b;
 #X obj 264 469 outlet;
 #X obj 34 40 inlet;
 #X text 38 25 filename;
-#X symbolatom 414 122 10 0 0 1 additional_flag - -;
+#X symbolatom 251 104 10 0 0 1 additional_flag - -;
 #X obj 394 31 inlet;
-#X obj 277 185 savepanel;
+#X obj 11 184 savepanel;
 #X obj -23 18 inlet~;
 #X obj 146 9 inlet;
-#X obj 367 105 bng 15 250 50 0 empty empty increment_name 17 7 0 10
+#X obj 367 122 bng 15 250 50 0 empty empty increment_name 17 7 0 10
 -262144 -1 -1;
 #X obj -109 359 splitfilename .;
 #X obj -75 474 mergefilename .;
@@ -170,4 +170,4 @@
 #X connect 60 2 7 0;
 #X connect 60 3 19 0;
 #X connect 61 0 14 0;
-#X coords 0 -1 1 1 470 43 2 100 100;
+#X coords 0 -1 1 1 380 60 1 100 100;
