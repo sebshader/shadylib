@@ -48,7 +48,7 @@ expline.pd		pipebang.pd		switchnramp~.pd \
 expline~.pd		pitchshift~.pd		synlets.pd \
 freqshifterd~.pd	powline.pd		tabsave.pd \
 freqshifter~.pd		powline~.pd		temposet.pd \
-gainc~.pd		pulsetrainhng~.pd	testro.pd \
+gainc~.pd		pthng~.pd	testro.pd \
 gate~.pd		realpass~.pd		transpose.pd \
 globaltempr.pd		receiver.pd		trinoise~.pd \
 globaltemps.pd		repeater~.pd		ttempo.pd \
