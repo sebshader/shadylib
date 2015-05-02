@@ -127,8 +127,7 @@ static void *vosim_new(t_symbol *s, int argc, t_atom *argv) {
 	t_vosim *x = (t_vosim *)pd_new(vosim_class);
 	x->x_f = 0.0;
 	x->x_conv = 1.0;
-	pd_float((t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, 	
-    	&s_signal), atom_getfloatarg(2, argc, argv));
+	signalinlet_new(&x->x_obj, atom_getfloatarg(2, argc, argv));
     x->decay = atom_getfloatarg(0, argc, argv);
     if(argc > 1) x->duty = atom_getfloatarg(1, argc, argv);
     else x->duty = 1;

@@ -224,13 +224,10 @@ static void *nrcombf_new(t_symbol *s, int argc, t_atom *argv)
     		sarg = atom_getsymbolarg(i, argc, argv);
     		if (!strcmp(sarg->s_name, "-n")) norm = 1;
 		}
-    pd_float((t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, 	
-    	&s_signal), time);
-    pd_float((t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, 	
-    	&s_signal),fb);
+    signalinlet_new(&x->x_obj, time);
+    signalinlet_new(&x->x_obj, fb);
 	if(!norm)
-		pd_float((t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, 
-			&s_signal), 1.f);
+		signalinlet_new(&x->x_obj, 1.0);
     outlet_new(&x->x_obj, &s_signal);
     x->x_f = 0;
     x->c_n = 0;
