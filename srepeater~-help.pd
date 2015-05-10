@@ -1,10 +1,7 @@
 #N canvas 405 31 634 404 10;
 #X text 156 103 trigger: list of ms \, # of hits \, feedback;
 #X text 352 280 simple repeater;
-#X obj 8 52 sndfilereader~;
 #X obj 158 270 outputc~;
-#X text 22 8 this helpfile does exactly what delwritec~-help.pd does
-;
 #X msg 244 123 200 4 1.25;
 #X msg 420 111 hold 0;
 #X text 476 108 stop holding;
@@ -13,13 +10,15 @@
 #X msg 475 39 fb 1 \, hold 400;
 #X obj 216 225 srepeater~ 4000;
 #X obj 105 221 srepeater~ 4000;
-#X connect 2 0 11 0;
-#X connect 2 1 10 0;
-#X connect 5 0 10 1;
-#X connect 5 0 11 1;
-#X connect 6 0 10 1;
-#X connect 6 0 11 1;
-#X connect 9 0 10 1;
-#X connect 9 0 11 1;
-#X connect 10 0 3 1;
-#X connect 11 0 3 0;
+#X obj 10 37 sndfread~;
+#X text 22 8 a simple beat repeater;
+#X connect 3 0 8 1;
+#X connect 3 0 9 1;
+#X connect 4 0 8 1;
+#X connect 4 0 9 1;
+#X connect 7 0 8 1;
+#X connect 7 0 9 1;
+#X connect 8 0 2 1;
+#X connect 9 0 2 0;
+#X connect 10 0 9 0;
+#X connect 10 1 8 0;

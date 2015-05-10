@@ -1,4 +1,4 @@
-#N canvas 683 23 757 706 12;
+#N canvas 34 373 757 706 12;
 #X declare -lib moocow;
 #X declare -lib moocow;
 #X text 150 5 Signal Objects;
@@ -137,8 +137,6 @@ block of other signal-rate nosie objects);
 #X text 82 2638 like [cos~] \, but for sin;
 #X obj 42 2674 smoother~;
 #X text 109 2680 number box + line~;
-#X text 89 2783 [sndfilereader~] GUI wrapper to read a stereo soundfile
-using readsf~;
 #X text 105 2970 write a stereo soundfile using writesf~;
 #X text 108 2884 write a mono soundfile using writesf~;
 #X obj 35 3013 srepeater~;
@@ -187,3 +185,5 @@ with probabilities;
 #X obj 23 2721 sndfread~;
 #X obj 23 2906 sndfwrites~;
 #X obj 34 2035 pthng~;
+#X text 89 2783 GUI wrapper to read a stereo soundfile using readsf~
+;

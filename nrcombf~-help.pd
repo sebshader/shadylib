@@ -1,25 +1,25 @@
 #N canvas 273 29 693 433 10;
-#X obj 213 136 sndfilereader~;
 #X obj 255 290 outputc~;
 #X obj 345 255 oscope~;
-#X msg 135 170 clear;
+#X msg 136 181 clear;
 #X text 241 43 flags (can be anywhere in args): -n: normalize output
 by multiplying by 1 - abs(feedback);
 #X text 263 73 -l length: set length of buffer (1000 ms by default)
 ;
-#X text 49 169 clear buffer;
+#X text 50 180 clear buffer;
 #X text 187 19 non-recirculating combfilter using lagrange interpolation
 ;
 #X obj 236 227 nrcombf~ -n 200 2000 0.8 200;
-#X obj 316 194 nrcombf~ -n 200 0.8 200;
+#X obj 318 202 nrcombf~ -n 200 0.8 200;
 #X text 225 105 other args (in order): delay time \, feedforward gain
 \, length of buffer;
 #X text 15 378 if -n is not specified \, an input gain inlet appears
 \, initialized to 1;
-#X connect 0 0 8 0;
-#X connect 0 1 9 0;
-#X connect 3 0 8 0;
-#X connect 3 0 9 0;
+#X obj 213 136 sndfread~;
+#X connect 2 0 7 0;
+#X connect 2 0 8 0;
+#X connect 7 0 0 0;
+#X connect 8 0 0 1;
 #X connect 8 0 1 0;
-#X connect 9 0 1 1;
-#X connect 9 0 2 0;
+#X connect 11 0 7 0;
+#X connect 11 1 8 0;

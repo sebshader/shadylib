@@ -1,5 +1,4 @@
 #N canvas 375 46 693 433 10;
-#X obj 213 136 sndfilereader~;
 #X obj 255 290 outputc~;
 #X obj 345 255 oscope~;
 #X msg 135 170 clear;
@@ -14,12 +13,13 @@ of buffer;
 ;
 #X text 25 388 if -n is not specified \, an input gain inlet appears
 \, initialized to 1;
-#X obj 316 194 rcombf~ -n 500 0.8 2000;
+#X obj 345 202 rcombf~ -n 500 0.8 2000;
 #X obj 236 227 rcombf~ -n 500 0.8 2000;
-#X connect 0 0 11 0;
-#X connect 0 1 10 0;
-#X connect 3 0 10 0;
-#X connect 3 0 11 0;
-#X connect 10 0 1 1;
-#X connect 10 0 2 0;
-#X connect 11 0 1 0;
+#X obj 213 136 sndfread~;
+#X connect 2 0 9 0;
+#X connect 2 0 10 0;
+#X connect 9 0 0 1;
+#X connect 9 0 1 0;
+#X connect 10 0 0 0;
+#X connect 11 0 10 0;
+#X connect 11 1 9 0;

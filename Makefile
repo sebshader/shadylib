@@ -59,7 +59,7 @@ grainy~.pd		sampbuf~.pd		wavepacket~.pd \
 hanning~.pd		selected.pd		wscauchy~.pd \
 if.pd			seqbank.pd		wssincos~.pd \
 iterate.pd		sequencer.pd		wsexp~.pd \
-linnoise~.pd	whitephase~.pd \
+linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd
 
 # example patches and related files, in the 'examples' subfolder

@@ -1,9 +1,7 @@
 #N canvas 290 333 691 333 10;
-#X declare -lib iem_tab;
-#X declare -lib iem_tab;
-#X obj 44 7 sndfilereader~;
 #X obj 57 122 out~;
 #X text 280 98 dac~ with meters. Argument: envelope follower response
 for metering (as a lowpass filter frequency) \, 7 by default;
-#X connect 0 0 1 0;
-#X connect 0 1 1 1;
+#X obj 44 7 sndfread~;
+#X connect 2 0 0 0;
+#X connect 2 1 0 1;
