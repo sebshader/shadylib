@@ -174,3 +174,18 @@ typedef enum _tabtype {
 EXTERN t_float readtab(t_tabtype type, t_float index);
 
 EXTERN void maketabs(void);
+
+/*buzz stuff */
+EXTERN void maketables(void);
+
+EXTERN t_sample *sintbl;
+EXTERN t_sample *cosectbl;
+EXTERN int buzzmade;
+/* used in the cosecant table for values very close to 1/0 */
+#define BADVAL 1e20f
+
+/* size of tables */
+#define BUZZSIZE 8192
+
+/* maximum harmonics for small frequencies */
+#define MAXHARM ((int)((4294967295/(2*BUZZSIZE)) - 2))

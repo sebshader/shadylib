@@ -18,7 +18,7 @@ highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
 rectorator~.c		rcombf~.c		nrcombf~.c \
 shadylook.c		shadylook~.c		rover~.c \
-rminus~.c		voisim~.c
+rminus~.c		voisim~.c		bpbuzz~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -33,7 +33,7 @@ bangb.pd		modulator~.pd		sndfwritem~.pd \
 banger.pd		mstof.pd		sndfwrites~.pd \
 bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
-stoms.pd \
+stoms.pd 		\
 circle~.pd	stream-drip.pd \
 		stream-map.pd 		list-count.pd \
 cosinterp~.pd		oscope~.pd \

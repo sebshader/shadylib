@@ -1,40 +1,10 @@
-#include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
+#include <float.h>
 
 static t_class *buzz_class, *scalarbuzz_class;
-static t_sample *sintbl;
-static t_sample *cosectbl;
 /* this algorithm is mainly from supercollider
 should be modified for 16-bit ints;
-
-used in the cosecant table for values very close to 1/0 */
-#define BADVAL 1e20f
-
-/* size of tables */
-#define BUZZSIZE 8192
-
-/* maximum harmonics for small frequencies */
-#define MAXHARM ((int)((4294967295/(2*BUZZSIZE)) - 2))
-
-/* create sine and cosecant tables */
-static void maketables(void) {
-	sintbl = (t_sample *)getbytes(sizeof(t_sample) * (BUZZSIZE + 1)*2);
-	cosectbl = sintbl + BUZZSIZE + 1;
-	double incr = 2*M_PI/BUZZSIZE;
-	double phase;
-	int i;
-	for(i = 0; i <= BUZZSIZE; i++) {
-		phase = i*incr;
-		sintbl[i] = sin(phase);
-		cosectbl[i] = 1/sintbl[i];
-	}
-	/* insert BADVALs */
-	cosectbl[0] = cosectbl[BUZZSIZE/2] = cosectbl[BUZZSIZE] = BADVAL;
-	for (i=1; i<=8; ++i) {
-		cosectbl[i] = cosectbl[BUZZSIZE-i] = BADVAL;
-		cosectbl[BUZZSIZE/2-i] = cosectbl[BUZZSIZE/2+i] = BADVAL;
-	}
-}
+*/
 
 typedef struct _buzz {
 	t_object x_obj;
@@ -76,7 +46,7 @@ static void *buzz_new(t_symbol *s, int argc, t_atom *argv)
         t_scalarbuzz *x = (t_scalarbuzz *)pd_new(scalarbuzz_class);
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("freq"));
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("phase"));
-        x->max = sys_getsr()/2.;
+        x->max = FLT_MAX;
         if (argv->a_type == A_FLOAT) {
         	x->x_g = atom_getfloatarg(0, argc, argv);
         	x->argset = 0;
@@ -302,5 +272,5 @@ void buzz_tilde_setup(void)
     class_addmethod(scalarbuzz_class, (t_method)scalarbuzz_phase,
         gensym("phase"), A_FLOAT, 0);
     
-	maketables();
+	if(!buzzmade) maketables();
 }

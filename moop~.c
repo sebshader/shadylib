@@ -60,7 +60,6 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 					x->x_phase = 0.0;
 					x->x_sample = 0.0;
 				} else {
-					if(time < 0.0) num++;
 					x->x_num = num;
 				}
 			} else {
@@ -68,8 +67,7 @@ static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
 				x->x_num = 1;
 			}
 		else {
-			if(time < 0.0) x->x_sample = x->x_range;
-			else x->x_sample = 0.0;
+			x->x_sample = (time < 0.0) ? x->x_range : 0.;
 			x->x_phase = 0.0;
 			x->x_inf = 0;
 			x->x_num = 1;
@@ -189,7 +187,7 @@ static t_int *moop_perform(t_int *w) {
 				caster = phase;
 				phase = phase - caster;
 				trns = copysign(exp2(tin/12), sgn);
-				sample = (period > 0) ? 0 : range;
+				sample = (sgn > 0) ? 0 : range;
 				buffer.x_onset = tin2;
 			}	
 		}
@@ -219,7 +217,7 @@ static t_int *moop_perform(t_int *w) {
 				}
 				caster = phase;
 				phase = phase - caster;
-				sample = (period > 0) ? 0 : range;
+				sample = (sgn > 0) ? 0 : range;
 				buffer.x_onset = tin2;
 			}	
 		}

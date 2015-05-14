@@ -1,10 +1,13 @@
 #include "shadylib.h"
 
 int tabmade = 0;
+int buzzmade = 0;
 
 t_float *gaustab; /* e^(-x^2) */
 t_float *couchtab; /* 1/(x^2 + 1) */
 t_float *rexptab; /* (e^(-x) - .001)/.999 to x=ln(.001) */
+t_sample *sintbl;
+t_sample *cosectbl;
 
 t_float readtab(t_tabtype type, t_float index) {
 	t_float *tab = rexptab + (type * SHABLESIZE);
@@ -22,6 +25,7 @@ t_float readtab(t_tabtype type, t_float index) {
 	}
 }
 
+/* todo: make these names less similar */
 void maketabs(void) {
 	t_float lnths = log(.001)/(SHABLESIZE - 1);
 	t_float incr = 32.f/(SHABLESIZE - 1);
@@ -38,6 +42,28 @@ void maketabs(void) {
 	}
 	tabmade = 1;
 }
+
+/* create sine and cosecant tables */
+void maketables(void) {
+	sintbl = (t_sample *)getbytes(sizeof(t_sample) * (BUZZSIZE + 1)*2);
+	cosectbl = sintbl + BUZZSIZE + 1;
+	double incr = 2*M_PI/BUZZSIZE;
+	double phase;
+	int i;
+	for(i = 0; i <= BUZZSIZE; i++) {
+		phase = i*incr;
+		sintbl[i] = sin(phase);
+		cosectbl[i] = 1/sintbl[i];
+	}
+	/* insert BADVALs */
+	cosectbl[0] = cosectbl[BUZZSIZE/2] = cosectbl[BUZZSIZE] = BADVAL;
+	for (i=1; i<=8; ++i) {
+		cosectbl[i] = cosectbl[BUZZSIZE-i] = BADVAL;
+		cosectbl[BUZZSIZE/2-i] = cosectbl[BUZZSIZE/2+i] = BADVAL;
+	}
+	buzzmade = 1;
+}
+
 
 t_float scalerange (t_float a) {
 	return (a - ENVELOPE_RANGE)/ENVELOPE_MAX;
