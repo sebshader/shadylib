@@ -1,0 +1,17 @@
+#N canvas 100 87 751 505 10;
+#X text 367 29 same as blsqr~ except that it also outputs triangle
+wave out of 2nd outlet;
+#X obj 353 199 blsqr~;
+#X obj 184 118 smoother~;
+#X obj 189 155 mtof~;
+#X obj 277 282 outputc~;
+#X obj 423 258 oscope~;
+#X obj 423 258 oscope~;
+#X obj 245 201 blsqri~ 0.5;
+#X obj 416 200 blsaw~;
+#X connect 2 0 3 0;
+#X connect 3 0 7 0;
+#X connect 7 0 6 0;
+#X connect 7 1 4 1;
+#X connect 7 1 4 0;
+#X connect 7 1 5 0;

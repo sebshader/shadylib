@@ -1,4 +1,4 @@
-#N canvas 34 373 757 706 12;
+#N canvas 47 23 757 706 12;
 #X declare -lib moocow;
 #X declare -lib moocow;
 #X text 150 5 Signal Objects;
@@ -7,183 +7,192 @@
 #X obj 15 72 bilexnoise~;
 #X text 117 72 bilateral exponential distribution at a certain frequency
 ;
-#X obj 15 106 buzz~;
-#X text 75 106 band-limited impulse;
-#X obj 13 133 circle~;
-#X text 84 132 make signal elipses and circles (complex sinusoids)
+#X obj 12 205 buzz~;
+#X text 72 205 band-limited impulse;
+#X obj 10 232 circle~;
+#X text 81 231 make signal elipses and circles (complex sinusoids)
 ;
-#X obj 17 168 cosinterp~;
-#X text 104 165 use cosine to "interpolate" a signal;
-#X obj 12 203 crusher~;
-#X text 84 201 bit-crusher;
-#X obj 13 236 dbgr~;
-#X text 88 234 see what a signal's value is;
-#X obj 14 269 delreadc~;
-#X text 95 269 read from delwritec~ delay line;
-#X obj 15 298 delwritec~;
-#X text 104 299 delay line with a "clear" method;
-#X obj 15 333 downsample~;
-#X text 106 332 alias at a certain frequency;
-#X obj 17 367 dsrand~;
-#X text 84 370 gets triggers from input phasor~ like samphold~ and
+#X obj 14 267 cosinterp~;
+#X text 101 264 use cosine to "interpolate" a signal;
+#X obj 9 302 crusher~;
+#X text 81 300 bit-crusher;
+#X obj 10 335 dbgr~;
+#X text 85 333 see what a signal's value is;
+#X obj 11 368 delreadc~;
+#X text 92 368 read from delwritec~ delay line;
+#X obj 12 397 delwritec~;
+#X text 101 398 delay line with a "clear" method;
+#X obj 12 432 downsample~;
+#X text 103 431 alias at a certain frequency;
+#X obj 14 466 dsrand~;
+#X text 81 469 gets triggers from input phasor~ like samphold~ and
 pulls a new random number;
-#X obj 15 419 egrains~;
-#X text 88 419 simple wrapper for grainy~;
-#X text 311 3590 end;
-#X obj 14 447 expline~;
-#X text 89 448 exponential line~;
-#X obj 20 482 fmod~;
-#X text 84 483 interface to math.h fmod;
-#X obj 18 519 freqshifter~;
-#X text 119 519 this is basically the ssb-modulation example from the
+#X obj 12 518 egrains~;
+#X text 85 518 simple wrapper for grainy~;
+#X text 308 3689 end;
+#X obj 11 546 expline~;
+#X text 86 547 exponential line~;
+#X obj 17 581 fmod~;
+#X text 81 582 interface to math.h fmod;
+#X obj 15 618 freqshifter~;
+#X text 116 618 this is basically the ssb-modulation example from the
 help files;
-#X obj 14 558 freqshifterd~;
-#X text 123 558 same with phasor control;
-#X obj 14 590 gainc~;
-#X text 101 616 control pan and volume of a signal;
-#X obj 15 678 gate~;
-#X text 86 676 audio gate that uses threshold and outputs values for
+#X obj 11 657 freqshifterd~;
+#X text 120 657 same with phasor control;
+#X obj 11 689 gainc~;
+#X text 98 715 control pan and volume of a signal;
+#X obj 12 777 gate~;
+#X text 83 775 audio gate that uses threshold and outputs values for
 line~;
-#X obj 11 709 grainy~;
-#X text 78 708 abstraction to assist in granular synthesis;
-#X obj 16 742 hanning~;
-#X text 95 744 hanning window from 0-1;
-#X obj 20 778 highest~;
-#X text 88 779 find the peak amplitude of a signal;
-#X obj 24 813 linnoise~;
-#X text 101 810 linear distribution at a certain frequency;
-#X obj 23 847 linterp~;
-#X text 97 844 linear interpolation on an audio signal;
-#X obj 15 878 meters~;
-#X text 121 898 meters~: meter audio signal;
-#X obj 27 1022 modf~;
-#X text 78 1021 split integer and fractional parts;
-#X obj 22 1053 modulator~;
-#X text 116 1054 phase modulation abstraction that uses index;
-#X obj 31 1079 moop~;
-#X text 80 1079 buffer-reading external;
-#X obj 28 1115 nead~;
-#X obj 28 1147 neadsr~;
-#X obj 28 1178 near~;
-#X text 92 1129 exponential ad \, ar \, and adsr envelopes that have
+#X obj 8 808 grainy~;
+#X text 75 807 abstraction to assist in granular synthesis;
+#X obj 13 841 hanning~;
+#X text 92 843 hanning window from 0-1;
+#X obj 17 877 highest~;
+#X text 85 878 find the peak amplitude of a signal;
+#X obj 21 912 linnoise~;
+#X text 98 909 linear distribution at a certain frequency;
+#X obj 20 946 linterp~;
+#X text 94 943 linear interpolation on an audio signal;
+#X obj 12 977 meters~;
+#X text 118 997 meters~: meter audio signal;
+#X obj 24 1121 modf~;
+#X text 75 1120 split integer and fractional parts;
+#X obj 19 1152 modulator~;
+#X text 113 1153 phase modulation abstraction that uses index;
+#X obj 28 1178 moop~;
+#X text 77 1178 buffer-reading external;
+#X obj 25 1214 nead~;
+#X obj 25 1246 neadsr~;
+#X obj 25 1277 near~;
+#X text 89 1228 exponential ad \, ar \, and adsr envelopes that have
 adjustable linearity;
-#X obj 33 1210 nrcombf~;
-#X text 109 1207 non-recirculating comb filter;
-#X obj 28 1241 operator~;
-#X text 108 1238 sine oscillator with multiply and add;
-#X obj 33 1275 operatord~;
-#X text 119 1273 same with phasor~ control;
-#X obj 31 1305 oscope~;
-#X text 253 1361 oscilloscope with zoom;
-#X obj 30 1484 oscphase~;
-#X text 108 1478 phase generator that aliases like crazy in a specific
+#X obj 30 1309 nrcombf~;
+#X text 106 1306 non-recirculating comb filter;
+#X obj 25 1340 operator~;
+#X text 105 1337 sine oscillator with multiply and add;
+#X obj 30 1374 operatord~;
+#X text 116 1372 same with phasor~ control;
+#X obj 28 1404 oscope~;
+#X text 250 1460 oscilloscope with zoom;
+#X obj 27 1583 oscphase~;
+#X text 105 1577 phase generator that aliases like crazy in a specific
 pattern;
-#X obj 11 1526 out~;
-#X text 121 1540 dac~ with meters and recording;
-#X obj 19 1717 outputc~;
-#X text 118 1736 dac~ with gain \, dsp \, and recording control;
-#X obj 23 1812 phasafor~;
-#X text 97 1812 the phase-aligned formant generator from the examples
+#X obj 8 1625 out~;
+#X text 118 1639 dac~ with meters and recording;
+#X obj 16 1816 outputc~;
+#X text 115 1835 dac~ with gain \, dsp \, and recording control;
+#X obj 20 1911 phasafor~;
+#X text 94 1911 the phase-aligned formant generator from the examples
 ;
-#X obj 20 1838 phasemod~;
-#X text 100 1837 simple abstraction to help with phase modulation;
-#X obj 27 1864 phasorator~;
-#X text 122 1862 phasor~ with multiply and add;
-#X obj 30 1896 pib~;
-#X text 72 1896 gets the time into the current block in ms;
-#X obj 37 1937 pitchshift~;
-#X text 129 1937 the pitchshifter from the pd examples;
-#X obj 44 1975 powclip~;
-#X text 116 2010 line raised to a power;
-#X obj 43 2009 powline~;
-#X text 114 1976 waveshape/clipping function;
-#X text 127 2034 pulse train example from the docs;
-#X obj 38 2064 rcombf~;
-#X text 95 2064 recirculating comb filter;
-#X obj 37 2102 realpass~;
-#X text 122 2099 allpass filter with real coefficients;
-#X obj 29 2135 rectorator~;
-#X text 128 2133 square wave with multiply and add;
-#X obj 34 2167 rectoratord~;
-#X text 132 2168 same \, controlled by phasor~;
-#X obj 36 2205 repeater~;
-#X text 121 2203 beat repeat with hold control and signal pitchshift
+#X obj 17 1937 phasemod~;
+#X text 97 1936 simple abstraction to help with phase modulation;
+#X obj 24 1963 phasorator~;
+#X text 119 1961 phasor~ with multiply and add;
+#X obj 27 1995 pib~;
+#X text 69 1995 gets the time into the current block in ms;
+#X obj 34 2036 pitchshift~;
+#X text 126 2036 the pitchshifter from the pd examples;
+#X obj 41 2074 powclip~;
+#X text 113 2109 line raised to a power;
+#X obj 40 2108 powline~;
+#X text 111 2075 waveshape/clipping function;
+#X text 124 2133 pulse train example from the docs;
+#X obj 35 2163 rcombf~;
+#X text 92 2163 recirculating comb filter;
+#X obj 34 2201 realpass~;
+#X text 119 2198 allpass filter with real coefficients;
+#X obj 26 2234 rectorator~;
+#X text 125 2232 square wave with multiply and add;
+#X obj 31 2266 rectoratord~;
+#X text 129 2267 same \, controlled by phasor~;
+#X obj 33 2304 repeater~;
+#X text 118 2302 beat repeat with hold control and signal pitchshift
 ;
-#X obj 34 2242 rexpline~;
-#X text 120 2237 reverse exponential line~;
-#X obj 36 2275 rminus~;
-#X text 107 2274 compute arg/2nd inlet - signalinlet;
-#X obj 34 2311 rover~;
-#X text 92 2309 compute arg/2nd inlet / signalinlet;
-#X obj 40 2351 sampbuf~;
-#X text 108 2349 a wrapper to read soundfiles into arrays;
-#X obj 31 2385 sampphase~;
-#X text 106 2374 phasor~ that has an option to sample the frequency
+#X obj 31 2341 rexpline~;
+#X text 117 2336 reverse exponential line~;
+#X obj 33 2374 rminus~;
+#X text 104 2373 compute arg/2nd inlet - signalinlet;
+#X obj 31 2410 rover~;
+#X text 89 2408 compute arg/2nd inlet / signalinlet;
+#X obj 37 2450 sampbuf~;
+#X text 105 2448 a wrapper to read soundfiles into arrays;
+#X obj 28 2484 sampphase~;
+#X text 103 2473 phasor~ that has an option to sample the frequency
 at phase crossings;
-#X obj 33 2432 scaler~;
-#X text 108 2432 multiply and add to a signal;
-#X obj 31 2470 shadylook~;
-#X text 108 2458 look up cauchy \, gaussian \, or reverse exponential
+#X obj 30 2531 scaler~;
+#X text 105 2531 multiply and add to a signal;
+#X obj 28 2569 shadylook~;
+#X text 105 2557 look up cauchy \, gaussian \, or reverse exponential
 functions with a signal;
-#X obj 34 2520 shnoise~;
-#X text 102 2512 sample-and-held noise at signalinlet frequency (building
+#X obj 31 2619 shnoise~;
+#X text 99 2611 sample-and-held noise at signalinlet frequency (building
 block of other signal-rate nosie objects);
-#X obj 36 2566 sigenv~;
-#X text 99 2565 rms volume from pure data examples in the documentation
+#X obj 33 2665 sigenv~;
+#X text 96 2664 rms volume from pure data examples in the documentation
 ;
-#X obj 44 2595 signum~;
-#X obj 43 2640 sin~;
-#X text 108 2604 number box + [sig~];
-#X text 82 2638 like [cos~] \, but for sin;
-#X obj 42 2674 smoother~;
-#X text 109 2680 number box + line~;
-#X text 105 2970 write a stereo soundfile using writesf~;
-#X text 108 2884 write a mono soundfile using writesf~;
-#X obj 35 3013 srepeater~;
-#X text 117 3012 simple beat-repeat that uses a recirculating delay
+#X obj 41 2694 signum~;
+#X obj 40 2739 sin~;
+#X text 105 2703 number box + [sig~];
+#X text 79 2737 like [cos~] \, but for sin;
+#X obj 39 2773 smoother~;
+#X text 106 2779 number box + line~;
+#X text 102 3069 write a stereo soundfile using writesf~;
+#X text 105 2983 write a mono soundfile using writesf~;
+#X obj 32 3112 srepeater~;
+#X text 114 3111 simple beat-repeat that uses a recirculating delay
 line;
-#X obj 29 3048 switchnramp~;
-#X text 122 3036 switch and ramp from Theory and Technique of Electronic
+#X obj 26 3147 switchnramp~;
+#X text 119 3135 switch and ramp from Theory and Technique of Electronic
 Music by Miller Puckette;
-#X obj 28 3093 tabread4hs~;
-#X text 120 3084 tabread4~ with hermite spline interpolation and signal
+#X obj 25 3192 tabread4hs~;
+#X text 117 3183 tabread4~ with hermite spline interpolation and signal
 offset;
-#X obj 29 3136 tcheb~;
-#X text 96 3134 chebyshev polynomial waveshaper with signal control
+#X obj 26 3235 tcheb~;
+#X text 93 3233 chebyshev polynomial waveshaper with signal control
 for order;
-#X obj 32 3184 transpose~;
-#X text 118 3184 signal semitones-to-pitch ratio conversion;
-#X obj 29 3214 triangulator~;
-#X text 139 3215 triangle wave with multiply and addition;
-#X obj 30 3241 triangulator~;
-#X text 130 3240 same \, controlled by phasor~;
-#X obj 30 3274 trinoise~;
-#X text 109 3273 triangular distribution at a certain frequency;
-#X text 82 3301 variable delay with hermite spline interpolation;
-#X obj 31 3334 voisim~;
-#X text 98 3334 vosim algorithm;
-#X obj 34 3367 volpan~;
-#X text 112 3365 control the volume and pan of a mono signal with signals
+#X obj 29 3283 transpose~;
+#X text 115 3283 signal semitones-to-pitch ratio conversion;
+#X obj 26 3313 triangulator~;
+#X text 136 3314 triangle wave with multiply and addition;
+#X obj 27 3340 triangulator~;
+#X text 127 3339 same \, controlled by phasor~;
+#X obj 27 3373 trinoise~;
+#X text 106 3372 triangular distribution at a certain frequency;
+#X text 79 3400 variable delay with hermite spline interpolation;
+#X obj 28 3433 voisim~;
+#X text 95 3433 vosim algorithm;
+#X obj 31 3466 volpan~;
+#X text 109 3464 control the volume and pan of a mono signal with signals
 ;
-#X obj 36 3397 wavepacket~;
-#X obj 34 3305 vdhs~;
-#X obj 35 3530 whitephase~;
-#X text 133 3517 phase generator that picks between integer periods
+#X obj 33 3496 wavepacket~;
+#X obj 31 3404 vdhs~;
+#X obj 32 3629 whitephase~;
+#X text 130 3616 phase generator that picks between integer periods
 with probabilities;
-#X obj 36 3569 xfade~;
-#X text 93 3569 crossfade left signal inlet between 2 outlets;
-#X text 142 3393 taken from pd examples: F06 \, packets;
-#X text 130 3490 from E06.exponential example: exponential waveshaping
+#X obj 33 3668 xfade~;
+#X text 90 3668 crossfade left signal inlet between 2 outlets;
+#X text 139 3492 taken from pd examples: F06 \, packets;
+#X text 127 3589 from E06.exponential example: exponential waveshaping
 ;
-#X obj 43 3432 wscauchy~;
-#X text 124 3423 started as F03 pulse.spectrum example (cauchy waveshaping)
+#X obj 40 3531 wscauchy~;
+#X text 121 3522 started as F03 pulse.spectrum example (cauchy waveshaping)
 \, but used 1/2 angle formula;
-#X text 116 3466 E.07 evenodd example: even-odd waveshaping;
-#X obj 37 3466 wssincos~;
-#X obj 36 3494 wsexp~;
-#X obj 25 2822 sndfwritem~;
-#X obj 23 2721 sndfread~;
-#X obj 23 2906 sndfwrites~;
-#X obj 34 2035 pthng~;
-#X text 89 2783 GUI wrapper to read a stereo soundfile using readsf~
+#X text 113 3565 E.07 evenodd example: even-odd waveshaping;
+#X obj 34 3565 wssincos~;
+#X obj 33 3593 wsexp~;
+#X obj 22 2921 sndfwritem~;
+#X obj 20 2820 sndfread~;
+#X obj 20 3005 sndfwrites~;
+#X obj 31 2134 pthng~;
+#X text 86 2882 GUI wrapper to read a stereo soundfile using readsf~
 ;
+#X obj 19 177 bpbuzz~;
+#X text 86 175 bipolar band-limited impulse with duty cycle control
+;
+#X obj 22 100 blsaw~;
+#X obj 21 127 blsqr~;
+#X obj 19 151 blsqri~;
+#X text 78 97 band-limited sawtooth wave;
+#X text 81 126 band-limited square wave;
+#X text 104 150 combined bandlimited square/triangle wave;

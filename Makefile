@@ -60,7 +60,8 @@ hanning~.pd		selected.pd		wscauchy~.pd \
 if.pd			seqbank.pd		wssincos~.pd \
 iterate.pd		sequencer.pd		wsexp~.pd \
 linnoise~.pd	whitephase~.pd makerpath.pd \
-linterp~.pd		xfade~.pd
+linterp~.pd		xfade~.pd	blsqr~.pd \
+blsaw~.pd		blsqri~.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile

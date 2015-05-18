@@ -26,10 +26,12 @@ typedef struct _scalarbuzz {
 } t_scalarbuzz;
 
 static void scalarbuzz_phase(t_scalarbuzz *x, t_float f) {
+	f *= .5;
 	x->phase = f - floorf(f);
 }
 
 static void buzz_phase(t_buzz *x, t_float f) {
+	f *= .5;
 	x->phase = f - floorf(f);
 }
 

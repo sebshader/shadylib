@@ -28,10 +28,12 @@ typedef struct _scalarbpbuzz {
 } t_scalarbpbuzz;
 
 static void scalarbpbuzz_phase(t_scalarbpbuzz *x, t_float f) {
+	f *= .5;
 	x->phase = f - floorf(f);
 }
 
 static void bpbuzz_phase(t_bpbuzz *x, t_float f) {
+	f *= .5;
 	x->phase = f - floorf(f);
 }
 
