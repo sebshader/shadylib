@@ -71,10 +71,10 @@ void tcheb_tilde_dsp(t_tcheb_tilde *x, t_signal **sp) {
 		sp[2]->s_vec, sp[0]->s_n);
 }
 
-void* tcheb_tilde_new(void) {
+void* tcheb_tilde_new(t_floatarg def) {
 	t_tcheb_tilde* x = (t_tcheb_tilde*) pd_new(tcheb_tilde_class);
 	
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
+	signalinlet_new(&x->x_obj, def);;
 	
 	outlet_new(&x->x_obj, &s_signal);
 	
@@ -82,7 +82,7 @@ void* tcheb_tilde_new(void) {
 }
 void tcheb_tilde_setup(void) {
 	tcheb_tilde_class = class_new(gensym("tcheb~"), 
-		(t_newmethod)tcheb_tilde_new, 0, sizeof(t_tcheb_tilde), CLASS_DEFAULT, 
+		(t_newmethod)tcheb_tilde_new, 0, sizeof(t_tcheb_tilde), CLASS_DEFAULT, A_DEFFLOAT, 
 		0);
 	class_addmethod(tcheb_tilde_class, (t_method)tcheb_tilde_dsp, gensym("dsp"), A_CANT, 0);
 	CLASS_MAINSIGNALIN(tcheb_tilde_class, t_tcheb_tilde, dumf);
