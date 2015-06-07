@@ -1,0 +1,16 @@
+#N canvas 702 120 713 663 10;
+#X obj 122 101 smoother~;
+#X obj 135 200 sqrwine~ 0.5;
+#X text 244 54 bandlimited waveform abstraction:;
+#X text 229 88 same controls as blsqr~;
+#X obj -21 229 oscope~;
+#X obj 88 415 oscope~;
+#X obj 216 238 oscope~;
+#X obj 325 424 oscope~;
+#X text 260 201 outlets: square \, triangle \, sawtooth \, sine \,
+phase;
+#X connect 0 0 1 0;
+#X connect 1 0 4 0;
+#X connect 1 1 5 0;
+#X connect 1 2 6 0;
+#X connect 1 3 7 0;

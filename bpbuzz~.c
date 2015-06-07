@@ -65,6 +65,7 @@ static void *bpbuzz_new(t_symbol *s, int argc, t_atom *argv)
         }
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
+        outlet_new(&x->x_obj, &s_signal);
         x->x_f = 0;
         return (x);
     }
@@ -74,6 +75,7 @@ static void *bpbuzz_new(t_symbol *s, int argc, t_atom *argv)
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
         signalinlet_new(&x->x_obj, duty);
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("phase"));
+        outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
         x->x_f = 0;
@@ -87,7 +89,8 @@ static t_int *scalarbpbuzz_perform(t_int *w) {
 	t_sample *in2 = (t_sample *)(w[3]);
 	t_sample *out1 = (t_sample *)(w[4]);
     t_sample *out2 = (t_sample *)(w[5]);
-    int n = (int)(w[6]);
+    t_sample *out3 = (t_sample *)(w[6]);
+    int n = (int)(w[7]);
     double conv = x->x_conv;
     double phase = x->phase;
     double rat, frat, res1, res2, res3, res4, fread;
@@ -196,10 +199,11 @@ gotfinal:
 gotfinal2:
 		
 		*out1++ = (final + final2);
+		*out2++ = final;
 		//(1/rat + 1);
 		res1 = phase*2;
 		n2 = res1;
-		*out2++ = res1 - n2;
+		*out3++ = res1 - n2;
 		phase += freq*conv;
 		if(phase >= 1) {
 			n2 = phase;
@@ -207,7 +211,7 @@ gotfinal2:
 		}
 	}
 	x->phase = phase;
-	return(w + 7);
+	return(w + 8);
 }
 		
 static t_int *bpbuzz_perform(t_int *w) {
@@ -217,7 +221,8 @@ static t_int *bpbuzz_perform(t_int *w) {
 	t_sample *in3 = (t_sample *)(w[4]);
 	t_sample *out1 = (t_sample *)(w[5]);
     t_sample *out2 = (t_sample *)(w[6]);
-    int n = (int)(w[7]);
+    t_sample *out3 = (t_sample *)(w[7]);
+    int n = (int)(w[8]);
     double conv = x->x_conv;
     double phase = x->phase;
     double rat, frat, res1, res2, res3, res4, fread;
@@ -329,9 +334,10 @@ gotfinal:
 		final2 = res3*(frat - 1) - res1*(frat);
 gotfinal2:
 		*out1++ = (final + final2);
+		*out2++ = final;
 		res1 = phase*2;
 		n2 = res1;
-		*out2++ = res1 - n2;
+		*out3++ = res1 - n2;
 		phase += freq*conv;
 		if(phase >= 1) {
 			n2 = phase;
@@ -339,15 +345,15 @@ gotfinal2:
 		}
 	}
 	x->phase = phase;
-	return(w + 8);
+	return(w + 9);
 }
 
 static void bpbuzz_dsp(t_bpbuzz *x, t_signal **sp)
 {
 	x->max = sp[0]->s_sr/2;
     x->x_conv = 0.5/sp[0]->s_sr;
-    dsp_add(bpbuzz_perform, 7, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, 
-    	sp[3]->s_vec, sp[4]->s_vec, sp[0]->s_n);
+    dsp_add(bpbuzz_perform, 8, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, 
+    	sp[3]->s_vec, sp[4]->s_vec, sp[5]->s_vec, sp[0]->s_n);
 }
 
 static void scalarbpbuzz_dsp(t_scalarbpbuzz *x, t_signal **sp)
@@ -359,8 +365,8 @@ static void scalarbpbuzz_dsp(t_scalarbpbuzz *x, t_signal **sp)
 		else if(x->x_g > max) x->x_g = max;
 	}
 	x->x_conv = 0.5/sp[0]->s_sr;
-    dsp_add(scalarbpbuzz_perform, 6, x, sp[0]->s_vec,
-            sp[1]->s_vec, sp[2]->s_vec, sp[3]->s_vec, sp[0]->s_n);
+    dsp_add(scalarbpbuzz_perform, 7, x, sp[0]->s_vec, sp[1]->s_vec, 
+    	sp[2]->s_vec, sp[3]->s_vec, sp[4]->s_vec, sp[0]->s_n);
 }
 
 void bpbuzz_tilde_setup(void)
