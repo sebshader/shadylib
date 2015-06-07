@@ -28,8 +28,8 @@ t_int *tcheb_tilde_perform(t_int *w) {
 				dir <<= 1;
 				dir = (1 & newo) | dir;
 		}
-		t1 = *in1++; 
-		if (t1 < -1.0) t1 = -1.0; else if (t1 > 1.0) t1 = 1.0;
+		t1 = *in1++;
+		t1 = fmax(-1.0, fmin(t1, 1.0));
 		t2 = 2.0*t1*t1 - 1.0; 
 		tin = t1;
 		for(int i = 0; i < l; i++) {
@@ -74,7 +74,7 @@ void tcheb_tilde_dsp(t_tcheb_tilde *x, t_signal **sp) {
 void* tcheb_tilde_new(t_floatarg def) {
 	t_tcheb_tilde* x = (t_tcheb_tilde*) pd_new(tcheb_tilde_class);
 	
-	signalinlet_new(&x->x_obj, def);;
+	signalinlet_new(&x->x_obj, def);
 	
 	outlet_new(&x->x_obj, &s_signal);
 	

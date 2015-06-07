@@ -1,0 +1,22 @@
+#N canvas 386 290 450 300 10;
+#X msg 174 78 7 0.9;
+#X obj 190 159 show;
+#X msg 193 190 20 20;
+#X msg 211 86 2 dog;
+#X msg 272 100 5 6;
+#X msg 26 66 2 3 5;
+#X obj 172 125 list-const 20;
+#X floatatom 112 82 5 0 0 0 - - -;
+#X text 69 6 get a multiple of the same thing in a list;
+#X text 17 47 you can order lists (doesn't work with creation argument)
+;
+#X text 93 29 creation arguments sets 1 initial item to put;
+#X msg 307 111 20;
+#X connect 0 0 6 0;
+#X connect 1 0 2 0;
+#X connect 3 0 6 0;
+#X connect 4 0 6 1;
+#X connect 5 0 6 0;
+#X connect 6 0 1 0;
+#X connect 7 0 6 0;
+#X connect 11 0 6 1;

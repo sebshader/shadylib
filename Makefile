@@ -24,7 +24,7 @@ rminus~.c		voisim~.c		bpbuzz~.c
 # be included automatically
 PDOBJECTS = 1-0switch.pd		lispatch.pd		shnoise~.pd \
 1-0switch~.pd		list-dripdex.pd		show.pd \
-		sigenv~.pd \
+list-const.pd		sigenv~.pd \
 			macrodivide.pd		signum~.pd \
 ad.pd			messtro.pd		sin~.pd \
 adsr.pd			meters~.pd		smoother~.pd \
