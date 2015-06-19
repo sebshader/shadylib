@@ -2,20 +2,24 @@
 #X obj 154 66 rootinfo;
 #X obj 152 36 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 203 94 print level;
+#X obj 223 95 print level;
 #X obj 138 142 print path;
-#N canvas 787 231 450 300 sbpatch 0;
+#N canvas 787 231 450 300 sbpatch 1;
 #X obj 164 76 rootinfo;
 #X obj 162 46 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 213 104 print level;
 #X obj 148 152 print path;
+#X obj 206 161 print name;
 #X connect 0 0 3 0;
-#X connect 0 1 2 0;
+#X connect 0 1 4 0;
+#X connect 0 2 2 0;
 #X connect 1 0 0 0;
 #X restore 241 180 pd sbpatch;
-#X text 232 43 rootinfo gives the level of depth and path of the root
-canvas (0 is the current canvas);
+#X text 232 43 rootinfo gives the path \, name \, and level of the
+root canvas out of it's outlets when banged;
+#X obj 189 114 print name;
 #X connect 0 0 3 0;
-#X connect 0 1 2 0;
+#X connect 0 1 6 0;
+#X connect 0 2 2 0;
 #X connect 1 0 0 0;
