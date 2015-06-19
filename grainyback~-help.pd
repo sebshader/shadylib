@@ -1,0 +1,65 @@
+#N canvas 147 144 764 565 10;
+#X text 17 28 grainyback~ is for piggybacking onto egrains~ for different
+phases:;
+#X text 21 221 a 4-phase reader:;
+#X obj 260 316 +~ 0.25;
+#X obj 189 394 *~ 0.5;
+#X text 362 253 inlets: readpoint \, grain size \, offset phase \,
+control(floats are offset \, "set" message sets array name;
+#X obj 195 428 outputc~;
+#X obj 407 74 openpanel;
+#X obj 399 48 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array anar2 1.14534e+07 float 2;
+#X coords 0 1 1.14534e+07 -1 200 140 1;
+#X restore 401 304 graph;
+#X obj 424 129 soundfiler;
+#X obj 406 167 b;
+#X obj 441 159 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 412 100 read -resize \$1 anar2;
+#X obj 404 196 s anar2-rdr;
+#X obj 194 282 egrains~ anar2;
+#X obj 214 340 grainyback~ anar2;
+#X msg 190 209 0 \, \$1 \$2;
+#X obj 188 246 vline~;
+#X obj 193 145 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 193 168 f;
+#X obj 199 187 pack f f;
+#X obj 274 176 smoother~;
+#X text 273 157 transposition;
+#X obj 284 236 smoother~;
+#X text 433 37 1 open soundfile;
+#X text 182 125 2 play;
+#X obj 245 129 stoms;
+#X text 283 217 grain frequency;
+#X obj 299 304 dbgr~;
+#X connect 2 0 15 2;
+#X connect 3 0 5 0;
+#X connect 3 0 5 1;
+#X connect 6 0 12 0;
+#X connect 7 0 6 0;
+#X connect 9 0 10 0;
+#X connect 9 0 19 1;
+#X connect 9 0 26 0;
+#X connect 10 0 13 0;
+#X connect 11 0 13 0;
+#X connect 12 0 9 0;
+#X connect 14 0 3 0;
+#X connect 14 1 3 0;
+#X connect 14 2 15 0;
+#X connect 14 3 15 1;
+#X connect 14 4 2 0;
+#X connect 15 0 3 0;
+#X connect 15 1 3 0;
+#X connect 16 0 17 0;
+#X connect 17 0 14 0;
+#X connect 17 0 28 0;
+#X connect 18 0 19 0;
+#X connect 19 0 20 0;
+#X connect 20 0 16 0;
+#X connect 21 0 14 1;
+#X connect 23 0 14 2;
+#X connect 26 0 20 1;

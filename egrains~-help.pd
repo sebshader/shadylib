@@ -1,4 +1,4 @@
-#N canvas 658 77 880 509 10;
+#N canvas 124 150 880 509 10;
 #X obj -43 29 line~;
 #X msg -40 8 0 \, 44100 1000;
 #X text -94 30 read pt.;
@@ -15,7 +15,7 @@ to read from;
 #X msg 160 149 phase 0.5;
 #X text 219 149 set phase of 1st (2nd will be off by 1/2 a cycle);
 #X obj -16 236 outputc~;
-#X text -91 106 grain freq \, negative is backwards;
+#X text -91 108 grain freq \, negative is backwards;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array myarray 100 float 3;
 #A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
@@ -32,7 +32,8 @@ to read from;
 0;
 #X coords 0 1 99 -1 200 140 1;
 #X restore 448 253 graph;
-#X text 101 194 outlets: grain size and phase of 1st reader;
+#X text 101 194 outlets: 2 signals \, readpoint \, grain size \, and
+phase of 1st reader;
 #X connect 0 0 7 0;
 #X connect 1 0 0 0;
 #X connect 3 0 7 1;

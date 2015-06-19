@@ -118,7 +118,7 @@ on unix;
 #X obj 29 182 customenv;
 #X text 272 234 a custom envelope that can be drawn in. Slightly difficult
 to use;
-#X text 323 2647 end;
+#X text 326 2716 end;
 #X obj 31 423 globaltempr;
 #X text 124 422 global receive;
 #X obj 34 452 globaltemps;
@@ -128,3 +128,5 @@ to use;
 canvas;
 #X obj 47 587 list-const;
 #X text 135 582 make a list with a certain number of one thing;
+#X obj 42 2673 valuer;
+#X text 116 2674 dynamic "value" object (name);

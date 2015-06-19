@@ -1,4 +1,4 @@
-#N canvas 912 108 450 300 10;
+#N canvas 694 174 450 300 10;
 #X msg 183 149 bang;
 #X floatatom 72 200 9 0 0 0 - - -;
 #X text 97 218 from soundfiler;

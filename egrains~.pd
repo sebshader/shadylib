@@ -36,6 +36,7 @@
 #X obj 268 122 ==~ 0;
 #X obj 272 148 *~ 1;
 #X obj 313 111 * 0.5;
+#X obj 321 366 outlet~;
 #X connect 0 0 28 2;
 #X connect 0 0 3 0;
 #X connect 0 0 12 0;
@@ -51,6 +52,7 @@
 #X connect 10 0 31 0;
 #X connect 11 0 18 0;
 #X connect 14 0 28 0;
+#X connect 14 0 37 0;
 #X connect 15 0 11 1;
 #X connect 15 0 36 0;
 #X connect 16 0 15 0;
@@ -83,6 +85,7 @@
 #X connect 30 0 26 1;
 #X connect 31 0 32 1;
 #X connect 32 0 28 0;
+#X connect 32 0 37 0;
 #X connect 33 0 32 0;
 #X connect 34 0 35 0;
 #X connect 35 0 0 0;
