@@ -62,7 +62,8 @@ iterate.pd		sequencer.pd		wsexp~.pd \
 linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd	blsqr~.pd \
 blsaw~.pd		blsqri~.pd	sqrwine~.pd \
-valuer.pd	grainyback~.pd	sampbufs~.pd
+valuer.pd	grainyback~.pd	sampbufs~.pd \
+pitchnoise~.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile

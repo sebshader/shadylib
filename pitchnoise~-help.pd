@@ -1,0 +1,13 @@
+#N canvas 0 23 450 300 10;
+#X obj 194 174 pitchnoise~;
+#X obj 174 94 smoother~;
+#X obj 264 106 smoother~;
+#X obj 194 152 mtof~;
+#X obj 186 204 outputc~;
+#X text 119 33 pitched noise: inlets: pitch \, noisiness;
+#X text 131 69 from Computer Music by Dodge & Jerse;
+#X connect 0 0 4 0;
+#X connect 0 0 4 1;
+#X connect 1 0 3 0;
+#X connect 2 0 0 1;
+#X connect 3 0 0 0;
