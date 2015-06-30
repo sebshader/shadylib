@@ -4,7 +4,7 @@ local selectormap = {string = "symbol", number="float", userdata="pointer"}
 
 function lmap:initialize(name, atoms)
 	self.inlets = 1
-	self.outlets = 2
+	self.outlets = 4
 	self.map = {}
 	return true
 end
@@ -14,6 +14,16 @@ function lmap:in_1_print()
 	for i, k in pairs(self.map)
 		do pd.post("key: " .. i .. " value(s): " .. table.concat(k, ", "))
 	end
+end
+
+function lmap:in_1_dump()
+	local count = 0
+	for i, k in pairs(self.map)
+		do
+			self:outlet(3, i, k)
+			count = count + 1
+	end
+	self:outlet(4, "float", {count})
 end
 
 function lmap:getatoms(key)
