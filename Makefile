@@ -76,7 +76,7 @@ MANUAL = sequencerdoc.txt Overview-control.pd Overview-signal.pd
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = lmap.pd_lua lmap-help.pd
+EXTRA_DIST = lmap.pd_lua lmap-help.pd lolotoa.pd_lua lolotoa-help.pd
 
 # unit tests and related files here, in the 'unittests' subfolder
 UNITTESTS = 

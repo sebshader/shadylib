@@ -1,0 +1,28 @@
+#N canvas 172 33 639 358 10;
+#X obj 130 210 print;
+#X msg 204 161 dump;
+#X obj 199 206 print numbr;
+#X msg 114 136 add 2 float 6;
+#X obj 126 181 lolotoa;
+#X msg 177 116 add 5 bears apple;
+#X msg 145 87 add 2 purple geese;
+#X msg 201 59 rem 5;
+#X text 93 19 "lua ordered list of tables of anythings";
+#X text 241 60 remove a table of anything at index 5;
+#X text 245 159 for each table \, put number of items in table out
+the right outlet immediately followed by the anythings from the left.
+;
+#X msg 26 87 add 2 purple blah;
+#X text 269 89 add/overwrite an anything with the given selector at
+table 2;
+#X text 354 131 remove a specific message with the selector;
+#X msg 319 115 remmes 2 purple;
+#X connect 1 0 4 0;
+#X connect 3 0 4 0;
+#X connect 4 0 0 0;
+#X connect 4 1 2 0;
+#X connect 5 0 4 0;
+#X connect 6 0 4 0;
+#X connect 7 0 4 0;
+#X connect 11 0 4 0;
+#X connect 14 0 4 0;
