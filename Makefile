@@ -63,7 +63,7 @@ linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd	blsqr~.pd \
 blsaw~.pd		blsqri~.pd	sqrwine~.pd \
 valuer.pd	grainyback~.pd	sampbufs~.pd \
-pitchnoise~.pd
+pitchnoise~.pd lmap.pd_lua lolotoa.pd_lua
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
@@ -76,12 +76,10 @@ MANUAL = sequencerdoc.txt Overview-control.pd Overview-signal.pd
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = lmap.pd_lua lmap-help.pd lolotoa.pd_lua lolotoa-help.pd
+EXTRA_DIST =
 
 # unit tests and related files here, in the 'unittests' subfolder
-UNITTESTS = 
-
-
+UNITTESTS =
 
 #------------------------------------------------------------------------------#
 #
@@ -300,7 +298,7 @@ ifeq (MINGW,$(findstring MINGW,$(UNAME)))
 endif
 
 # in case somebody manually set the HELPPATCHES above
-HELPPATCHES ?= $(SOURCES:.c=-help.pd) $(PDOBJECTS:.pd=-help.pd)
+HELPPATCHES ?= $(SOURCES:.c=-help.pd) $(PDOBJECTS:.pd=-help.pd) $(PDOBJECTS:.pd_lua=-help.pd)
 
 ALL_CFLAGS := $(ALL_CFLAGS) $(CFLAGS) $(OPT_CFLAGS)
 ALL_LDFLAGS := $(LDFLAGS) $(ALL_LDFLAGS)
@@ -370,13 +368,16 @@ install-doc:
 	$(INSTALL_DATA) LICENSE.txt $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/LICENSE.txt
 
 install-examples:
-	test -z "$(strip $(EXAMPLES))" || \
-		$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
-		$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun && \
-		$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
-		for file in examples/purepdnfun/*; do \
-			$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
-		done
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun && \
+	$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals && \
+	for file in examples/purepdnfun/relationals/*; do \
+		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals; \
+	done && \
+	for file in examples/purepdnfun/*.pd; do \
+		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
+	done
 
 install-manual:
 	test -z "$(strip $(MANUAL))" || \
@@ -448,13 +449,16 @@ dist: $(DISTDIR)
 		$(INSTALL_DATA) $(HELPPATCHES) $(DISTDIR)
 	test -z "$(strip $(EXTRA_DIST))" || \
 		$(INSTALL_DATA) $(EXTRA_DIST)    $(DISTDIR)
-	test -z "$(strip $(EXAMPLES))" || \
-		$(INSTALL_DIR) $(DISTDIR)/examples && \
-		$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun && \
-		$(INSTALL_DATA) examples/colors-plugin.tcl $(DISTDIR)/examples && \
-		for file in examples/purepdnfun/*; do \
-			$(INSTALL_DATA) $$file $(DISTDIR)/examples/purepdnfun; \
-		done
+	$(INSTALL_DIR) $(DISTDIR)/examples && \
+	$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun && \
+	$(INSTALL_DATA) examples/colors-plugin.tcl $(DISTDIR)/examples && \
+	for file in examples/purepdnfun/*.pd; do \
+		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
+	done && \
+	$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun/relationals && \
+	for file in examples/purepdnfun/relationals/*; do \
+		$(INSTALL_DATA) $$file $(DISTDIR)/examples/purepdnfun/relationals; \
+	done
 	test -z "$(strip $(MANUAL))" || \
 		$(INSTALL_DIR) $(DISTDIR)/manual && \
 		for file in $(MANUAL); do \
