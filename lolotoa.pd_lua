@@ -32,7 +32,6 @@ function lolotoa:in_1_create(atoms)
 		l = l.next
 	end
 	if l.index == k then
-		pd.post("lolotoa: index already exists.")
 		return
 	else l.next = {next = l.next, index = k, val = {}, count = 0}
 	end
