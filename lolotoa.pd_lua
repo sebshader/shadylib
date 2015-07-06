@@ -71,7 +71,8 @@ end
 function lolotoa:in_1_nth(num)
 	local outable
 	local l = self.list
-	num = num[1] or 1
+	num = num[1]
+	if not num then return end
 	for i=1, num do
 		if not l.next then break end
 		l = l.next
