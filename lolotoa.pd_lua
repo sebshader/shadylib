@@ -44,7 +44,7 @@ function lolotoa:in_1_rem(atoms)
 	while l.next do
 		prev = l
 		l = l.next
-		if l.index and l.index > k then break end
+		if l.index and l.index >= k then break end
 	end
 	if l.index == k then
 		prev.next = l.next
