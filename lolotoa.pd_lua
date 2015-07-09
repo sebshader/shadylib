@@ -48,7 +48,7 @@ function lolotoa:in_1_rem(atoms)
 	end
 	if l.index == k then
 		prev.next = l.next
-	else pd.post("lolotoa: item " .. k .. " not found")
+	else pd.post("lolotoa: rem item " .. k .. " not found")
 	end
 end
 
@@ -115,6 +115,6 @@ function lolotoa:in_1_remmes(atoms)
 	if l.index == k then
 		if l.val[sel] then l.count = l.count - 1 end
 		l.val[sel] = nil
-	else pd.post("lolotoa: item not found")
+	else pd.post("lolotoa: remmes: item not found")
 	end
 end
