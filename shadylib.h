@@ -189,3 +189,13 @@ EXTERN int buzzmade;
 
 /* maximum harmonics for small frequencies */
 #define MAXHARM ((int)((4294967295/(2*BUZZSIZE)) - 2))
+
+#if HAVE_ALLOCA
+#define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)((n) < LIST_NGETBYTE ?  \
+        alloca((n) * sizeof(t_atom)) : getbytes((n) * sizeof(t_atom))))
+#define ATOMS_FREEA(x, n) ( \
+    ((n) < LIST_NGETBYTE || (freebytes((x), (n) * sizeof(t_atom)), 0)))
+#else
+#define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)getbytes((n) * sizeof(t_atom)))
+#define ATOMS_FREEA(x, n) (freebytes((x), (n) * sizeof(t_atom)))
+#endif

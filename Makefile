@@ -18,7 +18,8 @@ highest~.c		powclip~.c		triangulator~.c \
 inrange.c		rectoratord~.c		vdhs~.c \
 rectorator~.c		rcombf~.c		nrcombf~.c \
 shadylook.c		shadylook~.c		rover~.c \
-rminus~.c		voisim~.c		bpbuzz~.c
+rminus~.c		voisim~.c		bpbuzz~.c \
+prepender.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
