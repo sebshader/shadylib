@@ -64,7 +64,8 @@ linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd	blsqr~.pd \
 blsaw~.pd		blsqri~.pd	sqrwine~.pd \
 valuer.pd	grainyback~.pd	sampbufs~.pd \
-pitchnoise~.pd lmap.pd_lua lolotoa.pd_lua
+pitchnoise~.pd lmap.pd_lua lolotoa.pd_lua \
+mseq.pd tseq.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
