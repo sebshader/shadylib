@@ -1,5 +1,4 @@
 #N canvas 124 150 880 509 10;
-#X obj -43 29 line~;
 #X msg -40 8 0 \, 44100 1000;
 #X text -94 30 read pt.;
 #X obj -2 63 smoother~;
@@ -7,8 +6,6 @@
 #X obj 50 126 smoother~;
 #X msg 147 82 500;
 #X obj -15 187 egrains~ myarray;
-#X text 66 10 simple granular synth. argument is the name of the array
-to read from;
 #X text 175 78 tabread offset;
 #X msg 158 112 set nextarray;
 #X text 247 110 choose array;
@@ -34,12 +31,21 @@ to read from;
 #X restore 448 253 graph;
 #X text 101 194 outlets: 2 signals \, readpoint \, grain size \, and
 phase of 1st reader;
-#X connect 0 0 7 0;
-#X connect 1 0 0 0;
-#X connect 3 0 7 1;
-#X connect 5 0 7 2;
-#X connect 6 0 7 3;
-#X connect 7 0 14 0;
-#X connect 7 1 14 1;
-#X connect 10 0 7 3;
-#X connect 12 0 7 3;
+#X text 50 334 inlets: readpoint \, transposition \, grainsize \, control(floats
+are offset \, "set" message sets array name \, "window" is a scaler
+value 1 and higher that scales the hanning window down (2.g. 2 is half-width)
+;
+#X msg 303 85 window 2;
+#X text 66 10 simple granular synth. argument is the name of the array
+to read from. overlaps 2 read heads with a hanning window;
+#X obj -43 29 vline~;
+#X connect 0 0 20 0;
+#X connect 2 0 6 1;
+#X connect 4 0 6 2;
+#X connect 5 0 6 3;
+#X connect 6 0 12 0;
+#X connect 6 1 12 1;
+#X connect 8 0 6 3;
+#X connect 10 0 6 3;
+#X connect 18 0 6 3;
+#X connect 20 0 6 0;

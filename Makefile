@@ -63,7 +63,7 @@ iterate.pd		sequencer.pd		wsexp~.pd \
 linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd	blsqr~.pd \
 blsaw~.pd		blsqri~.pd	sqrwine~.pd \
-valuer.pd	grainyback~.pd	sampbufs~.pd \
+valuer.pd	sampbufs~.pd \
 pitchnoise~.pd lmap.pd_lua lolotoa.pd_lua \
 mseq.pd tseq.pd
 

@@ -200,8 +200,7 @@ with probabilities;
 ;
 #X obj 32 2516 sampbufs~;
 #X text 104 2513 same \, but stereo;
-#X obj 11 839 grainyback~;
-#X text 105 837 abstraction to use already-calculated parameters from
-other abstractions (like egrains~);
 #X text 85 518 simple wrapper for grainy~ granular synth for playback
+;
+#X text 44 837 grainyback~ went here and is being figured out possibly??
 ;
