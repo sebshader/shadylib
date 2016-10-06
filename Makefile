@@ -57,7 +57,7 @@ globaltemps.pd		repeater~.pd		ttempo.pd \
 rexpline~.pd \
 		rndmrange.pd		volpan~.pd \
 grainy~.pd		sampbuf~.pd		wavepacket~.pd \
-hanning~.pd		selected.pd		wscauchy~.pd \
+hanning~.pd		wscauchy~.pd \
 if.pd			seqbank.pd		wssincos~.pd \
 iterate.pd		sequencer.pd		wsexp~.pd \
 linnoise~.pd	whitephase~.pd makerpath.pd \

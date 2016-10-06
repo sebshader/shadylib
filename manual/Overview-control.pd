@@ -1,4 +1,4 @@
-#N canvas 123 23 748 792 12;
+#N canvas 591 25 748 792 12;
 #X obj 45 45 1-0switch;
 #X obj 48 125 ad;
 #X obj 87 125 adsr;
@@ -50,7 +50,6 @@ and the reest of the list as a message;
 #X text 103 394 exponential line;
 #X text 123 1099 line raised to variable power;
 #X obj 39 1131 receiver;
-#X obj 37 2611 urandom;
 #X text 119 1126 receive with variable receive name;
 #X obj 49 1162 rexpline;
 #X text 128 1160 reverse exponential line;
@@ -61,9 +60,6 @@ it;
 #X text 133 1230 gives depth and path of root canvas;
 #X obj 53 1265 scaler;
 #X text 116 1265 multiply-add box;
-#X obj 47 1295 selected;
-#X text 90 1321 [selected] ^-- discover the index of selected objects
-(uses iemguts);
 #X obj 18 1363 seqbank;
 #X text 78 1582 [seqbank] - a simple 16-step array with 3 rows that
 can be easily edited;
@@ -113,11 +109,6 @@ outputting a bang and resetting;
 #X obj 53 2556 udispatch;
 #X text 142 2555 listens on a port for fudi udp messages and sends
 them with lispatch;
-#X text 126 2611 Generate random numbers using urandom shell interface
-on unix;
-#X obj 29 182 customenv;
-#X text 272 234 a custom envelope that can be drawn in. Slightly difficult
-to use;
 #X text 326 2716 end;
 #X obj 31 423 globaltempr;
 #X text 124 422 global receive;
