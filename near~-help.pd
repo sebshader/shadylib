@@ -1,31 +1,31 @@
 #N canvas 505 23 669 456 10;
-#X msg 237 93 4;
-#X msg 209 98 -4;
+#X msg 239 133 4;
+#X msg 211 138 -4;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array test 88000 float 2;
 #X coords 0 1 88000 0 200 140 1 0 0;
-#X restore 10 140 graph;
-#X obj 259 236 tabwrite~ test;
-#X obj 356 180 oscope~;
-#X msg 284 88 0;
-#X obj 334 216 bang;
-#X msg 390 97 curves 0 0;
-#X msg 392 69 curves 1 1;
-#X msg 379 120 3000;
-#X obj 253 48 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 12 180 graph;
+#X obj 261 276 tabwrite~ test;
+#X obj 358 220 oscope~;
+#X msg 286 128 0;
+#X obj 336 256 bang;
+#X msg 392 137 curves 0 0;
+#X msg 394 109 curves 1 1;
+#X msg 381 160 3000;
+#X obj 255 88 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 222 131 near~ 1000 1000 1;
-#X text 321 14 attack-release (holds until 0 trigger);
-#X obj 277 60 del 1500;
-#X obj 184 2 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
-;
-#X obj 246 18 metro 2500;
-#X msg 466 73 curves \$1 \$1;
-#X floatatom 528 47 5 0 0 0 - - -;
-#X text 42 35 every stage: time and curvature;
-#X msg 125 57 release 500 0.9;
-#X msg 49 101 attack 200 1;
-#X msg 213 305 \; pd dsp 1;
+#X obj 224 171 near~ 1000 1000 1;
+#X text 323 54 attack-release (holds until 0 trigger);
+#X obj 279 100 del 1500;
+#X obj 248 29 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 248 58 metro 2500;
+#X msg 468 113 curves \$1 \$1;
+#X floatatom 530 87 5 0 0 0 - - -, f 5;
+#X text 44 75 every stage: time and curvature;
+#X msg 127 97 release 500 0.9;
+#X msg 51 141 attack 200 1;
+#X msg 215 345 \; pd dsp 1;
 #X connect 0 0 6 0;
 #X connect 0 0 11 0;
 #X connect 1 0 6 0;

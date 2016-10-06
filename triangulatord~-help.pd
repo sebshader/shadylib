@@ -1,17 +1,17 @@
 #N canvas 294 83 752 439 10;
-#X text 353 74 range: -1 to 1;
-#X obj 21 4 smoother~;
-#X msg 254 188 \; pd dsp 1;
-#X obj -10 123 oscope~;
-#X obj 94 46 smoother~;
-#X obj 157 42 smoother~;
-#X text 291 54 like triangulator~ \, but takes phasor~ instead of frequenc
-;
-#X obj 28 48 phasor~;
-#X obj 24 95 triangulatord~;
-#X text 178 11 inlets: phasor~ \, mul \, add;
-#X obj 322 137 triangulatord~ 2 5;
-#X obj 345 178 triangulatord~ 2;
+#X text 406 129 range: -1 to 1;
+#X obj 74 59 smoother~;
+#X msg 307 243 \; pd dsp 1;
+#X obj 43 178 oscope~;
+#X obj 147 101 smoother~;
+#X obj 210 97 smoother~;
+#X text 344 109 like triangulator~ \, but takes phasor~ instead of
+frequenc;
+#X obj 81 103 phasor~;
+#X obj 77 150 triangulatord~;
+#X text 231 66 inlets: phasor~ \, mul \, add;
+#X obj 375 192 triangulatord~ 2 5;
+#X obj 398 233 triangulatord~ 2;
 #X connect 1 0 7 0;
 #X connect 4 0 8 1;
 #X connect 5 0 8 2;

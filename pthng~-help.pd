@@ -1,26 +1,27 @@
 #N canvas 248 175 608 446 10;
-#X obj 187 28 smoother~;
-#X obj 194 75 phasor~;
-#X obj 269 46 smoother~;
-#X obj 156 160 *~;
-#X obj 130 127 cos~;
-#X obj 191 5 mtof;
-#X floatatom 191 -20 5 0 0 0 - - -;
-#X obj 66 -20 metro 100;
-#X obj 64 74 samphold~;
-#X obj 65 51 sig~;
-#X obj 130 103 *~;
-#X floatatom 61 26 5 0 0 0 - - -;
-#X obj 66 1 cyclecount 20;
-#X obj 69 -39 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
-#X obj 271 -41 loadbang;
-#X msg 268 3 5;
-#X obj 164 215 outputc~;
-#X text 204 158 go up harmonics by multiplying a cosine wave of a multiple
+#X obj 192 84 smoother~;
+#X obj 199 131 phasor~;
+#X obj 274 102 smoother~;
+#X obj 161 216 *~;
+#X obj 135 183 cos~;
+#X obj 196 61 mtof;
+#X floatatom 196 36 5 0 0 0 - - -, f 5;
+#X obj 71 36 metro 100;
+#X obj 69 130 samphold~;
+#X obj 70 107 sig~;
+#X obj 135 159 *~;
+#X floatatom 66 82 5 0 0 0 - - -, f 5;
+#X obj 71 57 cyclecount 20;
+#X obj 74 17 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+;
+#X obj 276 15 loadbang;
+#X msg 273 59 5;
+#X obj 169 271 outputc~;
+#X text 209 214 go up harmonics by multiplying a cosine wave of a multiple
 of the fundamental;
-#X obj 194 112 pthng~;
-#X obj 299 207 oscope~;
+#X obj 199 168 pthng~;
+#X obj 304 263 oscope~;
+#X text 279 163 hanning pulse train;
 #X connect 0 0 1 0;
 #X connect 1 0 10 0;
 #X connect 1 0 8 1;

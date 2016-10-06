@@ -1,19 +1,20 @@
-#N canvas 585 186 665 526 10;
+#N canvas 333 23 665 526 10;
 #X obj 131 84 smoother~;
 #X obj 170 304 outputc~;
 #X obj 304 304 oscope~;
 #X obj 175 210 *~ 1;
-#X floatatom 212 167 5 0 0 0 - - -;
+#X floatatom 212 167 5 0 0 0 - - -, f 5;
 #X obj 177 250 powclip~ 0.5;
 #X text 142 10 this is an exponential clipper based on taking the derivative
 of a simple polynomial function: 1 - x^y \, and then scaling it to
 be within -1 and 1;
 #X text 163 51 arg/2nd inlet (which is signal if no argument is given):
 curvature. 1 is completely curvy \, 0 is compeltely linear.;
-#X floatatom 278 214 5 0 0 0 - - -;
+#X floatatom 278 214 5 0 0 0 - - -, f 5;
 #X obj 329 248 powclip~;
 #X obj 162 169 osc~;
-#X text 393 247 more expensive;
+#X text 393 247 2nd inlet is signal without arg but is more expensive
+;
 #X connect 0 0 10 0;
 #X connect 3 0 5 0;
 #X connect 4 0 3 1;

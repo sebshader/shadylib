@@ -5,13 +5,14 @@
 #X msg 244 123 200 4 1.25;
 #X msg 420 111 hold 0;
 #X text 476 108 stop holding;
-#X text 395 22 start repeating at 400ms after setting feedback to 1
+#X text 278 14 start repeating at 400ms after setting feedback to 1
 ;
-#X msg 475 39 fb 1 \, hold 400;
+#X msg 358 31 fb 1 \, hold 400;
 #X obj 216 225 srepeater~ 4000;
 #X obj 105 221 srepeater~ 4000;
 #X obj 10 37 sndfread~;
 #X text 22 8 a simple beat repeater;
+#X msg 425 67 fb 0.9 \, hold 210;
 #X connect 3 0 8 1;
 #X connect 3 0 9 1;
 #X connect 4 0 8 1;
@@ -22,3 +23,5 @@
 #X connect 9 0 2 0;
 #X connect 10 0 9 0;
 #X connect 10 1 8 0;
+#X connect 12 0 8 1;
+#X connect 12 0 9 1;

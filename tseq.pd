@@ -1,87 +1,88 @@
 #N canvas 321 156 881 509 10;
-#X obj 5 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 1 17 17 0 10 -262144 -1
+#X obj 5 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 1 17 17 0 10 -262144 -1
+-1 0 1;
+#X obj 176 29 inlet;
+#X obj 406 150 outlet;
+#X obj 45 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 2 17 17 0 10 -262144 -1
 -1 1 1;
-#X obj 176 -51 inlet;
-#X obj 406 70 outlet;
-#X obj 45 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 2 17 17 0 10 -262144 -1
--1 1 1;
-#X obj 85 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 3 17 17 0 10 -262144 -1
--1 1 1;
-#X obj 125 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 4 17 17 0 10 -262144
--1 -1 1 1;
-#X obj 165 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 5 17 17 0 10 -262144
--1 -1 1 1;
-#X obj 205 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 6 17 17 0 10 -262144
+#X obj 85 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 3 17 17 0 10 -262144 -1
+-1 0 1;
+#X obj 125 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 4 17 17 0 10 -262144
 -1 -1 0 1;
-#X obj 245 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 7 17 17 0 10 -262144
+#X obj 165 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 5 17 17 0 10 -262144
 -1 -1 1 1;
-#X obj 285 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 8 17 17 0 10 -262144
+#X obj 205 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 6 17 17 0 10 -262144
 -1 -1 1 1;
-#X obj 325 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 9 17 17 0 10 -262144
+#X obj 245 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 7 17 17 0 10 -262144
 -1 -1 1 1;
-#X obj 365 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 10 14 17 0 10 -262144
+#X obj 285 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 8 17 17 0 10 -262144
 -1 -1 0 1;
-#X obj 405 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 11 14 17 0 10 -262144
+#X obj 325 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 9 17 17 0 10 -262144
 -1 -1 1 1;
-#X obj 445 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 12 14 17 0 10 -262144
+#X obj 365 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 10 14 17 0 10 -262144
 -1 -1 1 1;
-#X obj 485 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 13 14 17 0 10 -262144
+#X obj 405 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 11 14 17 0 10 -262144
+-1 -1 0 1;
+#X obj 445 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 12 14 17 0 10 -262144
+-1 -1 0 1;
+#X obj 485 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 13 14 17 0 10 -262144
 -1 -1 1 1;
-#X obj 525 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 14 14 17 0 10 -262144
+#X obj 525 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 14 14 17 0 10 -262144
 -1 -1 1 1;
-#X obj 565 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 15 14 17 0 10 -262144
+#X obj 565 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 15 14 17 0 10 -262144
 -1 -1 1 1;
-#X obj 605 126 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 16 14 17 0 10 -262144
+#X obj 605 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 16 14 17 0 10 -262144
 -1 -1 1 1;
-#X obj 63 72 unpack f f f f f f f f f f f f f f f f;
-#X obj 85 25 route list;
-#X obj 407 20 tabread \$0-tgls;
-#X obj 407 41 sel 1;
-#X obj 253 314 tabwrite \$0-tgls;
-#X obj 402 349 table \$0-tgls 16;
-#X obj -6 204 t f b;
-#X msg 20 227 0;
-#X obj 42 201 t f b;
-#X obj 82 200 t f b;
-#X obj 127 201 t f b;
-#X obj 166 199 t f b;
-#X obj 214 196 t f b;
-#X obj 254 195 t f b;
-#X obj 299 196 t f b;
-#X obj 337 198 t f b;
-#X obj 385 195 t f b;
-#X obj 425 194 t f b;
-#X obj 470 195 t f b;
-#X obj 480 241 t f b;
-#X obj 528 238 t f b;
-#X obj 568 237 t f b;
-#X obj 613 238 t f b;
-#X msg 68 224 1;
-#X msg 108 223 2;
-#X msg 142 224 3;
-#X msg 195 225 4;
-#X msg 240 219 5;
-#X msg 283 222 6;
-#X msg 314 219 7;
-#X msg 363 221 8;
-#X msg 411 218 9;
-#X msg 451 217 10;
-#X msg 485 218 11;
-#X msg 506 264 12;
-#X msg 554 261 13;
-#X msg 594 260 14;
-#X msg 628 261 15;
-#X obj 103 106 bng 15 250 50 0 empty empty clear 17 7 0 10 -262144
+#X obj 63 152 unpack f f f f f f f f f f f f f f f f;
+#X obj 85 105 route list;
+#X obj 407 100 tabread \$0-tgls;
+#X obj 407 121 sel 1;
+#X obj 253 394 tabwrite \$0-tgls;
+#X obj 402 429 table \$0-tgls 16;
+#X obj -6 284 t f b;
+#X msg 20 307 0;
+#X obj 42 281 t f b;
+#X obj 82 280 t f b;
+#X obj 127 281 t f b;
+#X obj 166 279 t f b;
+#X obj 214 276 t f b;
+#X obj 254 275 t f b;
+#X obj 299 276 t f b;
+#X obj 337 278 t f b;
+#X obj 385 275 t f b;
+#X obj 425 274 t f b;
+#X obj 470 275 t f b;
+#X obj 480 321 t f b;
+#X obj 528 318 t f b;
+#X obj 568 317 t f b;
+#X obj 613 318 t f b;
+#X msg 68 304 1;
+#X msg 108 303 2;
+#X msg 142 304 3;
+#X msg 195 305 4;
+#X msg 240 299 5;
+#X msg 283 302 6;
+#X msg 314 299 7;
+#X msg 363 301 8;
+#X msg 411 298 9;
+#X msg 451 297 10;
+#X msg 485 298 11;
+#X msg 506 344 12;
+#X msg 554 341 13;
+#X msg 594 340 14;
+#X msg 628 341 15;
+#X obj 103 205 bng 15 250 50 0 empty empty clear 17 7 0 10 -262144
 -1 -1;
-#X obj 163 106 bng 15 250 50 0 empty empty all_steps_on 17 7 0 10 -262144
+#X obj 163 206 bng 15 250 50 0 empty empty all_steps_on 17 7 0 10 -262144
 -1 -1;
-#X msg 86 46 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
-#X msg 165 20 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
-#X obj 176 -24 route dump clear allon;
-#X obj 262 107 bng 15 250 50 0 empty empty dump 17 7 0 10 -262144 -1
+#X msg 86 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
+#X msg 165 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;
+#X obj 176 56 route dump clear allon;
+#X obj 262 206 bng 15 250 50 0 empty empty dump 17 7 0 10 -262144 -1
 -1;
-#X obj 730 291 outlet;
-#X obj 741 260 tabdump \$0-tgls;
+#X obj 730 371 outlet;
+#X obj 519 133 array;
+#X obj 708 334 array get \$0-tgls;
 #X connect 0 0 24 0;
 #X connect 1 0 60 0;
 #X connect 3 0 26 0;
@@ -171,10 +172,10 @@
 #X connect 57 0 59 0;
 #X connect 58 0 18 0;
 #X connect 59 0 18 0;
-#X connect 60 0 63 0;
+#X connect 60 0 64 0;
 #X connect 60 1 58 0;
 #X connect 60 2 59 0;
 #X connect 60 3 19 0;
-#X connect 61 0 63 0;
-#X connect 63 0 62 0;
-#X coords 0 -1 1 1 650 70 1 0 100;
+#X connect 61 0 64 0;
+#X connect 64 0 62 0;
+#X coords 0 -1 1 1 650 70 1 0 200;

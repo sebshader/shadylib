@@ -1,12 +1,12 @@
-#N canvas 185 40 929 546 10;
+#N canvas 421 263 929 546 10;
 #X obj 160 103 osc~ 440;
-#X floatatom 158 81 5 0 0 0 - - -;
+#X floatatom 158 81 5 0 0 0 - - -, f 5;
 #X text 69 43 zoom is in samples (which the right inlet/number box/creation
 argument controls).;
 #X text 68 10 oscilloscope that calculates/writes with multiples of
 a blocksize of 4096;
-#X floatatom 330 94 5 0 0 0 - - -;
-#X text 54 300 if the second argument is nonzero the scope will not
+#X floatatom 330 94 5 0 0 0 - - -, f 5;
+#X text 54 335 if the second argument is nonzero the scope will not
 update the display after every block;
 #X msg 433 130 \; pd dsp 1;
 #X obj 465 226 oscope~ 44100;

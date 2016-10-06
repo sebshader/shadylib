@@ -2,7 +2,7 @@
 #X obj 106 115 hsl 42 23 0.01 1 1 0 \$0-v \$0-v1 volume 7 13 1 9 -245500
 -13381 -1 0 0;
 #X obj 150 115 tgl 18 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle
-dsp 2 9 1 9 -195568 -195568 -33289 1 1;
+dsp 2 9 1 9 -262144 -195568 -33289 0 1;
 #N canvas 851 349 482 356 dsp 0;
 #X obj 11 7 inlet;
 #X obj 92 226 select 0 1;
@@ -54,8 +54,8 @@ dsp 2 9 1 9 -195568 -195568 -33289 1 1;
 #X obj 22 277 sel 1;
 #X obj 105 376 outlet;
 #X obj 375 33 inlet;
-#X obj 122 17 f \$1;
-#X obj 129 -4 loadbang;
+#X obj 122 32 f \$1;
+#X obj 125 7 loadbang;
 #X obj 22 248 > 0.01;
 #X obj 104 141 bng 15 250 50 0 empty empty Start_rec. 17 7 0 10 -258113
 -4160 -1;

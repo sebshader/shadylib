@@ -1,27 +1,27 @@
 #N canvas 679 51 833 486 10;
-#X msg 237 93 4;
-#X msg 211 74 -4;
+#X msg 246 163 4;
+#X msg 220 144 -4;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array test 88000 float 2;
 #X coords 0 1 88000 0 200 140 1 0 0;
-#X restore 10 140 graph;
-#X obj 259 236 tabwrite~ test;
-#X obj 356 180 oscope~;
-#X msg 356 24 0;
-#X obj 334 216 bang;
-#X msg 390 97 curves 0 0;
-#X msg 392 69 curves 1 1;
-#X msg 318 103 3000;
-#X obj 222 131 nead~ 1000 1000 1;
-#X obj 242 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X text 387 20 this is for beginning release in the middle of the attack
+#X restore 19 210 graph;
+#X obj 268 306 tabwrite~ test;
+#X obj 365 250 oscope~;
+#X msg 365 94 0;
+#X obj 343 286 bang;
+#X msg 399 167 curves 0 0;
+#X msg 401 139 curves 1 1;
+#X msg 327 173 3000;
+#X obj 231 201 nead~ 1000 1000 1;
+#X obj 251 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 396 90 this is for beginning release in the middle of the attack
 phase if desired;
-#X obj 356 -3 del 500;
-#X text 78 -5 every stage: list of time + curvature;
-#X msg 114 19 600 0.8;
-#X msg 473 93 curves 0.9 0.9 0.9;
-#X msg 182 343 \; pd dsp 1;
+#X obj 365 67 del 500;
+#X text 87 65 every stage: list of time + curvature;
+#X msg 123 89 600 0.8;
+#X msg 482 163 curves 0.9 0.9 0.9;
+#X msg 191 413 \; pd dsp 1;
 #X connect 0 0 6 0;
 #X connect 0 0 10 0;
 #X connect 1 0 6 0;

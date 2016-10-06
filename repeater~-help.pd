@@ -1,47 +1,48 @@
 #N canvas 273 37 912 493 10;
-#X obj 221 282 outputc~;
-#X msg 187 11 set;
-#X obj 253 -23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 323 174 1;
-#X msg 576 192 0;
-#X text 560 380 table will never play past buffer size;
-#X obj 683 60 t b b;
-#X obj 683 40 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 273 312 outputc~;
+#X msg 239 41 set;
+#X obj 305 7 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 521 217 *~ 7;
-#X msg 622 190 7;
-#X obj 400 -14 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X msg 378 194 0;
-#X obj 341 -5 t b b;
-#X msg 245 48 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42 200 200
+#X msg 375 204 1;
+#X msg 628 222 0;
+#X text 612 410 table will never play past buffer size;
+#X obj 735 90 t b b;
+#X obj 735 70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 573 247 *~ 7;
+#X msg 674 220 7;
+#X obj 452 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 430 224 0;
+#X obj 393 25 t b b;
+#X msg 297 78 91.42 91.42 91.42 91.42 91.42 91.42 91.42 91.42 200 200
 200 200;
-#X obj 253 -1 iterate 4;
-#X text 141 364 inlets: 1: signal 2: list of durations \, the first
+#X obj 305 29 iterate 4;
+#X text 193 394 inlets: 1: signal 2: list of durations \, the first
 of which is the buffer size \, 3: signal cv for pitchshift in semitones
 \, 4: list of 1s and 0s which mean whether to play in reverse (1) or
 not (0) on a given step \, starting after the buffer is written;
-#X msg 354 80 2000 2000;
-#X obj 223 218 repeater~ 4000;
-#X msg 114 172 hold 0;
-#X obj 523 176 osc~ 1;
-#X msg 255 23 add2 200;
-#X floatatom 302 243 5 0 0 0 - - -;
-#X text 410 298 right outlet: number of the repeat;
-#X msg 112 146 hold 300;
-#X text -38 214 change the time as it's holding;
-#X obj 728 209 ttempo;
-#X msg 718 103 0 1;
-#X text 500 10 record/play for 725 ms twice \, then reverse for 725
+#X msg 406 110 2000 2000;
+#X obj 275 248 repeater~ 4000;
+#X msg 166 202 hold 0;
+#X obj 575 206 osc~ 1;
+#X msg 307 53 add2 200;
+#X floatatom 354 273 5 0 0 0 - - -, f 5;
+#X text 462 328 right outlet: number of the repeat;
+#X msg 164 176 hold 300;
+#X text 14 244 change the time as it's holding;
+#X obj 780 239 ttempo;
+#X msg 770 133 0 1;
+#X text 552 40 record/play for 725 ms twice \, then reverse for 725
 ms twice;
-#X msg 611 96 725 725 1450 725;
-#X text -13 123 hold for a certain amount of ms;
-#X text 392 249 buffer size is 1000 ms by default \, else specified
+#X msg 663 126 725 725 1450 725;
+#X text 39 153 hold for a certain amount of ms;
+#X text 444 279 buffer size is 1000 ms by default \, else specified
 by argument.;
-#X floatatom 180 177 5 0 0 0 - - -;
-#X msg 158 212 time \$1;
-#X obj 212 111 sndfread~;
+#X floatatom 232 207 5 0 0 0 - - -, f 5;
+#X msg 210 242 time \$1;
+#X obj 264 141 sndfread~;
+#X text 608 361 todo: clean up/make into external?;
 #X connect 1 0 13 0;
 #X connect 2 0 14 0;
 #X connect 3 0 17 3;

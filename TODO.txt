@@ -1,0 +1,11 @@
+possibly recode repeater
+
+factor out 3rd party array externals
+
+figure out bandlimited amplitude mathy stuff
+
+expline, powline, & signal versions
+
+use text for streams & messtro
+
+investigate new timing options for metro, delay & text

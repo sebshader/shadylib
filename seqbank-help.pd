@@ -1,4 +1,4 @@
-#N canvas 222 57 924 721 10;
+#N canvas 564 23 924 721 10;
 #X obj 53 321 seqbank;
 #X msg 65 288 clear 1;
 #X text 116 288 clears the whole line;
@@ -13,10 +13,10 @@
 -1 -1;
 #X text 395 242 clear everything;
 #X obj 58 67 sequencer;
-#X floatatom 122 567 5 0 0 0 - - -;
-#X floatatom 163 565 5 0 0 0 - - -;
-#X floatatom 225 569 5 0 0 0 - - -;
-#X floatatom 624 544 5 0 0 0 - - -;
+#X floatatom 122 567 5 0 0 0 - - -, f 5;
+#X floatatom 163 565 5 0 0 0 - - -, f 5;
+#X floatatom 225 569 5 0 0 0 - - -, f 5;
+#X floatatom 624 544 5 0 0 0 - - -, f 5;
 #X obj 632 291 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 651 288 output subpatch #;

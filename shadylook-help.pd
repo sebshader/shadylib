@@ -1,7 +1,7 @@
 #N canvas 422 374 783 467 10;
-#X floatatom 222 47 5 0 0 0 - - -;
+#X floatatom 222 47 5 0 0 0 - - -, f 5;
 #X obj 271 150 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 33 1;
+-1 -1 0 1;
 #X msg 313 45 gauss;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array map 100 float 3;
@@ -22,19 +22,19 @@
 ;
 #X coords 0 1 99 -1 200 140 1;
 #X restore 362 155 graph;
-#X floatatom 101 159 5 0 0 0 - - -;
-#X obj 86 26 iterate 100;
-#X msg 93 7 bang;
-#X obj 88 48 t f f;
-#X obj 88 70 * 0.01;
-#X obj 41 138 tabwrite map;
-#X msg -6 37 cauchy;
-#X obj 32 91 shadylook gauss;
-#X msg 44 60 rexp;
+#X floatatom 155 240 5 0 0 0 - - -, f 5;
+#X obj 140 107 iterate 100;
+#X msg 147 88 bang;
+#X obj 142 129 t f f;
+#X obj 142 151 * 0.01;
+#X obj 95 219 tabwrite map;
+#X msg 48 118 cauchy;
+#X obj 86 172 shadylook gauss;
+#X msg 98 141 rexp;
 #X obj 263 85 shadylook cauchy;
 #X msg 347 61 cauchy;
 #X msg 277 56 rexp;
-#X msg 42 19 gauss;
+#X msg 96 100 gauss;
 #X text 388 97 rexp: e^(-x) to ln(.001) \, normalized to lie between
 1 and 0;
 #X text 412 36 gauss: e^(-(x^2)) from 0 to x=32;

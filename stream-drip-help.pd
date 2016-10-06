@@ -1,48 +1,48 @@
 #N canvas 331 71 905 642 10;
-#X obj 318 118 random 50;
-#X text 328 50 start stream;
-#X text 93 139 write automation;
-#X obj 203 138 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 422 152 random 50;
+#X text 432 84 start stream;
+#X text 197 173 write automation;
+#X obj 307 172 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 187 260 spigot;
-#X obj 216 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 291 294 spigot;
+#X obj 320 272 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X msg 151 118 0;
-#X text 31 117 0 outputs last list;
-#X floatatom 412 138 5 0 0 0 - - -;
-#X text 400 107 (turn off and use this instead);
-#X obj 315 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X msg 255 152 0;
+#X text 135 151 0 outputs last list;
+#X floatatom 516 172 5 0 0 0 - - -, f 5;
+#X text 504 141 (turn off and use this instead);
+#X obj 419 107 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X text -100 58 left outlet: the list after 0 is received in the left
+#X text 4 92 left outlet: the list after 0 is received in the left
 inlet right outlet: the overall number of events;
-#X obj 191 292 print;
-#X obj 309 26 loadbang;
-#X text 235 290 this can clog up the console;
-#X floatatom 264 202 5 0 0 0 - - -;
-#X text 310 205 number of events in list;
-#X msg 248 114 gertrude;
-#X text 34 23 record a series of timestamp-events;
-#X text 64 259 play back;
-#X obj 166 344 print done;
-#X obj 324 91 metro 300;
-#X obj 201 171 streamwrite;
-#X text 222 373 every event has the format: k <time in ms (1 float)>
+#X obj 295 326 print;
+#X obj 413 60 loadbang;
+#X text 339 324 this can clog up the console;
+#X floatatom 368 236 5 0 0 0 - - -, f 5;
+#X text 414 239 number of events in list;
+#X msg 352 148 gertrude;
+#X text 138 57 record a series of timestamp-events;
+#X text 168 293 play back;
+#X obj 270 378 print done;
+#X obj 428 125 metro 300;
+#X obj 305 205 streamwrite;
+#X text 326 407 every event has the format: k <time in ms (1 float)>
 <whatever the event was>;
-#X msg 167 91 this is a longer thing;
-#X obj 126 279 list;
-#X msg 124 225 bang;
-#X obj 67 314 stream-drip;
-#X text 401 11 stream-drip just serializes a stream and strips the
+#X msg 271 125 this is a longer thing;
+#X obj 230 313 list;
+#X msg 228 259 bang;
+#X obj 171 348 stream-drip;
+#X text 505 45 stream-drip just serializes a stream and strips the
 "k"s from it;
-#X obj 79 458 list prepend add;
-#X obj 72 351 list split 1;
-#X obj 81 384 t f f;
-#X obj 81 410 -;
-#X obj 82 434 list;
-#X obj 130 248 t b b;
-#X msg 136 382 0;
-#X obj -3 540 print toqlist;
-#X obj 74 495 list trim;
+#X obj 183 492 list prepend add;
+#X obj 176 385 list split 1;
+#X obj 185 418 t f f;
+#X obj 185 444 -;
+#X obj 186 468 list;
+#X obj 234 282 t b b;
+#X msg 240 416 0;
+#X obj 160 565 print toqlist;
+#X obj 178 529 list trim;
 #X connect 0 0 22 1;
 #X connect 3 0 22 0;
 #X connect 4 0 12 0;

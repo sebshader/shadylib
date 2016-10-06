@@ -6,10 +6,10 @@
 #X text 215 132 so does the argument;
 #X text 233 102 right inlet sets tempo in ms;
 #X obj 165 168 print;
-#X obj 202 217 for++;
 #X text 127 219 also see:;
 #X text 84 19 output a certain number of numbers given by a list of
 iteration number and tempo multiplier;
+#X obj 202 217 iemlib/for++;
 #X connect 0 0 6 0;
 #X connect 1 0 0 0;
 #X connect 3 0 0 1;

@@ -39,7 +39,7 @@ circle~.pd	stream-drip.pd \
 		stream-map.pd 		list-count.pd \
 cosinterp~.pd		oscope~.pd \
 crusher~.pd		oscphase~.pd		streamquant.pd \
-customenv.pd		outputc~.pd		streamread-slow.pd \
+outputc~.pd		streamread-slow.pd \
 cyclecount.pd		out~.pd			streamread.pd \
 dbgr~.pd		percent.pd		streamwrite-slow.pd \
 dispatchOSC.pd		streamwrite.pd \
@@ -54,7 +54,7 @@ gate~.pd		realpass~.pd		transpose.pd \
 globaltempr.pd		receiver.pd		trinoise~.pd \
 globaltemps.pd		repeater~.pd		ttempo.pd \
 		rexpline.pd		udispatch.pd \
-rexpline~.pd		urandom.pd \
+rexpline~.pd \
 		rndmrange.pd		volpan~.pd \
 grainy~.pd		sampbuf~.pd		wavepacket~.pd \
 hanning~.pd		selected.pd		wscauchy~.pd \
@@ -64,7 +64,7 @@ linnoise~.pd	whitephase~.pd makerpath.pd \
 linterp~.pd		xfade~.pd	blsqr~.pd \
 blsaw~.pd		blsqri~.pd	sqrwine~.pd \
 valuer.pd	sampbufs~.pd \
-pitchnoise~.pd lmap.pd_lua lolotoa.pd_lua \
+pitchnoise~.pd lmap.pd_lua \
 mseq.pd tseq.pd
 
 # example patches and related files, in the 'examples' subfolder
@@ -370,9 +370,11 @@ install-doc:
 	$(INSTALL_DATA) LICENSE.txt $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/LICENSE.txt
 
 install-examples:
-	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
-	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun && \
-	$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples && \
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun
+	$(INSTALL_DATA) examples/lolotoa.pd_lua $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
+	$(INSTALL_DATA) examples/lolotoa-help.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
+	$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
 	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals && \
 	for file in examples/purepdnfun/relationals/*; do \
 		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals; \

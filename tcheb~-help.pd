@@ -1,18 +1,18 @@
 #N canvas 630 173 657 517 10;
-#X obj 152 136 tcheb~;
-#X obj 101 -21 smoother~;
-#X obj 157 110 *~;
-#X text 291 168 chebyshev waveshaper that goes up to 256 should be
+#X obj 152 176 tcheb~;
+#X obj 101 19 smoother~;
+#X obj 157 150 *~;
+#X text 291 208 chebyshev waveshaper that goes up to 256 should be
 around O(ln n) maybe?;
-#X obj 156 172 outputc~;
-#X obj 242 92 smoother~ 500;
-#X obj 220 24 smoother~ 500;
-#X obj 203 74 clip~ 0 1;
-#X obj 356 301 oscope~;
-#X obj 65 66 tabosc4~ bettersin;
-#X obj 395 46 table bettersin 4096;
-#X msg 449 82 \; bettersin sinesum 4096 1;
-#X obj 456 1 loadbang;
+#X obj 156 212 outputc~;
+#X obj 242 132 smoother~ 500;
+#X obj 220 64 smoother~ 500;
+#X obj 203 114 clip~ 0 1;
+#X obj 356 341 oscope~;
+#X obj 65 106 tabosc4~ bettersin;
+#X obj 395 86 table bettersin 4096;
+#X msg 449 122 \; bettersin sinesum 4096 1;
+#X obj 456 41 loadbang;
 #X connect 0 0 8 0;
 #X connect 0 0 4 0;
 #X connect 0 0 4 1;

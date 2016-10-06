@@ -74,6 +74,8 @@
 #X obj 435 371 clip~ 0 100;
 #X obj 338 270 *~ 1.25;
 #X obj 220 372 *~;
+#X text 87 96 Todo: Find a better way for this (mathematically) :-(
+;
 #X connect 0 0 1 0;
 #X connect 1 0 15 0;
 #X connect 2 0 15 1;

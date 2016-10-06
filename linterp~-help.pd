@@ -1,9 +1,9 @@
 #N canvas 0 22 450 300 10;
-#X obj 162 9 linterp~;
-#X obj 167 -20 shnoise~;
-#X obj 166 -66 smoother~;
-#X obj 149 41 oscope~;
-#X text 255 -29 does linear interpolation;
+#X obj 136 90 linterp~;
+#X obj 141 61 shnoise~;
+#X obj 140 15 smoother~;
+#X obj 123 122 oscope~;
+#X text 229 52 does linear interpolation;
 #X connect 0 0 3 0;
 #X connect 1 0 0 0;
 #X connect 1 1 0 1;

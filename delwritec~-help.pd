@@ -8,10 +8,10 @@
 #X obj 517 35 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 511 99 f;
-#X floatatom 557 63 5 0 0 0 - - -;
+#X floatatom 557 63 5 0 0 0 - - -, f 5;
 #X text 593 62 ms to repeat;
 #X obj 507 131 *;
-#X floatatom 547 105 5 0 0 0 - - -;
+#X floatatom 547 105 5 0 0 0 - - -, f 5;
 #X text 587 103 number of times to repeat;
 #X obj 457 143 del;
 #X obj 483 188 del;

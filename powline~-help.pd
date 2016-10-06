@@ -1,4 +1,4 @@
-#N canvas 264 33 450 300 10;
+#N canvas 264 33 520 400 10;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array spowlinetest 44100 float 3;
 #A 0 40 39.8315 39.7617 39.7082 39.663 39.6232 39.5873 39.5542 39.5234
@@ -3459,9 +3459,10 @@
 #X text 80 21 powline audio ramp;
 #X text 162 206 rightmost inlet/ argument: power;
 #X obj 77 226 powline~ 4;
-#X floatatom 182 175 5 0 0 0 - - -;
+#X floatatom 182 175 5 0 0 0 - - -, f 5;
 #X text 157 218 negative numbers are treated as denominators;
 #X obj 123 262 tabwrite~ spowlinetest;
+#X text 139 301 todo: make into external/clean up;
 #X connect 1 0 2 0;
 #X connect 1 0 18 0;
 #X connect 2 0 15 0;

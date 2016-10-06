@@ -2,13 +2,13 @@
 #X obj 246 106 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 177 81 pipebang 500;
-#X obj 226 135 mjlib/monorhythm;
+#X obj 227 127 mjlib/monorhythm;
 #X text 171 131 related:;
 #X text 228 151 stuff in rts & rjlib;
 #X msg 167 34 4 0 0.5 1.5 2.5 3;
 #X obj 172 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 341 137 messtro;
+#X obj 341 125 messtro;
 #X obj 276 50 spigot;
 #X obj 281 26 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;

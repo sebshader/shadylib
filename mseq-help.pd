@@ -1,26 +1,26 @@
-#N canvas 140 23 1142 796 10;
-#X obj 23 352 tseq;
-#X obj 127 214 cyclecount 16;
-#X obj 144 190 metro;
-#X obj 147 21 loadbang;
-#X obj 210 157 tgl 15 0 empty empty on/off 17 7 0 10 -262144 -1 -1
+#N canvas 140 23 1150 839 10;
+#X obj 155 368 tseq;
+#X obj 259 230 cyclecount 16;
+#X obj 276 206 metro;
+#X obj 279 37 loadbang;
+#X obj 342 173 tgl 15 0 empty empty on/off 17 7 0 10 -262144 -1 -1
 0 1;
-#X obj 185 109 expr 60000 / $f1;
-#X floatatom 173 66 5 0 0 0 bpm - -;
-#X floatatom 142 164 5 0 0 0 ms - -;
-#X floatatom 205 235 5 0 0 0 - - -;
-#X obj 27 294 hradio 40 1 0 16 empty empty empty 0 -8 0 10 -262144
+#X obj 317 125 expr 60000 / $f1;
+#X floatatom 305 82 5 0 0 0 bpm - -, f 5;
+#X floatatom 274 180 5 0 0 0 ms - -, f 5;
+#X floatatom 337 251 5 0 0 0 - - -, f 5;
+#X obj 159 310 hradio 40 1 0 16 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X obj 302 90 s lbang;
-#X obj 166 137 * 0.25;
-#X msg 664 217 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1;
-#X obj 747 250 bng 15 250 50 0 empty empty save_pattern 17 7 0 10 -262144
+#X obj 434 106 s lbang;
+#X obj 298 153 * 0.25;
+#X msg 796 233 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1;
+#X obj 879 266 bng 15 250 50 0 empty empty save_pattern 17 7 0 10 -262144
 -1 -1;
-#X msg 768 330 dump;
-#X obj 666 175 r lbang;
-#X obj 142 262 t f f;
-#X obj -83 380 f;
-#X obj 26 428 mseq;
+#X msg 900 346 dump;
+#X obj 798 191 r lbang;
+#X obj 274 278 t f f;
+#X obj 49 396 f;
+#X obj 158 444 mseq;
 #N canvas 879 430 450 300 show 0;
 #X obj 248 64 list prepend set;
 #X obj 259 100 list trim;
@@ -29,8 +29,8 @@
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 2 0 0 0;
-#X restore 689 384 pd show;
-#X msg 691 412 52 53 37 81 84 72 77 101 64 58 64 65 52 80 88 33;
+#X restore 821 400 pd show;
+#X msg 823 428 52 53 37 81 84 72 77 101 64 58 64 65 52 80 88 33;
 #N canvas 879 430 450 300 show 0;
 #X obj 248 64 list prepend set;
 #X obj 259 100 list trim;
@@ -39,20 +39,20 @@
 #X connect 0 0 1 0;
 #X connect 1 0 3 0;
 #X connect 2 0 0 0;
-#X restore 714 614 pd show;
-#X obj 106 682 osc~;
-#X obj 17 684 line~;
-#X msg 19 659 1 \, 0 \$1;
-#X floatatom -85 604 5 0 0 0 length - -;
-#X obj 92 716 *~;
-#X msg -8 599 0;
-#X obj 107 748 output~;
-#X obj 79 635 mtof;
-#X obj 17 633 f;
-#X obj -63 542 r lbang;
-#X msg -69 572 582;
-#X msg 169 44 66;
-#X text 394 102 messages to mseq: dump \, clear. A list is interpreted
+#X restore 846 630 pd show;
+#X obj 238 698 osc~;
+#X obj 149 700 line~;
+#X msg 151 675 1 \, 0 \$1;
+#X floatatom 88 623 5 0 0 0 length - -, f 5;
+#X obj 224 732 *~;
+#X msg 124 615 0;
+#X obj 239 764 output~;
+#X obj 211 651 mtof;
+#X obj 149 649 f;
+#X obj 69 558 r lbang;
+#X msg 63 588 582;
+#X msg 301 60 66;
+#X text 526 118 messages to mseq: dump \, clear. A list is interpreted
 as the values of the pattern. a number to the inlet will cause the
 value of that step to go out the left outlet. left outlet puts out
 values \, right outlet outputs current pattern as a list when "dump"

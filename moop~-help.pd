@@ -1,71 +1,72 @@
 #N canvas 349 23 1159 702 10;
-#X obj 221 276 oscope~;
-#X msg 3 -70 20;
-#X msg 202 46 times 0 5;
-#X msg -1 79 times 1500 2;
-#X text 292 115 sending 0 as the first argument to "times" stops the
+#X obj 268 435 oscope~;
+#X msg 50 89 20;
+#X msg 249 205 times 0 5;
+#X msg 46 238 times 1500 2;
+#X text 339 274 sending 0 as the first argument to "times" stops the
 ramp where it is \, 0 as the second argument makes everything jump
 to 0;
-#X msg 36 43 hold 1;
-#X msg 43 22 hold 0;
-#X text 318 36 the "hold (nonzero)" message causes moop to only sample
+#X msg 83 202 hold 1;
+#X msg 90 181 hold 0;
+#X text 365 195 the "hold (nonzero)" message causes moop to only sample
 the transposition at phase crossings;
-#X text 20 -115 can also use a float if the signal isn't there (like
+#X text 67 44 can also use a float if the signal isn't there (like
 most pd objects);
-#X text 432 -115 successor to loop~;
-#X text 237 257 right outlet is current phase;
-#X text 620 156 moop~ is a sample looper that takes a transposition
+#X text 479 44 successor to loop~;
+#X text 284 416 right outlet is current phase;
+#X text 667 315 moop~ is a sample looper that takes a transposition
 in the signal of it's left inlet and the message "times". the first
 argument to times is the milliseconds to ramp (regardless of transposition)
 \, and the second is the number of times to ramp \, which defaults
 to 1 if the second argument isn't there.;
-#X text 385 223 2nd arg is to hold or not;
-#X text 89 -37 set range;
-#X msg 8 -32 range 44000;
-#X text 330 92 negative periods start at "range" and go backwards;
-#X text 387 206 range is also 1st arg;
-#X obj 713 375 soundfiler;
-#X msg 725 325 read -resize \$1 test;
+#X text 432 382 2nd arg is to hold or not;
+#X text 136 122 set range;
+#X msg 55 127 range 44000;
+#X text 377 251 negative periods start at "range" and go backwards
+;
+#X text 434 365 range is also 1st arg;
+#X obj 760 534 soundfiler;
+#X msg 772 484 read -resize \$1 test;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array test 1.02984e+07 float 2;
 #X coords 0 1 1.02984e+07 -1 200 140 1;
-#X restore 490 280 graph;
-#X obj 731 294 openpanel;
-#X obj 732 263 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X restore 537 439 graph;
+#X obj 778 453 openpanel;
+#X obj 779 422 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X msg 92 -19 set test;
-#X obj -12 278 oscope~;
-#X obj 134 181 outputc~;
-#X text 33 239 buffer output;
-#X obj 221 147 dbgr~;
-#X msg 199 26 times 1500 0;
-#X obj 144 114 moop~ 44100 0 test;
-#X text 258 -48 tempo sets a number to multiply the first number of
+#X msg 139 140 set test;
+#X obj 35 437 oscope~;
+#X obj 181 340 outputc~;
+#X text 80 398 buffer output;
+#X obj 288 353 dbgr~;
+#X msg 246 185 times 1500 0;
+#X obj 191 273 moop~ 44100 0 test;
+#X text 305 111 tempo sets a number to multiply the first number of
 "times" by (default 1);
-#X text 325 77 right inlet is offset \, sampled at phase boundaries
+#X text 372 236 right inlet is offset \, sampled at phase boundaries
 ;
-#X text 251 157 index into buffer relative to onset \, 1 behind where
+#X text 298 316 index into buffer relative to onset \, 1 behind where
 tabread4~ should be;
-#X msg 172 -18 times -12.5 8000;
-#X text 393 -8 if the second argument is not a float then moop~ will
+#X msg 219 141 times -12.5 8000;
+#X text 440 151 if the second argument is not a float then moop~ will
 infinitely repeat;
-#X msg 388 -76 tempo 1;
-#X floatatom 597 -66 5 0 0 0 - - -;
-#X obj 565 -87 mstof;
-#X msg 298 0 times \$1 pluto;
-#X floatatom 574 -137 5 0 0 0 - - -;
-#X obj 573 -113 mtof;
-#X text 716 80 "hold" samples and holds transposition or not;
-#X msg 170 -92 tempo 200 \, times 2 2 \, tempo 1;
-#X text 616 -116 make a wavetable synth and play with offset and transposition.
+#X msg 435 83 tempo 1;
+#X floatatom 644 93 5 0 0 0 - - -, f 5;
+#X obj 612 72 mstof;
+#X msg 345 159 times \$1 pluto;
+#X floatatom 621 22 5 0 0 0 - - -, f 5;
+#X obj 620 46 mtof;
+#X text 763 239 "hold" samples and holds transposition or not;
+#X msg 217 67 tempo 200 \, times 2 2 \, tempo 1;
+#X text 663 43 make a wavetable synth and play with offset and transposition.
 phase does not reset when the frequency changes. (do it manually with
 another "times");
-#X msg 172 -44 times 15 100;
-#X msg 229 -62 times 2000 2;
-#X obj 228 93 line~;
-#X msg 216 72 0 \, 44100 2000;
-#X msg 197 3 times -1500 2;
-#X obj 93 11 smoother~ 100;
+#X msg 219 115 times 15 100;
+#X msg 276 97 times 2000 2;
+#X obj 275 252 line~;
+#X msg 263 231 0 \, 44100 2000;
+#X msg 244 162 times -1500 2;
+#X obj 140 170 smoother~ 100;
 #X connect 1 0 28 0;
 #X connect 2 0 28 0;
 #X connect 3 0 28 0;

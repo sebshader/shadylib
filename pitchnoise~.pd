@@ -1,10 +1,10 @@
 #N canvas 566 103 582 453 10;
-#X obj 174 -170 linterp~;
-#X obj 179 -199 shnoise~;
-#X obj 103 -136 operator~ 0;
-#X obj 82 -187 inlet~;
-#X obj 194 -238 inlet~;
-#X obj 145 -31 outlet~;
+#X obj 174 140 linterp~;
+#X obj 179 111 shnoise~;
+#X obj 103 174 operator~ 0;
+#X obj 82 123 inlet~;
+#X obj 194 72 inlet~;
+#X obj 145 279 outlet~;
 #X connect 0 0 2 1;
 #X connect 1 0 0 0;
 #X connect 1 1 0 1;

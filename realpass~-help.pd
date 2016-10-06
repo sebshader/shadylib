@@ -1,18 +1,18 @@
 #N canvas 383 112 609 445 10;
-#X obj 238 106 smoother~;
-#X obj 76 318 outputc~;
-#X text 161 278 allpass filter with delay able to be greater than 1
+#X obj 241 145 smoother~;
+#X obj 79 357 outputc~;
+#X text 164 317 allpass filter with delay able to be greater than 1
 .real coefficients;
-#X obj 112 110 smoother~ 100;
-#X floatatom 109 30 5 0 0 0 - - -;
-#X obj 113 57 mtof;
-#X obj 112 86 mstof;
-#X text 316 183 inlets: signal \, delay time \, coefficient;
-#X obj 90 -32 sndfread~;
-#X obj 223 172 realpass~ 3000;
-#X obj 103 171 realpass~ 3000;
-#X obj 185 233 *~ 0.5;
-#X obj 84 255 *~ 0.5;
+#X obj 115 149 smoother~ 100;
+#X floatatom 112 69 5 0 0 0 - - -, f 5;
+#X obj 116 96 mtof;
+#X obj 115 125 mstof;
+#X text 319 222 inlets: signal \, delay time \, coefficient;
+#X obj 93 7 sndfread~;
+#X obj 226 211 realpass~ 3000;
+#X obj 106 210 realpass~ 3000;
+#X obj 188 272 *~ 0.5;
+#X obj 87 294 *~ 0.5;
 #X connect 0 0 9 2;
 #X connect 0 0 10 2;
 #X connect 3 0 9 1;

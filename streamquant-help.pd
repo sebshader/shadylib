@@ -13,15 +13,13 @@
 #X obj 101 157 bpmtoms;
 #X obj 206 265 print quant;
 #X obj 277 229 print unquant;
-#X floatatom 199 153 5 0 0 0 - - -;
-#X text 314 179 half notes;
+#X floatatom 193 177 5 0 0 0 - - -, f 5;
 #X text 55 215 play back;
-#X obj 289 177 / 2;
-#X text 160 138 bpm in;
+#X text 177 157 bpm in;
 #X text 56 4 quantize stream to a grid of a certain number of bpm (argument
 and 3rd inlet);
 #X text 55 31 2nd inlet takes a stream;
-#X text 57 50 1st inlet takes a stream or bang. it's pretty hot.;
+#X text 57 50 1st inlet takes a stream or bang. it's hot.;
 #X connect 0 0 7 1;
 #X connect 0 0 11 0;
 #X connect 1 0 0 0;
@@ -29,7 +27,6 @@ and 3rd inlet);
 #X connect 2 0 1 0;
 #X connect 3 0 1 1;
 #X connect 4 0 0 2;
-#X connect 4 0 16 0;
 #X connect 5 0 4 0;
 #X connect 6 0 10 0;
 #X connect 7 0 8 0;

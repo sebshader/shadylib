@@ -2,11 +2,12 @@
 #X obj 188 129 meters~;
 #X obj 182 106 *~ 1;
 #X obj 181 76 osc~ 70;
-#X floatatom 240 87 5 0 0 0 - - -;
+#X floatatom 240 87 5 0 0 0 - - -, f 5;
 #X text 27 10 out without the hip~ or dac~ \, 1st argument is the frequency
 of the cutoff for the lowpass filter in the envelope follower (default
 7 hz) \, 2nd argument is how long to hold the peak amplitude display
 when over 0 db \, defaults to 1500 (ms);
+#X msg 58 100 \; pd dsp 1;
 #X connect 1 0 0 0;
 #X connect 1 0 0 1;
 #X connect 2 0 1 0;

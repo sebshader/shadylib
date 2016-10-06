@@ -1,23 +1,23 @@
 #N canvas 426 226 681 424 10;
-#X obj 270 105 random 50;
-#X obj 155 125 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 399 146 random 50;
+#X obj 284 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X obj 276 53 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 405 94 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
-#X obj 275 2 loadbang;
-#X msg 200 101 gertrude;
-#X obj 276 78 metro 300;
-#X obj 153 158 streamwrite;
-#X obj 69 186 streamread-slow;
-#X msg 68 154 bang;
-#X text -58 20 output the messages from streamwrite 1 by 1 for processing/algorithmic
+#X obj 404 43 loadbang;
+#X msg 329 142 gertrude;
+#X obj 405 119 metro 300;
+#X obj 282 199 streamwrite;
+#X obj 198 227 streamread-slow;
+#X msg 197 195 bang;
+#X text 71 61 output the messages from streamwrite 1 by 1 for processing/algorithmic
 composition;
-#X obj 75 220 print stream;
-#X obj 171 213 print done;
-#X obj 179 186 print;
-#X msg -18 93 reset;
-#X text -32 73 reset after going through it;
-#X msg 272 26 1;
+#X obj 204 261 print stream;
+#X obj 300 254 print done;
+#X obj 308 227 print;
+#X msg 111 134 reset;
+#X text 97 114 reset after going through it;
+#X msg 401 67 1;
 #X connect 0 0 6 1;
 #X connect 1 0 6 0;
 #X connect 2 0 5 0;

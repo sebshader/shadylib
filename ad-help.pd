@@ -1,8 +1,8 @@
 #N canvas 465 22 774 500 10;
-#X obj 62 147 operator~;
-#X msg 177 8 0;
-#X msg 254 -24 bang;
-#X msg 95 -28 1;
+#X obj 69 198 operator~;
+#X msg 184 59 0;
+#X msg 261 27 bang;
+#X msg 102 23 1;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array adenvelopes 132014 float 3;
 #A 0 0 9.0843e-05 0.000181686 0.000272529 0.000363372 0.000454215 0.000545058
@@ -8705,12 +8705,12 @@
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #A 132000 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 127 graph;
-#X text 76 -47 trgger;
-#X text 177 -11 note off;
-#X obj 64 182 output~;
-#X obj 52 116 *~ 500;
-#X obj 166 100 expline~;
+#X restore 452 178 graph;
+#X text 83 4 trgger;
+#X text 184 40 note off;
+#X obj 71 233 output~;
+#X obj 59 167 *~ 500;
+#X obj 173 151 expline~;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array adexpenvelopes 132014 float 3;
 #A 0 0.00146562 0.00146625 0.00146688 0.0014675 0.00146813 0.00146876
@@ -26988,9 +26988,9 @@
 0.00168312 0.00168312 0.00168312 0.00168312 0.00168312 0.00168312 0.00168312
 0.00168312;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 -28 graph;
-#X floatatom 312 76 5 0 0 0 - - -;
-#X text 227 97 numbers correspond to stages;
+#X restore 452 23 graph;
+#X floatatom 319 127 5 0 0 0 - - -, f 5;
+#X text 234 148 numbers correspond to stages;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array adrexpenvelopes 132014 float 3;
 #A 0 0.00168699 0.00231344 0.00293952 0.00356537 0.00419092 0.00481617
@@ -27751,7 +27751,7 @@
 0.977444 0.977459 0.977473 0.977488 0.977503 0.977518 0.977532 0.977547
 0.977562 0.977576 0.977591 0.977606 0.97762 0.977635 0.97765 0.977664
 0.977679 0.977694 0.977708 0.977723 0.977737 0.977752 0.977767 0.977781
-0.977796;
+0.977796 ;
 #A 6000 0.97781 0.977825 0.977839 0.977854 0.977868 0.977883 0.977897
 0.977912 0.977926 0.977941 0.977955 0.97797 0.977984 0.977999 0.978013
 0.978027 0.978042 0.978056 0.978071 0.978085 0.978099 0.978114 0.978128
@@ -47582,34 +47582,34 @@
 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06
 1.67142e-06 1.67142e-06 1.67142e-06;
 #X coords 0 1 132013 0 200 140 1 0 0;
-#X restore 437 298 graph;
-#X obj 132 263 rexpline~;
-#X obj 231 76 print stage;
-#X obj 101 89 line~;
-#X text 289 46 ar based on miller's adsr;
-#X obj 268 7 del 850;
-#X obj 130 46 ad 1 250 850;
-#X obj 226 163 tabwrite~ adexpenvelopes;
-#X obj 225 237 tabwrite~ adenvelopes;
-#X obj 192 321 tabwrite~ adrexpenvelopes;
+#X restore 444 349 graph;
+#X obj 139 314 rexpline~;
+#X obj 238 127 print stage;
+#X obj 108 140 line~;
+#X obj 275 58 del 850;
+#X obj 137 97 ad 1 250 850;
+#X obj 233 214 tabwrite~ adexpenvelopes;
+#X obj 232 288 tabwrite~ adenvelopes;
+#X obj 199 372 tabwrite~ adrexpenvelopes;
+#X text 239 97 ad based on miller's adsr;
 #X connect 0 0 7 0;
 #X connect 0 0 7 1;
-#X connect 1 0 19 0;
-#X connect 2 0 18 0;
+#X connect 1 0 18 0;
+#X connect 2 0 17 0;
+#X connect 2 0 19 0;
 #X connect 2 0 20 0;
 #X connect 2 0 21 0;
-#X connect 2 0 22 0;
 #X connect 3 0 2 0;
-#X connect 3 0 19 0;
+#X connect 3 0 18 0;
 #X connect 8 0 0 0;
-#X connect 9 0 20 0;
-#X connect 14 0 22 0;
+#X connect 9 0 19 0;
+#X connect 14 0 21 0;
 #X connect 16 0 0 1;
 #X connect 16 0 8 0;
-#X connect 16 0 21 0;
-#X connect 18 0 1 0;
-#X connect 19 0 9 0;
-#X connect 19 0 14 0;
-#X connect 19 0 16 0;
-#X connect 19 1 11 0;
-#X connect 19 1 15 0;
+#X connect 16 0 20 0;
+#X connect 17 0 1 0;
+#X connect 18 0 9 0;
+#X connect 18 0 14 0;
+#X connect 18 0 16 0;
+#X connect 18 1 11 0;
+#X connect 18 1 15 0;

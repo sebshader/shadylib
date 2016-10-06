@@ -1,37 +1,37 @@
 #N canvas 233 175 553 312 10;
-#X obj 110 5 cup;
-#X msg 141 5 0;
-#X floatatom 109 54 5 0 0 0 - - -;
-#X obj 173 -2 select 10;
-#X obj 173 21 delay 0;
-#X obj 110 -19 metro 500;
-#X floatatom 97 127 5 0 0 0 - - -;
-#X floatatom 170 78 5 0 0 0 - - -;
-#X obj 107 -93 banger;
-#X msg 176 57 11;
-#X floatatom 128 77 5 0 0 0 - - -;
-#X obj 116 -68 t b b;
-#X obj 116 -42 del 50;
-#X text 220 99 works by multiplying number of steps and subdivision
+#X msg 141 125 0;
+#X floatatom 109 174 5 0 0 0 - - -, f 5;
+#X obj 173 118 select 10;
+#X obj 173 141 delay 0;
+#X obj 110 101 metro 500;
+#X floatatom 97 247 5 0 0 0 - - -, f 5;
+#X floatatom 170 198 5 0 0 0 - - -, f 5;
+#X obj 107 27 banger;
+#X msg 176 177 11;
+#X floatatom 128 197 5 0 0 0 - - -, f 5;
+#X obj 116 52 t b b;
+#X obj 116 78 del 50;
+#X text 220 219 works by multiplying number of steps and subdivision
 ;
-#X text 272 0 << could use cyclecount here instead;
-#X text 30 158 make sure the 3rd inlet or second argument reflects
+#X text 272 120 << could use cyclecount here instead;
+#X text 30 278 make sure the 3rd inlet or second argument reflects
 the range of the counter;
-#X obj 103 98 macrodivide 2 11;
-#X text 92 -112 built to sync up at 0 \, based on the last step (11
-here);
-#X connect 0 0 3 0;
-#X connect 0 0 2 0;
-#X connect 1 0 0 0;
-#X connect 2 0 16 0;
-#X connect 3 0 4 0;
-#X connect 4 0 1 0;
-#X connect 5 0 0 0;
-#X connect 7 0 16 2;
-#X connect 8 0 11 0;
-#X connect 9 0 7 0;
-#X connect 10 0 16 1;
-#X connect 11 0 12 0;
-#X connect 11 1 9 0;
-#X connect 12 0 5 0;
-#X connect 16 0 6 0;
+#X obj 103 218 macrodivide 2 11;
+#X text 92 8 built to sync up at 0 \, based on the last step (11 here)
+;
+#X obj 72 126 ekext/cup;
+#X connect 0 0 17 0;
+#X connect 1 0 15 0;
+#X connect 2 0 3 0;
+#X connect 3 0 0 0;
+#X connect 4 0 17 0;
+#X connect 6 0 15 2;
+#X connect 7 0 10 0;
+#X connect 8 0 6 0;
+#X connect 9 0 15 1;
+#X connect 10 0 11 0;
+#X connect 10 1 8 0;
+#X connect 11 0 4 0;
+#X connect 15 0 5 0;
+#X connect 17 0 2 0;
+#X connect 17 0 1 0;

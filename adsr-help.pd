@@ -1,8 +1,8 @@
 #N canvas 465 22 774 500 10;
-#X obj 62 147 operator~;
-#X msg 177 8 0;
-#X msg 254 -24 bang;
-#X msg 95 -28 1;
+#X obj 56 198 operator~;
+#X msg 171 59 0;
+#X msg 248 27 bang;
+#X msg 89 23 1;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array envelopes 132014 float 3;
 #A 0 0 4.54215e-05 9.0843e-05 0.000136265 0.000181686 0.000227108 0.000272529
@@ -16277,15 +16277,15 @@
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #A 132000 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 127 graph;
-#X obj 225 237 tabwrite~ envelopes;
-#X text 76 -47 trgger;
-#X text 177 -11 note off;
-#X obj 64 182 output~;
-#X obj 52 116 *~ 500;
-#X text 289 46 miller's adsr;
-#X obj 166 100 expline~;
-#X obj 226 163 tabwrite~ expenvelopes;
+#X restore 439 178 graph;
+#X obj 219 288 tabwrite~ envelopes;
+#X text 70 4 trgger;
+#X text 171 40 note off;
+#X obj 58 233 output~;
+#X obj 46 167 *~ 500;
+#X text 283 97 miller's adsr;
+#X obj 160 151 expline~;
+#X obj 220 214 tabwrite~ expenvelopes;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array expenvelopes 132014 float 3;
 #A 0 4.03507e-06 4.03507e-06 4.03507e-06 4.03507e-06 4.03507e-06 4.03507e-06
@@ -33264,11 +33264,11 @@
 0.00118363 0.00118363 0.00118363 0.00118363 0.00118363 0.00118363 0.00118363
 0.00118363;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 -28 graph;
-#X floatatom 312 76 5 0 0 0 - - -;
-#X text 227 97 numbers correspond to stages;
-#X obj 268 7 del 1400;
-#X obj 130 46 adsr 1 500 850 80 1500;
+#X restore 439 23 graph;
+#X floatatom 306 127 5 0 0 0 - - -, f 5;
+#X text 221 148 numbers correspond to stages;
+#X obj 262 58 del 1400;
+#X obj 124 97 adsr 1 500 850 80 1500;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array rexpenvelopes 132014 float 3;
 #A 0 0.00147903 0.00147903 0.00147903 0.00147903 0.00147903 0.00147903
@@ -50921,11 +50921,11 @@
 3.22806e-06 3.22806e-06 3.22806e-06 3.22806e-06 3.22806e-06 3.22806e-06
 3.22806e-06 3.22806e-06 3.22806e-06;
 #X coords 0 1 132013 0 200 140 1 0 0;
-#X restore 437 298 graph;
-#X obj 132 263 rexpline~;
-#X obj 231 76 print stage;
-#X obj 192 321 tabwrite~ rexpenvelopes;
-#X obj 101 89 line~;
+#X restore 431 349 graph;
+#X obj 126 314 rexpline~;
+#X obj 225 127 print stage;
+#X obj 186 372 tabwrite~ rexpenvelopes;
+#X obj 95 140 line~;
 #X connect 0 0 8 0;
 #X connect 0 0 8 1;
 #X connect 1 0 17 0;

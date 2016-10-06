@@ -1,7 +1,7 @@
 #N canvas 0 22 450 300 10;
-#X obj 181 192 testro;
-#X floatatom 183 166 5 0 0 0 - - -;
-#X obj 219 136 testro 100;
-#X text 93 90 quick metro for debugging \, 1st argument is rate. defaults
+#X obj 134 191 testro;
+#X floatatom 136 165 5 0 0 0 - - -, f 5;
+#X obj 172 135 testro 100;
+#X text 46 89 quick metro for debugging \, 1st argument is rate. defaults
 to 200 ms;
 #X connect 1 0 0 0;

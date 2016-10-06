@@ -1,8 +1,8 @@
 #N canvas 465 22 774 500 10;
-#X obj 62 147 operator~;
-#X msg 177 8 0;
-#X msg 254 -24 bang;
-#X msg 95 -28 1;
+#X obj 91 200 operator~;
+#X msg 206 61 0;
+#X msg 283 29 bang;
+#X msg 124 25 1;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array arenvelopes 132014 float 3;
 #A 0 0 9.0843e-05 0.000181686 0.000272529 0.000363372 0.000454215 0.000545058
@@ -8703,12 +8703,12 @@
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #A 132000 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 127 graph;
-#X text 76 -47 trgger;
-#X text 177 -11 note off;
-#X obj 64 182 output~;
-#X obj 52 116 *~ 500;
-#X obj 166 100 expline~;
+#X restore 474 180 graph;
+#X text 105 6 trgger;
+#X text 206 42 note off;
+#X obj 93 235 output~;
+#X obj 81 169 *~ 500;
+#X obj 195 153 expline~;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array arexpenvelopes 132014 float 3;
 #A 0 0.000105618 0.000106247 0.000106877 0.000107506 0.000108137 0.000108767
@@ -26530,9 +26530,9 @@
 0.00168413 0.00168413 0.00168413 0.00168413 0.00168413 0.00168413 0.00168413
 0.00168413;
 #X coords 0 1 132014 0 200 140 1 0 0;
-#X restore 445 -28 graph;
-#X floatatom 312 76 5 0 0 0 - - -;
-#X text 227 97 numbers correspond to stages;
+#X restore 474 25 graph;
+#X floatatom 341 129 5 0 0 0 - - -, f 5;
+#X text 256 150 numbers correspond to stages;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array arrexpenvelopes 132014 float 3;
 #A 0 0.00168866 0.0023151 0.00294119 0.00356704 0.00419259 0.00481784
@@ -46041,16 +46041,16 @@
 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06 1.67142e-06
 1.67142e-06 1.67142e-06 1.67142e-06;
 #X coords 0 1 132013 0 200 140 1 0 0;
-#X restore 437 298 graph;
-#X obj 132 263 rexpline~;
-#X obj 231 76 print stage;
-#X obj 101 89 line~;
-#X text 289 46 ar based on miller's adsr;
-#X obj 130 46 ar 1 250 850;
-#X obj 268 7 del 850;
-#X obj 226 163 tabwrite~ arexpenvelopes;
-#X obj 225 237 tabwrite~ arenvelopes;
-#X obj 192 321 tabwrite~ arrexpenvelopes;
+#X restore 466 351 graph;
+#X obj 161 316 rexpline~;
+#X obj 260 129 print stage;
+#X obj 130 142 line~;
+#X text 318 99 ar based on miller's adsr;
+#X obj 159 99 ar 1 250 850;
+#X obj 297 60 del 850;
+#X obj 255 216 tabwrite~ arexpenvelopes;
+#X obj 254 290 tabwrite~ arenvelopes;
+#X obj 221 374 tabwrite~ arrexpenvelopes;
 #X connect 0 0 7 0;
 #X connect 0 0 7 1;
 #X connect 1 0 18 0;
