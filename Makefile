@@ -371,16 +371,13 @@ install-doc:
 
 install-examples:
 	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
-	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun
+	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/deprecated
 	$(INSTALL_DATA) examples/lolotoa.pd_lua $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
 	$(INSTALL_DATA) examples/lolotoa-help.pd $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
 	$(INSTALL_DATA) examples/colors-plugin.tcl $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples
-	$(INSTALL_DIR) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals && \
-	for file in examples/purepdnfun/relationals/*; do \
-		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun/relationals; \
-	done && \
-	for file in examples/purepdnfun/*.pd; do \
-		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
+	
+	for file in examples/deprecated/*.pd; do \
+		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/deprecated; \
 	done
 
 install-manual:
@@ -453,16 +450,13 @@ dist: $(DISTDIR)
 		$(INSTALL_DATA) $(HELPPATCHES) $(DISTDIR)
 	test -z "$(strip $(EXTRA_DIST))" || \
 		$(INSTALL_DATA) $(EXTRA_DIST)    $(DISTDIR)
-	$(INSTALL_DIR) $(DISTDIR)/examples && \
-	$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun && \
-	$(INSTALL_DATA) examples/colors-plugin.tcl $(DISTDIR)/examples && \
-	for file in examples/purepdnfun/*.pd; do \
-		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/purepdnfun; \
-	done && \
-	$(INSTALL_DIR) $(DISTDIR)/examples/purepdnfun/relationals && \
-	for file in examples/purepdnfun/relationals/*; do \
-		$(INSTALL_DATA) $$file $(DISTDIR)/examples/purepdnfun/relationals; \
-	done
+	$(INSTALL_DIR) $(DISTDIR)/examples
+	$(INSTALL_DIR) $(DISTDIR)/examples/deprecated
+	$(INSTALL_DATA) examples/colors-plugin.tcl $(DISTDIR)/examples
+	for file in examples/deprecated/*.pd; do \
+		$(INSTALL_DATA) $$file $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/examples/deprecated; \
+	done 
+
 	test -z "$(strip $(MANUAL))" || \
 		$(INSTALL_DIR) $(DISTDIR)/manual && \
 		for file in $(MANUAL); do \
