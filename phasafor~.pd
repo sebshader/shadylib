@@ -1,4 +1,4 @@
-#N canvas 511 138 889 514 12;
+#N canvas 565 99 889 514 12;
 #X obj 78 299 cos~;
 #X obj 78 276 *~;
 #X obj 121 299 cos~;
@@ -44,7 +44,8 @@
 #X obj 177 96 rminus~ 1;
 #X obj 534 157 sel 0;
 #X obj 219 55 zexy/==~ 0;
-#X obj 244 259 operatord~ 0.5 -0.25;
+#X obj 239 229 scaler~ 0.5 -0.25;
+#X obj 244 259 cos~;
 #X connect 0 0 6 1;
 #X connect 0 0 8 0;
 #X connect 1 0 5 0;
@@ -90,4 +91,5 @@
 #X connect 43 1 30 0;
 #X connect 44 0 36 0;
 #X connect 44 0 42 0;
-#X connect 45 0 9 0;
+#X connect 45 0 46 0;
+#X connect 46 0 9 0;
