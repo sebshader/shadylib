@@ -1,27 +1,27 @@
 #N canvas 236 26 1133 820 10;
-#X obj 548 233 dyncompand~;
-#X obj 556 208 sig~;
-#X obj 588 202 sig~;
-#X obj 662 204 sig~;
-#X floatatom 564 66 5 0 0 0 - - -;
-#X floatatom 753 -7 5 0 0 0 - - -;
-#X floatatom 702 5 5 0 0 0 - - -;
-#X floatatom 810 -19 5 0 0 0 - - -;
-#X obj 560 302 dac~;
-#X obj 484 90 smoother~;
-#X msg 643 -68 0.41 0.75 0.95;
-#X obj 648 -46 unpack f f f;
-#X obj 474 152 phasor~;
-#X obj 672 298 oscope~;
-#X obj 626 189 sig~;
-#X obj 580 264 -~ 1;
-#X obj 486 195 *~ 2;
-#X text 228 -46 don't have overlapping values. Max~ and min~ keep the
+#X obj 453 452 dyncompand~;
+#X obj 461 427 sig~;
+#X obj 493 421 sig~;
+#X obj 567 423 sig~;
+#X floatatom 469 285 5 0 0 0 - - -, f 5;
+#X floatatom 658 212 5 0 0 0 - - -, f 5;
+#X floatatom 607 224 5 0 0 0 - - -, f 5;
+#X floatatom 715 200 5 0 0 0 - - -, f 5;
+#X obj 465 521 dac~;
+#X obj 389 309 smoother~;
+#X msg 548 151 0.41 0.75 0.95;
+#X obj 553 173 unpack f f f;
+#X obj 379 371 phasor~;
+#X obj 577 517 oscope~;
+#X obj 531 408 sig~;
+#X obj 485 483 -~ 1;
+#X obj 391 414 *~ 2;
+#X text 133 173 don't have overlapping values. Max~ and min~ keep the
 split points so they don't overlap. they might move \, though. doesn't
 accept negative numbers for split points;
-#X text 135 147 probably dsp-heavy \, only use for dynamic compression
+#X text 40 366 probably dsp-heavy \, only use for dynamic compression
 ;
-#X obj 630 -111 banger;
+#X obj 535 108 banger;
 #X connect 0 0 8 0;
 #X connect 0 0 8 1;
 #X connect 0 0 15 0;

@@ -28,7 +28,7 @@ t_float readtab(t_tabtype type, t_float index) {
 /* todo: make these names less similar */
 void maketabs(void) {
 	t_float lnths = log(.001)/(SHABLESIZE - 1);
-	t_float incr = 32.f/(SHABLESIZE - 1);
+	t_float incr = 4.f/(SHABLESIZE - 1);
 	t_float sqr;
 	rexptab = getbytes(sizeof(t_float)*SHABLESIZE*3);
 	gaustab = rexptab + SHABLESIZE;
@@ -36,9 +36,10 @@ void maketabs(void) {
 	for(int i = 0; i < SHABLESIZE; i++) {
 		rexptab[i] = (exp(lnths*i) - .001)/.999;
 		sqr = incr*i;
+		gaustab[i] = exp(-(sqr*sqr));
+		sqr = sqr*8;
 		sqr *= sqr;
 		couchtab[i] = 1/(sqr + 1);
-		gaustab[i] = exp(-(sqr));
 	}
 	tabmade = 1;
 }
