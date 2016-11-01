@@ -34,7 +34,7 @@ bangb.pd		modulator~.pd		sndfwritem~.pd \
 banger.pd		mstof.pd		sndfwrites~.pd \
 bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
-stoms.pd 		karstrongo~.pd\
+stoms.pd\
 circle~.pd	stream-drip.pd \
 		stream-map.pd 		list-count.pd \
 cosinterp~.pd		oscope~.pd \
@@ -47,12 +47,12 @@ downsample~.pd		phasafor~.pd		subdivide.pd \
 egrains~.pd		phasemod~.pd \
 expline.pd		pipebang.pd		switchnramp~.pd \
 expline~.pd		pitchshift~.pd		synlets.pd \
-freqshifterd~.pd	powline.pd		tabsave.pd \
+freqshifterd~.pd	powline.pd\
 freqshifter~.pd		powline~.pd		temposet.pd \
 gainc~.pd		pthng~.pd	testro.pd \
 gate~.pd		realpass~.pd		transpose.pd \
-globaltempr.pd		receiver.pd		trinoise~.pd \
-globaltemps.pd		repeater~.pd		ttempo.pd \
+globtempr.pd		receiver.pd		trinoise~.pd \
+globtemps.pd		repeater~.pd		ttempo.pd \
 		rexpline.pd		udispatch.pd \
 rexpline~.pd \
 		rndmrange.pd		volpan~.pd \

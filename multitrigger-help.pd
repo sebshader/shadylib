@@ -1,10 +1,10 @@
-#N canvas 0 23 450 300 10;
+#N canvas 341 145 450 300 10;
 #X obj 151 82 multitrigger 3;
 #X obj 160 62 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 159 103 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X floatatom 243 56 5 0 0 0 - - -;
+#X floatatom 243 56 5 0 0 0 - - -, f 5;
 #X text 89 120 right outlet gets a bang followed instantaneously by
 the left;
 #X text 67 8 output after receiving number of bangs equal to creation

@@ -1,0 +1,18 @@
+#N canvas 185 198 450 300 10;
+#X obj 130 38 inlet;
+#X obj 176 15 loadbang;
+#X obj 176 63 f \$1;
+#X obj 176 89 sel 0;
+#X obj 203 110 bpmtoms;
+#X obj 218 80 symbol \$2;
+#X obj 203 134 s;
+#X obj 189 172 value \$2;
+#X text 245 175 just for loading;
+#X connect 0 0 2 0;
+#X connect 1 0 5 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 1 4 0;
+#X connect 4 0 6 0;
+#X connect 4 0 7 0;
+#X connect 5 0 6 1;

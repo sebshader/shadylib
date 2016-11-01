@@ -1,9 +1,0 @@
-#N canvas 530 173 450 300 10;
-#X obj 267 121 globaltempr;
-#X floatatom 255 150 5 0 0 0 - - -, f 5;
-#X floatatom 105 18 5 0 0 0 - - -, f 5;
-#X obj 95 49 globaltemps 50;
-#X text 69 84 first argument sets global tempo in bpm and sends it
-in ms if given;
-#X connect 0 0 1 0;
-#X connect 2 0 3 0;

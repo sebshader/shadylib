@@ -5,52 +5,52 @@
 #X obj 125 373 s \$0-tobox0;
 #X obj 705 145 vsl 40 128 0 127 0 0 \$0-setbox15 \$0-frombox15 16 14
 60 0 10 -262144 -1 -1 3300 1;
-#X floatatom 706 125 6 0 0 2 - #0-tobox15 #0-frombox15;
+#X floatatom 706 125 6 0 0 2 - #0-tobox15 #0-frombox15, f 6;
 #X obj 665 145 vsl 40 128 0 127 0 0 \$0-setbox14 \$0-frombox14 15 14
 60 0 10 -262144 -1 -1 8800 1;
-#X floatatom 666 125 6 0 0 2 - #0-tobox14 #0-frombox14;
+#X floatatom 666 125 6 0 0 2 - #0-tobox14 #0-frombox14, f 6;
 #X obj 625 145 vsl 40 128 0 127 0 0 \$0-setbox13 \$0-frombox13 14 14
 60 0 10 -262144 -1 -1 8000 1;
-#X floatatom 626 125 6 0 0 2 - #0-tobox13 #0-frombox13;
+#X floatatom 626 125 6 0 0 2 - #0-tobox13 #0-frombox13, f 6;
 #X obj 585 145 vsl 40 128 0 127 0 0 \$0-setbox12 \$0-frombox12 13 14
 60 0 10 -262144 -1 -1 5200 1;
-#X floatatom 586 125 6 0 0 2 - #0-tobox12 #0-frombox12;
+#X floatatom 586 125 6 0 0 2 - #0-tobox12 #0-frombox12, f 6;
 #X obj 545 145 vsl 40 128 0 127 0 0 \$0-setbox11 \$0-frombox11 12 14
 60 0 10 -262144 -1 -1 6500 1;
-#X floatatom 546 125 6 0 0 2 - #0-tobox11 #0-frombox11;
+#X floatatom 546 125 6 0 0 2 - #0-tobox11 #0-frombox11, f 6;
 #X obj 505 145 vsl 40 128 0 127 0 0 \$0-setbox10 \$0-frombox10 11 14
 60 0 10 -262144 -1 -1 6400 1;
-#X floatatom 506 125 6 0 0 2 - #0-tobox10 #0-frombox10;
+#X floatatom 506 125 6 0 0 2 - #0-tobox10 #0-frombox10, f 6;
 #X obj 465 145 vsl 40 128 0 127 0 0 \$0-setbox9 \$0-frombox9 10 14
 60 0 10 -262144 -1 -1 5800 1;
-#X floatatom 466 125 6 0 0 2 - #0-tobox9 #0-frombox9;
+#X floatatom 466 125 6 0 0 2 - #0-tobox9 #0-frombox9, f 6;
 #X obj 425 145 vsl 40 128 0 127 0 0 \$0-setbox8 \$0-frombox8 9 17 60
 0 10 -262144 -1 -1 6400 1;
-#X floatatom 426 125 6 0 0 2 - #0-tobox8 #0-frombox8;
+#X floatatom 426 125 6 0 0 2 - #0-tobox8 #0-frombox8, f 6;
 #X obj 385 145 vsl 40 128 0 127 0 0 \$0-setbox7 \$0-frombox7 8 17 60
 0 10 -262144 -1 -1 10100 1;
-#X floatatom 386 125 6 0 0 2 - #0-tobox7 #0-frombox7;
+#X floatatom 386 125 6 0 0 2 - #0-tobox7 #0-frombox7, f 6;
 #X obj 345 145 vsl 40 128 0 127 0 0 \$0-setbox6 \$0-frombox6 7 17 60
 0 10 -262144 -1 -1 7700 1;
-#X floatatom 346 125 6 0 0 2 - #0-tobox6 #0-frombox6;
+#X floatatom 346 125 6 0 0 2 - #0-tobox6 #0-frombox6, f 6;
 #X obj 305 145 vsl 40 128 0 127 0 0 \$0-setbox5 \$0-frombox5 6 17 60
 0 10 -262144 -1 -1 7200 1;
-#X floatatom 306 125 6 0 0 2 - #0-tobox5 #0-frombox5;
+#X floatatom 306 125 6 0 0 2 - #0-tobox5 #0-frombox5, f 6;
 #X obj 265 145 vsl 40 128 0 127 0 0 \$0-setbox4 \$0-frombox4 5 17 60
 0 10 -262144 -1 -1 8400 1;
-#X floatatom 266 125 6 0 0 2 - #0-tobox4 #0-frombox4;
+#X floatatom 266 125 6 0 0 2 - #0-tobox4 #0-frombox4, f 6;
 #X obj 225 145 vsl 40 128 0 127 0 0 \$0-setbox3 \$0-frombox3 4 17 60
 0 10 -262144 -1 -1 8100 1;
-#X floatatom 226 125 6 0 0 2 - #0-tobox3 #0-frombox3;
+#X floatatom 226 125 6 0 0 2 - #0-tobox3 #0-frombox3, f 6;
 #X obj 185 145 vsl 40 128 0 127 0 0 \$0-setbox2 \$0-frombox2 3 17 60
 0 10 -262144 -1 -1 3700 1;
-#X floatatom 186 125 6 0 0 2 - #0-tobox2 #0-frombox2;
+#X floatatom 186 125 6 0 0 2 - #0-tobox2 #0-frombox2, f 6;
 #X obj 145 145 vsl 40 128 0 127 0 0 \$0-setbox1 \$0-frombox1 2 17 60
 0 10 -262144 -1 -1 5300 1;
-#X floatatom 146 125 6 0 0 2 - #0-tobox1 #0-frombox1;
+#X floatatom 146 125 6 0 0 2 - #0-tobox1 #0-frombox1, f 6;
 #X obj 105 145 vsl 40 128 0 127 0 0 \$0-setbox0 \$0-frombox0 1 17 60
 0 10 -262144 -1 -1 5200 1;
-#X floatatom 106 125 6 0 0 2 - #0-tobox0 #0-frombox0;
+#X floatatom 106 125 6 0 0 2 - #0-tobox0 #0-frombox0, f 6;
 #X msg 216 354 set \$1;
 #X obj 215 333 r \$0-setbox1;
 #X obj 216 375 s \$0-tobox1;
@@ -141,7 +141,8 @@
 #X msg 287 54 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X obj 258 106 bng 15 250 50 0 empty empty clear 17 7 0 10 -262144
 -1 -1;
-#X obj 842 194 tabdump;
+#X obj 842 194 array get \$0-vals;
+#X text 809 172 you can substitute tabdump;
 #X connect 0 0 121 0;
 #X connect 1 0 2 0;
 #X connect 1 0 87 0;
