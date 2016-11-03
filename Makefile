@@ -25,7 +25,7 @@ prepender.c pinb~.c astep~.c
 # be included automatically
 PDOBJECTS = 1-0switch.pd		lispatch.pd		shnoise~.pd \
 1-0switch~.pd		list-dripdex.pd		show.pd \
-list-const.pd		sigenv~.pd \
+		sigenv~.pd \
 			macrodivide.pd		signum~.pd \
 ad.pd			messtro.pd		sin~.pd \
 adsr.pd			meters~.pd		smoother~.pd \
@@ -36,7 +36,7 @@ bilexnoise~.pd		mstos.pd		sqr.pd \
 bpmtoms.pd		multitrigger.pd		srepeater~.pd \
 stoms.pd\
 circle~.pd	stream-drip.pd \
-		stream-map.pd 		list-count.pd \
+		stream-map.pd\
 cosinterp~.pd		oscope~.pd \
 crusher~.pd		oscphase~.pd		streamquant.pd \
 outputc~.pd		streamread-slow.pd \

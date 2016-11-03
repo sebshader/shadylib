@@ -1,26 +1,16 @@
 #N canvas 694 174 450 300 10;
 #X msg 213 146 bang;
-#X floatatom 72 200 9 0 0 0 - - -;
+#X floatatom 72 200 9 0 0 0 - - -, f 9;
 #X text 97 218 from soundfiler;
 #X obj 61 148 openpanel;
 #X obj 75 130 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 291 173 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 305 145 r sampbufhelp-rdr;
-#X obj 336 190 s sampbufhelp;
-#X msg 331 169 normalize;
-#X text 35 69 also sends (name of buffers)-rdr a bang once initialized
-;
 #X text 58 2 simple wrapper for stereo soundfiler: 1st & 2nd arguments
 are names of (contained) buffers \, 3rd is the name of the soundfile.
 the 1st inlet is also the soundfile name \, 2nd inlet queries the buffer
 length \, and the outlet reports it;
 #X obj 63 175 sampbufs~ sampbufhelp sampbufhelp2;
-#X connect 0 0 11 1;
-#X connect 3 0 11 0;
+#X connect 0 0 6 1;
+#X connect 3 0 6 0;
 #X connect 4 0 3 0;
-#X connect 6 0 5 0;
-#X connect 6 0 8 0;
-#X connect 8 0 7 0;
-#X connect 11 0 1 0;
+#X connect 6 0 1 0;

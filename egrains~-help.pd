@@ -1,51 +1,76 @@
-#N canvas 124 150 880 509 10;
-#X msg 15 21 0 \, 44100 1000;
-#X text 49 45 read pt.;
-#X obj 100 79 smoother~;
-#X text 99 60 transposition;
-#X obj 152 142 smoother~;
-#X msg 249 98 500;
-#X obj 87 203 egrains~ myarray;
-#X text 277 94 tabread offset;
-#X msg 260 128 set nextarray;
-#X text 349 126 choose array;
-#X msg 262 165 phase 0.5;
-#X text 321 165 set phase of 1st (2nd will be off by 1/2 a cycle);
-#X obj 86 252 outputc~;
-#X text 11 124 grain freq \, negative is backwards;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array myarray 100 float 3;
-#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0;
-#X coords 0 1 99 -1 200 140 1;
-#X restore 637 84 graph;
-#N canvas 0 22 450 278 (subpatch) 0;
-#X array nextarray 100 float 3;
-#A 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
-0;
-#X coords 0 1 99 -1 200 140 1;
-#X restore 550 269 graph;
-#X text 203 210 outlets: 2 signals \, readpoint \, grain size \, and
+#N canvas 384 128 879 661 10;
+#X text 54 222 read pt.;
+#X obj 126 256 smoother~;
+#X text 125 237 transposition;
+#X obj 178 319 smoother~;
+#X msg 275 275 500;
+#X obj 113 380 egrains~ myarray;
+#X text 303 271 tabread offset;
+#X msg 286 305 set nextarray;
+#X text 375 303 choose array;
+#X text 347 342 set phase of 1st (2nd will be off by 1/2 a cycle);
+#X obj 118 452 outputc~;
+#X text 37 301 grain freq \, negative is backwards;
+#X text 235 381 outlets: 2 signals \, readpoint \, grain size \, and
 phase of 1st reader;
-#X text 152 350 inlets: readpoint \, transposition \, grainsize \,
+#X text 130 560 inlets: readpoint \, transposition \, grainsize \,
 control(floats are offset \, "set" message sets array name \, "window"
 is a scaler value 1 and higher that scales the hanning window down
 (2.g. 2 is half-width);
-#X msg 405 101 window 2;
-#X text 168 26 simple granular synth. argument is the name of the array
-to read from. overlaps 2 read heads with a hanning window;
-#X obj 27 62 vline~;
-#X connect 0 0 20 0;
-#X connect 2 0 6 1;
-#X connect 4 0 6 2;
-#X connect 5 0 6 3;
-#X connect 6 0 12 0;
-#X connect 6 1 12 1;
-#X connect 8 0 6 3;
-#X connect 10 0 6 3;
-#X connect 18 0 6 3;
-#X connect 20 0 6 0;
+#X text 244 204 simple granular synth. argument is the name of the
+array to read from. overlaps 2 read heads with a hanning window;
+#X obj 66 276 vline~;
+#X obj 126 23 openpanel;
+#X floatatom 136 92 5 0 0 0 - - -, f 5;
+#X obj 145 171 stoms;
+#X obj 119 142 t f f;
+#X obj 96 195 pack f f;
+#X obj 126 5 bng 15 250 50 0 empty empty load_soundfile 17 7 0 10 -262144
+-1 -1;
+#X obj 205 98 bng 15 250 50 0 empty empty play_soundfile 17 7 0 10
+-262144 -1 -1;
+#X msg 62 249 0 \, \$1 \$2;
+#X obj 226 435 dbgr~;
+#X msg 288 342 phase 0.5;
+#X obj 122 118 f;
+#X msg 333 150 phase 1;
+#X text 386 151 you may have to hit this to start the sampphase;
+#X msg 431 278 window 2;
+#X msg 493 282 window 1;
+#X floatatom 197 129 5 0 0 1 manual_position - -, f 5;
+#X obj 373 91 samplerate~;
+#X obj 195 148 *;
+#X obj 376 57 banger;
+#X obj 138 421 *~ 0.5;
+#X msg 194 174 \$1 500;
+#X obj 124 60 sampbuf~ myarray;
+#X connect 1 0 5 1;
+#X connect 3 0 5 2;
+#X connect 4 0 5 3;
+#X connect 5 0 35 0;
+#X connect 5 1 35 0;
+#X connect 5 4 24 0;
+#X connect 7 0 5 3;
+#X connect 15 0 5 0;
+#X connect 16 0 37 0;
+#X connect 17 0 26 1;
+#X connect 18 0 20 1;
+#X connect 19 0 20 0;
+#X connect 19 1 18 0;
+#X connect 20 0 23 0;
+#X connect 21 0 16 0;
+#X connect 22 0 26 0;
+#X connect 23 0 15 0;
+#X connect 25 0 5 3;
+#X connect 26 0 19 0;
+#X connect 27 0 5 3;
+#X connect 29 0 5 3;
+#X connect 30 0 5 3;
+#X connect 31 0 33 0;
+#X connect 32 0 33 1;
+#X connect 33 0 36 0;
+#X connect 34 0 32 0;
+#X connect 35 0 10 1;
+#X connect 35 0 10 0;
+#X connect 36 0 15 0;
+#X connect 37 0 17 0;
