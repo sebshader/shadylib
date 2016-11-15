@@ -1,8 +1,5 @@
 #N canvas 233 175 567 432 10;
-#X msg 141 125 0;
 #X floatatom 109 174 5 0 0 0 - - -, f 5;
-#X obj 173 118 select 10;
-#X obj 173 141 delay 0;
 #X obj 110 101 metro 500;
 #X floatatom 97 247 5 0 0 0 - - -, f 5;
 #X floatatom 170 198 5 0 0 0 - - -, f 5;
@@ -17,24 +14,20 @@
 the range of the counter;
 #X text 92 8 built to sync up at 0 \, based on the last step (11 here)
 ;
-#X obj 72 126 ekext/cup;
 #X obj 109 75 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 103 218 macrodivide 2 11 1;
 #X text 77 361 with the 3rd argument/4th inlet you can control which
 division of the sequence you're on;
-#X connect 0 0 15 0;
-#X connect 1 0 17 0;
-#X connect 2 0 3 0;
-#X connect 3 0 0 0;
-#X connect 4 0 15 0;
-#X connect 6 0 17 2;
-#X connect 7 0 10 0;
-#X connect 8 0 6 0;
-#X connect 9 0 17 1;
-#X connect 10 0 16 0;
-#X connect 10 1 8 0;
-#X connect 15 0 2 0;
-#X connect 15 0 1 0;
-#X connect 16 0 4 0;
-#X connect 17 0 5 0;
+#X obj 101 129 cyclecount 11;
+#X connect 0 0 13 0;
+#X connect 1 0 15 0;
+#X connect 3 0 13 2;
+#X connect 4 0 7 0;
+#X connect 5 0 3 0;
+#X connect 6 0 13 1;
+#X connect 7 0 12 0;
+#X connect 7 1 5 0;
+#X connect 12 0 1 0;
+#X connect 13 0 2 0;
+#X connect 15 0 0 0;
