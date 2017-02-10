@@ -1,0 +1,17 @@
+#N canvas 960 447 450 300 10;
+#X obj 105 117 bng 15 250 50 0 empty empty save 17 7 0 10 -262144 -1
+-1;
+#X obj 105 136 bng 15 250 50 0 empty empty load 17 7 0 10 -262144 -1
+-1;
+#X obj 93 187 t b b;
+#X obj 210 264 outlet;
+#X obj 86 213 s \$1;
+#X obj 82 240 r \$1-s;
+#X obj 77 267 outlet;
+#X obj 149 269 outlet;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
+#X connect 2 0 4 0;
+#X connect 2 1 7 0;
+#X connect 5 0 6 0;
+#X coords 0 -1 1 1 50 55 1 100 100;

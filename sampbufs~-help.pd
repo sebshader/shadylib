@@ -10,7 +10,11 @@ are names of (contained) buffers \, 3rd is the name of the soundfile.
 the 1st inlet is also the soundfile name \, 2nd inlet queries the buffer
 length \, and the outlet reports it;
 #X obj 63 175 sampbufs~ sampbufhelp sampbufhelp2;
+#X text 190 85 also sends \$1-rdr;
+#X floatatom 278 154 9 0 0 0 - - -, f 9;
+#X obj 283 128 r sampbufhelp2-rdr;
 #X connect 0 0 6 1;
 #X connect 3 0 6 0;
 #X connect 4 0 3 0;
 #X connect 6 0 1 0;
+#X connect 9 0 8 0;

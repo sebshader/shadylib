@@ -1,0 +1,3 @@
+#N canvas 0 22 450 300 10;
+#X obj 211 180 msgsave;
+#X text 110 113 works with saver to save parameters;

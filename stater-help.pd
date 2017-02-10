@@ -1,0 +1,4 @@
+#N canvas 558 82 450 300 10;
+#X text 110 113 works with saver to save parameters;
+#X obj 112 171 stater globalname objectname;
+#X obj 267 40 saver;
