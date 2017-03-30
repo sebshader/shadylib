@@ -1,4 +1,4 @@
-#N canvas 190 359 651 480 10;
+#N canvas 436 232 651 480 10;
 #X obj 243 171 sampphase~;
 #X obj 156 324 *~;
 #X obj 127 56 inlet~;
