@@ -1,21 +1,23 @@
 #N canvas 451 106 615 465 10;
-#X obj 174 196 /~ 2;
-#X obj 164 246 outputc~;
-#X floatatom 222 131 5 0 0 0 - - -, f 5;
-#X obj 174 81 mtof;
-#X floatatom 189 58 5 0 0 0 - - -, f 5;
-#X floatatom 256 118 5 0 0 0 - - -, f 5;
-#X obj 178 161 pitchshift~ 4 100 1.5;
-#X text 257 25 just an implementation of the pitchshifter in the help
+#X obj 140 199 /~ 2;
+#X obj 130 249 outputc~;
+#X floatatom 188 134 5 0 0 0 - - -, f 5;
+#X obj 140 84 mtof;
+#X floatatom 155 61 5 0 0 0 - - -, f 5;
+#X floatatom 222 121 5 0 0 0 - - -, f 5;
+#X obj 144 164 pitchshift~ 4 100 1.5;
+#X obj 122 116 blsaw~;
+#X text 223 28 just an implementation of the pitchshifter in the help
 files \, arguments/inlets are: pitchshift in semitones \, window in
-ms \, delay in ms \, reverse or normal (-1 \, 1);
-#X obj 156 113 blsaw~;
+ms \, delay in ms \, reverse or normal (-1 \, 1) \, feedback;
+#X floatatom 273 145 5 0 0 0 - - -, f 5;
 #X connect 0 0 1 0;
 #X connect 0 0 1 1;
 #X connect 2 0 6 1;
 #X connect 3 0 5 0;
-#X connect 3 0 8 0;
+#X connect 3 0 7 0;
 #X connect 4 0 3 0;
 #X connect 6 0 0 0;
-#X connect 8 0 0 0;
-#X connect 8 0 6 0;
+#X connect 7 0 0 0;
+#X connect 7 0 6 0;
+#X connect 9 0 6 5;

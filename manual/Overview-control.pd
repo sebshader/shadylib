@@ -1,4 +1,4 @@
-#N canvas 591 25 748 792 12;
+#N canvas 772 70 748 792 12;
 #X obj 45 45 1-0switch;
 #X obj 48 125 ad;
 #X obj 87 125 adsr;
@@ -80,8 +80,6 @@ functions in a table;
 #X text 131 1981 perform some operation on each message in a stream
 ;
 #X obj 40 2018 streamquant;
-#X text 151 628 count number of something in a list;
-#X obj 42 627 list-count;
 #X text 130 2016 quantize a stream to a grid;
 #X obj 46 2052 streamread;
 #X text 138 2050 play a stream back;
@@ -96,8 +94,6 @@ functions in a table;
 #X text 137 2228 2 inlets wait for a certain number of bangs before
 outputting a bang and resetting;
 #X obj 57 2230 synlets;
-#X obj 47 2273 tabsave;
-#X text 126 2275 save a table in a message box;
 #X obj 37 2313 temposet;
 #X text 155 2334 a gui to help with tempo;
 #X obj 40 2415 testro 500;
@@ -110,14 +106,12 @@ outputting a bang and resetting;
 #X text 142 2555 listens on a port for fudi udp messages and sends
 them with lispatch;
 #X text 326 2716 end;
-#X obj 31 423 globaltempr;
-#X text 124 422 global receive;
-#X obj 34 452 globaltemps;
-#X text 123 450 global send;
 #X obj 42 820 makerpath;
 #X text 121 818 get the absolute path of a file relative to the root
 canvas;
-#X obj 47 587 list-const;
-#X text 135 582 make a list with a certain number of one thing;
 #X obj 42 2673 valuer;
 #X text 116 2674 dynamic "value" object (name);
+#X text 124 422 global receive;
+#X text 123 450 global send;
+#X obj 31 423 globtempr;
+#X obj 34 452 globtemps;

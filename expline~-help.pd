@@ -1,42 +1,41 @@
-#N canvas 316 182 582 513 10;
-#X floatatom 22 428 8 0 0 0 - - -, f 8;
-#X msg 32 231 0 1000;
-#X msg 47 253 39;
-#X msg 23 208 1 1000;
-#X text 22 38 The line object takes (target \, time) pairs and slews
-to the specified target over the time given \, updating its output
-at a "grain rate" given by the creation argument. If you don't specify
-a time \, line jumps immediately to the target. Note that the inlet
-does not remember old values (unlike every other inlet in Pd) -- sending
-a float causes a jump in the output regardless of whatever time value
-was specified in some previous message. If the line object receives
-a message specifying some new target before reaching the previous one
-\, it takes off from its current value.;
-#X text 94 220 send a pair to ramp to a new value;
-#X text 97 255 send a single number to jump;
-#X text 106 455 see also:;
-#X msg 58 278 stop;
-#X text 103 280 "stop" message to stop output;
-#X text 120 408 creation arguments:;
-#X text 279 400 1 initial value;
-#X msg 67 308 set 5;
-#X text 120 308 "set" to change value (and stop) without output;
-#X floatatom 91 364 0 0 0 0 - - -;
-#X floatatom 91 340 0 0 0 0 - - -;
-#X text 126 340 first inlet sets next ramp time (cleared when ramp
-starts!);
-#X text 125 366 second inlet sets grain (not cleared \, acts as normal
-inlet);
-#X text 278 416 2 time grain in milliseconds (20 by default);
-#X obj 66 15 expline;
-#X obj 176 452 expline~;
-#X text 131 16 - exponential ramp generator;
-#X obj 22 402 expline 0 100;
-#X connect 1 0 22 0;
-#X connect 2 0 22 0;
-#X connect 3 0 22 0;
-#X connect 8 0 22 0;
-#X connect 12 0 22 0;
-#X connect 14 0 22 2;
-#X connect 15 0 22 1;
-#X connect 22 0 0 0;
+#N canvas 654 23 582 513 10;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array sexplinetest 44100 float 2;
+#X coords 0 40 44099 0 200 140 1 0 0;
+#X restore 232 54 graph;
+#X obj 117 48 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 119 97 15;
+#X msg 153 85 40 500;
+#X msg 199 91 600;
+#X obj 156 59 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 135 21 exponential audio ramp;
+#X obj 77 53 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 49 90 40 \, 15 500;
+#X obj 110 155 del 400;
+#X msg 34 155 15 \, 40 400;
+#X obj 26 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X msg 111 175 0 500;
+#X msg 290 248 \; pd dsp 1;
+#X obj 77 226 expline~;
+#X obj 150 317 tabwrite~ sexplinetest;
+#X connect 1 0 2 0;
+#X connect 1 0 15 0;
+#X connect 2 0 14 0;
+#X connect 3 0 14 0;
+#X connect 4 0 14 1;
+#X connect 5 0 3 0;
+#X connect 5 0 15 0;
+#X connect 7 0 8 0;
+#X connect 7 0 15 0;
+#X connect 8 0 14 0;
+#X connect 9 0 12 0;
+#X connect 10 0 14 0;
+#X connect 11 0 10 0;
+#X connect 11 0 9 0;
+#X connect 11 0 15 0;
+#X connect 12 0 14 0;
+#X connect 14 0 15 0;

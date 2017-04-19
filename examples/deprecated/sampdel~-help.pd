@@ -2,5 +2,3 @@
 #X obj 165 64 sampdel~ 4;
 #X text 87 15 delay by number of samples of first argument or message
 inlet;
-#X text 114 170 if you just need 1 sample you can use;
-#X obj 147 200 rzero_rev~ 0;

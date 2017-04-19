@@ -1,4 +1,4 @@
-#N canvas 605 202 704 564 10;
+#N canvas 558 244 788 579 10;
 #X obj 326 362 *~;
 #X obj 449 299 line~;
 #X obj 449 273 pack 0 200;
@@ -41,7 +41,7 @@
 #X obj 501 89 if 0 100;
 #X obj 506 64 f \$2;
 #X obj 430 123 f;
-#X obj 267 505 outlet~;
+#X obj 270 513 outlet~;
 #X obj 553 295 f \$3;
 #X obj 258 294 sig~;
 #X text 313 120 (semitones);
@@ -57,7 +57,7 @@
 #X obj 626 55 f \$4;
 #X obj 258 239 *;
 #X obj 611 119 sel -1 1;
-#X obj 258 209 +;
+#X obj 257 212 +;
 #X msg 637 141 -1;
 #X msg 604 151 1;
 #X obj 610 184 t b f;
@@ -65,7 +65,11 @@
 #X obj 326 414 vdhs~ \$0-pitshft;
 #X obj 495 426 vdhs~ \$0-pitshft;
 #X obj 630 83 if 0 1;
-#X obj 73 332 iemlib/lp4_butt~ 22050 5;
+#X obj 208 266 *~ f\$5;
+#X obj 684 68 inlet;
+#X obj 73 332 iemlib/lp4_butt~ 20000 5;
+#X obj 689 118 clip -1 1;
+#X obj 273 490 hip~ 5;
 #X connect 0 0 7 0;
 #X connect 1 0 0 1;
 #X connect 1 0 12 1;
@@ -78,7 +82,7 @@
 #X connect 7 0 63 0;
 #X connect 8 0 9 0;
 #X connect 9 0 10 0;
-#X connect 10 0 42 0;
+#X connect 10 0 70 0;
 #X connect 11 0 12 0;
 #X connect 11 0 20 0;
 #X connect 12 0 13 0;
@@ -103,7 +107,7 @@
 #X connect 33 0 43 0;
 #X connect 34 0 41 0;
 #X connect 35 0 37 0;
-#X connect 36 0 66 0;
+#X connect 36 0 68 0;
 #X connect 37 0 32 0;
 #X connect 38 0 40 0;
 #X connect 38 0 43 0;
@@ -123,7 +127,7 @@
 #X connect 50 0 47 1;
 #X connect 50 0 51 1;
 #X connect 51 0 53 0;
-#X connect 53 0 66 1;
+#X connect 53 0 68 1;
 #X connect 54 0 57 0;
 #X connect 55 0 65 0;
 #X connect 56 0 3 0;
@@ -138,4 +142,9 @@
 #X connect 63 0 9 1;
 #X connect 64 0 15 1;
 #X connect 65 0 57 0;
-#X connect 66 0 62 0;
+#X connect 66 0 68 0;
+#X connect 67 0 69 0;
+#X connect 68 0 62 0;
+#X connect 69 0 66 1;
+#X connect 70 0 42 0;
+#X connect 70 0 66 0;

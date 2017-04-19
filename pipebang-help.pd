@@ -6,18 +6,21 @@
 #X text 171 131 related:;
 #X text 228 151 stuff in rts & rjlib;
 #X msg 167 34 4 0 0.5 1.5 2.5 3;
-#X obj 172 109 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 172 109 bng 15 100 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 341 125 messtro;
 #X obj 276 50 spigot;
 #X obj 281 26 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 173 11 sel 1;
-#X msg 121 58 clear;
 #X text 68 60 stops it;
 #X text 37 173 1st number: overall length in beats rest of list: absolute
 time in beats \, tempo in ms set by argument/right inlet;
+#X text 141 247 outlets: beat & end of sequence;
+#X obj 105 106 print hit;
+#X msg 121 58 stop;
 #X connect 1 0 6 0;
+#X connect 1 0 14 0;
 #X connect 1 1 0 0;
 #X connect 1 1 8 0;
 #X connect 5 0 1 0;
@@ -26,4 +29,4 @@ time in beats \, tempo in ms set by argument/right inlet;
 #X connect 9 0 10 0;
 #X connect 9 0 8 1;
 #X connect 10 0 5 0;
-#X connect 11 0 1 0;
+#X connect 15 0 1 0;

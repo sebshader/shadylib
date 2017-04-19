@@ -8,7 +8,8 @@
 #X text 89 120 right outlet gets a bang followed instantaneously by
 the left;
 #X text 67 8 output after receiving number of bangs equal to creation
-argument or right inlet \, which also resets the counter;
+argument or right inlet \, which also resets the counter. non-floats
+just reset;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 3 0 0 1;

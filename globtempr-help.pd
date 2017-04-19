@@ -2,6 +2,6 @@
 #X obj 153 135 globtempr;
 #X obj 128 47 globtemps;
 #X text 195 49 <--- see helpfile;
-#X text 48 211 globtempr is just a send and [value] of the same name
-(arg) in 1 object. The value is loadbanged \, and the inlet gets the
-value.;
+#X text 48 211 globtempr is just a receive and [value] of the same
+name (arg) in 1 object. The value is loadbanged \, and the inlet gets
+the value.;
