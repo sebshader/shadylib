@@ -1,4 +1,4 @@
-#N canvas 546 99 905 642 10;
+#N canvas 409 106 905 642 10;
 #X obj 318 118 random 50;
 #X text 328 50 start stream;
 #X text 93 139 write automation;
@@ -8,17 +8,17 @@
 #X obj 216 238 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X msg 151 118 0;
-#X text 31 117 0 outputs last list;
-#X floatatom 412 138 5 0 0 0 - - -;
+#X text 27 117 0 outputs last list;
+#X floatatom 412 138 5 0 0 0 - - -, f 5;
 #X text 400 107 (turn off and use this instead);
-#X obj 315 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
+#X obj 315 73 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X text -100 58 left outlet: the list after 0 is received in the left
 inlet right outlet: the overall number of events;
 #X obj 191 292 print;
 #X obj 309 26 loadbang;
 #X text 235 290 this can clog up the console;
-#X floatatom 264 202 5 0 0 0 - - -;
+#X floatatom 264 202 5 0 0 0 - - -, f 5;
 #X text 310 205 number of events in list;
 #X msg 248 114 gertrude;
 #X text 34 23 record a series of timestamp-events;
@@ -27,25 +27,42 @@ inlet right outlet: the overall number of events;
 #X text 64 259 play back;
 #X obj 166 344 print done;
 #X obj 324 91 metro 300;
-#X obj 67 314 streamread;
-#X obj 201 171 streamwrite;
-#X text 222 373 every event has the format: k <time in ms (1 float)>
-<whatever the event was>;
-#X msg 167 91 this is a longer thing;
-#X connect 0 0 25 1;
-#X connect 3 0 25 0;
+#X text 222 373 every event has the format: / <time (1 float)> <whatever
+the event was>;
+#X msg 167 91 this is a / longer thing;
+#X obj 335 148 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 201 171 streamwrite 60 permin;
+#X obj 67 314 streamread 60 permin;
+#X msg 56 201 tempo 120 permin;
+#X text 159 218 tempos should match;
+#X msg 505 189 tempo 120 permin;
+#X msg 55 225 tempo 1000 msec;
+#X msg 120 282 0;
+#X msg 507 257 bang 45;
+#X obj 504 290 print;
+#X msg 456 140 list bang 45;
+#X connect 0 0 27 1;
+#X connect 3 0 27 0;
 #X connect 4 0 12 0;
-#X connect 4 0 24 1;
+#X connect 4 0 28 1;
 #X connect 5 0 4 1;
-#X connect 6 0 25 0;
-#X connect 8 0 25 1;
+#X connect 6 0 27 0;
+#X connect 8 0 27 1;
 #X connect 10 0 23 0;
 #X connect 13 0 10 0;
-#X connect 17 0 25 1;
-#X connect 20 0 24 0;
+#X connect 17 0 27 1;
+#X connect 20 0 28 0;
 #X connect 23 0 0 0;
-#X connect 24 0 19 0;
-#X connect 24 1 22 0;
-#X connect 25 0 4 0;
-#X connect 25 1 15 0;
-#X connect 27 0 25 1;
+#X connect 25 0 27 1;
+#X connect 26 0 27 1;
+#X connect 27 0 4 0;
+#X connect 27 1 15 0;
+#X connect 28 0 19 0;
+#X connect 28 1 22 0;
+#X connect 29 0 28 0;
+#X connect 31 0 27 0;
+#X connect 32 0 28 0;
+#X connect 33 0 28 0;
+#X connect 34 0 35 0;
+#X connect 36 0 27 1;

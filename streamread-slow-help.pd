@@ -1,11 +1,11 @@
-#N canvas 426 226 681 424 10;
+#N canvas 502 177 681 424 10;
 #X obj 399 146 random 50;
 #X obj 284 166 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X obj 405 94 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 404 43 loadbang;
-#X msg 329 142 gertrude;
+#X msg 337 155 gertrude;
 #X obj 405 119 metro 300;
 #X obj 282 199 streamwrite;
 #X obj 198 227 streamread-slow;
@@ -15,19 +15,21 @@ composition;
 #X obj 204 261 print stream;
 #X obj 300 254 print done;
 #X obj 308 227 print;
-#X msg 111 134 reset;
-#X text 97 114 reset after going through it;
+#X msg 59 156 reset;
+#X text 2 110 reset after going through it;
 #X msg 401 67 1;
+#X msg 113 131 / will this work? / a // test / bang / bang 45;
 #X connect 0 0 6 1;
 #X connect 1 0 6 0;
 #X connect 2 0 5 0;
 #X connect 3 0 15 0;
 #X connect 4 0 6 1;
 #X connect 5 0 0 0;
-#X connect 6 0 7 1;
 #X connect 6 0 12 0;
+#X connect 6 0 7 1;
 #X connect 7 0 10 0;
 #X connect 7 1 11 0;
 #X connect 8 0 7 0;
 #X connect 13 0 7 0;
 #X connect 15 0 2 0;
+#X connect 16 0 7 1;

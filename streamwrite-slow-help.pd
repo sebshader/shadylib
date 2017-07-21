@@ -7,16 +7,18 @@
 #X msg 78 157 bang;
 #X text 71 140 output list;
 #X obj 93 257 streamread;
-#X msg 259 144 1000 hello \, 2000 these \, 3000 will \, 4000 come \,
-5000 every \, 6000 second;
 #X obj 83 286 print stream;
 #X obj 191 290 print done;
 #X msg 101 226 1;
+#X msg 259 144 1000 hello \, 2000 these \, 3000 will / \, 4000 come
+\, 5000 every \, 6000 second;
+#X msg 292 114 bang \, this \, is \, list bang 45 \, 45 bang;
 #X connect 0 0 1 0;
 #X connect 0 0 7 1;
 #X connect 3 0 0 0;
 #X connect 5 0 0 0;
-#X connect 7 0 9 0;
-#X connect 7 1 10 0;
-#X connect 8 0 0 1;
-#X connect 11 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 1 9 0;
+#X connect 10 0 7 0;
+#X connect 11 0 0 1;
+#X connect 12 0 0 1;

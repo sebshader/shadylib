@@ -2,20 +2,22 @@
 #X obj 85 151 outputc~;
 #X obj 230 192 oscope~;
 #X obj 83 56 smoother~;
-#X floatatom 206 65 5 0 0 0 - - -;
-#X floatatom 255 74 5 0 0 0 - - -;
+#X floatatom 206 65 5 0 0 0 - - -, f 5;
+#X floatatom 255 74 5 0 0 0 - - -, f 5;
 #X msg 34 12 reset;
 #X text 340 34 vosim algorithm;
 #X text 284 122 args: decay \, duty cycle (default 1) \, center frequency
 ;
 #X text 308 149 inlets: fundamental \, center frequency \, decay \,
 duty cycle;
-#X obj 101 116 voisim~ 0.5 0.8 2000;
 #X text 78 12 reset phase;
-#X connect 2 0 9 0;
-#X connect 3 0 9 2;
-#X connect 4 0 9 3;
-#X connect 5 0 9 0;
-#X connect 9 0 1 0;
-#X connect 9 0 0 1;
-#X connect 9 0 0 0;
+#X obj 101 116 voisim~ 0.5 0.8 1000;
+#X obj 131 62 smoother~;
+#X connect 2 0 10 0;
+#X connect 3 0 10 2;
+#X connect 4 0 10 3;
+#X connect 5 0 10 0;
+#X connect 10 0 1 0;
+#X connect 10 0 0 1;
+#X connect 10 0 0 0;
+#X connect 11 0 10 1;

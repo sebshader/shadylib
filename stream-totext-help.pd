@@ -1,0 +1,6 @@
+#N canvas 372 129 696 372 10;
+#X obj 160 178 text define stream-totext-help;
+#X msg 170 72 / this // is a list / here's another // list / bang /
+bang 45;
+#X obj 165 109 stream-totext stream-totext-help;
+#X connect 1 0 2 0;

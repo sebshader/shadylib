@@ -1,17 +1,33 @@
-#N canvas 129 327 450 300 10;
-#X obj 137 132 metorate 200;
-#X msg 140 73 3 2;
-#X text 168 67 output 3 times at intervals of 400 (2*200);
-#X msg 205 99 100;
-#X text 215 132 so does the argument;
-#X text 233 102 right inlet sets tempo in ms;
-#X obj 165 168 print;
-#X text 127 219 also see:;
+#N canvas 129 327 510 411 10;
+#X msg 153 66 3 2;
+#X obj 151 162 print;
+#X text 132 272 also see:;
 #X text 84 19 output a certain number of numbers given by a list of
 iteration number and tempo multiplier;
-#X obj 202 217 iemlib/for++;
-#X msg 159 95 4 1;
-#X connect 0 0 6 0;
-#X connect 1 0 0 0;
-#X connect 3 0 0 1;
-#X connect 10 0 0 0;
+#X obj 207 270 iemlib/for++;
+#X msg 118 68 4 1;
+#X text 310 109 right inlet sets tempo;
+#X text 179 65 output 3 times at tempo 2;
+#X text 214 248 uses metro not upmet;
+#X msg 42 90 tempo 120 permin;
+#X msg 215 90 3;
+#X msg 285 109 0.5;
+#X obj 150 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X text 242 90 3 times @ last tempo;
+#X text 169 107 last everything;
+#X text 126 232 argumets are same as metro \, repeats are last argument
+;
+#X obj 150 138 metorate 1 60 permin 5;
+#X msg 82 69 0;
+#X msg 46 70 stop;
+#X obj 293 271 subdivide;
+#X connect 0 0 16 0;
+#X connect 5 0 16 0;
+#X connect 9 0 16 0;
+#X connect 10 0 16 0;
+#X connect 11 0 16 1;
+#X connect 12 0 16 0;
+#X connect 16 0 1 0;
+#X connect 17 0 16 0;
+#X connect 18 0 16 0;

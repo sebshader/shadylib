@@ -1,0 +1,39 @@
+#N canvas 641 220 580 459 10;
+#X obj 194 159 streamwrite;
+#X obj 204 133 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 278 125 gertrude;
+#X obj 277 179 loadbang;
+#X obj 89 149 ttempo;
+#X obj 125 296 streamread;
+#X obj 128 325 print;
+#X msg 123 269 1;
+#X obj 210 322 print quant;
+#X obj 281 286 print unquant;
+#X floatatom 197 234 5 0 0 0 - - -, f 5;
+#X text 59 272 play back;
+#X text 30 53 2nd inlet takes a stream;
+#X text 32 72 1st inlet takes a stream or bang. it's hot.;
+#X text 31 26 quantize stream to a grid of a certain multiple (argument
+and 3rd inlet);
+#X msg 245 203 500;
+#X obj 259 128 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 180 259 stream-quant 500;
+#X floatatom 288 234 5 0 2 1 rounding - -, f 5;
+#X text 41 91 4th inlet/ 2nd argument is rounding mode: 0 is round
+to nearest division \, 1 is round down \, 2 is round up;
+#X connect 0 0 9 0;
+#X connect 0 0 17 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 1;
+#X connect 3 0 15 0;
+#X connect 4 0 10 0;
+#X connect 5 0 6 0;
+#X connect 7 0 5 0;
+#X connect 10 0 17 2;
+#X connect 15 0 17 2;
+#X connect 16 0 0 1;
+#X connect 17 0 5 1;
+#X connect 17 0 8 0;
+#X connect 18 0 17 3;

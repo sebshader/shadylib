@@ -1,0 +1,69 @@
+#N canvas 452 87 645 526 12;
+#X floatatom 430 148 4 0 0 0 - - -, f 4;
+#X msg 32 125 1;
+#X text 92 135 nonzero number or "bang" to start;
+#X msg 52 168 0;
+#X msg 42 146 bang;
+#X msg 49 194 stop;
+#X text 99 181 zero or "stop" to stop.;
+#X text 168 257 right inlet sets the rate in msec per tick.;
+#X text 377 471 Updated for Pd version 0.45;
+#X text 121 8 - metronome;
+#X obj 32 317 bng 25 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 116 292 <-- optional creation arguments:;
+#X text 165 311 - delay time (float);
+#X text 166 329 - tempo (float) and time unit (symbol) as in "tempo"
+message, f 31;
+#X msg 51 220 tempo 2 msec;
+#X text 165 219 set tempo in units of miliseconds (msec for short)
+\, seconds (sec) \, minutes (min) or samples (samp)., f 51;
+#X text 79 472 see also:;
+#X obj 173 470 timer;
+#X text 41 373 for example \, a metronome at intervals of one beat
+at 120 beats per minute:, f 37;
+#X obj 360 373 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 360 420 bng 25 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 220 435 delay;
+#X text 50 428 for details on tempo setting \, see:, f 20;
+#X obj 360 395 upmet 1 120 permin;
+#X obj 70 9 upmet;
+#X text 23 35 upmet is like metro except that the clock delay that
+it is currently in is updated when the tempo changes (the remaining
+time in the delay changes as the proportion between the old and new
+times);
+#X obj 317 13 metro;
+#X text 269 14 like:;
+#X obj 32 291 upmet 500;
+#X obj 490 310 bng 25 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 48 258 zexy/nop;
+#X obj 487 273 metro 500;
+#X obj 482 33 bng 15 250 50 0 empty empty test 17 7 0 10 -262144 -1
+-1;
+#X obj 528 106 del 50;
+#X msg 479 100 3000;
+#X msg 528 131 500;
+#X obj 455 69 t b b;
+#X connect 0 0 28 1;
+#X connect 0 0 31 1;
+#X connect 1 0 30 0;
+#X connect 3 0 30 0;
+#X connect 4 0 30 0;
+#X connect 5 0 30 0;
+#X connect 14 0 30 0;
+#X connect 19 0 23 0;
+#X connect 23 0 20 0;
+#X connect 28 0 10 0;
+#X connect 30 0 28 0;
+#X connect 30 0 31 0;
+#X connect 31 0 29 0;
+#X connect 32 0 33 0;
+#X connect 32 0 36 0;
+#X connect 33 0 35 0;
+#X connect 34 0 0 0;
+#X connect 35 0 0 0;
+#X connect 36 0 4 0;
+#X connect 36 1 34 0;

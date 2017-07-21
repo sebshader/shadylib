@@ -8,7 +8,7 @@ static t_class *vosim_class;
 
 static void maketab(void) {
 	t_sample incr = M_PI/(SINSQRSIZE - 1), val;
-	sinsqr_tbl = getbytes(SINSQRSIZE * sizeof(t_sample));
+	sinsqr_tbl = getbytes((SINSQRSIZE) * sizeof(t_sample));
 	for(int i = 0; i < SINSQRSIZE; i++) {
 		val = sin(incr*i);
 		sinsqr_tbl[i] = val*val;
@@ -56,9 +56,11 @@ static t_int *vosim_perform(t_int *w) {
 	float infreq = x->x_infreq;
 	float outfreq = x->x_outfreq;
 	float res = x->x_res;
+	
 	while(n--) {
 		phsinc = fmax((*in++), 0);
 		ocen = fmax(phsinc, *cen++);
+		
 		if(outphase >= 1) {
 			curdec = 1;
 			caster = outphase;
@@ -69,18 +71,21 @@ static t_int *vosim_perform(t_int *w) {
 			infreq = ocen*conv;
 		} else {
 			if(inphase >= 1) {
-				routphase = outfreq;
 				outfreq = phsinc*conv;
 				infreq = ocen*conv;
 				caster = inphase;
 				inphase = inphase - caster;
-				/* routphase is to get samples rounded down */
-				routphase = outphase - res - routphase;
-				if(ocen < phsinc/(1 - routphase) 
-					|| routphase > duty) {
+				/* routphase is now the limit */
+				ocen = outfreq/infreq;
+				routphase = fmin(1 - ocen, duty);
+				routphase = routphase - outphase + res;
+				if(routphase <= 0) {
 					curdec = 0;
+				} else {
+					curdec *= fmax(fmin(decay, 1.), -1.);
+					/* a little fading */
+					curdec *= fmin(routphase/ocen, 1.);
 				}
-				else curdec *= decay;
 			} else if(phsinc != 0. && outfreq == 0.) {
 				outfreq = phsinc*conv;
 				infreq = ocen*conv;

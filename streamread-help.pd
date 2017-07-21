@@ -1,6 +1,19 @@
-#N canvas 530 286 450 300 10;
-#X obj 78 134 streamwrite;
+#N canvas 530 286 621 339 10;
+#X text 90 214 see streamwrite-help for an example:;
 #X text 22 14 works with streamwrite to write and read streams of anything
-except the letter k \, which it uses to delimit messages;
-#X text 81 116 see streamwrite-help for an example:;
-#X obj 209 51 streamread;
+except / \, which it uses to delimit messages;
+#X text 101 191 args: tempo & units;
+#X obj 87 232 streamwrite;
+#X msg 170 91 1;
+#X obj 241 159 bng 15 250 50 0 empty empty donnnne 17 7 0 10 -262144
+-1 -1;
+#X obj 157 133 streamread 0.5 permsec;
+#X msg 99 54 tempo 3 permsec;
+#X obj 185 162 print;
+#X msg 220 86 / 200 this is / 350 an / 400 input stream / 500 bang
+/ 600 bang 45;
+#X connect 4 0 6 0;
+#X connect 6 0 8 0;
+#X connect 6 1 5 0;
+#X connect 7 0 6 0;
+#X connect 9 0 6 1;

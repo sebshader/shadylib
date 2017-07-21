@@ -1,27 +1,29 @@
-#N canvas 538 167 450 300 10;
-#X obj 137 218 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#N canvas 376 154 603 364 10;
+#X obj 153 239 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 27 9 messtro is the contents of the stream-map helpfile;
-#X text 162 216 right outlet gives downbeats;
-#X text 40 76 the "done" message delays without putting out anything
+#X text 178 237 right outlet gives downbeats;
+#X text 49 56 the "done" message delays without putting out anything
 ;
-#X obj 64 165 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 80 186 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
-#X floatatom 133 144 5 0 0 0 - - -;
-#X obj 135 165 bpmtoms;
-#X obj 62 242 print messages;
-#X msg 78 122 k 1 this-is k 1.5 a-message k 2.5 this is another k 4
-done;
-#X obj 71 192 messtro 500;
-#X text 54 146 1 on \, 0 off;
-#X msg -4 118 once;
-#X text 27 43 uses first argument or 3rd inlet to set the tempo period
-in ms;
-#X text -11 101 just 1 cycle (sets repeat off);
-#X connect 4 0 9 0;
-#X connect 5 0 6 0;
-#X connect 6 0 9 2;
-#X connect 8 0 9 1;
-#X connect 9 0 7 0;
-#X connect 9 1 0 0;
-#X connect 11 0 9 0;
+#X obj 78 263 print messages;
+#X text 70 167 1 on \, 0 off;
+#X msg 12 139 once;
+#X text 5 122 just 1 cycle (sets repeat off);
+#X msg 184 147 / 1 this-is / 1.5 a-message / 2.5 this is another /
+4 done;
+#X obj 193 290 timer;
+#X obj 200 263 t b b;
+#X obj 208 314 print timer;
+#X obj 87 213 messtro 500 msec;
+#X text 36 23 uses 2 arguments or "tempo" message to set the tempo
+;
+#X connect 3 0 12 0;
+#X connect 6 0 12 0;
+#X connect 8 0 12 1;
+#X connect 9 0 11 0;
+#X connect 10 0 9 0;
+#X connect 10 1 9 1;
+#X connect 12 0 4 0;
+#X connect 12 1 0 0;
+#X connect 12 1 10 0;

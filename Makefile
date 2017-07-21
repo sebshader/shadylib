@@ -3,69 +3,67 @@
 #  http://puredata.info/docs/developer/MakefileTemplate
 LIBRARY_NAME = shadylib
 
+PD_PATH = /Applications/Pd-0.47-1.app/Contents/Resources
+
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES =		modf~.c			rootinfo.c \
-moop~.c			sampphase~.c	buzz~.c \
-nead~.c			neadsr~.c		near~.c			scaler.c \
-delreadc~.c		operatord~.c		scaler~.c \
-delwritec~.c		operator~.c		tabread4hs~.c \
-dsrand~.c		tcheb~.c \
-fmod~.c			phasorator~.c		transpose~.c \
-pib~.c			triangulatord~.c \
-highest~.c		powclip~.c		triangulator~.c \
-inrange.c		rectoratord~.c		vdhs~.c \
-rectorator~.c		rcombf~.c		nrcombf~.c \
-shadylook.c		shadylook~.c		rover~.c \
-rminus~.c		voisim~.c		bpbuzz~.c \
-prepender.c pinb~.c astep~.c
+SOURCES =		astep~.c          moop~.c           prepender.c       shadylook~.c \
+bpbuzz~.c         neadsr~.c         rcombf~.c         tabread4hs~.c \
+buzz~.c           nead~.c           rectoratord~.c    tcheb~.c \
+delreadc~.c       near~.c           rectorator~.c     transpose~.c \
+delwritec~.c      nrcombf~.c        rminus~.c         triangulatord~.c \
+dsrand~.c         operatord~.c      rootinfo.c        triangulator~.c \
+fmod~.c           operator~.c       rover~.c          updel.c \
+highest~.c        phasorator~.c     sampphase~.c      upmet.c \
+inrange.c         pib~.c            scaler.c          vdhs~.c \
+pinb~.c           scaler~.c         voisim~.c \
+modf~.c           powclip~.c        shadylook.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
-PDOBJECTS = 1-0switch.pd		lispatch.pd		shnoise~.pd \
-1-0switch~.pd		list-dripdex.pd		show.pd \
-		sigenv~.pd \
-			macrodivide.pd		signum~.pd \
-ad.pd			messtro.pd		sin~.pd \
-adsr.pd			meters~.pd		smoother~.pd \
-ar.pd			metorate.pd		sndfread~.pd \
-bangb.pd		modulator~.pd		sndfwritem~.pd \
-banger.pd		mstof.pd		sndfwrites~.pd \
-bilexnoise~.pd		mstos.pd		sqr.pd \
-bpmtoms.pd		multitrigger.pd		srepeater~.pd \
-stoms.pd\
-circle~.pd	stream-drip.pd \
-		stream-map.pd\
-cosinterp~.pd		oscope~.pd \
-crusher~.pd		oscphase~.pd		streamquant.pd \
-outputc~.pd		streamread-slow.pd \
-cyclecount.pd		out~.pd			streamread.pd \
-dbgr~.pd		percent.pd		streamwrite-slow.pd \
-dispatchOSC.pd		streamwrite.pd \
-downsample~.pd		phasafor~.pd		subdivide.pd \
-egrains~.pd		phasemod~.pd \
-expline.pd		pipebang.pd		switchnramp~.pd \
-expline~.pd		pitchshift~.pd		synlets.pd \
-freqshifterd~.pd	powline.pd\
-freqshifter~.pd		powline~.pd		temposet.pd \
-gainc~.pd		pthng~.pd	testro.pd \
-gate~.pd		realpass~.pd		transpose.pd \
-globtempr.pd		receiver.pd		trinoise~.pd \
-globtemps.pd		repeater~.pd		ttempo.pd \
-		rexpline.pd		udispatch.pd \
-rexpline~.pd \
-		rndmrange.pd		volpan~.pd \
-grainy~.pd		sampbuf~.pd		wavepacket~.pd \
-hanning~.pd		wscauchy~.pd \
-if.pd			seqbank.pd		wssincos~.pd \
-iterate.pd		sequencer.pd		wsexp~.pd \
-linnoise~.pd	whitephase~.pd makerpath.pd \
-linterp~.pd		xfade~.pd	blsqr~.pd \
-blsaw~.pd		blsqri~.pd	sqrwine~.pd \
-valuer.pd	sampbufs~.pd \
-pitchnoise~.pd lmap.pd_lua \
-mseq.pd tseq.pd
+PDOBJECTS =  1-0switch.pd         macrodivide.pd       smoother~.pd \
+1-0switch~.pd        makerpath.pd         sndfread~.pd \
+ad.pd                messtro.pd           sndfwritem~.pd \
+adsr.pd              meters~.pd           sndfwrites~.pd \
+ar.pd                metorate.pd          sqr.pd \
+bangb.pd             modulator~.pd        sqrwine~.pd \
+banger.pd            mseq.pd              srepeater~.pd \
+bangif.pd            msgsave.pd           sstater.pd \
+bilexnoise~.pd       mstof.pd             stater.pd \
+blsaw~.pd            mstos.pd             stoms.pd \
+blsqri~.pd           multitrigger.pd      stream-drip.pd \
+blsqr~.pd            oscope~.pd           stream-fromtext.pd \
+bpmtoms.pd           oscphase~.pd         stream-map.pd \
+circle~.pd           outputc~.pd          stream-quant.pd \
+cosinterp~.pd        out~.pd              stream-totext.pd \
+crusher~.pd          percent.pd           streamquant.pd \
+cyclecount.pd        phasafor~.pd         streamread-slow.pd \
+dbgr~.pd             phasemod~.pd         streamread.pd \
+dispatchOSC.pd       pipebang.pd          streamwrite-slow.pd \
+downsample~.pd       pitchnoise~.pd       streamwrite.pd \
+egrains~.pd          pitchshift~.pd       subdivide.pd \
+expline.pd           powline.pd           switchnramp~.pd \
+expline~.pd          powline~.pd          synlets.pd \
+freqshifterd~.pd     pthng~.pd            tabload.pd \
+freqshifter~.pd      realpass~.pd         tabsave.pd \
+gainc~.pd            receiver.pd          temposet.pd \
+gate~.pd             repeater~.pd         testro.pd \
+globtempr.pd         rexpline.pd          transpose.pd \
+globtemps.pd         rexpline~.pd         trinoise~.pd \
+grainyback~.pd       rndmrange.pd         tseq.pd \
+grainy~.pd           rpowline~.pd         ttempo.pd \
+gsave.pd             sampbufs~.pd         txtsave.pd \
+hanning~.pd          sampbuf~.pd          udispatch.pd \
+if.pd                saver.pd             valuer.pd \
+iterate.pd           seqbank.pd           volpan~.pd \
+linnoise~.pd         sequencer.pd         wavepacket~.pd \
+linterp~.pd     whitephase~.pd 	lmap.pd_lua\
+lispatch.pd          shnoise~.pd          wscauchy~.pd \
+list-const.pd        show.pd              wsexp~.pd \
+list-count.pd        sigenv~.pd           wssincos~.pd \
+list-delim.pd        signum~.pd           xfade~.pd \
+list-dripdex.pd      sin~.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
@@ -111,7 +109,7 @@ LIBRARY_VERSION = $(shell sed -n 's|^\#X text [0-9][0-9]* [0-9][0-9]* VERSION \(
 
 ALL_CFLAGS += -DPD -DVERSION='"$(LIBRARY_VERSION)"'
 
-PD_INCLUDE = $(PD_PATH)/include/pd
+PD_INCLUDE = $(PD_PATH)/include
 # where to install the library, overridden below depending on platform
 prefix = /usr/local
 libdir = $(prefix)/lib
@@ -137,7 +135,6 @@ ifeq ($(UNAME),Darwin)
     EXTENSION = pd_darwin
     SHARED_EXTENSION = dylib
     OS = iphoneos
-    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
     IPHONE_BASE=/Developer/Platforms/iPhoneOS.platform/Developer/usr/bin
     CC=$(IPHONE_BASE)/gcc
     CPP=$(IPHONE_BASE)/cpp
@@ -156,7 +153,6 @@ ifeq ($(UNAME),Darwin)
     EXTENSION = pd_darwin
     SHARED_EXTENSION = dylib
     OS = macosx
-    PD_PATH = /Applications/Pd-extended.app/Contents/Resources
     OPT_CFLAGS = -ftree-vectorize -fast
 # build universal 32-bit on 10.4 and 32/64 on newer
     ifeq ($(shell uname -r | sed 's|\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*|\1|'), 8)
