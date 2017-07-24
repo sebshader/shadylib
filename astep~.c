@@ -14,21 +14,15 @@ static t_int *astep_tilde_perform(t_int *w) {
 	t_sample *out = (t_sample *)(w[2]);
 	int n = (int)(w[3]);
 	double mspers = x->x_msecpersamp;
-	t_float limit = x->x_msec;
+	t_float limit = x->x_msec - mspers*0.5;
 	double current = x->x_current;
-	if(current >= limit)
-		while(n--) *out++ = 0.;
-	else {
-		while(n--) {
-			if(current >= limit)
-				*out++ = 0.;
-			else {
-				*out++ = 1.;
-				current += mspers;
-			}
-		}
-		x->x_current = current;
+	while(n && current < limit) {
+		n--;
+		*out++ = 1.;
+		current += mspers;
 	}
+	while(n--) *out++ = 0.;
+	x->x_current = current;
 	return (w + 4);
 }
 
@@ -39,7 +33,7 @@ static void astep_tilde_float(t_astep *x, t_floatarg f) {
 
 static void astep_tilde_dsp(t_astep *x, t_signal **sp)
 {
-    dsp_add(astep_tilde_perform, 3, x, sp[0]->s_vec, sp[0]->s_n);
+    dsp_add(astep_tilde_perform, 3, x, sp[0]->s_vec, sp[0]->s_n, ((double)1000) / sp[0]->s_sr);
     x->x_msecpersamp = ((double)1000) / sp[0]->s_sr;
 }
 

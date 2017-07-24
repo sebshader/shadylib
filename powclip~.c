@@ -8,20 +8,20 @@ static t_sample *base_table;
 
 #define LOGBASTABSIZE 11
 #define BASTABSIZE (1<<LOGBASTABSIZE)
-#define INC 1.0/BASTABSIZE
+#define INC 1.0/(BASTABSIZE - 2)
 
 static void base_maketable(void)
 {
 	t_sample *fp;
 	double funval = INC;
 	if (base_table) return;
-    base_table = (t_sample *)getbytes(sizeof(t_sample) * (BASTABSIZE+1));
+    base_table = (t_sample *)getbytes(sizeof(t_sample) * (BASTABSIZE));
     fp = base_table;
     *fp = 0;
     fp++;
-    for (int i = BASTABSIZE - 1; i--; fp++, funval += INC)
+    for (int i = BASTABSIZE - 3; i--; fp++, funval += INC)
             *fp = funval*(1 - log(funval));
-    base_table[BASTABSIZE] = 1;
+    base_table[BASTABSIZE - 2] = 1;
 }
 
 typedef struct _powclip
@@ -65,7 +65,7 @@ t_sample powclip_calculate (t_sample in1, t_sample in2) {
 	if(in2 <= 0) return copysign(absin1, in1);
 	else if(in2 >= 1) {
 		int readpoint;
-		double fred = absin1 * BASTABSIZE, val;
+		double fred = absin1 * (BASTABSIZE - 2), val;
 		readpoint = fred;
 		fred -= readpoint;
 		val = base_table[readpoint++];
@@ -113,7 +113,7 @@ t_int *scalarpowclip_perform(t_int *w)
 			tin = *in++;
 			abstin = fabs(tin);
 			if(abstin > 1) abstin = 1;
-			fred = abstin * BASTABSIZE;
+			fred = abstin * (BASTABSIZE - 2);
 			readpoint = fred;
 			fred -= readpoint;
 			val = base_table[readpoint++];

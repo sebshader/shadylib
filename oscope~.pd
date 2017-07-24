@@ -19,7 +19,7 @@
 #X obj 416 94 iemlib/speedlim 1000;
 #X obj 124 118 sel 0;
 #X obj 74 192 tabwrite~ \$0-scope;
-#X obj 466 173 - 1;
+#X obj 480 168 - 1;
 #X obj 461 222 + 1;
 #X obj 423 297 pack f \$0;
 #X obj 84 253 tabread \$0-scope;
@@ -56,8 +56,8 @@
 #X connect 17 0 18 0;
 #X connect 17 1 27 0;
 #X connect 19 0 31 0;
-#X connect 20 0 10 1;
 #X connect 20 0 32 0;
+#X connect 20 0 10 1;
 #X connect 21 0 4 0;
 #X connect 22 0 23 0;
 #X connect 24 0 22 0;

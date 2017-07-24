@@ -10,10 +10,11 @@
 #X restore 306 235 graph;
 #X obj 200 208 tabwrite~ \$0-test;
 #X obj 217 84 stoms;
-#X floatatom 217 54 5 0 100 0 - - -;
+#X floatatom 217 54 5 0 100 0 - - -, f 5;
 #X obj 276 121 b;
 #X text 122 25 creates unit step function that lasts for a certain
 # of ms;
+#X msg 120 103 \; pd dsp 1;
 #X connect 0 0 2 0;
 #X connect 3 0 0 0;
 #X connect 4 0 3 0;

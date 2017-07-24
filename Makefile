@@ -27,14 +27,14 @@ PDOBJECTS =  1-0switch.pd         macrodivide.pd       smoother~.pd \
 ad.pd                messtro.pd           sndfwritem~.pd \
 adsr.pd              meters~.pd           sndfwrites~.pd \
 ar.pd                metorate.pd          sqr.pd \
-bangb.pd             modulator~.pd        sqrwine~.pd \
+modulator~.pd        sqrwine~.pd \
 banger.pd            mseq.pd              srepeater~.pd \
 bangif.pd            msgsave.pd           sstater.pd \
 bilexnoise~.pd       mstof.pd             stater.pd \
 blsaw~.pd            mstos.pd             stoms.pd \
 blsqri~.pd           multitrigger.pd      stream-drip.pd \
 blsqr~.pd            oscope~.pd           stream-fromtext.pd \
-bpmtoms.pd           oscphase~.pd         stream-map.pd \
+bpmtoms.pd         stream-map.pd \
 circle~.pd           outputc~.pd          stream-quant.pd \
 cosinterp~.pd        out~.pd              stream-totext.pd \
 crusher~.pd          percent.pd           streamquant.pd \
@@ -49,8 +49,8 @@ freqshifterd~.pd     pthng~.pd            tabload.pd \
 freqshifter~.pd      realpass~.pd         tabsave.pd \
 gainc~.pd            receiver.pd          temposet.pd \
 gate~.pd             repeater~.pd         testro.pd \
-globtempr.pd         rexpline.pd          transpose.pd \
-globtemps.pd         rexpline~.pd         trinoise~.pd \
+rexpline.pd          transpose.pd \
+rexpline~.pd         trinoise~.pd \
 grainyback~.pd       rndmrange.pd         tseq.pd \
 grainy~.pd           rpowline~.pd         ttempo.pd \
 gsave.pd             sampbufs~.pd         txtsave.pd \
@@ -58,11 +58,11 @@ hanning~.pd          sampbuf~.pd          udispatch.pd \
 if.pd                saver.pd             valuer.pd \
 iterate.pd           seqbank.pd           volpan~.pd \
 linnoise~.pd         sequencer.pd         wavepacket~.pd \
-linterp~.pd     whitephase~.pd 	lmap.pd_lua\
+linterp~.pd          lmap.pd_lua\
 lispatch.pd          shnoise~.pd          wscauchy~.pd \
 list-const.pd        show.pd              wsexp~.pd \
 list-count.pd        sigenv~.pd           wssincos~.pd \
-list-delim.pd        signum~.pd           xfade~.pd \
+list-delim.pd        xfade~.pd \
 list-dripdex.pd      sin~.pd
 
 # example patches and related files, in the 'examples' subfolder
