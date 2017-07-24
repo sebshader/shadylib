@@ -4,35 +4,35 @@
 #X obj 176 29 inlet;
 #X obj 406 150 outlet;
 #X obj 45 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 2 17 17 0 10 -262144 -1
--1 1 1;
+-1 0 1;
 #X obj 85 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 3 17 17 0 10 -262144 -1
 -1 0 1;
 #X obj 125 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 4 17 17 0 10 -262144
 -1 -1 0 1;
 #X obj 165 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 5 17 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 205 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 6 17 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 245 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 7 17 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 285 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 8 17 17 0 10 -262144
 -1 -1 0 1;
 #X obj 325 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 9 17 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 365 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 10 14 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 405 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 11 14 17 0 10 -262144
 -1 -1 0 1;
 #X obj 445 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 12 14 17 0 10 -262144
 -1 -1 0 1;
 #X obj 485 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 13 14 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 525 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 14 14 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 565 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 15 14 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 605 225 tgl 40 0 \$0-NOTHIN \$0-NUTTIN 16 14 17 0 10 -262144
--1 -1 1 1;
+-1 -1 0 1;
 #X obj 63 152 unpack f f f f f f f f f f f f f f f f;
 #X obj 85 105 route list;
 #X obj 407 100 tabread \$0-tgls;
@@ -73,7 +73,7 @@
 #X msg 628 341 15;
 #X obj 103 205 bng 15 250 50 0 empty empty clear 17 7 0 10 -262144
 -1 -1;
-#X obj 163 206 bng 15 250 50 0 empty empty all_steps_on 17 7 0 10 -262144
+#X obj 163 206 bng 15 250 50 0 empty empty all_on 17 7 0 10 -262144
 -1 -1;
 #X msg 86 126 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0;
 #X msg 165 100 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1;

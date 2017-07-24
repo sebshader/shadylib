@@ -2,3 +2,6 @@
 #X text 110 113 works with saver to save parameters;
 #X obj 112 171 stater globalname objectname;
 #X obj 267 40 saver;
+#X text 102 212 inlet is parameter to save \, left outlet outputs a
+bang on save right outlet loads the saved value;
+#X text 194 57 see help:;

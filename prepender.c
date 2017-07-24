@@ -221,7 +221,7 @@ void prepender_setup(void)
     prepender_class = class_new(gensym("prepender"), (t_newmethod)prepender_new,
     	(t_method)prepender_free, sizeof(t_prepender), 0, A_GIMME, 0);
 		/* a class for the proxy inlet: */
-	proxy_class = class_new(gensym("maxlib_prepender_proxy"), NULL, NULL, sizeof(t_proxy),
+	proxy_class = class_new(gensym("shadylib_prepender_proxy"), NULL, NULL, sizeof(t_proxy),
 		CLASS_PD|CLASS_NOINLET, A_NULL);
 
 	class_addanything(proxy_class, proxy_any);

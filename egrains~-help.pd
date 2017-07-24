@@ -44,6 +44,7 @@ array to read from. overlaps 2 read heads with a hanning window;
 #X obj 138 421 *~ 0.5;
 #X msg 194 174 \$1 500;
 #X obj 124 60 sampbuf~ myarray;
+#X text 347 463 args: phase \, window;
 #X connect 1 0 5 1;
 #X connect 3 0 5 2;
 #X connect 4 0 5 3;

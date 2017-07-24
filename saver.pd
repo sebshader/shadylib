@@ -9,9 +9,13 @@
 #X obj 82 240 r \$1-s;
 #X obj 77 267 outlet;
 #X obj 149 269 outlet;
+#X obj 200 50 inlet;
+#X obj 285 56 inlet;
 #X connect 0 0 2 0;
 #X connect 1 0 3 0;
 #X connect 2 0 4 0;
 #X connect 2 1 7 0;
 #X connect 5 0 6 0;
+#X connect 8 0 0 0;
+#X connect 9 0 1 0;
 #X coords 0 -1 1 1 50 55 1 100 100;

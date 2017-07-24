@@ -37,7 +37,7 @@ blsqr~.pd            oscope~.pd           stream-fromtext.pd \
 bpmtoms.pd         stream-map.pd \
 circle~.pd           outputc~.pd          stream-quant.pd \
 cosinterp~.pd        out~.pd              stream-totext.pd \
-crusher~.pd          percent.pd           streamquant.pd \
+crusher~.pd          percent.pd \
 cyclecount.pd        phasafor~.pd         streamread-slow.pd \
 dbgr~.pd             phasemod~.pd         streamread.pd \
 dispatchOSC.pd       pipebang.pd          streamwrite-slow.pd \
@@ -58,7 +58,7 @@ hanning~.pd          sampbuf~.pd          udispatch.pd \
 if.pd                saver.pd             valuer.pd \
 iterate.pd           seqbank.pd           volpan~.pd \
 linnoise~.pd         sequencer.pd         wavepacket~.pd \
-linterp~.pd          lmap.pd_lua\
+linterp~.pd          lmap.pd_lua \
 lispatch.pd          shnoise~.pd          wscauchy~.pd \
 list-const.pd        show.pd              wsexp~.pd \
 list-count.pd        sigenv~.pd           wssincos~.pd \

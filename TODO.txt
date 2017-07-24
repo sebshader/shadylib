@@ -1,11 +1,5 @@
-possibly recode repeater
+figure out macrodivide
 
-factor out 3rd party array externals
+& bandlimited amplitude mathy stuff
 
-figure out bandlimited amplitude mathy stuff
-
-expline, powline, & signal versions
-
-use text for streams & messtro
-
-investigate new timing options for metro, delay & text
+extend shadylook to all included tables/remove redundancies
