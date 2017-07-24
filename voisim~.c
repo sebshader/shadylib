@@ -91,7 +91,7 @@ static t_int *vosim_perform(t_int *w) {
 				infreq = ocen*conv;
 			}
 		}
-		*out++ = readtab(inphase*SINSQRSIZE)*curdec;
+		*out++ = readtab(inphase*(SINSQRSIZE- 1))*curdec;
 		outphase += outfreq;
 		inphase += infreq;
 	}
