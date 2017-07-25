@@ -138,6 +138,7 @@ typedef union
 #define IS_DENORMAL(f) 0
 #endif // end if defined(__i386__) || defined(__x86_64__)
 
+EXTERN void checkalign(void);
 
 /* exponential range for envelopes is 60dB */
 #define ENVELOPE_RANGE 0.001
@@ -162,9 +163,6 @@ EXTERN void ms2rxfade (t_stage *stage);
 
 #define SHABLESIZE 2048 /* size of tables in shadylook~ */
 
-/* tables for use by shadylook~ and shadylook */
-EXTERN int tabmade;
-
 typedef enum _tabtype {
 	REXP,
 	GAUS,
@@ -176,11 +174,12 @@ EXTERN t_float readtab(t_tabtype type, t_float index);
 EXTERN void maketabs(void);
 
 /*buzz stuff */
-EXTERN void maketables(void);
+EXTERN void makebuzz(void);
 
+EXTERN unsigned char aligned;
 EXTERN t_sample *sintbl;
 EXTERN t_sample *cosectbl;
-EXTERN int buzzmade;
+
 /* used in the cosecant table for values very close to 1/0 */
 #define BADVAL 1e20f
 

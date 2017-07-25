@@ -1,13 +1,11 @@
 #include "shadylib.h"
 
-int tabmade = 0;
-int buzzmade = 0;
-
 t_float *gaustab; /* e^(-x^2) */
 t_float *couchtab; /* 1/(x^2 + 1) */
 t_float *rexptab; /* (e^(-x) - .001)/.999 to x=ln(.001) */
 t_sample *sintbl;
 t_sample *cosectbl;
+unsigned char aligned = 0; //doesn't have to be fast
 
 t_float readtab(t_tabtype type, t_float index) {
 	t_float *tab = rexptab + (type * SHABLESIZE);
@@ -21,15 +19,19 @@ t_float readtab(t_tabtype type, t_float index) {
 		frac = index - iindex;
 		index = tab[iindex++];
 		index2 = tab[iindex] - index;
+#ifdef FP_FAST_FMA
 		return fma(frac, index2, index);
+#else
+        return index2*frac + index;
+#endif
 	}
 }
 
-/* todo: make these names less similar */
 void maketabs(void) {
 	double lnths;
 	t_float incr = 4.f/(SHABLESIZE - 1);
 	t_float sqr;
+	if (rexptab) return;
 	rexptab = getbytes(sizeof(t_float)*SHABLESIZE*3);
 	gaustab = rexptab + SHABLESIZE;
 	couchtab = gaustab + SHABLESIZE;
@@ -44,16 +46,18 @@ void maketabs(void) {
 	}
 	/* fix rexptab */
 	rexptab[SHABLESIZE - 1] = 0;
-	tabmade = 1;
 }
 
 /* create sine and cosecant tables */
-void maketables(void) {
+void makebuzz(void) {
+	double phase;
+	int i;
+	
+	if(sintbl) return;
+	
 	sintbl = (t_sample *)getbytes(sizeof(t_sample) * (BUZZSIZE + 1)*2);
 	cosectbl = sintbl + BUZZSIZE + 1;
 	double incr = 2*M_PI/BUZZSIZE;
-	double phase;
-	int i;
 	for(i = 0; i <= BUZZSIZE; i++) {
 		phase = i*incr;
 		sintbl[i] = sin(phase);
@@ -65,7 +69,6 @@ void maketables(void) {
 		cosectbl[i] = cosectbl[BUZZSIZE-i] = BADVAL;
 		cosectbl[BUZZSIZE/2-i] = cosectbl[BUZZSIZE/2+i] = BADVAL;
 	}
-	buzzmade = 1;
 }
 
 
@@ -196,4 +199,13 @@ void sigdelwritec_checkvecsize(t_sigdelwritec *x, int vecsize)
     else if (vecsize != x->x_vecsize)
         pd_error(x, "delwritec/delreadc/vdhs vector size mismatch");
 #endif
+}
+
+void checkalign(void) {
+	union tabfudge tf;
+	if(aligned) return;
+	tf.tf_d = UNITBIT32 + 0.5;
+    if ((unsigned)tf.tf_i[LOWOFFSET] != 0x80000000)
+        bug("shadylib: unexpected machine alignment");
+    else aligned = 1;
 }

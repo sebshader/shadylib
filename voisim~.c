@@ -1,6 +1,6 @@
 #include "m_pd.h"
 #include <math.h>
-#define SINSQRSIZE 1024
+#define SINSQRSIZE 512
 
 static t_sample *sinsqr_tbl; 
 

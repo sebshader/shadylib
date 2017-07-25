@@ -102,6 +102,7 @@ void sampphase_tilde_setup(void)
         gensym("ft1"), A_FLOAT, 0);
     class_addmethod(sampphase_class, (t_method)sampphase_hold,
         gensym("hold"), A_FLOAT, 0);
+    checkalign();
 }
 
 #endif  /* Hoeldrich version */

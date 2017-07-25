@@ -18,7 +18,7 @@ static t_int *op_perf0(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-	float *tab = cos_table, *addr, f1, f2, frac;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
 	
     double dphase;
     int normhipart;
@@ -28,18 +28,18 @@ static t_int *op_perf0(t_int *w) {
     normhipart = tf.tf_i[HIOFFSET];
 
 
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
         tf.tf_d = dphase;
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
     while (--n)
     {
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
             frac = tf.tf_d - UNITBIT32;
         tf.tf_d = dphase;
             f1 = addr[0];
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         	#ifdef FP_FAST_FMA
         	dphase = fma(frac, f2 - f1, f1);
             *out++ = fma(dphase, (*mul++), (*add++));
@@ -69,7 +69,7 @@ static t_int *op_perf1(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	float *tab = cos_table, *addr, f1, f2, frac;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
 	
     double dphase;
     int normhipart;
@@ -79,18 +79,18 @@ static t_int *op_perf1(t_int *w) {
     normhipart = tf.tf_i[HIOFFSET];
 
 
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
         tf.tf_d = dphase;
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
     while (--n)
     {
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
             frac = tf.tf_d - UNITBIT32;
         tf.tf_d = dphase;
             f1 = addr[0];
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         #ifdef FP_FAST_FMA
         	dphase = fma(frac, f2 - f1, f1);
             *out++ = fma(dphase, (*mul++), add);
@@ -120,7 +120,7 @@ static t_int *op_perf2(t_int *w) {
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-	float *tab = cos_table, *addr, f1, f2, frac;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
 	
     double dphase;
     int normhipart;
@@ -130,18 +130,18 @@ static t_int *op_perf2(t_int *w) {
     normhipart = tf.tf_i[HIOFFSET];
 
 
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
         tf.tf_d = dphase;
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
     while (--n)
     {
-        dphase = (double)(*in++ * (float)(COSTABSIZE)) + UNITBIT32;
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
             frac = tf.tf_d - UNITBIT32;
         tf.tf_d = dphase;
             f1 = addr[0];
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (COSTABSIZE-1));
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
     		#ifdef FP_FAST_FMA
         	dphase = fma(frac, f2 - f1, f1);
             *out++ = fma(dphase, mul, add);
@@ -214,5 +214,7 @@ void operatord_tilde_setup(void)
     CLASS_MAINSIGNALIN(operatord_class, t_operatord, x_f);
     class_addmethod(operatord_class, (t_method)operatord_dsp, gensym("dsp"), 
     A_CANT, 0);
+    checkalign();
+    makebuzz();
 }
 		

@@ -185,5 +185,6 @@ void rectorator_tilde_setup(void)
     A_CANT, 0);
     class_addmethod(rectorator_class, (t_method)rectorator_ft1,
         gensym("ft1"), A_FLOAT, 0);
+    checkalign();
 }
 		

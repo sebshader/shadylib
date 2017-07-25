@@ -1,5 +1,3 @@
 figure out macrodivide
 
 & bandlimited amplitude mathy stuff
-
-extend shadylook to all included tables/remove redundancies

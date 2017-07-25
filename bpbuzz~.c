@@ -386,5 +386,5 @@ void bpbuzz_tilde_setup(void)
         gensym("freq"), A_FLOAT, 0);
     class_addmethod(scalarbpbuzz_class, (t_method)scalarbpbuzz_phase,
         gensym("phase"), A_FLOAT, 0);
-	if(!buzzmade) maketables();
+	makebuzz();
 }

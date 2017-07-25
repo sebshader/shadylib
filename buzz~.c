@@ -274,5 +274,5 @@ void buzz_tilde_setup(void)
     class_addmethod(scalarbuzz_class, (t_method)scalarbuzz_phase,
         gensym("phase"), A_FLOAT, 0);
     
-	if(!buzzmade) maketables();
+	makebuzz();
 }
