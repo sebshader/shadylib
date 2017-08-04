@@ -1,22 +1,20 @@
-#N canvas 0 22 450 300 10;
-#X obj 262 119 timer;
+#N canvas 0 23 450 300 10;
+#X obj 262 129 timer;
 #X obj 262 78 t b b;
-#X floatatom 127 117 5 0 0 0 - #0-tobox #0-nada;
+#X floatatom 121 116 5 0 0 0 - - -, f 5;
 #X obj 269 30 inlet;
-#X obj 105 118 bng 15 250 50 0 \$0-frombng \$0-nadabang empty 17 7
+#X obj 103 116 bng 15 250 50 0 \$0-frombng \$0-nadabang empty 17 7
 0 10 -262144 -1 -1;
 #X obj 240 171 outlet;
-#X obj 300 140 s \$0-tobox;
-#X obj 310 63 r \$0-frombng;
-#X obj 306 102 spigot 0;
-#X msg 375 91 1;
+#X obj 329 107 spigot 0;
+#X msg 382 86 1;
 #X connect 0 0 5 0;
-#X connect 0 0 6 0;
+#X connect 0 0 2 0;
 #X connect 1 0 0 0;
-#X connect 1 0 9 0;
-#X connect 1 1 8 0;
+#X connect 1 0 7 0;
+#X connect 1 1 6 0;
 #X connect 3 0 1 0;
-#X connect 7 0 1 0;
-#X connect 8 0 0 1;
-#X connect 9 0 8 1;
+#X connect 4 0 1 0;
+#X connect 6 0 0 1;
+#X connect 7 0 6 1;
 #X coords 0 -1 1 1 60 35 1 100 100;

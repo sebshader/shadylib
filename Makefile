@@ -3,12 +3,12 @@
 #  http://puredata.info/docs/developer/MakefileTemplate
 LIBRARY_NAME = shadylib
 
-PD_PATH = /Applications/Pd-0.47-1.app/Contents/Resources
+PD_PATH = /Applications/Pd.app/Contents/Resources
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
 # objects, the matching .tcl file too
-SOURCES =		astep~.c          moop~.c           prepender.c       shadylook~.c \
+SOURCES =          moop~.c           prepender.c       shadylook~.c \
 bpbuzz~.c         neadsr~.c         rcombf~.c         tabread4hs~.c \
 buzz~.c           nead~.c           rectoratord~.c    tcheb~.c \
 delreadc~.c       near~.c           rectorator~.c     transpose~.c \

@@ -4,7 +4,7 @@
 #X obj 41 84 ad;
 #X obj 80 84 adsr;
 #X obj 127 84 ar;
-#X text 117 42 switches 1s and 0s;
+#X text 128 44 switches 1s and 0s;
 #X text 162 83 envelope generators for various line objects;
 #X obj 40 123 banger;
 #X text 147 120 loadbang with dsp switch and bang to trigger loadbang

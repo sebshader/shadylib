@@ -39,7 +39,8 @@ static void look_float(t_look *x, t_floatarg dex) {
 void shadylook_setup(void) {
 	shadylook_class = class_new(gensym("shadylook"), (t_newmethod)shadylook_new,
 		0, sizeof(t_look), 0, A_DEFSYMBOL, 0);
-	if(!tabmade) maketabs();
+	maketabs();
+
 	class_addmethod(shadylook_class, (t_method)look_cauchy, gensym("cauchy"), 
 		0);
 	class_addmethod(shadylook_class, (t_method)look_gauss, gensym("gauss"), 

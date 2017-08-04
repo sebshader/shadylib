@@ -5,7 +5,7 @@
 argument controls).;
 #X floatatom 330 94 5 0 0 0 - - -, f 5;
 #X msg 433 130 \; pd dsp 1;
-#X text 33 203 [oscope~ 44100 1] -->;
+#X text 2 203 [oscope~ 44100 1] -->;
 #X text 717 301 <-- [oscope~ 44100];
 #X text 68 10 oscilloscope that calculates/writes with multiples of
 a blocksize of 1024;

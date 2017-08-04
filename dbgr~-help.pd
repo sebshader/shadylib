@@ -1,8 +1,8 @@
-#N canvas 0 22 450 300 10;
-#X text 222 90 see number streams;
-#X obj 230 146 osc~ 1;
-#X text 107 118 argument: how fast numbers are shown in ms (default
+#N canvas 0 23 450 300 10;
+#X text 145 86 see number streams;
+#X obj 153 142 osc~ 1;
+#X text 30 114 argument: how fast numbers are shown in ms (default
 100);
 #X text 32 250 pretty much the same as snaps~ from jmmmp;
-#X obj 221 172 dbgr~;
+#X obj 144 168 dbgr~;
 #X connect 1 0 4 0;

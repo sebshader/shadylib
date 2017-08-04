@@ -51,7 +51,7 @@ void shadylook_tilde_setup(void) {
 	siglook_class = class_new(gensym("shadylook~"), 
 		(t_newmethod)siglook_new,
 		0, sizeof(t_siglook), 0, A_DEFSYMBOL, 0);
-	if(!tabmade) maketabs();
+	maketabs();
 	class_addmethod(siglook_class, (t_method)siglook_dsp, 
 		gensym("dsp"), A_CANT, 0);
 	CLASS_MAINSIGNALIN(siglook_class, t_siglook, x_f);

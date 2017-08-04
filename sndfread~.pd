@@ -1,15 +1,15 @@
 #N canvas 173 248 770 501 10;
 #X obj 17 110 openpanel;
 #X msg 451 287 start;
-#X obj 526 140 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
+#X obj 561 138 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
 -1;
-#X obj 526 120 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
+#X obj 561 118 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
 -1;
 #X msg 128 222 set open \$1;
 #X obj 292 364 outlet~;
 #X symbolatom 306 119 35 0 0 0 - - -, f 35;
 #X symbolatom 306 139 35 0 0 0 - - -, f 35;
-#X obj 572 141 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
+#X obj 607 138 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
 -1;
 #X msg 500 289 stop;
 #X obj 391 200 t b b;
@@ -25,14 +25,14 @@
 #X obj 555 49 inlet;
 #X text 44 91 todo: implement pause;
 #X obj 32 138 makerpath;
-#X msg 92 265;
 #X obj 47 161 iemlib/splitfilename /;
 #X obj 4 196 iemlib/splitfilename /;
+#X msg 92 265;
 #X connect 0 0 22 0;
 #X connect 1 0 11 0;
 #X connect 2 0 17 0;
 #X connect 3 0 10 0;
-#X connect 4 0 23 0;
+#X connect 4 0 25 0;
 #X connect 8 0 9 0;
 #X connect 9 0 11 0;
 #X connect 10 0 0 0;
@@ -43,16 +43,16 @@
 #X connect 15 0 9 0;
 #X connect 15 0 22 0;
 #X connect 17 0 1 0;
-#X connect 17 1 23 0;
+#X connect 17 1 25 0;
 #X connect 17 2 9 0;
 #X connect 18 0 3 0;
 #X connect 19 0 2 0;
 #X connect 20 0 8 0;
 #X connect 22 0 4 0;
 #X connect 22 0 14 0;
-#X connect 22 0 24 0;
-#X connect 23 0 11 0;
-#X connect 24 0 25 0;
-#X connect 24 1 7 0;
-#X connect 25 1 6 0;
-#X coords 0 -1 1 1 320 60 1 300 100;
+#X connect 22 0 23 0;
+#X connect 23 0 24 0;
+#X connect 23 1 7 0;
+#X connect 24 1 6 0;
+#X connect 25 0 11 0;
+#X coords 0 -1 1 1 355 60 1 300 100;

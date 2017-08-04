@@ -115,7 +115,6 @@
 #X obj 716 222 - 2;
 #X obj 587 383 line~;
 #X obj 670 232 + 1;
-#X obj 513 716 moop~;
 #X connect 0 0 3 0;
 #X connect 0 0 2 0;
 #X connect 0 0 53 0;

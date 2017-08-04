@@ -1,4 +1,4 @@
-#N canvas 349 23 1159 702 10;
+#N canvas 281 23 1159 702 10;
 #X obj 268 435 oscope~;
 #X msg 50 89 20;
 #X msg 249 205 times 0 5;
@@ -12,9 +12,9 @@ to 0;
 the transposition at phase crossings;
 #X text 67 44 can also use a float if the signal isn't there (like
 most pd objects);
-#X text 479 44 successor to loop~;
+#X text 458 15 successor to loop~;
 #X text 284 416 right outlet is current phase;
-#X text 667 315 moop~ is a sample looper that takes a transposition
+#X text 717 322 moop~ is a sample looper that takes a transposition
 in the signal of it's left inlet and the message "times". the first
 argument to times is the milliseconds to ramp (regardless of transposition)
 \, and the second is the number of times to ramp \, which defaults
@@ -41,14 +41,14 @@ to 1 if the second argument isn't there.;
 #X obj 288 353 dbgr~;
 #X msg 246 185 times 1500 0;
 #X obj 191 273 moop~ 44100 0 test;
-#X text 305 111 tempo sets a number to multiply the first number of
+#X text 380 107 tempo sets a number to multiply the first number of
 "times" by (default 1);
 #X text 372 236 right inlet is offset \, sampled at phase boundaries
 ;
-#X text 298 316 index into buffer relative to onset \, 1 behind where
+#X text 306 318 index into buffer relative to onset \, 1 behind where
 tabread4~ should be;
 #X msg 219 141 times -12.5 8000;
-#X text 440 151 if the second argument is not a float then moop~ will
+#X text 470 152 if the second argument is not a float then moop~ will
 infinitely repeat;
 #X msg 435 83 tempo 1;
 #X floatatom 644 93 5 0 0 0 - - -, f 5;
