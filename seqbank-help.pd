@@ -1,12 +1,12 @@
-#N canvas 564 23 924 721 10;
+#N canvas 516 23 924 721 10;
 #X obj 53 321 seqbank;
 #X msg 65 288 clear 1;
 #X text 116 288 clears the whole line;
 #X msg 67 206 2 0 9 8 77 465 34 0 0 0 68;
 #X msg 71 227 0 7 8 2 3;
-#X text 138 231 now starting at row 0 column 7;
+#X text 145 229 now starting at row 0 column 7;
 #X msg 69 262 1 14 7 6 4 4;
-#X text 151 263 wraps to next row;
+#X text 167 262 wraps to next row;
 #X obj 363 270 iterate 3;
 #X msg 366 292 clear \$1;
 #X obj 369 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -29,7 +29,7 @@ each numberbox has receive name \$0-nbx\$2\$1r \, where \$0 is subpatch
 # \, \$2 is the row # and \$1 is the column #;
 #X text 504 640 you can also read directly from the array: \$0-seqbank
 ;
-#X text 234 204 starting at row 2 column 0 \, enter;
+#X text 266 207 starting at row 2 column 0 \, enter;
 #X connect 0 0 13 0;
 #X connect 0 1 14 0;
 #X connect 0 2 15 0;
