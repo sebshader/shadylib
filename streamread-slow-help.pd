@@ -8,17 +8,17 @@
 #X msg 337 155 gertrude;
 #X obj 405 119 metro 300;
 #X obj 282 199 streamwrite;
-#X obj 198 227 streamread-slow;
-#X msg 197 195 bang;
-#X text 71 61 output the messages from streamwrite 1 by 1 for processing/algorithmic
+#X obj 172 226 streamread-slow;
+#X msg 171 194 bang;
+#X text 41 40 output the messages from streamwrite 1 by 1 for processing/algorithmic
 composition;
-#X obj 204 261 print stream;
+#X obj 178 260 print stream;
 #X obj 300 254 print done;
 #X obj 308 227 print;
 #X msg 59 156 reset;
 #X text 2 110 reset after going through it;
 #X msg 401 67 1;
-#X msg 113 131 / will this work? / a // test / bang / bang 45;
+#X msg 57 129 / will this work? / a // test / bang / bang 45;
 #X connect 0 0 6 1;
 #X connect 1 0 6 0;
 #X connect 2 0 5 0;

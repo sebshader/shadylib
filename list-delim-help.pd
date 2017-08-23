@@ -1,4 +1,4 @@
-#N canvas 295 23 450 300 10;
+#N canvas 295 23 535 367 10;
 #X obj 189 184 print;
 #X obj 207 123 list-delim pan;
 #X msg 293 99 symbol /;

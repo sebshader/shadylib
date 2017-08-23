@@ -10,7 +10,7 @@
 #X msg 136 214 1;
 #X obj 121 306 print metro'd;
 #X obj 134 236 streamread;
-#X obj 482 61 temposet 60 bpm;
+#X obj 540 66 temposet 60 bpm;
 #X text 362 205 transforms the stream into ms from beats;
 #X msg 109 72 / 0.25 woohhoo random message / 1 beat units / 1.5 snare
 / 2.5 snare / 3 snare / 4 done;
