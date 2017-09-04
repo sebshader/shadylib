@@ -1,10 +1,10 @@
 #N canvas 667 70 450 300 10;
 #X obj 159 204 dbgr~;
-#X floatatom 249 153 5 0 0 0 - - -;
-#X obj 167 124 signum~;
+#X floatatom 249 153 5 0 0 0 - - -, f 5;
 #X obj 154 167 rminus~ 4;
 #X text 79 64 like -~ \, but with reversed inlets;
 #X msg 48 115 \; pd dsp 1;
-#X connect 1 0 3 1;
-#X connect 2 0 3 0;
-#X connect 3 0 0 0;
+#X obj 149 108 smoother~ 0;
+#X connect 1 0 2 1;
+#X connect 2 0 0 0;
+#X connect 5 0 2 0;

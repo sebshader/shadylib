@@ -3,24 +3,24 @@
 #X obj 118 128 phasor~;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array anything 20 float 3;
-#A 0 0.342859 0.157144 -0.300002 -0.300002 -0.371431 -0.34286 -0.457146
--0.485718 -0.500003 -0.514289 -0.514289 -0.228573 -0.200001 -0.114287
+#A 0 0.67143 -0.371433 -0.471434 -0.471434 -0.48572 -0.328576 -0.214289
+-0.0714314 -0.0428598 -0.0142882 0.314285 -0.228573 -0.200001 -0.114287
 0.0285714 0.157144 0.214287 0.300002 0.300002 0.242858;
 #X coords 0 1 20 -1 200 140 1 0 0;
 #X restore 358 81 graph;
 #X obj 108 193 tabread4hs~ anything;
 #X obj 118 171 +~ 1;
-#X obj 116 86 signum~;
 #X obj 230 239 oscope~;
 #X obj 118 152 *~ 5;
 #X text 61 15 updated tabread4c~ from nusmuk-audio that has audio-rate
 right inlet for offset (uses hermite spline);
 #X obj 228 129 smoother~;
-#X connect 1 0 7 0;
+#X obj 116 86 smoother~ 0;
+#X connect 1 0 6 0;
 #X connect 3 0 0 0;
 #X connect 3 0 0 1;
-#X connect 3 0 6 0;
+#X connect 3 0 5 0;
 #X connect 4 0 3 0;
-#X connect 5 0 1 0;
-#X connect 7 0 4 0;
-#X connect 9 0 3 1;
+#X connect 6 0 4 0;
+#X connect 8 0 3 1;
+#X connect 9 0 1 0;
