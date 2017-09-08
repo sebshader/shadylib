@@ -212,7 +212,7 @@ is samplerate/262141 (.083924 @ 44100 hz);
 #X restore 101 169 pd linfreq;
 #X obj 233 106 != 0;
 #X obj 101 218 outlet~;
-#N canvas 488 97 819 684 logfreq 1;
+#N canvas 488 97 819 684 logfreq 0;
 #X obj 119 59 inlet~;
 #X obj 273 613 outlet~;
 #X obj 339 108 switch~;

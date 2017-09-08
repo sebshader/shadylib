@@ -8,7 +8,7 @@
 #X text 103 76 freq;
 #X text 164 50 top harmonic;
 #X text 232 76 duty cycle (0-1);
-#X obj 154 524 bpbuzz~ 44100 0.7;
+#X obj 134 524 bpbuzz~ 44100 0.7;
 #X text 247 140 if -d is the first arg \, a signal bpbuzz~ gets made
 and the second arg is the duty cycle. otherwise \, a control-version
 is made;
