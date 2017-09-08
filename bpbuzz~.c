@@ -160,7 +160,10 @@ static t_int *scalarbpbuzz_perform(t_int *w) {
 		final = res3*(1 - frat) + res1*(frat);
 
 gotfinal:
-		
+		if(freq == 0.0) {
+			final2 = 0.0;
+			goto gotfinal2;
+		}
 		fread = phase + duty;
 		tabrd = fread;
 		fread = fread - tabrd;
