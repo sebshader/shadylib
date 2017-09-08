@@ -27,7 +27,7 @@ PDOBJECTS =  1-0switch.pd         macrodivide.pd       smoother~.pd \
 ad.pd                messtro.pd           sndfwritem~.pd \
 adsr.pd              meters~.pd           sndfwrites~.pd \
 ar.pd                metorate.pd          sqr.pd \
-modulator~.pd        sqrwine~.pd \
+modulator~.pd \
 banger.pd            mseq.pd              srepeater~.pd \
 bangif.pd            msgsave.pd           sstater.pd \
 bilexnoise~.pd       mstof.pd             stater.pd \
