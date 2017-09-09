@@ -1,8 +1,8 @@
-#N canvas 363 223 656 443 10;
+#N canvas 492 291 656 443 10;
 #X obj 255 94 inlet;
 #X obj 152 301 f;
-#X floatatom 253 215 7 0 0 2 ms - -, f 7;
-#X floatatom 206 215 7 0 0 2 bpm - -, f 7;
+#X floatatom 253 215 6 0 0 2 ms - -, f 6;
+#X floatatom 205 215 6 0 0 2 bpm - -, f 6;
 #X msg 164 166 set \$1;
 #X msg 192 332 60000;
 #X obj 201 357 /;
@@ -19,8 +19,8 @@
 #X obj 345 213 int;
 #X obj 405 214 pack;
 #X obj 392 237 route 0 1;
-#X floatatom 253 265 7 0 0 2 /4 - -, f 7;
-#X floatatom 207 265 7 0 0 2 /3 - -, f 7;
+#X floatatom 253 265 6 0 0 2 /4 - -, f 6;
+#X floatatom 207 265 6 0 0 2 /3 - -, f 6;
 #X obj 310 239 / 4;
 #X msg 312 264 set \$1;
 #X obj 304 294 * 4;
