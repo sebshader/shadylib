@@ -1,4 +1,4 @@
-#N canvas 291 23 757 706 12;
+#N canvas 676 82 757 706 12;
 #X declare -path ../;
 #X text 157 12 Signal Objects;
 #X obj 22 46 1-0switch~;
@@ -181,9 +181,6 @@ for order;
 #X text 82 101 band-limited sawtooth wave;
 #X text 85 130 band-limited square wave;
 #X text 108 154 combined bandlimited square/triangle wave;
-#X obj 40 3188 sqrwine~;
-#X text 115 3188 combination of bandlimited waveforms (multiple outputs)
-;
 #X obj 30 2566 sampbufs~;
 #X text 110 2566 same \, but stereo;
 #X text 89 522 simple wrapper for grainy~ granular synth for playback
