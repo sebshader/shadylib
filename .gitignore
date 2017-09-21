@@ -1,3 +1,5 @@
 *.o
 *.pd_darwin
-libshadylib.dylib
+*.pd_linux
+*.dylib
+*.so
