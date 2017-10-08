@@ -10,11 +10,7 @@
 buffer \, 2nd is the name of the soundfile the 1st inlet is the soundfile
 name \, 2nd inlet queries the buffer length \, and the outlet reports
 it;
-#X text 66 73 also sends \$1-rdr;
-#X obj 259 114 r sampbufhelp-rdr;
-#X floatatom 255 148 5 0 0 0 - - -, f 5;
 #X connect 0 0 5 1;
 #X connect 3 0 5 0;
 #X connect 4 0 3 0;
 #X connect 5 0 1 0;
-#X connect 8 0 9 0;
