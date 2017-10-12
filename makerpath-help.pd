@@ -6,7 +6,10 @@
 #X text 14 9 this takes a pathname relative to the root canvas and
 transforms it into an absolute pathname;
 #X msg 307 96 ../test.pd;
+#X msg 95 70 /this/is/alsready/absolutemm;
+#X text 43 264 leaves absolute paths alone;
 #X connect 0 0 1 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
 #X connect 5 0 0 0;
+#X connect 6 0 0 0;
