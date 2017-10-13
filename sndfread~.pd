@@ -1,5 +1,5 @@
 #N canvas 173 248 770 501 10;
-#X obj 17 110 openpanel;
+#X obj 144 128 openpanel;
 #X msg 451 287 start;
 #X obj 561 138 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
 -1;
@@ -24,11 +24,12 @@
 #X obj 542 24 inlet;
 #X obj 555 49 inlet;
 #X text 44 91 todo: implement pause;
-#X obj 32 138 makerpath;
+#X obj 49 130 makerpath;
 #X obj 47 161 iemlib/splitfilename /;
 #X obj 4 196 iemlib/splitfilename /;
 #X msg 92 265;
-#X connect 0 0 22 0;
+#X connect 0 0 23 0;
+#X connect 0 0 4 0;
 #X connect 1 0 11 0;
 #X connect 2 0 17 0;
 #X connect 3 0 10 0;
