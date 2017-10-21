@@ -27,10 +27,12 @@ manymsg s2 60 \;;
 #X msg 557 279 \; manymsg s1 35 \; manymsg s3 127 \; manymsg s4 15
 \; manymsg s2 83 \;;
 #X obj 460 140 iemlib/iem_prepend 0;
+#X text 15 294 bangs out left outlet on save (before sending saved
+values);
 #X connect 0 0 8 0;
 #X connect 0 1 8 1;
 #X connect 0 2 8 2;
-#X connect 1 0 3 0;
+#X connect 1 1 3 0;
 #X connect 2 0 1 0;
 #X connect 3 0 4 0;
 #X connect 3 1 5 0;
