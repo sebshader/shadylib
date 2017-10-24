@@ -41,7 +41,7 @@ times);
 -1 -1;
 #X obj 48 258 zexy/nop;
 #X obj 487 273 metro 500;
-#X obj 482 33 bng 15 250 50 0 empty empty test 17 7 0 10 -262144 -1
+#X obj 513 35 bng 15 250 50 0 empty empty test 17 7 0 10 -262144 -1
 -1;
 #X obj 528 106 del 50;
 #X msg 479 100 3000;

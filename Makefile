@@ -47,10 +47,10 @@ expline.pd           powline.pd           switchnramp~.pd \
 expline~.pd          powline~.pd          synlets.pd \
 freqshifterd~.pd     pthng~.pd            tabload.pd \
 freqshifter~.pd      realpass~.pd         tabsave.pd \
-gainc~.pd            receiver.pd          temposet.pd \
+gainc~.pd            temposet.pd \
 gate~.pd             repeater~.pd         testro.pd \
 rexpline.pd          transpose.pd \
-rexpline~.pd         trinoise~.pd \
+rexpline~.pd         trinoise~.pd 			passif.pd \
 grainyback~.pd       rndmrange.pd         tseq.pd \
 grainy~.pd           rpowline~.pd         ttempo.pd \
 gsave.pd             sampbufs~.pd         txtsave.pd \

@@ -1,0 +1,10 @@
+#N canvas 0 23 450 300 10;
+#X floatatom 148 89 5 0 0 0 - - -, f 5;
+#X obj 156 132 passif > 5;
+#X floatatom 228 101 5 0 0 0 - - -, f 5;
+#X obj 149 185 print passed;
+#X obj 246 212 print didn't;
+#X connect 0 0 1 0;
+#X connect 1 0 3 0;
+#X connect 1 1 4 0;
+#X connect 2 0 1 1;

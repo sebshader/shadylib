@@ -1,7 +1,13 @@
-#N canvas 290 333 691 333 10;
-#X obj 57 122 out~;
-#X text 280 98 dac~ with meters. Argument: envelope follower response
-for metering (as a lowpass filter frequency) \, 7 by default;
+#N canvas 226 104 691 491 10;
+#X obj 80 226 out~;
 #X obj 44 7 sndfread~;
-#X connect 2 0 0 0;
-#X connect 2 1 0 1;
+#X obj 161 93 *~ 3;
+#X obj 74 124 gainc~;
+#X obj 62 89 *~ 3;
+#X text 280 98 dac~ with meters. Arguments same as meters~;
+#X connect 1 0 4 0;
+#X connect 1 1 2 0;
+#X connect 2 0 3 1;
+#X connect 3 0 0 0;
+#X connect 3 1 0 1;
+#X connect 4 0 3 0;
