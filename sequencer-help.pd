@@ -2,7 +2,7 @@
 #X obj 145 174 sequencer;
 #X obj 145 290 hradio 36 1 0 16 empty empty empty 0 -8 0 10 -262144
 -1 -1 0;
-#X obj 73 301 print step;
+#X obj 55 302 print step;
 #X floatatom 758 306 5 0 0 0 - - -, f 5;
 #X obj 724 155 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
