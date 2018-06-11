@@ -59,7 +59,7 @@ static void *powclip_new(t_symbol *s, int argc, t_atom *argv)
     }
 }
 
-inline t_sample powclip_calculate (t_sample in1, t_sample in2) {
+static inline t_sample powclip_calculate (t_sample in1, t_sample in2) {
 	t_sample absin1 = fabs(in1);
 	absin1 = fmin(absin1, 1);
 	if(in2 <= 0) return copysign(absin1, in1);
