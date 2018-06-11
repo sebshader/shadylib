@@ -97,57 +97,80 @@ static t_int *scalarbuzz_perform(t_int *w) {
 		if(res1 == BADVAL || res2 == BADVAL) {
 			res1 = sintbl[tabrd];
 			res2 = sintbl[tabrd2];
+			#ifdef FP_FAST_FMA
+			res2 = fma(res2 - res1, res3, res1);
+			#else
 			res2 = res1 + (res2 - res1)*res3;
+			#endif
 			if(fabs(res2)  < 0.0005f) {
 				*out1++ = 1;
-				res1 = phase*2;
-				n2 = res1;
-				*out2++ = res1 - n2;
+				*out2++ = phase;
+				#ifdef FP_FAST_FMA
+				phase = fma(freq, conv, phase);
+				#else
 				phase += freq*conv;
-				if(phase >= 1) {
-					n2 = phase;
-					phase = phase - n2;
-				}
+				#endif
+				n2 = phase;
+				phase = phase - n2;
 				continue;
 			} else res2 = 1/res2;
-		} else res2 = res1 + (res2 - res1)*res3;
-		rat = g/freq;
-		if (rat > MAXHARM) {
-			rat = MAXHARM;
 		} else {
-			frat = max/freq - 1;
-			n2 = frat;
-			if(rat > n2) rat = frat;
+			#ifdef FP_FAST_FMA
+			res2 = fma(res2 - res1, res3, res1);
+			#else
+			res2 = res1 + (res2 - res1)*res3;
+			#endif
 		}
-		rat = fmax(rat, 1);
+		rat = g/freq - 1;
+		rat = fmax(fmin(rat, MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
+		#ifdef FP_FAST_FMA
+		res4 = fma(n2, fread, fread);
+		#else
 		res4 = fread*(n2 + 1);
+		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd %= BUZZSIZE;
+		tabrd = tabrd & (BUZZSIZE - 1);
 		res3 = sintbl[tabrd];
 		tabrd++;
+		
+		#ifdef FP_FAST_FMA
+		res3 = fma(sintbl[tabrd] - res3, res1, res3);
+		res3 = fma(res3, res2, -1)/n2;
+		res1 = fma(fread, 2, res4);
+		#else
 		res3 = res3 + (sintbl[tabrd] - res3)*res1;
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
+		#endif
+
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd % BUZZSIZE;
+		tabrd = tabrd & (BUZZSIZE - 1);
 		res1 = sintbl[tabrd];
 		tabrd++;
+		
+		#ifdef FP_FAST_FMA
+		res1 = fma(sintbl[tabrd] - res1, res4, res1);
+		res1 = fma(res1, res2, -1)/(n2 + 2);
+		*out1++ = fma(res3, 1-frat, res1*frat);
+		#else
 		res1 = res1 + (sintbl[tabrd] - res1)*res4;
 		res1 = (res1*res2 - 1)/(n2 + 2);
 		*out1++ = res3*(1 - frat) + res1*(frat);
-		res1 = phase*2;
-		n2 = res1;
-		*out2++ = res1 - n2;
+		#endif
+		
+		*out2++ = phase;
+		#ifdef FP_FAST_FMA
+		phase = fma(freq, conv, phase);
+		#else
 		phase += freq*conv;
-		if(phase >= 1) {
-			n2 = phase;
-			phase = phase - n2;
-		}
+		#endif
+		n2 = phase;
+		phase = phase - n2;
 	}
 	x->phase = phase;
 	return(w + 6);
@@ -169,7 +192,7 @@ static t_int *buzz_perform(t_int *w) {
     t_sample g;
 	while(n--) {
 		freq = fmin(fabs(*in++), max);
-		g = fmin(fmax(*in2++, 0.), max);
+		g = fmin(*in2++, max);
 		fread = phase*BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
@@ -179,57 +202,80 @@ static t_int *buzz_perform(t_int *w) {
 		if(res1 == BADVAL || res2 == BADVAL) {
 			res1 = sintbl[tabrd];
 			res2 = sintbl[tabrd2];
+			#ifdef FP_FAST_FMA
+			res2 = fma(res2 - res1, res3, res1);
+			#else
 			res2 = res1 + (res2 - res1)*res3;
+			#endif
 			if(fabs(res2)  < 0.0005f) {
 				*out1++ = 1;
-				res1 = phase*2;
-				n2 = res1;
-				*out2++ = res1 - n2;
+				*out2++ = phase;
+				#ifdef FP_FAST_FMA
+				phase = fma(freq, conv, phase);
+				#else
 				phase += freq*conv;
-				if(phase >= 1) {
-					n2 = phase;
-					phase = phase - n2;
-				}
+				#endif
+				n2 = phase;
+				phase = phase - n2;
 				continue;
 			} else res2 = 1/res2;
-		} else res2 = res1 + (res2 - res1)*res3;
-		rat = g/freq;
-		if (rat > MAXHARM) {
-			rat = MAXHARM;
 		} else {
-			frat = max/freq - 1;
-			n2 = frat;
-			if(rat > n2) rat = frat;
+			#ifdef FP_FAST_FMA
+			res2 = fma(res2 - res1, res3, res1);
+			#else
+			res2 = res1 + (res2 - res1)*res3;
+			#endif
 		}
-		rat = fmax(rat, 1);
+		rat = g/freq - 1;
+		rat = fmax(fmin(rat, MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
+		#ifdef FP_FAST_FMA
+		res4 = fma(n2, fread, fread);
+		#else
 		res4 = fread*(n2 + 1);
+		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd %= BUZZSIZE;
+		tabrd = tabrd & (BUZZSIZE - 1);
 		res3 = sintbl[tabrd];
 		tabrd++;
+		
+		#ifdef FP_FAST_FMA
+		res3 = fma(sintbl[tabrd] - res3, res1, res3);
+		res3 = fma(res3, res2, -1)/n2;
+		res1 = fma(fread, 2, res4);
+		#else
 		res3 = res3 + (sintbl[tabrd] - res3)*res1;
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
+		#endif
+
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd % BUZZSIZE;
+		tabrd = tabrd & (BUZZSIZE - 1);
 		res1 = sintbl[tabrd];
 		tabrd++;
+		
+		#ifdef FP_FAST_FMA
+		res1 = fma(sintbl[tabrd] - res1, res4, res1);
+		res1 = fma(res1, res2, -1)/(n2 + 2);
+		*out1++ = fma(res3, 1-frat, res1*frat);
+		#else
 		res1 = res1 + (sintbl[tabrd] - res1)*res4;
 		res1 = (res1*res2 - 1)/(n2 + 2);
 		*out1++ = res3*(1 - frat) + res1*(frat);
-		res1 = phase*2;
-		n2 = res1;
-		*out2++ = res1 - n2;
+		#endif
+
+		*out2++ = phase;
+		#ifdef FP_FAST_FMA
+		phase = fma(freq, conv, phase);
+		#else
 		phase += freq*conv;
-		if(phase >= 1) {
-			n2 = phase;
-			phase = phase - n2;
-		}
+		#endif
+		n2 = phase;
+		phase = phase - n2;
 	}
 	x->phase = phase;
 	return(w + 7);

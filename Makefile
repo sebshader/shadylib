@@ -3,7 +3,7 @@
 #  http://puredata.info/docs/developer/MakefileTemplate
 LIBRARY_NAME = shadylib
 
-PD_PATH = /Applications/Pd.app/Contents/Resources
+PD_PATH = /Applications/Pd-0.48.1.app/Contents/Resources/
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
@@ -18,7 +18,7 @@ fmod~.c           operator~.c       rover~.c          updel.c \
 highest~.c        phasorator~.c     sampphase~.c      upmet.c \
 inrange.c         pib~.c            scaler.c          vdhs~.c \
 pinb~.c           scaler~.c         voisim~.c 		  log2.c\
-modf~.c           powclip~.c        shadylook.c
+modf~.c           powclip~.c        shadylook.c		lag~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
@@ -27,7 +27,7 @@ PDOBJECTS =  1-0switch.pd         macrodivide.pd       smoother~.pd \
 ad.pd                messtro.pd           sndfwritem~.pd \
 adsr.pd              meters~.pd           sndfwrites~.pd \
 ar.pd                metorate.pd          sqr.pd \
-modulator~.pd \
+modulator~.pd 		dbpole.pd \
 banger.pd            mseq.pd              srepeater~.pd \
 bangif.pd            msgsave.pd           sstater.pd \
 bilexnoise~.pd       mstof.pd             stater.pd \
@@ -109,7 +109,7 @@ LIBRARY_VERSION = $(shell sed -n 's|^\#X text [0-9][0-9]* [0-9][0-9]* VERSION \(
 
 ALL_CFLAGS += -DPD -DVERSION='"$(LIBRARY_VERSION)"'
 
-PD_INCLUDE = $(PD_PATH)/include
+PD_INCLUDE = $(PD_PATH)/src
 # where to install the library, overridden below depending on platform
 prefix = /usr/local
 libdir = $(prefix)/lib

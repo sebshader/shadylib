@@ -1,0 +1,29 @@
+#N canvas 421 63 630 547 10;
+#X obj 126 138 dbpole;
+#X floatatom 126 117 5 0 0 0 - - -, f 5;
+#X floatatom 126 167 5 0 0 0 - - -, f 5;
+#X text 13 60 turns time in milliseconds to get from 1 to 0.001 (60db
+lower) and turns it into the pole coefficient;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array array-\$0 44100 float 2;
+#X coords 0 1 44100 -1 200 140 1 0 0;
+#X restore 220 312 graph;
+#X obj 142 247 rpole~;
+#X obj 197 212 vline~;
+#X obj 213 164 stoms;
+#X msg 212 141 1;
+#X obj 151 273 tabwrite~ array-\$0;
+#X obj 258 124 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X msg 209 185 1 0 0 \, 0 0 \$1;
+#X text 316 291 44100 samples;
+#X connect 0 0 2 0;
+#X connect 0 0 5 1;
+#X connect 1 0 0 0;
+#X connect 5 0 9 0;
+#X connect 6 0 5 0;
+#X connect 7 0 11 0;
+#X connect 8 0 7 0;
+#X connect 10 0 8 0;
+#X connect 10 0 9 0;
+#X connect 11 0 6 0;

@@ -254,8 +254,6 @@ static void *operator_new(t_symbol *s, int argc, t_atom *argv) {
 	return(x);
 }
 
-	
-
 void operator_tilde_setup(void)
 {
     operator_class = class_new(gensym("operator~"), (t_newmethod)operator_new, 0, sizeof(t_operator), 0, A_GIMME, 0);

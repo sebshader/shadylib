@@ -59,9 +59,9 @@ static void *powclip_new(t_symbol *s, int argc, t_atom *argv)
     }
 }
 
-t_sample powclip_calculate (t_sample in1, t_sample in2) {
+inline t_sample powclip_calculate (t_sample in1, t_sample in2) {
 	t_sample absin1 = fabs(in1);
-	if(absin1 > 1) absin1 = 1;
+	absin1 = fmin(absin1, 1);
 	if(in2 <= 0) return copysign(absin1, in1);
 	else if(in2 >= 1) {
 		int readpoint;
@@ -102,17 +102,14 @@ t_int *scalarpowclip_perform(t_int *w)
     int n = (int)(w[4]);
     t_sample abstin, tin;
     if(f <= 0) while(n--) {
-    	tin = *in++;
-    	if(tin < -1) tin = -1;
-    	else if (tin > 1) tin = 1;
+    	tin = fmin(fmax(*in++, -1), 1);
     	*out++ = tin;
 	} else if(f >= 1) {
 		int readpoint;
 		double fred, val;
 		while (n--) {
 			tin = *in++;
-			abstin = fabs(tin);
-			if(abstin > 1) abstin = 1;
+			abstin = fmin(fabs(tin), 1);
 			fred = abstin * (BASTABSIZE - 2);
 			readpoint = fred;
 			fred -= readpoint;
@@ -128,8 +125,7 @@ t_int *scalarpowclip_perform(t_int *w)
 		double finverse = 1.0/f, fscale = 1/(1 - f);
 		while (n--) {
 			tin = *in++;
-			abstin = fabs(tin);
-			if(abstin > 1) abstin = 1;
+			abstin = fmin(fabs(tin), 1);
 			#ifdef FP_FAST_FMA
 			*out++ = copysign(fma(-f, pow(abstin, finverse), abstin)*fscale,
 				tin);

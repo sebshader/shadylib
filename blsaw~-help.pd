@@ -1,4 +1,4 @@
-#N canvas 399 312 1015 581 10;
+#N canvas 577 208 1015 581 10;
 #X obj 298 125 blsaw~;
 #X obj 501 240 oscope~;
 #X obj 304 190 outputc~;

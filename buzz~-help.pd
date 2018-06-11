@@ -19,10 +19,6 @@
 #X obj 357 22 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 439 67 roll 'em;
-#X text 440 168 if a second argument is present \, it is interpreted
-as the frequency to extend harmonics to if it is a number. if the argument
-is a non-number then it is set to 1/2 the sample rate. if there is
-no argument then the second inlet will be a signal-inlet;
 #X obj 586 299 buzz~ 9000;
 #X floatatom 509 267 5 0 0 0 - - -, f 5;
 #X msg 358 62 0 \, \$1 10000;
@@ -34,10 +30,10 @@ is samplerate/262141 (.083924 @ 44100 hz);
 -1;
 #X msg 505 64 \$1 \, 0 10000;
 #X obj 514 83 rexpline;
-#X obj 456 290 buzz~ gobbledygook;
-#X text 494 124 harmonics are crossfaded in order to avoid clicking
+#X obj 446 290 buzz~ gobbledygook;
+#X text 534 121 harmonics are crossfaded in order to avoid clicking
 ;
-#X obj 79 134 smoother~ 15;
+#X obj 90 140 smoother~ 15;
 #N canvas 0 22 450 300 (subpatch) 0;
 #X array \$0-spectrum 512 float 0;
 #X coords 0 1 512 0 400 140 1;
@@ -456,29 +452,34 @@ amprange 0 1 \, logfreq 0 \, full 0;
 #X connect 57 0 45 0;
 #X restore 483 484 pd mmb-spectrum;
 #X msg 561 462 linamp 1;
+#X text 440 168 if an argument is present \, it is interpreted as the
+frequency to extend harmonics to if it is a number. if the argument
+is a non-number then it is set to 1/2 the sample rate. if there is
+no argument then the second inlet will be a signal-inlet;
+#X text 191 245 <- 2nd outlet gives 1/2 frequency phasor~;
 #X connect 0 0 1 1;
 #X connect 0 0 1 0;
-#X connect 0 0 32 0;
+#X connect 0 0 31 0;
 #X connect 2 0 3 0;
 #X connect 3 0 5 0;
 #X connect 5 0 11 0;
 #X connect 5 0 15 1;
-#X connect 5 0 24 1;
-#X connect 9 0 30 0;
+#X connect 5 0 23 1;
+#X connect 9 0 29 0;
 #X connect 10 0 9 0;
 #X connect 11 0 0 1;
 #X connect 12 0 3 0;
-#X connect 13 0 19 1;
+#X connect 13 0 18 1;
 #X connect 14 0 11 0;
-#X connect 15 0 21 0;
+#X connect 15 0 20 0;
 #X connect 16 0 15 0;
-#X connect 20 0 28 1;
-#X connect 21 0 14 0;
-#X connect 22 0 0 2;
-#X connect 24 0 26 0;
-#X connect 25 0 24 0;
-#X connect 26 0 27 0;
-#X connect 27 0 11 0;
-#X connect 30 0 0 0;
-#X connect 30 0 28 0;
-#X connect 33 0 32 1;
+#X connect 19 0 27 1;
+#X connect 20 0 14 0;
+#X connect 21 0 0 2;
+#X connect 23 0 25 0;
+#X connect 24 0 23 0;
+#X connect 25 0 26 0;
+#X connect 26 0 11 0;
+#X connect 29 0 0 0;
+#X connect 29 0 27 0;
+#X connect 32 0 31 1;

@@ -78,8 +78,8 @@ static t_int *vosim_perform(t_int *w) {
 				/* routphase is now the limit */
 				ocen = outfreq/infreq;
 				routphase = fmin(1 - ocen, duty);
-				routphase = routphase - outphase + res;
-				if(routphase <= 0) {
+				routphase = routphase - outphase - res;
+				if(routphase < 0) {
 					curdec = 0;
 				} else {
 					curdec *= fmax(fmin(decay, 1.), -1.);
