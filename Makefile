@@ -62,8 +62,8 @@ linterp~.pd          lmap.pd_lua \
 lispatch.pd          shnoise~.pd          wscauchy~.pd \
 list-const.pd        show.pd              wsexp~.pd \
 list-count.pd        sigenv~.pd           wssincos~.pd \
-list-delim.pd        xfade~.pd \			ftos.pd \
-list-dripdex.pd      sin~.pd \				blsasqri~.pd
+list-delim.pd        xfade~.pd			ftos.pd \
+list-dripdex.pd      sin~.pd			blsasqri~.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
