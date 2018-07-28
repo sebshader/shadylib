@@ -518,7 +518,7 @@ static void multator_dsp(t_multator *x, t_signal **sp) {
 static void multator_ft1(t_multator *x, t_float f)
 {
 	int caster;
-	f += .25;
+	f += 0.;
 	caster = f;
     x->x_phase = f - caster;
 }
