@@ -10,26 +10,22 @@
 #X floatatom 496 137 5 0 0 0 - - -, f 5;
 #X text 676 203 same as osc~ 440;
 #X obj 574 106 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 2;
 #X text 435 44 select wave: 0- sine 1-square 2-triangle 3-sawtooth
 sampled at phase boundaries;
 #X obj 651 271 oscope~;
 #X obj 35 166 multator~ 4 5;
 #X obj 40 191 multator~ 5;
 #X obj 41 217 multator~;
-#X text 487 86 5th arg is starting wave;
 #X text 29 63 variable wave oscillator (for lfos) everything else is
 like operator~;
 #X text 656 245 phase;
-#X obj 537 268 osc~;
-#X obj 515 206 multator~ 1 0 440 0;
-#X obj 504 234 scaler~ 440 440;
-#X connect 6 0 20 4;
-#X connect 8 0 20 0;
-#X connect 10 0 20 3;
-#X connect 19 0 4 1;
-#X connect 19 0 4 0;
-#X connect 20 0 5 0;
-#X connect 20 0 21 0;
-#X connect 20 1 12 0;
-#X connect 21 0 19 0;
+#X obj 511 212 multator~ 1 0 440 0;
+#X text 475 82 4th arg is starting wave;
+#X connect 6 0 18 4;
+#X connect 8 0 18 0;
+#X connect 10 0 18 3;
+#X connect 18 0 5 0;
+#X connect 18 0 4 0;
+#X connect 18 0 4 1;
+#X connect 18 1 12 0;
