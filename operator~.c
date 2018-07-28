@@ -20,7 +20,7 @@ static t_int *op_perf0(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
     union tabfudge tf;
     float conv = x->x_conv;
@@ -33,7 +33,7 @@ static t_int *op_perf0(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -46,7 +46,7 @@ static t_int *op_perf0(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         	#ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
@@ -83,7 +83,7 @@ static t_int *op_perf1(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
     union tabfudge tf;
     float conv = x->x_conv;
@@ -96,7 +96,7 @@ static t_int *op_perf1(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -109,7 +109,7 @@ static t_int *op_perf1(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
             #ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
@@ -145,7 +145,7 @@ static t_int *op_perf2(t_int *w) {
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
     union tabfudge tf;
     float conv = x->x_conv;
@@ -158,7 +158,7 @@ static t_int *op_perf2(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -171,7 +171,7 @@ static t_int *op_perf2(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
             #ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
