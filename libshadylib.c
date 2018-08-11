@@ -209,3 +209,298 @@ void checkalign(void) {
         bug("shadylib: unexpected machine alignment");
     else aligned = 1;
 }
+
+t_int *opd_perf0(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_sample *add = x->invals[1].vec;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	
+    double dphase;
+    int normhipart;
+    union tabfudge tf;
+    
+    tf.tf_d = UNITBIT32;
+    normhipart = tf.tf_i[HIOFFSET];
+
+
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+        tf.tf_d = dphase;
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        tf.tf_i[HIOFFSET] = normhipart;
+    while (--n)
+    {
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+            frac = tf.tf_d - UNITBIT32;
+        tf.tf_d = dphase;
+            f1 = addr[0];
+            f2 = addr[1];
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        	#ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), (*add++));
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*(*mul++) + (*add++);
+            #endif
+        tf.tf_i[HIOFFSET] = normhipart;
+    }
+            frac = tf.tf_d - UNITBIT32;
+            f1 = addr[0];
+            f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), (*add++));
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*(*mul++) + (*add++);
+            #endif
+    return (w+5);
+}
+
+t_int *opd_perf1(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_float add = x->invals[1].val;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	
+    double dphase;
+    int normhipart;
+    union tabfudge tf;
+    
+    tf.tf_d = UNITBIT32;
+    normhipart = tf.tf_i[HIOFFSET];
+
+
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+        tf.tf_d = dphase;
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        tf.tf_i[HIOFFSET] = normhipart;
+    while (--n)
+    {
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+            frac = tf.tf_d - UNITBIT32;
+        tf.tf_d = dphase;
+            f1 = addr[0];
+            f2 = addr[1];
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*(*mul++) + add;
+            #endif
+        tf.tf_i[HIOFFSET] = normhipart;
+    }
+            frac = tf.tf_d - UNITBIT32;
+            f1 = addr[0];
+            f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, (*mul++), add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*(*mul++) + add;
+            #endif
+    return (w+5);
+}
+
+t_int *opd_perf2(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_float mul = x->invals[0].val;
+	t_float add = x->invals[1].val;
+	t_sample *tab = sintbl, *addr, f1, f2, frac;
+	
+    double dphase;
+    int normhipart;
+    union tabfudge tf;
+    
+    tf.tf_d = UNITBIT32;
+    normhipart = tf.tf_i[HIOFFSET];
+
+
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+        tf.tf_d = dphase;
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        tf.tf_i[HIOFFSET] = normhipart;
+    while (--n)
+    {
+        dphase = (double)(*in++ * (float)(BUZZSIZE)) + UNITBIT32;
+            frac = tf.tf_d - UNITBIT32;
+        tf.tf_d = dphase;
+            f1 = addr[0];
+            f2 = addr[1];
+        addr = tab + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+    		#ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, mul, add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*mul + add;
+            #endif
+        tf.tf_i[HIOFFSET] = normhipart;
+    }
+            frac = tf.tf_d - UNITBIT32;
+            f1 = addr[0];
+            f2 = addr[1];
+            #ifdef FP_FAST_FMA
+        	dphase = fma(frac, f2 - f1, f1);
+            *out++ = fma(dphase, mul, add);
+        	#else
+            dphase = f1 + frac * (f2 - f1);
+            *out++ = dphase*mul + add;
+            #endif
+    return (w+5);
+}
+
+t_int *recd_perf0(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_sample *add = x->invals[1].vec;
+    union tabfudge inter;
+	uint32_t casto;
+	inter.tf_d = 1.0;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967295);
+        /* set the sign bit of double 1.0 */
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, *mul++, *add++);
+        #else
+        *out++ = inter.tf_d*(*mul++) + (*add++);
+        #endif
+    }
+    return (w+5);
+}
+
+t_int *recd_perf1(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_float add = x->invals[1].val;
+	union tabfudge inter;
+	uint32_t casto;
+	inter.tf_d = 1.0;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967295);
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, *mul++, add);
+        #else
+        *out++ = inter.tf_d*(*mul++) + add;
+        #endif
+    }
+    return (w+5);
+}
+
+t_int *recd_perf2(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_float mul = x->invals[0].val;
+	t_float add = x->invals[1].val;
+	union tabfudge inter;
+	uint32_t casto;
+	inter.tf_d = 1.0;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967295);
+        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter.tf_d, mul, add);
+        #else
+        *out++ = inter.tf_d*mul + add;
+        #endif
+    }
+    return (w+5);
+}
+
+t_int *trid_perf0(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_sample *add = x->invals[1].vec;
+	t_sample inter;
+	uint32_t casto;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967296);
+        if(casto & 2147483648) /* bit 31 */
+        	casto = ~casto;
+        inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, *mul++, *add++);
+        #else
+        *out++ = inter*(*mul++) + (*add++);
+        #endif
+    }
+    return (w+5);
+}
+
+t_int *trid_perf1(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_sample *mul = x->invals[0].vec;
+	t_float add = x->invals[1].val;
+	t_sample inter;
+	uint32_t casto;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967296);
+        if(casto & 2147483648) /* bit 31 */
+        	casto = ~casto;
+        inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, *mul++, add);
+        #else
+        *out++ = inter*(*mul++) + add;
+        #endif
+    }
+    return (w+5);
+}
+
+t_int *trid_perf2(t_int *w) {
+	t_oscctl *x = (t_oscctl *)(w[1]);
+	t_sample *in = (t_sample *)(w[2]);
+	t_sample *out = (t_sample *)(w[3]);
+	int n = (int)(w[4]);
+	t_float mul = x->invals[0].val;
+	t_float add = x->invals[1].val;
+	t_sample inter;
+	uint32_t casto;
+    while (n--)
+    {
+        casto = (uint32_t)(*in++ * 4294967296);
+        if(casto & 2147483648) /* bit 31 */
+        	casto = ~casto;
+        inter = (t_sample)casto/1073741823.5 - 1;
+        #ifdef FP_FAST_FMA
+        *out++ = fma(inter, mul, add);
+        #else
+        *out++ = inter*mul + add;
+        #endif
+    }
+    return (w+5);
+}

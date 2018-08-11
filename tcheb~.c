@@ -14,14 +14,13 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	t_tcheb_tilde *x = (t_tcheb_tilde*) (w[1]);
 	t_sample *in1 = (t_sample*) (w[2]), *in2 = (t_sample*) (w[3]),
 		*out = (t_sample*) (w[4]);
-	int n = (int) (w[5]);
-	int newo, l, dir;
+	int n = (int) (w[5]), l;
+	uint32_t newo, dir;
 	float inord; //change floorf below for pd-double
 	double t1, t2, tin, temp;
 	while(n--) {
 		inord = *in2++;
-		if (inord < 0.0) inord = 0.0;
-		else if (inord > MAX_HARM) inord = MAX_HARM;
+		inord = fmin(MAX_HARM, fmax(0., inord));
 		newo = inord + 2;
 		/*this is basically a binary stack for even-odd computations*/
 		for(l = 0, dir = 0; newo > 2; l++, newo = (newo + 1) >> 1) {

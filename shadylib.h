@@ -55,6 +55,13 @@ union floatpoint
 	t_float val;
 };
 
+typedef struct oscctl
+{
+	union floatpoint invals[2];
+	int num; /* number of msg inlets: 0, 1, or 2 
+		0 is all signals, 1 is an add inlet,
+		2 is a multiply inlet and an add inlet */
+} t_oscctl;
 
 typedef struct delwritectl
 {
@@ -175,6 +182,18 @@ EXTERN void maketabs(void);
 
 /*buzz stuff */
 EXTERN void makebuzz(void);
+
+EXTERN t_int *opd_perf0(t_int *w);
+EXTERN t_int *opd_perf1(t_int *w);
+EXTERN t_int *opd_perf2(t_int *w);
+
+EXTERN t_int *recd_perf0(t_int *w);
+EXTERN t_int *recd_perf1(t_int *w);
+EXTERN t_int *recd_perf2(t_int *w);
+
+EXTERN t_int *trid_perf0(t_int *w);
+EXTERN t_int *trid_perf1(t_int *w);
+EXTERN t_int *trid_perf2(t_int *w);
 
 EXTERN unsigned char aligned;
 EXTERN t_sample *sintbl;

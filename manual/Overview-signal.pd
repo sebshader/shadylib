@@ -203,5 +203,6 @@ for order;
 #X text 89 368 [dbgr~] - see what a signal's value is;
 #X text 122 1092 [meters~] - meter audio signal;
 #X text 254 1550 [oscope~] - oscilloscope with zoom;
-#X obj 22 1300 multator~;
-#X text 105 1301 variable-wave low frequency oscillator;
+#X obj 22 1300 multatord~;
+#X text 105 1301 variable-wave low frequency oscillator wavetables
+;
