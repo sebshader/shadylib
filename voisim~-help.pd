@@ -1,4 +1,4 @@
-#N canvas 337 130 729 474 10;
+#N canvas 350 280 729 474 10;
 #X obj 68 45 smoother~;
 #X floatatom 206 74 5 0 0 0 - - -, f 5;
 #X floatatom 255 74 5 0 0 0 - - -, f 5;
@@ -10,14 +10,14 @@
 duty cycle;
 #X text 78 12 reset phase;
 #X obj 101 116 voisim~ 0.5 0.8 1000;
-#X obj 140 34 smoother~;
 #X obj 86 160 outputc~;
 #X obj 262 197 oscope~;
+#X obj 140 34 smoother~ 50;
 #X connect 0 0 8 0;
 #X connect 1 0 8 2;
 #X connect 2 0 8 3;
 #X connect 3 0 8 0;
+#X connect 8 0 9 0;
+#X connect 8 0 9 1;
 #X connect 8 0 10 0;
-#X connect 8 0 10 1;
-#X connect 8 0 11 0;
-#X connect 9 0 8 1;
+#X connect 11 0 8 1;

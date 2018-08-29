@@ -15,13 +15,17 @@ static void maketab(void) {
 	}
 }
 
-static t_sample readtab(t_sample index) {
+static inline t_sample readtab(t_sample index) {
 	/* it's the caller's responsibility to not create an overflow */
 	int iindex = index;
 	t_sample frac = index - iindex, index2;
 	index = sinsqr_tbl[iindex++];
 	index2 = sinsqr_tbl[iindex] - index;
+	#ifdef FP_FAST_FMA
+	return fma(frac, index2, index);
+	#else
 	return index + frac*index2;
+	#endif
 }
 
 typedef struct _vosim {
@@ -46,7 +50,7 @@ static t_int *vosim_perform(t_int *w) {
 	t_sample *out = (t_sample *)(w[4]);
 	int n = (int)(w[5]);
 	int caster;
-	t_sample phsinc, ocen;
+	t_sample phsinc;
 	float decay = x->decay;
 	float duty = x->duty;
 	float curdec = x->curdec;
@@ -56,42 +60,40 @@ static t_int *vosim_perform(t_int *w) {
 	float infreq = x->x_infreq;
 	float outfreq = x->x_outfreq;
 	float res = x->x_res;
-	
-	while(n--) {
-		phsinc = fmax((*in++), 0);
-		ocen = fmax(phsinc, *cen++);
-		
-		if(outphase >= 1) {
+
+	for(int i = 0; i < n; i++) {
+		if(outphase >= 1.) {
 			curdec = 1;
 			caster = outphase;
 			outphase = outphase - caster;
 			res = outphase;
 			inphase = 0;
+			phsinc = fmax(in[i], 0);
 			outfreq = phsinc*conv;
-			infreq = ocen*conv;
-		} else {
-			if(inphase >= 1) {
-				outfreq = phsinc*conv;
-				infreq = ocen*conv;
-				caster = inphase;
-				inphase = inphase - caster;
-				/* routphase is now the limit */
-				ocen = outfreq/infreq;
-				routphase = fmin(1 - ocen, duty);
-				routphase = routphase - outphase - res;
-				if(routphase < 0) {
-					curdec = 0;
-				} else {
-					curdec *= fmax(fmin(decay, 1.), -1.);
-					/* a little fading */
-					curdec *= fmin(routphase/ocen, 1.);
-				}
-			} else if(phsinc != 0. && outfreq == 0.) {
-				outfreq = phsinc*conv;
-				infreq = ocen*conv;
+			infreq = fmax(phsinc, cen[i])*conv;
+		} else if (inphase >= 1.) {
+			phsinc = fmax(in[i], 0);
+			outfreq = phsinc*conv;
+			infreq = fmax(phsinc, cen[i])*conv;
+			caster = inphase;
+			inphase = inphase - caster;
+			/* routphase is now the limit */
+			phsinc = outfreq/infreq;
+			routphase = fmin(1 - phsinc, duty);
+			routphase = routphase - outphase - res;
+			if(routphase < 0) {
+				curdec = 0;
+			} else {
+				curdec *= fmax(fmin(decay, 1.), -1.);
+				/* a little fading */
+				curdec *= fmin(routphase/phsinc, 1.);
 			}
+		 } else if (outfreq == 0 || curdec == 0 || outfreq == infreq) {
+			phsinc = fmax(in[i], 0);
+			outfreq = phsinc*conv;
+			infreq = fmax(phsinc, cen[i])*conv;
 		}
-		*out++ = readtab(inphase*(SINSQRSIZE- 1))*curdec;
+		out[i] = readtab(inphase*(SINSQRSIZE- 1))*curdec;
 		outphase += outfreq;
 		inphase += infreq;
 	}

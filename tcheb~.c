@@ -22,7 +22,9 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		inord = *in2++;
 		inord = fmin(MAX_HARM, fmax(0., inord));
 		newo = inord + 2;
-		/*this is basically a binary stack for even-odd computations*/
+		/* this is basically a binary stack for even-odd computations
+		we do (n+1)/2 because later we can only do 2n - 1 for odd
+		computations */
 		for(l = 0, dir = 0; newo > 2; l++, newo = (newo + 1) >> 1) {
 				dir <<= 1;
 				dir = (1 & newo) | dir;
@@ -30,11 +32,17 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		t1 = *in1++;
 		t1 = fmax(-1.0, fmin(t1, 1.0));
 		t2 = 2.0*t1*t1 - 1.0; 
-		tin = t1;
-		for(int i = 0; i < l; i++) {
+		
+		for(int i = 0, tin = t1; i < l; i++) {
 			if(dir & 1) {
-			/* 2t(n)*t(m) = t(n+m) + t(n-m) for m = n - 1 and n. odd and even
-				idea is from fxt */
+			/*  2t(n)*t(m) = t(n+m) + t(|n-m|) odd and even
+				idea is from fxt
+				t(2n) = 2t(n)t(n) - t(0)
+				t(2n-1) = 2t(n)t(n-1) - t(1)
+				if odd:
+				t(2n-1) = 2t(n)t(n-1) - t(1)
+				t(2n-2) = 2t(n-1)t(n-1) - t(0)
+			 (t2 is always "ahead" of t1 by 1) */
 				temp = 2.0*t1;
 				#ifdef FP_FAST_FMA
 				t1 = fma(temp, t1, -1.0);
@@ -57,9 +65,9 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		}
 		inord = (inord - floorf(inord));
 		#ifdef FP_FAST_FMA
-		*out++ = (t_sample)(fma(t1, (1.0 - inord), t2*inord);
+		*out++ = (t_sample)(fma(t2 - t1, inord, t1));
 		#else
-		*out++ = (t_sample)(t1*(1.0 - inord) + t2*inord);
+		*out++ = (t_sample)(t1 + (t2 - t1)*inord);
 		#endif
 	}
 	return (w + 6);
