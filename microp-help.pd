@@ -1,0 +1,24 @@
+#N canvas 211 162 450 300 10;
+#X floatatom 283 72 5 0 0 0 - - -, f 5;
+#X floatatom 231 69 5 0 0 0 - - -, f 5;
+#X text 62 11 microtonal pitch transfer - take in notes and divide
+them around a center pitch (arg2/inlet 3) according to scale (arg 1/inlet
+2);
+#X obj 193 119 microp 0.5 69;
+#X floatatom 187 65 5 0 0 0 - - -, f 5;
+#X text 47 205 in this example all notes will be scaled by 0.5 around
+69;
+#X floatatom 201 154 5 0 0 0 - - -, f 5;
+#X obj 363 155 /;
+#X obj 360 133 swap 12;
+#X floatatom 361 189 5 0 0 0 - - -, f 5;
+#X floatatom 362 106 5 0 0 0 - - -, f 5;
+#X text 327 74 notes per octave: (plug in to scale);
+#X connect 0 0 3 2;
+#X connect 1 0 3 1;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 8 1 7 1;
+#X connect 10 0 8 0;
