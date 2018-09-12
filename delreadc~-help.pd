@@ -1,6 +1,4 @@
-#N canvas 297 106 487 592 10;
-#X text 67 22 this is an exact clone of delwrite~. it was necessary
-because delread accesses the delwrite~ class \, not delwritec~;
+#N canvas 460 205 487 592 10;
 #X obj 63 124 delwritec~ may 2000;
 #X obj 96 210 delreadc~ may 1000;
 #X obj 102 253 oscope~;
@@ -11,13 +9,10 @@ because delread accesses the delwrite~ class \, not delwritec~;
 #X msg 114 91 clear;
 #X text 158 85 hit this and you should see a pause in the output;
 #X text 186 175 now a 2 second pause;
-#X text 9 454 NOTE: delreadc~ needs to be loaded after delwritec~ in
-order to be able to resolve the class pointer! I know of no easy way
-to resolve this (should be with a shared dynamic library perhaps even
-though I have no cross-platform bsd makefile for that \, or make this
-entire library into 1 lib);
-#X connect 2 0 3 0;
-#X connect 4 0 2 0;
-#X connect 5 0 2 0;
-#X connect 6 0 1 0;
-#X connect 8 0 1 0;
+#X text 67 22 this is an exact clone of delread~ \, but with clear
+OBSOLETE now;
+#X connect 1 0 2 0;
+#X connect 3 0 1 0;
+#X connect 4 0 1 0;
+#X connect 5 0 0 0;
+#X connect 7 0 0 0;

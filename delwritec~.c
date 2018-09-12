@@ -1,7 +1,14 @@
 #include "shadylib.h"
+#include <string.h>
 
 /* ----------------------------- delwritec~ ----------------------------- */
 /* modified from pd source */
+
+static void sigdelwritec_clear (t_sigdelwritec *x) /* added by Orm Finnendahl */
+{
+  if (x->x_cspace.c_n > 0)
+    memset(x->x_cspace.c_vec, 0, sizeof(t_sample)*(x->x_cspace.c_n + XTRASAMPS));
+}
 
 static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
 {
@@ -16,11 +23,6 @@ static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
     x->x_vecsize = 0;
     x->x_f = 0;
     return (x);
-}
-
-static void sigdelwritec_clear(t_sigdelwritec *x) {
-	memset((char *)(x->x_cspace.c_vec), 0, 
-		sizeof(t_sample)*(x->x_cspace.c_n + XTRASAMPS));
 }
 
 static t_int *sigdelwritec_perform(t_int *w)
@@ -48,7 +50,7 @@ static t_int *sigdelwritec_perform(t_int *w)
             phase -= nsamps;
         }
     }
-    c->c_phase = phase; 
+    c->c_phase = phase;
     return (w+4);
 }
 
@@ -69,12 +71,12 @@ static void sigdelwritec_free(t_sigdelwritec *x)
 
 void delwritec_tilde_setup(void)
 {
-    sigdelwritec_class = class_new(gensym("delwritec~"), 
+    sigdelwritec_class = class_new(gensym("delwritec~"),
         (t_newmethod)sigdelwritec_new, (t_method)sigdelwritec_free,
         sizeof(t_sigdelwritec), 0, A_DEFSYM, A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(sigdelwritec_class, t_sigdelwritec, x_f);
     class_addmethod(sigdelwritec_class, (t_method)sigdelwritec_dsp,
-        gensym("dsp"), 0);
+        gensym("dsp"), A_CANT, 0);
     class_addmethod(sigdelwritec_class, (t_method)sigdelwritec_clear,
-    	gensym("clear"), 0);
+                    gensym("clear"), 0);
 }

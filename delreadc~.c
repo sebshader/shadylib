@@ -1,6 +1,7 @@
 #include "shadylib.h"
 /*modified from pd source code */
 
+/* ----------------------------- delreadc~ ----------------------------- */
 static t_class *sigdelreadc_class;
 
 typedef struct _sigdelreadc
@@ -30,18 +31,16 @@ static void *sigdelreadc_new(t_symbol *s, t_floatarg f)
 
 static void sigdelreadc_float(t_sigdelreadc *x, t_float f)
 {
-    int samps;
     t_sigdelwritec *delwriter =
         (t_sigdelwritec *)pd_findbyclass(x->x_sym, sigdelwritec_class);
     x->x_deltime = f;
     if (delwriter)
     {
-        int delsize = delwriter->x_cspace.c_n;
         x->x_delsamps = (int)(0.5 + x->x_sr * x->x_deltime)
             + x->x_n - x->x_zerodel;
         if (x->x_delsamps < x->x_n) x->x_delsamps = x->x_n;
-        else if (x->x_delsamps > delwriter->x_cspace.c_n - DEFDELVS)
-            x->x_delsamps = delwriter->x_cspace.c_n - DEFDELVS;
+        else if (x->x_delsamps > delwriter->x_cspace.c_n)
+            x->x_delsamps = delwriter->x_cspace.c_n;
     }
 }
 
@@ -90,6 +89,6 @@ void delreadc_tilde_setup(void)
         (t_newmethod)sigdelreadc_new, 0,
         sizeof(t_sigdelreadc), 0, A_DEFSYM, A_DEFFLOAT, 0);
     class_addmethod(sigdelreadc_class, (t_method)sigdelreadc_dsp,
-        gensym("dsp"), 0);
+        gensym("dsp"), A_CANT, 0);
     class_addfloat(sigdelreadc_class, (t_method)sigdelreadc_float);
 }
