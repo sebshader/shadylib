@@ -130,7 +130,11 @@ t_int *nead_perform(t_int *w)
 		while(n){
 			n--;/*put inside of while so n != -1*/
 			*out++ = state;
+			#ifdef FP_FAST_FMA
 			state = fma(state, stage.op, stage.base);
+			#else
+			state = state*stage.op + stage.base;
+			#endif
 			if(state >= 1.0) {
 				state = 1.0;
 				target = 0;
@@ -147,7 +151,11 @@ t_int *nead_perform(t_int *w)
 			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
+				#ifdef FP_FAST_FMA
 				state = fma(state, stage.op, stage.base);
+				#else
+				state = state*stage.op + stage.base;
+				#endif
 				if(state <= 0.0) {
 					state = 0.0;
 					for(;n;n--) *out++ = state;

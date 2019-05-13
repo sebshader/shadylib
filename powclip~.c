@@ -6,10 +6,16 @@ static t_class *powclip_class, *scalarpowclip_class;
 
 static t_sample *base_table;
 
-#define LOGBASTABSIZE 11
+#define LOGBASTABSIZE 10
 #define BASTABSIZE (1<<LOGBASTABSIZE)
 #define INC 1.0/(BASTABSIZE - 2)
-
+/*
+takes the antiderivative of the function 1-x^(f-1), with f
+re-paramaterized as 1/input, so the antiderivative function is
+(x-fx^(1/f))/(1-f) in order to keep it from 0 to 1.
+when we use l'hopital's on this for the case f = 1 we get
+x - xlnx
+*/
 static void base_maketable(void)
 {
 	t_sample *fp;

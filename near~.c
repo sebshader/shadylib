@@ -132,7 +132,11 @@ t_int *near_perform(t_int *w)
 			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
+				#ifdef FP_FAST_FMA
 				state = fma(state, stage.op, stage.base);
+				#else
+				state = state*stage.op + stage.base;
+				#endif
 				if(state <= 0.0) {
 					state = 0.0;
 					for(;n;n--) *out++ = state;
@@ -145,7 +149,11 @@ t_int *near_perform(t_int *w)
 		if(state == 1.0) while(n--) *out++ = 1.0;
 		else while(n--){
 				*out++ = state;
+				#ifdef FP_FAST_FMA
 				state = fma(state, stage.op, stage.base);
+				#else
+				state = state*stage.op + stage.base;
+				#endif
 				if(state >= 1.0) {
 					state = 1.0;
 					for(;n;n--) *out++ = state;

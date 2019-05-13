@@ -87,7 +87,7 @@ EXTERN void sigdelwritec_checkvecsize(t_sigdelwritec *x, int vecsize);
 EXTERN void sigdelwritec_updatesr (t_sigdelwritec *x, t_float sr);
 #define XTRASAMPS 4
 #define SAMPBLK 4
-#define DEFDELVS 64             /* LATER get this from canvas at DSP time */
+#define DEFDELVS 64            /* LATER get this from canvas at DSP time */
 
 EXTERN t_class *sigdelwritec_class;
 

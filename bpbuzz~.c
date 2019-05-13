@@ -131,6 +131,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 gotfinal:
 		if(freq == 0.0) {
 			res3 = 0.0;
+			rat = phase + oduty + dphase;
 			goto gotfinal2;
 		}
 		rat = fmax(fmin(max*(1 - ((1 - 2*dconv)*dconv))/freq - 1, MAXHARM), 1);

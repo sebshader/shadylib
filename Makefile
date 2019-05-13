@@ -3,7 +3,7 @@
 #  http://puredata.info/docs/developer/MakefileTemplate
 LIBRARY_NAME = shadylib
 
-PD_PATH = /Applications/Pd-0.48.1.app/Contents/Resources/
+PD_PATH = /Applications/PdNext-0.49-1.app/Contents/Resources/
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
@@ -156,18 +156,13 @@ ifeq ($(UNAME),Darwin)
     SHARED_EXTENSION = dylib
     OS = macosx
     OPT_CFLAGS = -ftree-vectorize -fast
-# build universal 32-bit on 10.4 and 32/64 on newer
-    ifeq ($(shell uname -r | sed 's|\([0-9][0-9]*\)\.[0-9][0-9]*\.[0-9][0-9]*|\1|'), 8)
-      FAT_FLAGS = -arch ppc -arch i386 -mmacosx-version-min=10.4
-    else
-      SOURCES += $(SOURCES_iphoneos)
-# Starting with Xcode 4.0, the PowerPC compiler is not installed by default
-      ifeq ($(wildcard /usr/llvm-gcc-4.2/libexec/gcc/powerpc*), )
-        FAT_FLAGS = -arch i386 -arch x86_64 -mmacosx-version-min=10.5
-      else
-        FAT_FLAGS = -arch ppc -arch i386 -arch x86_64 -mmacosx-version-min=10.4
-      endif
-    endif
+	SOURCES += $(SOURCES_iphoneos)
+	# Starting with Xcode 4.0, the PowerPC compiler is not installed by default
+	ifeq ($(wildcard /usr/llvm-gcc-4.2/libexec/gcc/powerpc*), )
+		FAT_FLAGS = -arch i386 -arch x86_64 -mmacosx-version-min=10.6
+	else
+		FAT_FLAGS = -arch ppc -arch i386 -arch x86_64 -mmacosx-version-min=10.4
+	endif
     ALL_CFLAGS += $(FAT_FLAGS) -fPIC -I/sw/include
     # if the 'pd' binary exists, check the linking against it to aid with stripping
     BUNDLE_LOADER = $(shell test ! -e $(PD_PATH)/bin/pd || echo -bundle_loader $(PD_PATH)/bin/pd)
