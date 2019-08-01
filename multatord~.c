@@ -9,7 +9,7 @@ typedef struct _multatord {
 	float rwave;
 } t_multatord;
 
-/* this is just wrap~ */
+/* this is just wrap~ with multiply*/
 static t_int *saw_perf0(t_int *w)
 {
     t_oscctl *x = (t_oscctl *)(w[1]);
@@ -18,16 +18,20 @@ static t_int *saw_perf0(t_int *w)
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-    t_sample inter;
-	uint32_t casto;
+    t_sample f;
+	int k;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967296);
-        inter = (t_sample)casto/2147483647.5 - 1;
+        f = *in++;
+        k = f;
         #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, *add++);
+        if (k <= f) f = fma(f-k, 2, -1);
+        else f = fma(f-k+1, 2, -1);
+        *out++ = fma(f, *mul++, *add++);
         #else
-        *out++ = inter*(*mul++) + (*add++);
+        if (k <= f) f = (f-k)*2 - 1;
+        else f = (f-k+1)*2 - 1;
+        *out++ = f*(*mul++) + (*add++);
         #endif
     }
     return (w+5);
@@ -41,16 +45,20 @@ static t_int *saw_perf1(t_int *w)
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	t_sample inter;
-	uint32_t casto;
+	t_sample f;
+	int k;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967296);
-        inter = (t_sample)casto/2147483647.5 - 1;
+        f = *in++;
+        k = f;
         #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, add);
+        if (k <= f) f = fma(f-k, 2, -1);
+        else f = fma(f-k+1, 2, -1);
+        *out++ = fma(f, *mul++, add);
         #else
-        *out++ = inter*(*mul++) + add;
+        if (k <= f) f = (f-k)*2 - 1;
+        else f = (f-k+1)*2 - 1;
+        *out++ = f*(*mul++) + add;
         #endif
     }
     return (w+5);
@@ -64,16 +72,20 @@ static t_int *saw_perf2(t_int *w)
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-    t_sample inter;
-	uint32_t casto;
+    t_sample f;
+	int k;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967296);
-        inter = (t_sample)casto/2147483647.5 - 1;
+        f = *in++;
+        k = f;
         #ifdef FP_FAST_FMA
-        *out++ = fma(inter, mul, add);
+        if (k <= f) f = fma(f-k, 2, -1);
+        else f = fma(f-k+1, 2, -1);
+        *out++ = fma(f, mul, add);
         #else
-        *out++ = inter*mul + add;
+        if (k <= f) f = (f-k)*2 - 1;
+        else f = (f-k+1)*2 - 1;
+        *out++ = f*mul + add;
         #endif
     }
     return (w+5);
