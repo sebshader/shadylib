@@ -1,4 +1,6 @@
-to make & install: type "make install" in this directory
+to make & install: 1. check PD_PATH variable in Makefile to point towards
+the correct Resource/source directory for pd.
+2. type "make install" in this (shadylib) directory
 
 This is a pure data library
 

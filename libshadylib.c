@@ -88,8 +88,7 @@ t_int ms2samps(t_float time, t_float sr)
 }
 
 void f2axfade (t_float a, t_stage *stage, int samesamp) {
-	if(a > 1.0) a = 1.0;
-	else if(a < 0.0) a = 0.0;
+	a = fmax(fmin(a, 1.0), 0.0);
 	if(a != 1.0) { /*exponential*/
 		a = ain2reala(a);
 		if(stage->lin == a && samesamp) return;
@@ -114,8 +113,7 @@ void ms2axfade (t_stage *stage) {
 }
 
 void f2dxfade(t_float a, t_stage *stage, int samesamp) {
-	if(a > 1.0) a = 1.0;
-	else if(a < 0.0) a = 0.0;
+	a = fmax(fmin(a, 1.0), 0.0);
 	if(a != 1.0) {/*exponential*/
 		a = ain2reala(a);
 		if(stage->lin == scalerange(a) && samesamp) return;
@@ -140,8 +138,7 @@ void ms2dxfade (t_stage *stage) {
 }
 
 void f2rxfade(t_float a, t_stage *stage, int samesamp) {
-	if(a > 1.0) a = 1.0;
-	else if(a < 0.0) a = 0.0;
+	a = fmax(fmin(a, 1.0), 0.0);
 	if(a != 1.0) {/*exponential*/
 		a = ain2reala(a);
 		if(stage->lin == scalerange(a) && samesamp) return;
