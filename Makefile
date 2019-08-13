@@ -3,7 +3,7 @@
 #  http://puredata.info/docs/developer/MakefileTemplate
 LIBRARY_NAME = shadylib
 
-PD_PATH = /Applications/PdNext-0.49-1.app/Contents/Resources
+PD_PATH = /Applications/Pd-Next-0.50-test1.app/Contents/Resources
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically, and for GUI
