@@ -65,7 +65,7 @@ list-const.pd        show.pd              wsexp~.pd \
 list-count.pd        sigenv~.pd           wssincos~.pd \
 list-delim.pd        xfade~.pd			ftos.pd \
 list-dripdex.pd      sin~.pd			blsasqri~.pd \
-microp.pd
+microp.pd			 javid~.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
