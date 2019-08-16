@@ -65,7 +65,7 @@ list-const.pd        show.pd              wsexp~.pd \
 list-count.pd        sigenv~.pd           wssincos~.pd \
 list-delim.pd        xfade~.pd			ftos.pd \
 list-dripdex.pd      sin~.pd			blsasqri~.pd \
-microp.pd			 javid~.pd
+microp.pd			 javid~.pd			saveroute.pd
 
 # example patches and related files, in the 'examples' subfolder
 # done manually in makefile
@@ -78,7 +78,7 @@ MANUAL = sequencerdoc.txt Overview-control.pd Overview-signal.pd
 # list them here.  This can be anything from header files, test patches,
 # documentation, etc.  README.txt and LICENSE.txt are required and therefore
 # automatically included
-EXTRA_DIST = saveit.txt
+EXTRA_DIST = saveit.txt saveit2.txt
 
 # unit tests and related files here, in the 'unittests' subfolder
 UNITTESTS =
@@ -346,6 +346,9 @@ libdir_install: $(SOURCES:.c=.$(EXTENSION)) $(SHARED_LIB) install-doc install-ex
 			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
 	test -z "$(strip $(SHARED_TCL_LIB))" || \
 		$(INSTALL_DATA) $(SHARED_TCL_LIB) \
+			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
+	test -z "$(strip $(EXTRA_DIST))" || \
+		$(INSTALL_DATA) $(EXTRA_DIST) \
 			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
 
 # install library linked as single binary

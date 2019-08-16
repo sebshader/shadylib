@@ -1,0 +1,53 @@
+#N canvas 367 240 754 416 12;
+#X obj 85 188 saveroute;
+#X obj 210 108 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
+-1 -1 1;
+#X obj 421 106 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 6900 1;
+#X obj 363 180 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
+-1 -1 3500 1;
+#X obj 65 252 msgsave;
+#X msg 42 295 \; s2 0 \; s1 127 \;;
+#X obj 330 202 f;
+#X obj 53 25 bng 15 250 50 0 empty empty save 17 7 0 10 -262144 -1
+-1;
+#X obj 139 32 bng 15 250 50 0 empty empty load 17 7 0 10 -262144 -1
+-1;
+#X obj 51 53 saver \$0-globname;
+#X obj 313 82 sstater \$0-globname s1;
+#X obj 335 130 stater \$0-globname s2;
+#X obj 145 327 txtsave \$0-globname;
+#X msg 158 234 clear;
+#X obj 21 220 bng 15 250 50 0 empty empty bang_after_save_msg 17 7
+0 10 -262144 -1 -1;
+#X obj 180 209 bng 15 250 50 0 empty empty bang_after_save_txt 17 7
+0 10 -262144 -1 -1;
+#X text 226 17 saveroute allows you to use both messages and text files
+to save parameters;
+#X msg 156 260 read saveit2.txt;
+#X msg 159 290 write saveit2.txt;
+#X connect 0 0 4 0;
+#X connect 0 1 4 1;
+#X connect 0 2 4 2;
+#X connect 0 3 14 0;
+#X connect 0 4 12 1;
+#X connect 0 5 12 2;
+#X connect 0 6 12 3;
+#X connect 0 7 15 0;
+#X connect 1 0 0 4;
+#X connect 2 0 10 0;
+#X connect 3 0 6 1;
+#X connect 4 0 5 0;
+#X connect 6 0 11 0;
+#X connect 7 0 9 0;
+#X connect 8 0 9 1;
+#X connect 9 0 0 0;
+#X connect 9 1 0 1;
+#X connect 9 2 0 2;
+#X connect 9 3 0 3;
+#X connect 10 0 2 0;
+#X connect 11 0 6 0;
+#X connect 11 1 3 0;
+#X connect 13 0 12 0;
+#X connect 17 0 12 0;
+#X connect 18 0 12 0;
