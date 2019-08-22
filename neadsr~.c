@@ -26,7 +26,7 @@ typedef struct neadsrctl {
 	t_sample c_sustain;
 	t_sample c_state;
 	t_sample c_linr; //holds the state to release from
-	t_sample c_target;
+	int c_target;
 } t_neadsrctl;
 
 typedef struct neadsr {
@@ -37,12 +37,12 @@ typedef struct neadsr {
 
 static void neadsr_float(t_neadsr *x, t_floatarg f) {
 	if(f == 0.0) {
-		if(x->x_ctl.c_target != 0.0) {
-			x->x_ctl.c_target = 0.0;
+		if(x->x_ctl.c_target != -1) {
+			x->x_ctl.c_target = -1;
 			x->x_ctl.c_linr = x->x_ctl.c_state*x->x_ctl.c_release.base;
     	}
     } else {
-    	x->x_ctl.c_target = 1.0;
+    	x->x_ctl.c_target = 2;
     	if(f < 0.0) x->x_ctl.c_state = 0.0;
     }
 }
@@ -83,10 +83,7 @@ static void neadsr_decay(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
 
 static void neadsr_sustain(t_neadsr *x, t_floatarg f)
 {
-	if(f>ENVELOPE_MAX) f = ENVELOPE_MAX;
-	else if(f<ENVELOPE_RANGE) f = ENVELOPE_RANGE;
-
-	x->x_ctl.c_sustain = f;
+	x->x_ctl.c_sustain = fmax(0.0, fmin(1.0,f));
 }
 
 static void neadsr_release(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
@@ -163,10 +160,10 @@ t_int *neadsr_perform(t_int *w)
     t_neadsrctl *ctl = (t_neadsrctl *)(w[1]);
     t_sample state = ctl->c_state;
     t_sample sustain = ctl->c_sustain;
-    t_sample target = ctl->c_target;
+    int target = ctl->c_target;
     int n = (int)(w[2]);
     t_stage stage;
-	if (target == 0.0) {
+	if (target == -1) {
 		/*release*/
 		if(state == 0.0) while(n--) *out++ = 0.0;
 		else {
@@ -187,7 +184,7 @@ t_int *neadsr_perform(t_int *w)
 			}
 		}
 		goto done;
-	} else if (target == 1.0f){
+	} else if (target == 2){
 		/* attack */
 		stage = ctl->c_attack;
 		while(n){
@@ -205,7 +202,7 @@ t_int *neadsr_perform(t_int *w)
 			}
 		}
 	}
-	if (target != 0.0f && n) {
+	if (n) {
 		/*decay*/
 		if(state == sustain) {
 			while(n--) *out++ = state;

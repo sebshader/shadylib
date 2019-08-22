@@ -19,14 +19,13 @@
 #X obj 152 44 route stop;
 #X msg 169 139 stop;
 #X msg 207 138 0 \, 0.75 \$1;
-#X obj 390 306 *~;
 #X obj 150 230 scaler~ 1.00464 -0.0046352;
 #X connect 0 0 17 0;
 #X connect 1 0 7 1;
 #X connect 3 0 16 0;
 #X connect 4 0 3 0;
 #X connect 4 0 2 0;
-#X connect 5 0 21 0;
+#X connect 5 0 20 0;
 #X connect 6 0 5 0;
 #X connect 7 0 14 0;
 #X connect 8 0 4 1;
@@ -50,4 +49,4 @@
 #X connect 17 1 7 0;
 #X connect 18 0 6 0;
 #X connect 19 0 6 0;
-#X connect 21 0 4 0;
+#X connect 20 0 4 0;
