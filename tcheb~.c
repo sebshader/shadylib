@@ -32,8 +32,8 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		t1 = *in1++;
 		t1 = fmax(-1.0, fmin(t1, 1.0));
 		t2 = 2.0*t1*t1 - 1.0; 
-		
-		for(int i = 0, tin = t1; i < l; i++) {
+		tin = t1;
+		for(int i = 0; i < l; i++) {
 			if(dir & 1) {
 			/*  2t(n)*t(m) = t(n+m) + t(|n-m|) odd and even
 				idea is from fxt
