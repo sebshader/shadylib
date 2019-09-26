@@ -281,7 +281,7 @@ void *neadsr_new(t_floatarg attack, t_floatarg decay,
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("release"));
     outlet_new(&x->x_obj, gensym("signal"));
     x->x_ctl.c_state = 0;
-    x->x_ctl.c_target = 0;
+    x->x_ctl.c_target = -1;
     x->x_sr = sys_getsr();
     x->x_ctl.c_attack.nsamp = ms2samps(attack, x->x_sr);
     f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)), &(x->x_ctl.c_attack), 0); /* 1/3 by default */
