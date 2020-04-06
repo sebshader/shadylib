@@ -1,4 +1,5 @@
 #N canvas 526 65 914 809 10;
+#X declare -stdlib iemlib;
 #X obj 299 55 f \$1;
 #X obj 300 30 loadbang;
 #X obj 299 79 sel 0;
@@ -46,8 +47,8 @@
 #X obj 82 253 outlet~;
 #X obj 126 36 inlet~;
 #X obj 230 162 sig~ 1;
-#X obj 125 173 iemlib/iem_cot4~;
-#X obj 82 202 iemlib/vcf_filter~ hp2;
+#X obj 125 173 iem_cot4~;
+#X obj 82 202 vcf_filter~ hp2;
 #X connect 0 0 5 0;
 #X connect 2 0 4 0;
 #X connect 3 0 5 2;
@@ -79,6 +80,7 @@
 #X obj 69 494 rminus~ 0.33333;
 #X obj 280 560 *~ 0.75;
 #X msg 202 94 0.5;
+#X obj 493 25 declare -stdlib iemlib;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 1 0 10 0;

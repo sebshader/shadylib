@@ -1,4 +1,5 @@
 #N canvas 330 411 450 300 10;
+#X declare -stdlib zexy;
 #X obj 178 191 pipe;
 #X obj 175 117 t b f;
 #X obj 139 12 inlet;
@@ -16,7 +17,8 @@
 #X obj 296 127 max 1;
 #X obj 178 218 bang;
 #X obj 69 33 route stop;
-#X obj 175 85 zexy/drip;
+#X obj 242 21 declare -stdlib zexy;
+#X obj 175 85 drip;
 #X connect 0 0 15 0;
 #X connect 1 0 0 0;
 #X connect 1 1 5 0;
@@ -26,7 +28,7 @@
 #X connect 6 0 14 0;
 #X connect 7 0 6 0;
 #X connect 9 0 11 0;
-#X connect 9 1 17 0;
+#X connect 9 1 18 0;
 #X connect 10 0 8 0;
 #X connect 11 0 10 0;
 #X connect 12 0 0 0;
@@ -37,4 +39,4 @@
 #X connect 16 0 12 0;
 #X connect 16 0 13 0;
 #X connect 16 1 9 0;
-#X connect 17 0 1 0;
+#X connect 18 0 1 0;
