@@ -59,29 +59,29 @@ typedef struct _dsrand {
 	t_float x_f;
 	float x_ahead; //second to last value generated
 	float x_behind; //last value generated
-	int x_state; //current "behind" state (int)
+	unsigned int x_state; //current "behind" state (int)
 	t_sample x_lastin;
 } t_dsrand;
 
 // 579 = b/m1, 4037 = b%m1
-static int mult(int p) {
-	int p1, p0;
+static int mult(unsigned int p) {
+	unsigned int p1, p0;
 	p1 = p/m1; p0 = p%m1;
 	return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
 }
 
 // get a number from -1 to 1
-static inline float ritoflt(int toflt) {
-	return toflt/8388608.0f - 1;
+static inline float ritoflt(unsigned int toflt) {
+	return toflt*(1/8388608.0f) - 1;
 }
 
-static inline int randlcm(int in) {
+static inline int randlcm(unsigned int in) {
 	in = (mult(in) + 1)%m;
 	return in;
 }
 
 static void dsrand_seed(t_dsrand *x, t_floatarg seed) {
-	int modman = seed;
+	unsigned int modman = seed;
 	x->x_state = modman%m;
 }
 
@@ -93,7 +93,7 @@ static t_int *dsrand_perform(t_int *w) {
     int n = (int)(w[5]);
     float ahead = x->x_ahead, behind = x->x_behind;
     t_sample lastin = x->x_lastin;
-    int state = x->x_state;
+    unsigned int state = x->x_state;
     while(n--) {
     	if(*in < lastin) {
     		state = randlcm(state);
@@ -115,9 +115,25 @@ static void dsrand_dsp(t_dsrand *x, t_signal **sp) {
             sp[2]->s_vec, sp[0]->s_n);
 }
 
-static void *dsrand_new(t_floatarg f) {
-	int state = f;
+// b = 4103221
+static int dsrand_makeseed(void) {
+	unsigned int p1, p0;
+	static unsigned int nextseed = 13458715;
+
+	p1 = nextseed/m1; p0 = nextseed%m1;
+	nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+	return nextseed;
+}
+
+static void *dsrand_new(t_symbol *s, int argc, t_atom *argv) {
+	unsigned int state; 
     t_dsrand *x = (t_dsrand *)pd_new(dsrand_class);
+
+	if(argc)
+		state = atom_getint(argv);
+	else
+		state = dsrand_makeseed();
+
     outlet_new(&x->x_obj, gensym("signal"));
     outlet_new(&x->x_obj, gensym("signal"));
     x->x_lastin = 0;
@@ -130,7 +146,7 @@ static void *dsrand_new(t_floatarg f) {
 
 void dsrand_tilde_setup(void) {
     dsrand_class = class_new(gensym("dsrand~"), (t_newmethod)dsrand_new, 0,
-        sizeof(t_dsrand), 0, A_DEFFLOAT, 0);
+        sizeof(t_dsrand), CLASS_DEFAULT, A_GIMME, 0);
     CLASS_MAINSIGNALIN(dsrand_class, t_dsrand, x_f);
     class_addmethod(dsrand_class, (t_method)dsrand_dsp, gensym("dsp"), A_CANT, 0);
     class_addmethod(dsrand_class, (t_method)dsrand_seed, gensym("seed"), A_DEFFLOAT, 0);

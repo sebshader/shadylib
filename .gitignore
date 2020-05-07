@@ -3,3 +3,4 @@
 *.pd_linux
 *.dylib
 *.so
+tags
