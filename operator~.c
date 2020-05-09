@@ -5,7 +5,7 @@ static t_class *operator_class;
 typedef struct _operator {
 	t_object x_obj;
 	t_float x_f;
-	union floatpoint invals[2];
+	union shadylib_floatpoint invals[2];
 	int num; /* number of msg inlets: 0, 1, or 2 
 		0 is all signals, 1 is an add inlet,
 		2 is a multiply inlet and an add inlet */
@@ -22,7 +22,7 @@ static t_int *op_perf0(t_int *w) {
 	t_sample *add = x->invals[1].vec;
 	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     float conv = x->x_conv;
     int normhipart;
     tf.tf_d = UNITBIT32;
@@ -33,7 +33,7 @@ static t_int *op_perf0(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -46,7 +46,7 @@ static t_int *op_perf0(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         	#ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
@@ -85,7 +85,7 @@ static t_int *op_perf1(t_int *w) {
 	t_float add = x->invals[1].val;
 	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     float conv = x->x_conv;
 	int normhipart;
     tf.tf_d = UNITBIT32;
@@ -96,7 +96,7 @@ static t_int *op_perf1(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -109,7 +109,7 @@ static t_int *op_perf1(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
             #ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
@@ -147,7 +147,7 @@ static t_int *op_perf2(t_int *w) {
 	t_float add = x->invals[1].val;
 	t_sample *addr, f1, f2, frac;
     double dphase = x->x_phase + UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     float conv = x->x_conv;
 	   int normhipart;
     tf.tf_d = UNITBIT32;
@@ -158,7 +158,7 @@ static t_int *op_perf2(t_int *w) {
 	    #else
         dphase += *in++ * conv;
         #endif
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
         frac = tf.tf_d - UNITBIT32;
     while (--n)
@@ -171,7 +171,7 @@ static t_int *op_perf2(t_int *w) {
         dphase += *in++ * conv;
         #endif
             f2 = addr[1];
-        addr = sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
+        addr = shadylib_sintbl + (tf.tf_i[HIOFFSET] & (BUZZSIZE-1));
         tf.tf_i[HIOFFSET] = normhipart;
             #ifdef FP_FAST_FMA
         	f1 = fma(frac, f2 - f1, f1);
@@ -262,7 +262,8 @@ void operator_tilde_setup(void)
     A_CANT, 0);
     class_addmethod(operator_class, (t_method)operator_ft1,
         gensym("ft1"), A_FLOAT, 0);
-    checkalign();
-    makebuzz();
+    shadylib_checkalign();
+    class_setfreefn(operator_class, shadylib_freebuzz);
+    shadylib_makebuzz();
 }
 		

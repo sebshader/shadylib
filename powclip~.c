@@ -30,6 +30,10 @@ static void base_maketable(void)
     base_table[BASTABSIZE - 2] = 1;
 }
 
+static void powclip_freebase(t_class *dummy) {
+	freebytes(base_table, sizeof(t_sample) * (BASTABSIZE));
+}
+
 typedef struct _powclip
 {
     t_object x_obj;
@@ -170,5 +174,6 @@ void powclip_tilde_setup(void)
     CLASS_MAINSIGNALIN(scalarpowclip_class, t_scalarpowclip, x_f);
     class_addmethod(scalarpowclip_class, (t_method)scalarpowclip_dsp,
         gensym("dsp"), A_CANT, 0);
+    class_setfreefn(powclip_class, powclip_freebase);
 	base_maketable();
 }

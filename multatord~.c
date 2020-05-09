@@ -5,14 +5,14 @@ static t_class *multatord_class;
 typedef struct _multatord {
 	t_object x_obj;
 	t_float x_f;
-	t_oscctl x_osc;
+	shadylib_t_oscctl x_osc;
 	float rwave;
 } t_multatord;
 
 /* this is just wrap~ with multiply*/
-static t_int *saw_perf0(t_int *w)
+static t_int *multator_saw_perf0(t_int *w)
 {
-    t_oscctl *x = (t_oscctl *)(w[1]);
+    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);
@@ -37,9 +37,9 @@ static t_int *saw_perf0(t_int *w)
     return (w+5);
 }
 
-static t_int *saw_perf1(t_int *w)
+static t_int *multator_saw_perf1(t_int *w)
 {
-    t_oscctl *x = (t_oscctl *)(w[1]);
+    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);
@@ -64,9 +64,9 @@ static t_int *saw_perf1(t_int *w)
     return (w+5);
 }
 
-static t_int *saw_perf2(t_int *w)
+static t_int *multator_saw_perf2(t_int *w)
 {
-    t_oscctl *x = (t_oscctl *)(w[1]);
+    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);
@@ -96,13 +96,13 @@ static t_int *mul_perf0(t_int *w) {
 	switch (rwave) {
 		default:;
 		case 0:
-			return opd_perf0(w + 1);
+			return shadylib_opd_perf0(w + 1);
 		case 1:
-			return recd_perf0(w + 1);
+			return shadylib_recd_perf0(w + 1);
 		case 2:
-			return trid_perf0(w + 1);
+			return shadylib_trid_perf0(w + 1);
 		case 3:
-			return saw_perf0(w + 1);
+			return multator_saw_perf0(w + 1);
 	}
 }
 
@@ -111,13 +111,13 @@ static t_int *mul_perf1(t_int *w) {
 	switch (rwave) {
 		default:;
 		case 0:
-			return opd_perf1(w + 1);
+			return shadylib_opd_perf1(w + 1);
 		case 1:
-			return recd_perf1(w + 1);
+			return shadylib_recd_perf1(w + 1);
 		case 2:
-			return trid_perf1(w + 1);
+			return shadylib_trid_perf1(w + 1);
 		case 3:
-			return saw_perf1(w + 1);
+			return multator_saw_perf1(w + 1);
 	}
 }
 
@@ -126,13 +126,13 @@ static t_int *mul_perf2(t_int *w) {
 	switch (rwave) {
 		default:;
 		case 0:
-			return opd_perf2(w + 1);
+			return shadylib_opd_perf2(w + 1);
 		case 1:
-			return recd_perf2(w + 1);
+			return shadylib_recd_perf2(w + 1);
 		case 2:
-			return trid_perf2(w + 1);
+			return shadylib_trid_perf2(w + 1);
 		case 3:
-			return saw_perf2(w + 1);
+			return multator_saw_perf2(w + 1);
 	}
 }
 
@@ -188,7 +188,8 @@ void multatord_tilde_setup(void)
     CLASS_MAINSIGNALIN(multatord_class, t_multatord, x_f);
     class_addmethod(multatord_class, (t_method)multatord_dsp, gensym("dsp"), 
     A_CANT, 0);
-    checkalign();
-    makebuzz();
+    shadylib_checkalign();
+    class_setfreefn(multatord_class, shadylib_freebuzz);
+    shadylib_makebuzz();
 }
 		

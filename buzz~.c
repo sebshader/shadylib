@@ -91,12 +91,12 @@ static t_int *scalarbuzz_perform(t_int *w) {
 		fread = phase*BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
-		res1 = cosectbl[tabrd];
-		res2 = cosectbl[tabrd2];
+		res1 = shadylib_cosectbl[tabrd];
+		res2 = shadylib_cosectbl[tabrd2];
 		res3 = fread - tabrd;
 		if(res1 == BADVAL || res2 == BADVAL) {
-			res1 = sintbl[tabrd];
-			res2 = sintbl[tabrd2];
+			res1 = shadylib_sintbl[tabrd];
+			res2 = shadylib_sintbl[tabrd2];
 			#ifdef FP_FAST_FMA
 			res2 = fma(res2 - res1, res3, res1);
 			#else
@@ -134,15 +134,15 @@ static t_int *scalarbuzz_perform(t_int *w) {
 		tabrd = res4;
 		res1 = res4 - tabrd;
 		tabrd = tabrd & (BUZZSIZE - 1);
-		res3 = sintbl[tabrd];
+		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
 		#ifdef FP_FAST_FMA
-		res3 = fma(sintbl[tabrd] - res3, res1, res3);
+		res3 = fma(shadylib_sintbl[tabrd] - res3, res1, res3);
 		res3 = fma(res3, res2, -1)/n2;
 		res1 = fma(fread, 2, res4);
 		#else
-		res3 = res3 + (sintbl[tabrd] - res3)*res1;
+		res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
 		#endif
@@ -150,15 +150,15 @@ static t_int *scalarbuzz_perform(t_int *w) {
 		tabrd = res1;
 		res4 = res1 - tabrd;
 		tabrd = tabrd & (BUZZSIZE - 1);
-		res1 = sintbl[tabrd];
+		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
 		#ifdef FP_FAST_FMA
-		res1 = fma(sintbl[tabrd] - res1, res4, res1);
+		res1 = fma(shadylib_sintbl[tabrd] - res1, res4, res1);
 		res1 = fma(res1, res2, -1)/(n2 + 2);
 		*out1++ = fma(res3, 1-frat, res1*frat);
 		#else
-		res1 = res1 + (sintbl[tabrd] - res1)*res4;
+		res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
 		res1 = (res1*res2 - 1)/(n2 + 2);
 		*out1++ = res3*(1 - frat) + res1*(frat);
 		#endif
@@ -196,12 +196,12 @@ static t_int *buzz_perform(t_int *w) {
 		fread = phase*BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
-		res1 = cosectbl[tabrd];
-		res2 = cosectbl[tabrd2];
+		res1 = shadylib_cosectbl[tabrd];
+		res2 = shadylib_cosectbl[tabrd2];
 		res3 = fread - tabrd;
 		if(res1 == BADVAL || res2 == BADVAL) {
-			res1 = sintbl[tabrd];
-			res2 = sintbl[tabrd2];
+			res1 = shadylib_sintbl[tabrd];
+			res2 = shadylib_sintbl[tabrd2];
 			#ifdef FP_FAST_FMA
 			res2 = fma(res2 - res1, res3, res1);
 			#else
@@ -239,15 +239,15 @@ static t_int *buzz_perform(t_int *w) {
 		tabrd = res4;
 		res1 = res4 - tabrd;
 		tabrd = tabrd & (BUZZSIZE - 1);
-		res3 = sintbl[tabrd];
+		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
 		#ifdef FP_FAST_FMA
-		res3 = fma(sintbl[tabrd] - res3, res1, res3);
+		res3 = fma(shadylib_sintbl[tabrd] - res3, res1, res3);
 		res3 = fma(res3, res2, -1)/n2;
 		res1 = fma(fread, 2, res4);
 		#else
-		res3 = res3 + (sintbl[tabrd] - res3)*res1;
+		res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
 		#endif
@@ -255,15 +255,15 @@ static t_int *buzz_perform(t_int *w) {
 		tabrd = res1;
 		res4 = res1 - tabrd;
 		tabrd = tabrd & (BUZZSIZE - 1);
-		res1 = sintbl[tabrd];
+		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
 		#ifdef FP_FAST_FMA
-		res1 = fma(sintbl[tabrd] - res1, res4, res1);
+		res1 = fma(shadylib_sintbl[tabrd] - res1, res4, res1);
 		res1 = fma(res1, res2, -1)/(n2 + 2);
 		*out1++ = fma(res3, 1-frat, res1*frat);
 		#else
-		res1 = res1 + (sintbl[tabrd] - res1)*res4;
+		res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
 		res1 = (res1*res2 - 1)/(n2 + 2);
 		*out1++ = res3*(1 - frat) + res1*(frat);
 		#endif
@@ -319,6 +319,6 @@ void buzz_tilde_setup(void)
         gensym("freq"), A_FLOAT, 0);
     class_addmethod(scalarbuzz_class, (t_method)scalarbuzz_phase,
         gensym("phase"), A_FLOAT, 0);
-    
-	makebuzz();
+    class_setfreefn(buzz_class, shadylib_freebuzz);
+	shadylib_makebuzz();
 }

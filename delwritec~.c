@@ -28,7 +28,7 @@ static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
 static t_int *sigdelwritec_perform(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
-    t_delwritectl *c = (t_delwritectl *)(w[2]);
+    shadylib_t_delwritectl *c = (shadylib_t_delwritectl *)(w[2]);
     int n = (int)(w[3]);
     int phase = c->c_phase, nsamps = c->c_n;
     t_sample *vp = c->c_vec, *bp = vp + phase, *ep = vp + (c->c_n + XTRASAMPS);

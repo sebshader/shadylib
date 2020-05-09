@@ -20,8 +20,8 @@
 #include "shadylib.h"
 
 typedef struct neadctl {
-	t_stage c_attack;
-	t_stage c_decay;
+	shadylib_t_stage c_attack;
+	shadylib_t_stage c_decay;
 	t_sample c_linr; //holds the state to release from
 	t_sample c_state;
 	int c_target;
@@ -49,15 +49,15 @@ static void nead_attack(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
-		samps = ms2samps(atom_getfloat(argv), x->x_sr);
+		samps = shadylib_ms2samps(atom_getfloat(argv), x->x_sr);
 		abool = samps == x->x_ctl.c_attack.nsamp;
 		if(argc > 1) {
 			x->x_ctl.c_attack.nsamp = samps;
-			f2axfade(atom_getfloat(argv + 1), &(x->x_ctl.c_attack), 
+			shadylib_f2axfade(atom_getfloat(argv + 1), &(x->x_ctl.c_attack), 
 				abool);
 		} else if(!abool) {
 			x->x_ctl.c_attack.nsamp = samps;
-			ms2axfade(&(x->x_ctl.c_attack));
+			shadylib_ms2axfade(&(x->x_ctl.c_attack));
 		}
 	}
 }
@@ -66,15 +66,15 @@ static void nead_decay(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
-		samps = ms2samps(atom_getfloat(argv), x->x_sr);
+		samps = shadylib_ms2samps(atom_getfloat(argv), x->x_sr);
 		abool = samps == x->x_ctl.c_decay.nsamp;
 		if(argc > 1) {
 			x->x_ctl.c_decay.nsamp = samps;
-			f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_decay), 
+			shadylib_f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_decay), 
 				abool);
 		} else if(!abool) {
 			x->x_ctl.c_decay.nsamp = samps;
-			ms2rxfade(&(x->x_ctl.c_decay));
+			shadylib_ms2rxfade(&(x->x_ctl.c_decay));
 		}
 	}
 }
@@ -84,10 +84,11 @@ static void nead_any(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 		switch(argc) {
 			default:;
 			case 2: if(argv[1].a_type == A_FLOAT) {
-				f2rxfade(atom_getfloat(argv + 1), &(x->x_ctl.c_decay), 1);
+				shadylib_f2rxfade(atom_getfloat(argv + 1), 
+					&(x->x_ctl.c_decay), 1);
 			}
 			case 1: if(argv[0].a_type == A_FLOAT) {
-				f2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack), 1);
+				shadylib_f2axfade(atom_getfloat(argv), &(x->x_ctl.c_attack), 1);
 			}
 			case 0:;
 		}
@@ -97,18 +98,18 @@ static void nead_any(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 			default:;
 			case 2: 
 				if(argv[1].a_type == A_FLOAT) {
-					samps = ms2samps(atom_getfloat(argv + 1), x->x_sr);
+					samps = shadylib_ms2samps(atom_getfloat(argv + 1), x->x_sr);
 					if(samps != x->x_ctl.c_decay.nsamp){
 						x->x_ctl.c_decay.nsamp = samps;
-						ms2rxfade(&(x->x_ctl.c_decay));
+						shadylib_ms2rxfade(&(x->x_ctl.c_decay));
 					}
 				}
 			case 1: 
 				if(argv[0].a_type == A_FLOAT) {
-					samps = ms2samps(atom_getfloat(argv), x->x_sr);
+					samps = shadylib_ms2samps(atom_getfloat(argv), x->x_sr);
 					if(samps != x->x_ctl.c_attack.nsamp) {
 						x->x_ctl.c_attack.nsamp = samps;
-						ms2axfade(&(x->x_ctl.c_attack));
+						shadylib_ms2axfade(&(x->x_ctl.c_attack));
 					}
 				}
 			case 0:;
@@ -123,7 +124,7 @@ t_int *nead_perform(t_int *w)
     t_sample state = ctl->c_state;
     int n = (int)(w[2]);
     int target = ctl->c_target;
-    t_stage stage;
+    shadylib_t_stage stage;
 	if (target){
 		/* attack */
 		stage = ctl->c_attack;
@@ -173,7 +174,7 @@ t_int *nead_perform(t_int *w)
 void nead_dsp(t_nead *x, t_signal **sp)
 {
 	if(sp[0]->s_sr != x->x_sr) {/*need to recalculate everything*/
-		t_stage thistage;
+		shadylib_t_stage thistage;
 		float factor = sp[0]->s_sr/x->x_sr;
 		x->x_sr = sp[0]->s_sr;
 		thistage = x->x_ctl.c_attack;
@@ -201,10 +202,11 @@ void *nead_new(t_floatarg attack, t_floatarg decay) {
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = 0;
     x->x_sr = sys_getsr();
-    x->x_ctl.c_attack.nsamp = ms2samps(attack, x->x_sr);
-    f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)), &(x->x_ctl.c_attack), 0); /* 1/3 by default */
-    x->x_ctl.c_decay.nsamp = ms2samps(decay, x->x_sr);
-    f2rxfade(0.0, &(x->x_ctl.c_decay), 0);
+    x->x_ctl.c_attack.nsamp = shadylib_ms2samps(attack, x->x_sr);
+    shadylib_f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)), 
+    	&(x->x_ctl.c_attack), 0); /* 1/3 by default */
+    x->x_ctl.c_decay.nsamp = shadylib_ms2samps(decay, x->x_sr);
+    shadylib_f2rxfade(0.0, &(x->x_ctl.c_decay), 0);
 	return (void *)x;
 }
 

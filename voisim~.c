@@ -6,13 +6,17 @@ static t_sample *sinsqr_tbl;
 
 static t_class *vosim_class;
 
-static void maketab(void) {
+static void vosim_maketab(void) {
 	t_sample incr = M_PI/(SINSQRSIZE - 1), val;
 	sinsqr_tbl = getbytes((SINSQRSIZE) * sizeof(t_sample));
 	for(int i = 0; i < SINSQRSIZE; i++) {
 		val = sin(incr*i);
 		sinsqr_tbl[i] = val*val;
 	}
+}
+
+static void vosim_freetab(t_class *dummy) {
+	freebytes(sinsqr_tbl, (SINSQRSIZE) * sizeof(t_sample));
 }
 
 static inline t_sample readtab(t_sample index) {
@@ -147,7 +151,6 @@ static void *vosim_new(t_symbol *s, int argc, t_atom *argv) {
 
 void voisim_tilde_setup(void)
 {
-	maketab();
     vosim_class = class_new(gensym("voisim~"), 
         (t_newmethod)vosim_new, 0,
         sizeof(t_vosim), 0, A_GIMME, 0);
@@ -156,4 +159,6 @@ void voisim_tilde_setup(void)
         gensym("dsp"), A_CANT, 0);
     class_addmethod(vosim_class, (t_method)vosim_reset,
     	gensym("reset"), 0);
+    class_setfreefn(vosim_class, vosim_freetab);
+    vosim_maketab();
 }

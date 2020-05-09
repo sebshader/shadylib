@@ -5,7 +5,7 @@ static t_class *operatord_class;
 typedef struct _operatord {
 	t_object x_obj;
 	t_float x_f;
-	t_oscctl x_osc;
+	shadylib_t_oscctl x_osc;
 } t_operatord;
 
 static void operatord_dsp(t_operatord *x, t_signal **sp) {
@@ -13,14 +13,14 @@ static void operatord_dsp(t_operatord *x, t_signal **sp) {
 		case 0:
 			x->x_osc.invals[0].vec = sp[1]->s_vec;
 			x->x_osc.invals[1].vec = sp[2]->s_vec;
-			dsp_add(opd_perf0, 4, &x->x_osc, sp[0]->s_vec, sp[3]->s_vec, sp[0]->s_n);
+			dsp_add(shadylib_opd_perf0, 4, &x->x_osc, sp[0]->s_vec, sp[3]->s_vec, sp[0]->s_n);
 			break;
 		case 1:
 			x->x_osc.invals[0].vec = sp[1]->s_vec;
-			dsp_add(opd_perf1, 4, &x->x_osc, sp[0]->s_vec, sp[2]->s_vec, sp[0]->s_n);
+			dsp_add(shadylib_opd_perf1, 4, &x->x_osc, sp[0]->s_vec, sp[2]->s_vec, sp[0]->s_n);
 			break;
 		case 2:
-			dsp_add(opd_perf2, 4, &x->x_osc, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
+			dsp_add(shadylib_opd_perf2, 4, &x->x_osc, sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 			break;
 		default:;
 	}
@@ -58,7 +58,8 @@ void operatord_tilde_setup(void)
     CLASS_MAINSIGNALIN(operatord_class, t_operatord, x_f);
     class_addmethod(operatord_class, (t_method)operatord_dsp, gensym("dsp"), 
     A_CANT, 0);
-    checkalign();
-    makebuzz();
+    shadylib_checkalign();
+    class_setfreefn(operatord_class, shadylib_freebuzz);
+    shadylib_makebuzz();
 }
 		

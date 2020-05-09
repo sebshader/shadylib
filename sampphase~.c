@@ -1,10 +1,9 @@
 #include "shadylib.h"
 /* modified from pd source */
+/* in the style of R. Hoeldrich (ICMC 1995 Banff) */
 
 /* -------------------------- sampphase~ ------------------------------ */
 static t_class *sampphase_class;
-
-#if 1   /* in the style of R. Hoeldrich (ICMC 1995 Banff) */
 
 typedef struct _sampphase
 {
@@ -37,7 +36,7 @@ static t_int *sampphase_perform(t_int *w)
     t_sample *out2 = (t_sample *)(w[4]);
     int n = (int)(w[5]);
     int bool = x->x_samptrue;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     tf.tf_d = x->x_phase + (double)UNITBIT32;
 	float conv = x->x_conv;
 	
@@ -102,7 +101,5 @@ void sampphase_tilde_setup(void)
         gensym("ft1"), A_FLOAT, 0);
     class_addmethod(sampphase_class, (t_method)sampphase_hold,
         gensym("hold"), A_FLOAT, 0);
-    checkalign();
+    shadylib_checkalign();
 }
-
-#endif  /* Hoeldrich version */

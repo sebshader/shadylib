@@ -47,7 +47,7 @@ static void sigdelreadc_float(t_sigdelreadc *x, t_float f)
 static t_int *sigdelreadc_perform(t_int *w)
 {
     t_sample *out = (t_sample *)(w[1]);
-    t_delwritectl *c = (t_delwritectl *)(w[2]);
+    shadylib_t_delwritectl *c = (shadylib_t_delwritectl *)(w[2]);
     int delsamps = *(int *)(w[3]);
     int n = (int)(w[4]);
     int phase = c->c_phase - delsamps, nsamps = c->c_n;

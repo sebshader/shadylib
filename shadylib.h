@@ -42,14 +42,14 @@
 
 #define NORMHIPART 1094189056 //will this work on big-endian?
 
-union tabfudge
+union shadylib_tabfudge
 {
     double tf_d;
     int32_t tf_i[2];
 };
 
 /* union for setting floats or receiving signals */
-union floatpoint
+union shadylib_floatpoint
 {
 	t_sample *vec;
 	t_float val;
@@ -57,25 +57,25 @@ union floatpoint
 
 typedef struct oscctl
 {
-	union floatpoint invals[2];
+	union shadylib_floatpoint invals[2];
 	int num; /* number of msg inlets: 0, 1, or 2 
 		0 is all signals, 1 is an add inlet,
 		2 is a multiply inlet and an add inlet */
-} t_oscctl;
+} shadylib_t_oscctl;
 
 typedef struct delwritectl
 {
     int c_n;
     t_sample *c_vec;
     int c_phase;
-} t_delwritectl;
+} shadylib_t_delwritectl;
 
 typedef struct _sigdelwritec
 {
     t_object x_obj;
     t_symbol *x_sym;
     t_float x_deltime;  /* delay in msec (added by Mathieu Bouchard) */
-    t_delwritectl x_cspace;
+    shadylib_t_delwritectl x_cspace;
     int x_sortno;   /* DSP sort number at which this was last put on chain */
     int x_rsortno;  /* DSP sort # for first delread or write in chain */
     int x_vecsize;  /* vector size for delread~ to use */
@@ -121,13 +121,13 @@ typedef union
 {
     unsigned int i;
     t_float f;
-} t_flint;
+} shadylib_t_flint;
 
 /* check if floating point number is denormal */
 
 //#define IS_DENORMAL(f) (((*(unsigned int *)&(f))&0x7f800000) == 0) 
 
-#define IS_DENORMAL(f) (((((t_flint)(f)).i) & 0x7f800000) == 0)
+#define IS_DENORMAL(f) (((((shadylib_t_flint)(f)).i) & 0x7f800000) == 0)
 
 #elif PD_FLOAT_PRECISION == 64
 
@@ -135,7 +135,7 @@ typedef union
 {
     unsigned int i[2];
     t_float f;
-} t_flint;
+} shadylib_t_flint;
 
 #define IS_DENORMAL(f) (((((t_flint)(f)).i[1]) & 0x7ff00000) == 0)
 
@@ -145,7 +145,7 @@ typedef union
 #define IS_DENORMAL(f) 0
 #endif // end if defined(__i386__) || defined(__x86_64__)
 
-EXTERN void checkalign(void);
+EXTERN void shadylib_checkalign(void);
 
 /* exponential range for envelopes is 60dB */
 #define ENVELOPE_RANGE 0.001
@@ -156,17 +156,17 @@ typedef struct _stage {
 	t_float op;  // geometric multiplier or linear subtraction (if lin == 1.0)
 	t_float base;// addition for each stage
 	t_int nsamp; // # of samples in stage
-} t_stage;     
+} shadylib_t_stage;     
 
 EXTERN t_class *sigdelwritec_class;
 
-EXTERN t_int ms2samps(t_float time, t_float sr);
-EXTERN void f2axfade (t_float a, t_stage *stage, int samesamp);
-EXTERN void ms2axfade (t_stage *stage);
-EXTERN void f2dxfade(t_float a, t_stage *stage, int samesamp);
-EXTERN void ms2dxfade (t_stage *stage);
-EXTERN void f2rxfade(t_float a, t_stage *stage, int samesamp);
-EXTERN void ms2rxfade (t_stage *stage);
+EXTERN t_int shadylib_ms2samps(t_float time, t_float sr);
+EXTERN void shadylib_f2axfade (t_float a, shadylib_t_stage *stage, int samesamp);
+EXTERN void shadylib_ms2axfade (shadylib_t_stage *stage);
+EXTERN void shadylib_f2dxfade(t_float a, shadylib_t_stage *stage, int samesamp);
+EXTERN void shadylib_ms2dxfade (shadylib_t_stage *stage);
+EXTERN void shadylib_f2rxfade(t_float a, shadylib_t_stage *stage, int samesamp);
+EXTERN void shadylib_ms2rxfade (shadylib_t_stage *stage);
 
 #define SHABLESIZE 2048 /* size of tables in shadylook~ */
 
@@ -174,30 +174,32 @@ typedef enum _tabtype {
 	REXP,
 	GAUS,
 	CAUCH
-} t_tabtype;
+} shadylib_t_tabtype;
 
-EXTERN t_float readtab(t_tabtype type, t_float index);
+EXTERN t_float shadylib_readtab(shadylib_t_tabtype type, t_float index);
 
-EXTERN void maketabs(void);
+EXTERN void shadylib_maketabs(void);
+EXTERN void shadylib_freetabs(t_class *dummy);
 
 /*buzz stuff */
-EXTERN void makebuzz(void);
+EXTERN void shadylib_makebuzz(void);
+EXTERN void shadylib_freebuzz(t_class *dummy);
 
-EXTERN t_int *opd_perf0(t_int *w);
-EXTERN t_int *opd_perf1(t_int *w);
-EXTERN t_int *opd_perf2(t_int *w);
+EXTERN t_int *shadylib_opd_perf0(t_int *w);
+EXTERN t_int *shadylib_opd_perf1(t_int *w);
+EXTERN t_int *shadylib_opd_perf2(t_int *w);
 
-EXTERN t_int *recd_perf0(t_int *w);
-EXTERN t_int *recd_perf1(t_int *w);
-EXTERN t_int *recd_perf2(t_int *w);
+EXTERN t_int *shadylib_recd_perf0(t_int *w);
+EXTERN t_int *shadylib_recd_perf1(t_int *w);
+EXTERN t_int *shadylib_recd_perf2(t_int *w);
 
-EXTERN t_int *trid_perf0(t_int *w);
-EXTERN t_int *trid_perf1(t_int *w);
-EXTERN t_int *trid_perf2(t_int *w);
+EXTERN t_int *shadylib_trid_perf0(t_int *w);
+EXTERN t_int *shadylib_trid_perf1(t_int *w);
+EXTERN t_int *shadylib_trid_perf2(t_int *w);
 
-EXTERN unsigned char aligned;
-EXTERN t_sample *sintbl;
-EXTERN t_sample *cosectbl;
+EXTERN unsigned char shadylib_aligned;
+EXTERN t_sample *shadylib_sintbl;
+EXTERN t_sample *shadylib_cosectbl;
 
 /* used in the cosecant table for values very close to 1/0 */
 #define BADVAL 1e20f

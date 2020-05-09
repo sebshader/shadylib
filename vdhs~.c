@@ -28,7 +28,7 @@ static t_int *sigvdhs_perform(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
     t_sample *out = (t_sample *)(w[2]);
-    t_delwritectl *ctl = (t_delwritectl *)(w[3]);
+    shadylib_t_delwritectl *ctl = (shadylib_t_delwritectl *)(w[3]);
     t_sigvdhs *x = (t_sigvdhs *)(w[4]);
     int n = (int)(w[5]);
 

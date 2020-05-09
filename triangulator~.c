@@ -5,7 +5,7 @@ static t_class *triangulator_class;
 typedef struct _triangulator {
 	t_object x_obj;
 	t_float x_f;
-	union floatpoint invals[2];
+	union shadylib_floatpoint invals[2];
 	int num; /* number of msg inlets: 0, 1, or 2 
 		0 is all signals, 1 is an add inlet,
 		2 is a multiply inlet and an add inlet */
@@ -22,7 +22,7 @@ static t_int *op_perf0(t_int *w) {
 	t_sample *add = x->invals[1].vec;
 	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     uint32_t casto;
     
     float conv = x->x_conv;
@@ -60,7 +60,7 @@ static t_int *op_perf1(t_int *w) {
 	t_float add = x->invals[1].val;
 	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     uint32_t casto;
     
     float conv = x->x_conv;
@@ -98,7 +98,7 @@ static t_int *op_perf2(t_int *w) {
 	t_float add = x->invals[1].val;
 	t_sample inter;
 	double dphase = x->x_phase + (double)UNITBIT32;
-    union tabfudge tf;
+    union shadylib_tabfudge tf;
     uint32_t casto;
     
     float conv = x->x_conv;
