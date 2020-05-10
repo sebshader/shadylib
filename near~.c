@@ -199,10 +199,10 @@ void *near_new(t_floatarg attack, t_floatarg release)
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = 0;
     x->x_sr = sys_getsr();
-    x->x_ctl.c_attack.nsamp = ms2samps(attack, x->x_sr);
+    x->x_ctl.c_attack.nsamp = shadylib_ms2samps(attack, x->x_sr);
     shadylib_f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)),
     	&(x->x_ctl.c_attack), 0); /* 1/3 by default */
-    x->x_ctl.c_release.nsamp = ms2samps(release, x->x_sr);
+    x->x_ctl.c_release.nsamp = shadylib_ms2samps(release, x->x_sr);
     shadylib_f2rxfade(0.0, &(x->x_ctl.c_release), 0);
 	return (void *)x;
 }

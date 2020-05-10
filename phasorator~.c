@@ -164,6 +164,6 @@ void phasorator_tilde_setup(void)
     A_CANT, 0);
     class_addmethod(phasorator_class, (t_method)phasorator_ft1,
         gensym("ft1"), A_FLOAT, 0);
-    checkalign();
+    shadylib_checkalign();
 }
 		
