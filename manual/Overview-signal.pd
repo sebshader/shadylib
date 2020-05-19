@@ -19,10 +19,9 @@
 #X obj 15 403 delreadc~;
 #X text 96 403 read from delwritec~ delay line;
 #X obj 16 432 delwritec~;
-#X text 105 433 delay line with a "clear" method;
 #X obj 16 467 downsample~;
 #X text 107 466 alias at a certain frequency;
-#X obj 18 501 dsrand~;
+#X obj 21 511 dsrand~;
 #X text 85 504 gets triggers from input phasor~ like samphold~ and
 pulls a new random number;
 #X obj 16 553 egrains~;
@@ -208,3 +207,5 @@ for order;
 ;
 #X obj 23 974 javid~;
 #X text 82 975 cubic approximation of sin~;
+#X text 100 427 delay line with a "clear" method (and also to be used
+with vdhs~);
