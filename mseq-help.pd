@@ -6,11 +6,11 @@
 #X obj 342 173 tgl 15 0 empty empty on/off 17 7 0 10 -262144 -1 -1
 1 1;
 #X obj 317 125 expr 60000 / $f1;
-#X floatatom 305 82 5 0 0 0 bpm - -, f 5;
-#X floatatom 274 180 5 0 0 0 ms - -, f 5;
-#X floatatom 337 251 5 0 0 0 - - -, f 5;
+#X floatatom 305 82 5 0 0 0 bpm - -;
+#X floatatom 274 180 5 0 0 0 ms - -;
+#X floatatom 337 251 5 0 0 0 - - -;
 #X obj 159 310 hradio 40 1 0 16 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
+-1 -1 2;
 #X obj 434 106 s lbang;
 #X obj 298 153 * 0.25;
 #X msg 796 233 1 1 1 1 1 0 1 1 1 0 1 1 1 1 1 1;
@@ -43,7 +43,7 @@
 #X obj 238 698 osc~;
 #X obj 149 700 line~;
 #X msg 151 675 1 \, 0 \$1;
-#X floatatom 88 623 5 0 0 0 length - -, f 5;
+#X floatatom 88 623 5 0 0 0 length - -;
 #X obj 224 732 *~;
 #X msg 124 615 0;
 #X obj 239 764 output~;
@@ -91,6 +91,7 @@ is received.;
 #X connect 24 0 23 0;
 #X connect 25 0 30 1;
 #X connect 26 0 28 0;
+#X connect 26 0 28 1;
 #X connect 27 0 22 1;
 #X connect 29 0 22 0;
 #X connect 30 0 24 0;
