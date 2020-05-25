@@ -3,12 +3,12 @@
 #X obj 207 123 list-delim pan;
 #X msg 293 99 symbol /;
 #X msg 136 54 pan panpan 60 23 panpanpan pan3 pan blah balmk;
-#X msg 292 78 pan;
 #X msg 207 29 this is a / // seperator;
 #X text 57 225 split a list according to a certain symbol \, which
 also acts as an escape character for itself;
+#X msg 292 78 symbol pan;
 #X connect 1 0 0 0;
 #X connect 2 0 1 1;
 #X connect 3 0 1 0;
-#X connect 4 0 1 1;
-#X connect 5 0 1 0;
+#X connect 4 0 1 0;
+#X connect 6 0 1 1;

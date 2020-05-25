@@ -194,7 +194,6 @@ for order;
 #X obj 29 3599 trinoise~;
 #X text 113 3597 triangular distribution of noise;
 #X obj 24 2852 shnoise~;
-#X text 98 3883 cross-fade between 2 outlets;
 #X obj 18 107 blsasqri~;
 #X text 107 106 band-limited saw \, square \, and triangle waves;
 #X obj 23 1006 lag~;
@@ -209,3 +208,4 @@ for order;
 #X text 82 975 cubic approximation of sin~;
 #X text 100 427 delay line with a "clear" method (and also to be used
 with vdhs~);
+#X text 98 3883 cross-fade between 2 inlets;

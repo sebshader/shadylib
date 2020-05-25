@@ -2,23 +2,23 @@
 #X obj 148 9 updel;
 #X floatatom 153 416 0 0 0 0 - - -;
 #X text 193 10 - CALLBACK AFTER TIME updel;
-#X msg 29 182 stop;
+#X msg 29 198 stop;
 #X text 33 665 see also:;
 #X obj 158 664 timer;
 #X obj 110 664 metro;
-#X msg 31 206 2000;
+#X msg 31 222 2000;
 #X obj 20 470 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 20 160 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 20 176 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 396 657 updated for Pd version 0.45;
-#X text 41 157 bang: start;
-#X text 80 180 stop: cancel the updel;
-#X text 79 206 number: set updel time and start;
+#X text 41 173 bang: start;
+#X text 80 196 stop: cancel the updel;
+#X text 79 222 number: set updel time and start;
 #X text 182 417 <-- number in inlet: set updel time but don't start
 ;
 #X text 286 445 <-- optional creation arguments:;
-#X msg 33 239 tempo 0.5 msec;
+#X msg 33 255 tempo 0.5 msec;
 #X text 335 464 - updel time (float);
 #X text 336 482 - tempo (float) and time unit (symbol) as in "tempo"
 message, f 31;
@@ -36,7 +36,7 @@ rightmost ones are sample-rate dependent), f 35;
 in milliseconds specified by its right inlet or its creation argument.
 Sending a bang to a updel which is already set will reschedule its
 output \, replacing any previous setting.;
-#X text 67 112 delays are in millisconds by default \, but you can
+#X text 67 106 delays are in millisconds by default \, but you can
 set the time units in the creation arguments or with a "tempo" message.
 , f 63;
 #X text 205 375 If the tempo is changed while the delay is in progress
@@ -63,6 +63,9 @@ second example below.;
 #X obj 154 469 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 154 443 delay 1000 1 msec;
+#X text 212 144 updel differs from delay in that if you change the
+delaytime the currently scheduled delay will be rescheduled to reflect
+the proportion;
 #X connect 1 0 31 1;
 #X connect 1 0 42 1;
 #X connect 3 0 40 0;
