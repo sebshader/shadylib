@@ -181,7 +181,6 @@ t_int *neadsr_perform(t_int *w)
 				if(state <= 0.0) {
 					state = 0.0;
 					for(;n;n--) *out++ = state;
-					goto done;
 				}
 			}
 		}
@@ -206,10 +205,8 @@ t_int *neadsr_perform(t_int *w)
 	}
 	if (n) {
 		/*decay*/
-		if(state == sustain) {
-			while(n--) *out++ = state;
-			goto done;
-		} else if(state > sustain) {
+		/* if(state == sustain) do nothing (jump to outputting sustain)*/
+		if(state > sustain) {
 			stage = ctl->c_decay;
 			stage.base *= (sustain - stage.lin);
 			do {
