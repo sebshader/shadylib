@@ -31,11 +31,6 @@
 #X text 572 192 hermite spline;
 #X obj 487 353 vdhs~ lindsay2;
 #X obj 391 351 vdhs~ lindsay;
-#X text 521 415 NOTE: vdhs~ needs to be loaded after delwritec~ in
-order to be able to resolve the class pointer! I know of no easy way
-to resolve this (should be with a shared dynamic library perhaps even
-though I have no cross-platform bsd makefile for that \, or make this
-entire library into 1 lib);
 #X obj 186 22 sndfread~;
 #X connect 0 0 7 0;
 #X connect 0 0 14 1;
@@ -69,7 +64,7 @@ entire library into 1 lib);
 #X connect 23 1 20 1;
 #X connect 30 0 12 0;
 #X connect 31 0 10 0;
-#X connect 33 0 24 0;
-#X connect 33 0 27 0;
-#X connect 33 1 25 0;
-#X connect 33 1 26 0;
+#X connect 32 0 24 0;
+#X connect 32 0 27 0;
+#X connect 32 1 25 0;
+#X connect 32 1 26 0;

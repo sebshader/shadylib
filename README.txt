@@ -9,9 +9,6 @@ programs, primarily patches from the pure data help files.
 
 Some external libraries are needed, primarily zexy and iemlib
 
-Various pure pd abstractions are in the purepdnfun folder within the examples
-folder, which also holds my tcl plugin file for Pd-extended.
-
 I would have liked to release everything under a BSD license but don't
 think I can using externals that are licensed as GPL.
 problematic .c files: exponential envelopes, buzz~, and the makefile
