@@ -1,1 +1,2 @@
 implement realpass~ in c
+figure out garray + switch~ redrawing mystery?
