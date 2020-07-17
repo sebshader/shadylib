@@ -121,12 +121,12 @@ block of other signal-rate nosie objects);
 #X obj 26 2898 sigenv~;
 #X text 97 2905 rms volume from pure data examples in the documentation
 ;
-#X obj 29 2942 sin~;
-#X text 93 2941 like [cos~] \, but for sin;
-#X obj 23 2980 smoother~;
-#X text 120 2983 number box + line~;
-#X text 175 3272 write a stereo soundfile using writesf~;
-#X text 106 3186 write a mono soundfile using writesf~;
+#X obj 29 2982 sin~;
+#X text 93 2981 like [cos~] \, but for sin;
+#X obj 23 3020 smoother~;
+#X text 120 3023 number box + line~;
+#X text 175 3312 write a stereo soundfile using writesf~;
+#X text 106 3226 write a mono soundfile using writesf~;
 #X obj 31 3346 srepeater~;
 #X text 113 3345 simple beat-repeat that uses a recirculating delay
 line;
@@ -162,11 +162,11 @@ for order;
 #X text 104 3848 E.07 evenodd example: even-odd waveshaping;
 #X obj 34 3845 wssincos~;
 #X obj 33 3814 wsexp~;
-#X obj 23 3124 sndfwritem~;
-#X obj 21 3023 sndfread~;
-#X obj 21 3208 sndfwrites~;
+#X obj 23 3164 sndfwritem~;
+#X obj 21 3063 sndfread~;
+#X obj 21 3248 sndfwrites~;
 #X obj 30 2303 pthng~;
-#X text 87 3085 GUI wrapper to read a stereo soundfile using readsf~
+#X text 87 3125 GUI wrapper to read a stereo soundfile using readsf~
 ;
 #X obj 23 212 bpbuzz~;
 #X text 90 210 bipolar band-limited impulse with duty cycle control
@@ -209,3 +209,5 @@ for order;
 #X text 100 427 delay line with a "clear" method (and also to be used
 with vdhs~);
 #X text 98 3883 cross-fade between 2 inlets;
+#X obj 22 2938 siglinterp~;
+#X text 113 2939 linearly interpolate between multiple inlets;
