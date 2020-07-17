@@ -34,17 +34,14 @@ t_int *scaler_perf8(t_int *w)
     int n = (int)(w[5]);
     for (; n; n -= 8, in += 8, out += 8)
     {
-        t_sample f0 = in[0], f1 = in[1], f2 = in[2], f3 = in[3];
-        t_sample f4 = in[4], f5 = in[5], f6 = in[6], f7 = in[7];
-
-        out[0] = f0*mul + add;
-        out[1] = f1*mul + add;
-        out[2] = f2*mul + add;
-        out[3] = f3*mul + add;
-        out[4] = f4*mul + add;
-        out[5] = f5*mul + add;
-        out[6] = f6*mul + add;
-        out[7] = f7*mul + add;
+        out[0] = in[0]*mul + add;
+        out[1] = in[1]*mul + add;
+        out[2] = in[2]*mul + add;
+        out[3] = in[3]*mul + add;
+        out[4] = in[4]*mul + add;
+        out[5] = in[5]*mul + add;
+        out[6] = in[6]*mul + add;
+        out[7] = in[7]*mul + add;
     }
     return (w+6);
 }

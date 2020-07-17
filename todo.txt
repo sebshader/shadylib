@@ -1,1 +1,3 @@
 test number message to vcf_filter in blsqri~/blsasqri~
+update inlet~s to use new message passing capabilities, update docs and version
+number

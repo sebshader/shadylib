@@ -147,20 +147,16 @@ t_int *scalarpowclip_perform(t_int *w)
     return (w+5);
 }
 
-void dsp_add_powclip(t_sample *in1, t_sample *in2, t_sample *out, int n)
-{
-    dsp_add(powclip_perform, 4, in1, in2, out, n);
-}
-
 static void powclip_dsp(t_powclip *x, t_signal **sp)
 {
-    dsp_add_powclip(sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
+    dsp_add(powclip_perform, 4, sp[0]->s_vec, sp[1]->s_vec, 
+    	sp[2]->s_vec, sp[0]->s_n);
 }
 
 static void scalarpowclip_dsp(t_scalarpowclip *x, t_signal **sp)
 {
-    dsp_add(scalarpowclip_perform, 4, sp[0]->s_vec, &x->x_g,
-            sp[1]->s_vec, sp[0]->s_n);
+    dsp_add(scalarpowclip_perform, 4, sp[0]->s_vec, &x->x_g, sp[1]->s_vec,
+    	sp[0]->s_n);
 }
 
 void powclip_tilde_setup(void)

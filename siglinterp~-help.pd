@@ -1,0 +1,52 @@
+#N canvas 205 178 678 430 12;
+#X obj 50 163 siglinterp~ 4 0;
+#X obj 99 76 hsl 128 15 0 3 0 0 empty empty range_0-3 -2 -8 0 10 -262144
+-1 -1 0 1;
+#X obj 260 56 phasor~;
+#X obj 255 17 smoother~ 50 220;
+#X obj 202 104 cos~;
+#X obj 248 86 *~ 2;
+#X obj 247 112 cos~;
+#X obj 302 117 cos~;
+#X obj 347 121 cos~;
+#X obj 100 323 outputc~;
+#X obj 98 284 siglinterp~ 2 0;
+#X obj 215 281 hradio 15 1 0 2 empty empty message/signal_rate_sweeps
+0 -8 0 10 -262144 -1 -1 1;
+#X obj 453 162 hsl 128 15 0 3 0 0 empty empty range_0-3 -2 -8 0 10
+-262144 -1 -1 0 1;
+#X obj 445 185 smoother~;
+#X obj 321 210 siglinterp~ 4;
+#X obj 300 89 *~ 3;
+#X obj 348 95 *~ 4;
+#X floatatom 75 118 5 0 0 0 - - -;
+#X text 219 339 linearly interpolates over a number of signal inlets
+\, given by 1st argument (2 by default). Last inlet selects the fractional
+inlet number (0-based). If the second argument is present \, specifies
+an initial index and turns the index-inlet into a signal;
+#X text 269 306 linearly-interpolated multiplex~ from zexy;
+#X connect 0 0 10 0;
+#X connect 1 0 0 4;
+#X connect 1 0 17 0;
+#X connect 2 0 4 0;
+#X connect 2 0 5 0;
+#X connect 2 0 15 0;
+#X connect 2 0 16 0;
+#X connect 3 0 2 0;
+#X connect 4 0 0 0;
+#X connect 4 0 14 0;
+#X connect 5 0 6 0;
+#X connect 6 0 0 1;
+#X connect 6 0 14 1;
+#X connect 7 0 0 2;
+#X connect 7 0 14 2;
+#X connect 8 0 0 3;
+#X connect 8 0 14 3;
+#X connect 10 0 9 0;
+#X connect 10 0 9 1;
+#X connect 11 0 10 2;
+#X connect 12 0 13 0;
+#X connect 13 0 14 4;
+#X connect 14 0 10 1;
+#X connect 15 0 7 0;
+#X connect 16 0 8 0;
