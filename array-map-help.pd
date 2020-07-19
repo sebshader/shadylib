@@ -1,0 +1,36 @@
+#N canvas 755 104 685 451 12;
+#X obj 48 285 array-map maphelp;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array maphelp 100 float 2;
+#X coords 0 1 100 -1 200 140 1 0 0;
+#X restore 46 24 graph;
+#X obj 47 257 bng 15 250 50 0 empty empty 1_sequence 17 7 0 10 -262144
+-1 -1;
+#X text 148 196 used to modify the contents of the array \, iterates
+through all indices in an array and puts out index and value \, expects
+the value for the current index in the right inlet;
+#X obj 180 282 * 0.005;
+#X text 247 270 <- there are a hundred indices in maphelp \, this will
+ramp from 0 to 0.5 based on multiplying the index #;
+#X obj 34 364 array-map maphelp;
+#X obj 36 328 bng 15 250 50 0 empty empty 2_subtract_quarter 17 7 0
+10 -262144 -1 -1;
+#X obj 169 353 - 0.25;
+#X text 231 358 subtract 0.25 from each value in the array;
+#X obj 34 427 array-map maphelp;
+#X obj 36 400 bng 15 250 50 0 empty empty 3_multiply_by_4 17 7 0 10
+-262144 -1 -1;
+#X text 238 427 multiply each value by 4;
+#X obj 174 425 * 4;
+#X text 279 42 argument: array name 1st inlet: bang or "set" array
+message 2nd inlet: value from map 1st outlet: value at index 2nd outlet:
+index;
+#X connect 0 1 4 0;
+#X connect 2 0 0 0;
+#X connect 4 0 0 1;
+#X connect 6 0 8 0;
+#X connect 7 0 6 0;
+#X connect 8 0 6 1;
+#X connect 10 0 13 0;
+#X connect 11 0 10 0;
+#X connect 13 0 10 1;
