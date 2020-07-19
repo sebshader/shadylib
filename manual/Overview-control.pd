@@ -1,169 +1,171 @@
 #N canvas 454 23 748 792 12;
 #X declare -path ../;
 #X obj 45 45 1-0switch;
-#X obj 41 84 ad;
-#X obj 80 84 adsr;
-#X obj 127 84 ar;
+#X obj 41 79 ad;
+#X obj 80 79 adsr;
+#X obj 127 79 ar;
 #X text 128 44 switches 1s and 0s;
-#X text 162 83 envelope generators for various line objects;
-#X obj 40 123 banger;
-#X text 147 120 loadbang with dsp switch and bang to trigger loadbang
+#X text 162 78 envelope generators for various line objects;
+#X obj 38 147 banger;
+#X text 145 144 loadbang with dsp switch and bang to trigger loadbang
 ;
-#X obj 35 276 dispatchOSC;
-#X text 126 275 receives OSC messages and broadcasts them as fudi;
+#X obj 35 291 dispatchOSC;
+#X text 126 290 receives OSC messages and broadcasts them as fudi;
 #X text 182 13 Control;
-#X obj 38 418 if;
-#X text 77 416 substitutes one number for another in a number stream
+#X obj 38 433 if;
+#X text 77 431 substitutes one number for another in a number stream
 ;
-#X obj 35 453 inrange;
-#X text 105 441 if numbers match a range they are sent out of the left
+#X obj 35 468 inrange;
+#X text 105 456 if numbers match a range they are sent out of the left
 outlet \, otherwise are sent out the right;
-#X obj 39 489 iterate;
-#X text 101 484 count up to a number instantaneously (until + counter)
+#X obj 39 504 iterate;
+#X text 101 499 count up to a number instantaneously (until + counter)
 ;
-#X obj 31 534 lispatch;
-#X text 108 530 use the first element of a list as the send name \,
+#X obj 31 549 lispatch;
+#X text 108 545 use the first element of a list as the send name \,
 and the reest of the list as a message;
-#X obj 36 709 list-dripdex;
-#X text 133 707 list-drip with index outlet (counts up);
-#X obj 38 745 lmap;
-#X text 83 745 requires pdlua: interface to lua's table datatype;
-#X obj 36 778 macrodivide;
-#X text 127 776 output a count on every nth input count;
-#X obj 31 840 messtro;
-#X text 107 838 send timed messages from a single message box;
-#X obj 32 874 metorate;
-#X text 112 871 output a number of bangs with constant delay;
-#X obj 36 1193 mstof;
-#X text 86 1193 convert ms to frequency and back;
-#X obj 32 1239 mstos;
-#X text 84 1238 convert milliseconds to samples;
-#X obj 29 1279 multitrigger;
-#X text 137 1277 output bang after counting to a number;
-#X obj 27 1358 percent;
-#X text 101 1357 choose an outlet based on percent chance;
-#X obj 25 1391 pipebang;
-#X text 107 1391 output timed bangs;
-#X obj 23 1429 powline;
-#X obj 32 319 expline;
-#X text 99 315 exponential line;
-#X text 94 1427 line raised to variable power;
-#X obj 29 1505 rexpline;
-#X text 108 1503 reverse exponential line;
-#X obj 26 1541 rndmrange;
-#X text 120 1536 pick a random number \, multiply it \, and add to
+#X obj 36 724 list-dripdex;
+#X text 133 722 list-drip with index outlet (counts up);
+#X obj 38 760 lmap;
+#X text 83 760 requires pdlua: interface to lua's table datatype;
+#X obj 36 793 macrodivide;
+#X text 127 791 output a count on every nth input count;
+#X obj 31 855 messtro;
+#X text 107 853 send timed messages from a single message box;
+#X obj 32 889 metorate;
+#X text 112 886 output a number of bangs with constant delay;
+#X obj 36 1208 mstof;
+#X text 86 1208 convert ms to frequency and back;
+#X obj 32 1254 mstos;
+#X text 84 1253 convert milliseconds to samples;
+#X obj 29 1294 multitrigger;
+#X text 137 1292 output bang after counting to a number;
+#X obj 27 1373 percent;
+#X text 101 1372 choose an outlet based on percent chance;
+#X obj 25 1406 pipebang;
+#X text 107 1406 output timed bangs;
+#X obj 23 1444 powline;
+#X obj 32 334 expline;
+#X text 99 330 exponential line;
+#X text 94 1442 line raised to variable power;
+#X obj 29 1520 rexpline;
+#X text 108 1518 reverse exponential line;
+#X obj 26 1556 rndmrange;
+#X text 120 1551 pick a random number \, multiply it \, and add to
 it;
-#X obj 33 1574 rootinfo;
-#X text 113 1573 gives depth and path of root canvas;
-#X obj 33 1713 scaler;
-#X text 96 1713 multiply-add box;
-#X obj 23 1748 seqbank;
-#X text 83 1967 [seqbank] - a simple 16-step array with 3 rows that
+#X obj 33 1589 rootinfo;
+#X text 113 1588 gives depth and path of root canvas;
+#X obj 33 1728 scaler;
+#X text 96 1728 multiply-add box;
+#X obj 23 1763 seqbank;
+#X text 83 1982 [seqbank] - a simple 16-step array with 3 rows that
 can be easily edited;
-#X obj 24 2016 sequencer;
-#X text 108 2135 [sequencer] - 16 step sequencer with nesting;
-#X obj 27 2166 shadylook;
-#X text 102 2158 look up reverse exponential \, cauchy \, or gaussian
+#X obj 24 2031 sequencer;
+#X text 108 2150 [sequencer] - 16 step sequencer with nesting;
+#X obj 27 2181 shadylook;
+#X text 102 2173 look up reverse exponential \, cauchy \, or gaussian
 functions in a table;
-#X obj 38 2212 show;
-#X text 93 2214 display a message in a message box;
-#X obj 39 2253 sqr;
-#X text 79 2252 square a number;
-#X obj 47 2360 stoms;
-#X text 106 2357 convert samples to ms;
-#X obj 37 2393 stream-drip;
-#X text 134 2391 split a stream into single messages;
-#X obj 37 2464 stream-map;
-#X text 128 2461 perform some operation on each message in a stream
+#X obj 38 2227 show;
+#X text 93 2229 display a message in a message box;
+#X obj 39 2268 sqr;
+#X text 79 2267 square a number;
+#X obj 47 2375 stoms;
+#X text 106 2372 convert samples to ms;
+#X obj 37 2408 stream-drip;
+#X text 134 2406 split a stream into single messages;
+#X obj 37 2479 stream-map;
+#X text 128 2476 perform some operation on each message in a stream
 ;
-#X text 127 2496 quantize a stream to a grid;
-#X obj 38 2566 streamread;
-#X text 130 2564 play a stream back;
-#X obj 38 2605 streamread-slow;
-#X text 157 2600 play a stream back in order 1 message at a time;
-#X obj 30 2640 streamwrite;
-#X text 132 2640 write a stream;
-#X obj 18 2675 streamwrite-slow;
-#X text 148 2673 manually put in messages to a stream;
-#X obj 70 2706 subdivide;
-#X text 150 2705 create a faster division of a beat;
-#X text 129 2742 2 inlets wait for a certain number of bangs before
+#X text 127 2511 quantize a stream to a grid;
+#X obj 38 2581 streamread;
+#X text 130 2579 play a stream back;
+#X obj 38 2620 streamread-slow;
+#X text 157 2615 play a stream back in order 1 message at a time;
+#X obj 30 2655 streamwrite;
+#X text 132 2655 write a stream;
+#X obj 18 2690 streamwrite-slow;
+#X text 148 2688 manually put in messages to a stream;
+#X obj 70 2721 subdivide;
+#X text 150 2720 create a faster division of a beat;
+#X text 129 2757 2 inlets wait for a certain number of bangs before
 outputting a bang and resetting;
-#X obj 49 2744 synlets;
-#X obj 42 2871 temposet;
-#X text 163 2912 a gui to help with tempo;
-#X obj 35 2984 testro 500;
-#X text 170 2985 quick metro for testing things;
-#X obj 47 3114 transpose;
-#X text 129 3116 semitones to pitch-ratio conversion;
-#X obj 46 3143 ttempo;
-#X obj 59 3316 udispatch;
-#X text 148 3315 listens on a port for fudi udp messages and sends
+#X obj 49 2759 synlets;
+#X obj 42 2886 temposet;
+#X text 163 2927 a gui to help with tempo;
+#X obj 35 2999 testro 500;
+#X text 170 3000 quick metro for testing things;
+#X obj 47 3129 transpose;
+#X text 129 3131 semitones to pitch-ratio conversion;
+#X obj 46 3158 ttempo;
+#X obj 59 3331 udispatch;
+#X text 148 3330 listens on a port for fudi udp messages and sends
 them with lispatch;
-#X text 327 3404 end;
-#X obj 35 810 makerpath;
-#X text 114 808 get the absolute path of a file relative to the root
+#X text 327 3419 end;
+#X obj 35 825 makerpath;
+#X text 114 823 get the absolute path of a file relative to the root
 canvas;
-#X obj 43 3361 valuer;
-#X text 117 3362 dynamic "value" object (name);
+#X obj 43 3376 valuer;
+#X text 117 3377 dynamic "value" object (name);
 #X obj 403 26 declare -path ../;
-#X obj 41 165 bangif == 3;
-#X text 136 164 bangs left outlet if left inlet is 1st arg the 2nd
+#X obj 41 180 bangif == 3;
+#X text 136 179 bangs left outlet if left inlet is 1st arg the 2nd
 arg/inlet;
-#X obj 40 200 bpmtoms;
-#X text 99 199 bpm to ms;
-#X obj 39 236 cyclecount;
-#X text 126 235 counts in a circle;
-#X obj 34 379 gsave;
-#X text 88 379 stores key/value pairs using lmap to save parameters
+#X obj 40 215 bpmtoms;
+#X text 99 214 bpm to ms;
+#X obj 39 251 cyclecount;
+#X text 126 250 counts in a circle;
+#X obj 34 394 gsave;
+#X text 88 394 stores key/value pairs using lmap to save parameters
 ;
-#X obj 37 580 list-const;
-#X text 125 578 make a list of 1 thing;
-#X obj 35 623 list-count;
-#X text 126 621 count the # of something in a list;
-#X obj 37 663 list-delim;
-#X text 122 660 parse a list into multiple lists using delimiter;
-#X obj 30 940 mseq;
-#X text 172 1120 sequence midi or anything 0-127;
-#X obj 32 1145 msgsave;
-#X text 95 1142 use with saver to save parameters in a message box
+#X obj 37 595 list-const;
+#X text 125 593 make a list of 1 thing;
+#X obj 35 638 list-count;
+#X text 126 636 count the # of something in a list;
+#X obj 37 678 list-delim;
+#X text 122 675 parse a list into multiple lists using delimiter;
+#X obj 30 955 mseq;
+#X text 172 1135 sequence midi or anything 0-127;
+#X obj 32 1160 msgsave;
+#X text 95 1157 use with saver to save parameters in a message box
 ;
-#X obj 31 1467 prepender;
-#X text 110 1462 prepend arguments between inlets and outlets;
-#X text 110 2287 save 1 thing using saver;
-#X obj 44 2287 sstater;
-#X obj 48 2326 stater;
-#X obj 33 1610 saver;
-#X text 111 2315 outlets for save bang and loading \, inlet for saving
+#X obj 31 1482 prepender;
+#X text 110 1477 prepend arguments between inlets and outlets;
+#X text 110 2302 save 1 thing using saver;
+#X obj 44 2302 sstater;
+#X obj 48 2341 stater;
+#X obj 33 1625 saver;
+#X text 111 2330 outlets for save bang and loading \, inlet for saving
 a parameter;
-#X obj 37 2498 stream-quant;
-#X obj 41 2431 stream-fromtext;
-#X text 155 2432 convert stream from text (text define);
-#X obj 37 2536 stream-totext;
-#X text 147 2532 convert stream to text;
-#X obj 48 2786 tabload;
-#X text 113 2786 sets size or elements of an array from a list;
-#X obj 46 2828 tabsave;
-#X text 107 2825 saves an array into size and array fields messages
+#X obj 37 2513 stream-quant;
+#X obj 41 2446 stream-fromtext;
+#X text 155 2447 convert stream from text (text define);
+#X obj 37 2551 stream-totext;
+#X text 147 2547 convert stream to text;
+#X obj 48 2801 tabload;
+#X text 113 2801 sets size or elements of an array from a list;
+#X obj 46 2843 tabsave;
+#X text 107 2840 saves an array into size and array fields messages
 ;
-#X obj 40 3022 tseq;
-#X text 174 3097 sequence of toggles;
-#X text 125 3154 find distance in ms between 2 taps in ms;
-#X text 194 3190 uses with saver to save to textfiles;
-#X obj 47 3223 updel;
-#X obj 47 3257 upmet;
-#X text 94 3217 updel and upmet are slightly more expensive versions
+#X obj 40 3037 tseq;
+#X text 174 3112 sequence of toggles;
+#X text 125 3169 find distance in ms between 2 taps in ms;
+#X text 194 3205 uses with saver to save to textfiles;
+#X obj 47 3238 updel;
+#X obj 47 3272 upmet;
+#X text 94 3232 updel and upmet are slightly more expensive versions
 of delay and metro that update the callback times that are already
 in the scheduling list if they change (continously variable tempo)
 ;
-#X text 143 1317 pass numbers through if they match a condition;
-#X obj 29 1317 passif >= 6;
-#X obj 34 350 ftos;
-#X text 78 352 frequency to period in samples;
-#X obj 28 906 microp;
-#X text 90 907 convert integer midi pitch to microtonal ET midi;
-#X obj 34 1680 saveroute;
-#X text 115 1679 use with saver to save both messages and files;
-#X text 98 1629 use with textsave or msgsave (or saveroute) to save
+#X text 143 1332 pass numbers through if they match a condition;
+#X obj 29 1332 passif >= 6;
+#X obj 34 365 ftos;
+#X text 78 367 frequency to period in samples;
+#X obj 28 921 microp;
+#X text 90 922 convert integer midi pitch to microtonal ET midi;
+#X obj 34 1695 saveroute;
+#X text 115 1694 use with saver to save both messages and files;
+#X text 98 1644 use with textsave or msgsave (or saveroute) to save
 parameters;
-#X obj 47 3189 txtsave \$0-overview;
+#X obj 47 3204 txtsave \$0-overview;
+#X obj 38 113 array-shuffle;
+#X text 151 111 shuffle array;
