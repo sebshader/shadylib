@@ -53,6 +53,7 @@ static t_int *rcombf_perform(t_int *w)
     	t_sample f = *in++;
         if (PD_BIGORSMALL(f))
             f = 0;
+        f *= fmax(fmin(*norm++, 1), -1);
         t_sample delsamps = x->x_sr * (*time++), frac;
         
         t_sample a, b, c, d, cminusb;
@@ -83,11 +84,10 @@ static t_int *rcombf_perform(t_int *w)
         );
         #endif
         a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        b = fmax(fmin(*norm++, 1), -1);
-         #ifdef FP_FAST_FMA
-        c = fma(delsamps, a, f*b);
+        #ifdef FP_FAST_FMA
+        c = fma(delsamps, a, f);
         #else
-        c = f*b + delsamps*a;
+        c = f + delsamps*a;
         #endif
         *wp++ = c;
         *out++ = c;
@@ -119,15 +119,17 @@ static t_int *nrcombf_perform(t_int *w)
     t_sample limit = nsamps - 3;
     t_sample *vp = x->c_vec, *bp, *wp = vp + phase, 
     	*ep = vp + (nsamps + XTRASAMPS);
+    t_sample f, feedback, delsamps, a, b, c, d, cminusb, frac;
     phase += n;
     while (n--)
     {
-    	t_sample f = *in++;
-        if (PD_BIGORSMALL(f))
+    	f = *in++;
+    	if (PD_BIGORSMALL(f))
             f = 0;
-        t_sample delsamps = x->x_sr * (*time++), frac;
+    	feedback = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
+        f *= 1 - fabs(feedback);
+        delsamps = x->x_sr * (*time++);
         
-        t_sample a, b, c, d, cminusb;
         if (!(delsamps >= 1.f))    /* too small or NAN */
             delsamps = 1.f;
         if (delsamps > limit)           /* too big */
@@ -154,12 +156,10 @@ static t_int *nrcombf_perform(t_int *w)
             )
         );
         #endif
-        a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        b = 1 - fabs(a);
         #ifdef FP_FAST_FMA
-        c = fma(delsamps, a, f*b);
+        c = fma(delsamps, feedback, f);
         #else
-        c = f*b + delsamps*a;
+        c = f + delsamps*feedback;
         #endif
         *wp++ = c;
         *out++ = c;
@@ -191,43 +191,39 @@ static void rcombf_dsp(t_rcombf *x, t_signal **sp)
 static void *rcombf_new(t_symbol *s, int argc, t_atom *argv)
 {
 	t_float time = 1000;
+	t_float size = 0.0;
 	t_float fb = 0;
 	t_symbol *sarg;
-	int norm = 0, i = 0;
+	int norm = 0, i = 0, which = 0;
     t_rcombf *x = (t_rcombf *)pd_new(rcombf_class);
     for(; i < argc; i++)
     	if (argv[i].a_type == A_FLOAT) {
-    		time = atom_getfloatarg(i++, argc, argv);
-    		break;
+    		switch (which) {
+    			case 0:
+					time = atom_getfloatarg(i, argc, argv);
+					if (time < 0.0) time = 0.0;
+					break;
+				case 1:
+					fb = atom_getfloatarg(i, argc, argv);
+					break;
+				case 2:
+					size = atom_getfloatarg(i, argc, argv);
+				default:;
+			}
+			which++;
     	} else {
     		sarg = atom_getsymbolarg(i, argc, argv);
     		if (!strcmp(sarg->s_name, "-n")) norm = 1;
     		else if(!strcmp(sarg->s_name, "-l")) {
     			i++;
-    			x->x_ttime = atom_getfloatarg(i, argc, argv);
+    			if(i < argc)
+    				size = atom_getfloatarg(i, argc, argv);
     		}
-		}
-	for(; i < argc; i++)
-    	if (argv[i].a_type == A_FLOAT) {
-    		fb = atom_getfloatarg(i++, argc, argv);
-    		break;
-    	} else {
-    		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (!strcmp(sarg->s_name, "-n")) norm = 1;
-    		else if(!strcmp(sarg->s_name, "-l")) {
-    			i++;
-    			x->x_ttime = atom_getfloatarg(i, argc, argv);
-    		}
-		}
-	for(; i < argc; i++)
-    	if (argv[i].a_type == A_FLOAT) {
-    		x->x_ttime = atom_getfloatarg(i, argc, argv);
-    	} else {
-    		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (!strcmp(sarg->s_name, "-n")) norm = 1;
 		}
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, fb);
+    if(size <= 0.0) size = time;
+	x->x_ttime = size;
 	if(!norm)
 		signalinlet_new(&x->x_obj, 1.0);
     outlet_new(&x->x_obj, &s_signal);

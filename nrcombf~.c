@@ -1,4 +1,4 @@
-/* recirculating comb filter */
+/* non-recirculating comb filter */
 #include "shadylib.h"
 #include <string.h>
 
@@ -189,43 +189,39 @@ static void nrcombf_dsp(t_nrcombf *x, t_signal **sp)
 static void *nrcombf_new(t_symbol *s, int argc, t_atom *argv)
 {
 	t_float time = 1000;
+	t_float size = 0.0;
 	t_float fb = 0;
 	t_symbol *sarg;
-	int norm = 0, i = 0;
+	int norm = 0, i = 0, which = 0;
     t_nrcombf *x = (t_nrcombf *)pd_new(nrcombf_class);
     for(; i < argc; i++)
     	if (argv[i].a_type == A_FLOAT) {
-    		time = atom_getfloatarg(i++, argc, argv);
-    		break;
+    		switch (which) {
+    			case 0:
+					time = atom_getfloatarg(i, argc, argv);
+					if (time < 0.0) time = 0.0;
+					break;
+				case 1:
+					fb = atom_getfloatarg(i, argc, argv);
+					break;
+				case 2:
+					size = atom_getfloatarg(i, argc, argv);
+				default:;
+			}
+			which++;
     	} else {
     		sarg = atom_getsymbolarg(i, argc, argv);
     		if (!strcmp(sarg->s_name, "-n")) norm = 1;
     		else if(!strcmp(sarg->s_name, "-l")) {
     			i++;
-    			x->x_ttime = atom_getfloatarg(i, argc, argv);
+    			if(i < argc)
+    				size = atom_getfloatarg(i, argc, argv);
     		}
-		}
-	for(; i < argc; i++)
-    	if (argv[i].a_type == A_FLOAT) {
-    		fb = atom_getfloatarg(i++, argc, argv);
-    		break;
-    	} else {
-    		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (!strcmp(sarg->s_name, "-n")) norm = 1;
-    		else if(!strcmp(sarg->s_name, "-l")) {
-    			i++;
-    			x->x_ttime = atom_getfloatarg(i, argc, argv);
-    		}
-		}
-	for(; i < argc; i++)
-    	if (argv[i].a_type == A_FLOAT) {
-    		x->x_ttime = atom_getfloatarg(i, argc, argv);
-    	} else {
-    		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (!strcmp(sarg->s_name, "-n")) norm = 1;
 		}
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, fb);
+    if(size <= 0.0) size = time;
+	x->x_ttime = size;
 	if(!norm)
 		signalinlet_new(&x->x_obj, 1.0);
     outlet_new(&x->x_obj, &s_signal);
