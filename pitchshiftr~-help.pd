@@ -1,0 +1,37 @@
+#N canvas 459 23 778 547 12;
+#X text 63 20 same as pitchshift \, but just the reader: writing to
+the delay line \, anti-aliasing \, feedback etc. is the user's responsibilty.
+This allows the user to pitch the same signal without needing to use
+multiple delay lines;
+#X obj 127 405 outputc~;
+#X floatatom 185 217 5 0 0 0 pitchshift - -;
+#X obj 140 126 mtof;
+#X floatatom 141 103 5 0 0 0 - - -;
+#X floatatom 255 233 5 0 0 0 window(ms) - -;
+#X floatatom 325 217 5 0 0 0 delay(ms) - -;
+#X obj 383 229 tgl 15 0 empty empty reverse 17 7 0 10 -262144 -1 -1
+0 1;
+#X obj 122 158 blsaw~;
+#X text 229 415 arguments: delwritec~ name \, transposition \, window
+size (ms \, default 100) \, delay (ms) \, reverse;
+#X obj 154 190 delwritec~ \$0-pitchshiftr 500;
+#X obj 185 255 pitchshiftr~ \$0-pitchshiftr 4;
+#X obj 197 285 pitchshiftr~ \$0-pitchshiftr 7;
+#X floatatom 118 260 5 0 0 0 pitchshift - -;
+#X obj 137 355 *~ 0.333333;
+#X connect 2 0 11 0;
+#X connect 3 0 8 0;
+#X connect 4 0 3 0;
+#X connect 5 0 11 1;
+#X connect 5 0 12 1;
+#X connect 6 0 11 2;
+#X connect 6 0 12 2;
+#X connect 7 0 11 3;
+#X connect 7 0 12 3;
+#X connect 8 0 10 0;
+#X connect 8 0 14 0;
+#X connect 11 0 14 0;
+#X connect 12 0 14 0;
+#X connect 13 0 12 0;
+#X connect 14 0 1 0;
+#X connect 14 0 1 1;
