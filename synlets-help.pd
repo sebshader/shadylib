@@ -1,19 +1,32 @@
 #N canvas 311 23 450 300 10;
-#X text 18 -30 syncs 2 inlets: waits for a number of bangs in each
-inlet before banging and resetting both;
-#X obj 168 112 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
+#X text 18 10 syncs 2 inlets: waits for a number of bangs in each inlet
+before banging and resetting both;
+#X obj 118 152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 175 51 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 125 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 193 54 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 143 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 223 38 5 0 0 0 - - -, f 5;
-#X floatatom 265 42 5 0 0 0 - - -, f 5;
-#X text 25 3 after receiving a number of bangs specified by both 1st
+#X floatatom 173 78 5 0 0 0 - - -;
+#X floatatom 215 82 5 0 0 0 - - -;
+#X text 25 43 after receiving a number of bangs specified by both 1st
 and 2nd arguments \, (or 3rd and 4th inlets) output a bang;
-#X obj 172 76 synlets 2 3;
-#X connect 2 0 7 0;
-#X connect 3 0 7 1;
-#X connect 4 0 7 2;
-#X connect 5 0 7 3;
-#X connect 7 0 1 0;
+#X msg 36 158 1;
+#X text 6 181 float to a trigger inlet sets the step # for that inlet
+(1-based);
+#X floatatom 153 148 5 0 0 0 - - -;
+#X floatatom 190 146 5 0 0 0 - - -;
+#X text 45 238 last 2 outlets give counts of the 2 counters;
+#X obj 122 116 synlets 2 3;
+#X msg 277 83 1;
+#X text 275 98 reset (1 to both inlets);
+#X connect 2 0 12 0;
+#X connect 3 0 12 1;
+#X connect 4 0 12 2;
+#X connect 5 0 12 3;
+#X connect 7 0 12 0;
+#X connect 12 0 1 0;
+#X connect 12 1 9 0;
+#X connect 12 2 10 0;
+#X connect 13 0 12 0;
+#X connect 13 0 12 1;
