@@ -70,7 +70,7 @@ adjustable linearity;
 #X text 120 1522 same with phasor~ control;
 #X obj 32 1554 oscope~;
 #X obj 18 1727 out~;
-#X text 128 1711 dac~ with meters and recording;
+#X text 127 1734 dac~ with meters and recording;
 #X obj 26 1918 outputc~;
 #X text 125 1937 dac~ with gain \, dsp \, and recording control;
 #X obj 30 2013 phasafor~;
