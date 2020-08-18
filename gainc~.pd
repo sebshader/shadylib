@@ -1,5 +1,5 @@
 #N canvas 470 300 601 554 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 107 143 hsl 57 23 0.01 1 1 0 \$0-v \$0-v1 volume 6 11 1 12 -245500
 -13381 -1 0 0;
 #X obj 249 145 inlet~;
@@ -36,7 +36,7 @@
 #X obj 258 56 bangif < 2;
 #X obj 313 262 q8_sqrt~;
 #X obj 226 257 q8_sqrt~;
-#X obj 299 24 declare -stdlib iemlib;
+#X obj 299 24 declare -lib iemlib;
 #X obj 170 29 dollarg;
 #X connect 0 0 15 0;
 #X connect 1 0 23 1;

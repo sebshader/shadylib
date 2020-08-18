@@ -1,5 +1,5 @@
 #N canvas 742 173 698 605 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 75 481 streamwrite-slow;
 #X obj 230 22 inlet;
 #X obj 162 226 list split 1;
@@ -30,7 +30,7 @@
 #X obj 289 274 * 0.5;
 #X obj 162 307 +;
 #X obj 208 307 +;
-#X obj 456 72 declare -stdlib zexy;
+#X obj 456 72 declare -lib zexy;
 #X obj 164 255 demultiplex 0 1 2;
 #X connect 0 0 8 0;
 #X connect 1 0 22 1;

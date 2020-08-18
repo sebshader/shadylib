@@ -1,5 +1,5 @@
 #N canvas 373 23 1067 710 10;
-#X declare -stdlib zexy -stdlib iemlib;
+#X declare -lib zexy -lib iemlib;
 #X msg 454 360 start;
 #X obj 453 192 bng 15 250 50 0 empty empty write 17 7 0 10 -262144
 -1 -1;
@@ -92,7 +92,7 @@
 #X obj 162 364 zexy/nop;
 #X msg 304 432;
 #X obj 187 271 symbol;
-#X obj 299 1 declare -stdlib zexy -stdlib iemlib;
+#X obj 299 1 declare -lib zexy -lib iemlib;
 #X obj 545 115 list2symbol;
 #X obj 733 264 symbol2list;
 #X obj 118 527 mergefilename .;

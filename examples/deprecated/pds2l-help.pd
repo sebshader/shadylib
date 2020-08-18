@@ -1,5 +1,5 @@
 #N canvas 557 45 821 642 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X text 245 538 GNU GPL v3;
 #X text 14 116 pds2l;
 #X msg 45 202 dows this work?;
@@ -44,7 +44,7 @@ space;
 #X obj 638 138 makefilename %g;
 #X floatatom 641 118 5 0 0 0 - - -;
 #X obj 142 252 pds2l;
-#X obj 541 48 declare -stdlib zexy;
+#X obj 541 48 declare -lib zexy;
 #X obj 21 273 list2symbol;
 #X obj 569 185 list2symbol;
 #X connect 2 0 43 0;

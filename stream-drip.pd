@@ -1,5 +1,5 @@
 #N canvas 424 78 740 577 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 262 73 inlet;
 #X obj 307 501 outlet;
 #X obj 434 454 outlet;
@@ -63,7 +63,7 @@
 #X restore 321 317 pd checkdupes;
 #X obj 301 453 list store;
 #X obj 320 411 prepender append;
-#X obj 421 82 declare -stdlib zexy;
+#X obj 421 82 declare -lib zexy;
 #X connect 0 0 10 0;
 #X connect 3 0 13 0;
 #X connect 3 1 4 1;

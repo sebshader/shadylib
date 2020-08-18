@@ -1,5 +1,5 @@
 #N canvas 232 124 514 352 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X floatatom 175 55 20 0 0 0 - - -;
 #X symbolatom 51 219 65 0 0 0 - - -;
 #X obj 57 91 1scomp;
@@ -9,7 +9,7 @@
 #X obj 116 31 loadbang;
 #X msg 122 110 symbol;
 #X text 239 21 should give 1s compliment of a number;
-#X obj 344 85 declare -stdlib zexy;
+#X obj 344 85 declare -lib zexy;
 #X obj 170 142 list2symbol;
 #X obj 66 143 list2symbol;
 #X connect 0 0 2 0;

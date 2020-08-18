@@ -1,5 +1,5 @@
 #N canvas 345 115 592 326 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X symbolatom 103 102 56 0 0 0 - #0-selected #0-nothing;
 #X obj 232 288 s \$0-selected;
 #X obj 234 233 iemguts/canvasselect 1;
@@ -7,7 +7,7 @@
 #X obj 264 178 route mouseup;
 #X obj 261 207 b;
 #X obj 232 263 list2symbol;
-#X obj 237 22 declare -stdlib zexy;
+#X obj 237 22 declare -lib zexy;
 #X connect 2 0 6 0;
 #X connect 3 0 4 0;
 #X connect 4 0 5 0;

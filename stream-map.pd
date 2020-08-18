@@ -1,5 +1,5 @@
 #N canvas 875 37 458 430 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 96 43 inlet;
 #X obj 285 62 inlet;
 #X obj 161 362 outlet;
@@ -80,7 +80,7 @@
 #X obj 178 248 streamread-slow;
 #X obj 156 321 list store;
 #X obj 272 189 prepender append;
-#X obj 206 33 declare -stdlib zexy;
+#X obj 206 33 declare -lib zexy;
 #X connect 0 0 4 0;
 #X connect 1 0 11 0;
 #X connect 4 0 5 0;

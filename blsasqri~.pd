@@ -1,5 +1,5 @@
 #N canvas 526 65 914 809 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 300 30 loadbang;
 #X obj 149 210 bpbuzz~ m;
 #X obj 376 61 inlet;
@@ -76,7 +76,7 @@
 #X obj 69 494 rminus~ 0.33333;
 #X obj 280 560 *~ 0.75;
 #X msg 202 94 0.5;
-#X obj 493 25 declare -stdlib iemlib;
+#X obj 493 25 declare -lib iemlib;
 #X obj 224 43 pdcontrol;
 #X msg 229 23 args;
 #X obj 257 84 list length;

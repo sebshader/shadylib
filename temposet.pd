@@ -1,5 +1,5 @@
 #N canvas 463 205 656 443 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 255 94 inlet;
 #X obj 152 301 f;
 #X floatatom 253 215 6 0 0 2 ms - -;
@@ -36,7 +36,7 @@
 #X obj 453 342 outlet;
 #X obj 206 234 bng 15 250 50 0 empty empty int 17 7 0 10 -262144 -1
 -1;
-#X obj 158 49 declare -stdlib zexy;
+#X obj 158 49 declare -lib zexy;
 #X obj 392 237 demultiplex;
 #X connect 0 0 2 0;
 #X connect 1 0 9 0;

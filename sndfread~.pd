@@ -1,5 +1,5 @@
 #N canvas 585 128 770 501 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 144 128 openpanel;
 #X msg 432 227 start;
 #X obj 561 138 bng 15 250 50 0 empty empty read 17 7 0 10 -262144 -1
@@ -32,7 +32,7 @@
 #X obj 216 187 symbol;
 #X obj 218 210 pack s s;
 #X msg 92 265;
-#X obj 256 22 declare -stdlib iemlib;
+#X obj 256 22 declare -lib iemlib;
 #X obj 47 161 splitfilename /;
 #X obj 4 196 splitfilename /;
 #X obj 213 235 mergefilename /;

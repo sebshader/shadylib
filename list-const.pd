@@ -1,5 +1,5 @@
 #N canvas 290 237 450 300 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 186 25 inlet;
 #X obj 191 119 until;
 #X obj 188 248 outlet;
@@ -11,7 +11,7 @@
 #X obj 192 157 list;
 #X obj 256 2 loadbang;
 #X obj 200 179 prepender append;
-#X obj 37 99 declare -stdlib iemlib;
+#X obj 37 99 declare -lib iemlib;
 #X msg 257 29 args 0;
 #X obj 259 53 pdcontrol;
 #X connect 0 0 3 0;

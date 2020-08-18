@@ -1,5 +1,5 @@
 #N canvas 180 158 587 477 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 150 39 inlet;
 #X obj 312 52 inlet;
 #X obj 143 158 list prepend list;
@@ -11,7 +11,7 @@
 #X msg 105 104 clear;
 #X obj 150 323 outlet;
 #X obj 62 78 route flush clear;
-#X obj 346 35 declare -stdlib zexy;
+#X obj 346 35 declare -lib zexy;
 #X obj 141 200 list2symbol;
 #X obj 142 270 symbol2list;
 #X connect 0 0 10 0;

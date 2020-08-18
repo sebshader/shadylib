@@ -1,5 +1,5 @@
 #N canvas 429 23 921 830 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 56 522 inlet~;
 #X obj 173 9 inlet;
 #X obj 24 750 tabwrite~ \$0-buffer;
@@ -135,7 +135,7 @@
 #X restore 586 332 pd fixlist;
 #X obj 592 417 vline~;
 #X obj 689 176 f;
-#X obj 498 40 declare -stdlib zexy;
+#X obj 498 40 declare -lib zexy;
 #X obj 231 222 demultiplex;
 #X connect 0 0 3 0;
 #X connect 0 0 2 0;

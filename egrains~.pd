@@ -1,5 +1,5 @@
 #N canvas 436 232 651 480 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 243 171 sampphase~;
 #X obj 156 324 *~;
 #X obj 127 56 inlet~;
@@ -60,7 +60,7 @@
 #X connect 10 0 8 0;
 #X restore 215 260 pd dualscale;
 #X obj 326 166 max 1;
-#X obj 476 31 declare -stdlib zexy;
+#X obj 476 31 declare -lib zexy;
 #X obj 105 154 <~ 0;
 #X connect 0 0 27 2;
 #X connect 0 0 12 0;

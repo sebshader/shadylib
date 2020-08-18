@@ -1,5 +1,5 @@
 #N canvas 719 129 685 542 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 235 367 list length;
 #X obj 176 341 t b l b l;
 #X msg 178 379 addcomma;
@@ -13,7 +13,7 @@ goes into tabset after size goes into array resize;
 #X obj 287 181 inlet;
 #X obj 198 296 array get \$1;
 #X obj 280 224 symbol;
-#X obj 304 135 declare -stdlib iemlib;
+#X obj 304 135 declare -lib iemlib;
 #X obj 232 405 iem_prepend set size;
 #X obj 32 407 iem_prepend add2 array;
 #X connect 0 0 12 0;

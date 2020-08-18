@@ -1,5 +1,5 @@
 #N canvas 260 193 1180 685 10;
-#X declare -stdlib zexy -stdlib iemlib;
+#X declare -lib zexy -lib iemlib;
 #X obj 221 293 cnv 15 580 108 empty empty empty 20 12 0 14 -259649
 -66577 0;
 #X obj 166 546 del;
@@ -1963,7 +1963,7 @@
 #X connect 27 0 25 0;
 #X connect 27 1 20 0;
 #X restore 609 520 pd nester15;
-#X obj 419 31 declare -stdlib zexy -stdlib iemlib;
+#X obj 419 31 declare -lib zexy -lib iemlib;
 #X connect 1 0 21 0;
 #X connect 2 0 171 0;
 #X connect 21 0 117 0;

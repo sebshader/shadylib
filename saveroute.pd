@@ -1,5 +1,5 @@
 #N canvas 0 23 677 500 12;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 118 65 inlet;
 #X obj 182 56 inlet;
 #X obj 256 61 inlet;
@@ -13,7 +13,7 @@
 #X obj 392 71 inlet;
 #X obj 246 279 outlet;
 #X obj 500 292 outlet;
-#X obj 498 40 declare -stdlib zexy;
+#X obj 498 40 declare -lib zexy;
 #X obj 426 167 demultiplex;
 #X obj 265 144 demultiplex;
 #X obj 181 103 demultiplex;

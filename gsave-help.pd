@@ -1,5 +1,5 @@
 #N canvas 255 387 789 444 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 443 49 saver \$0-globname;
 #X obj 73 183 gsave \$0-globname manymsg;
 #X obj 102 163 prepender s1 s2 s3 s4;
@@ -29,7 +29,7 @@ manymsg s2 60 \;;
 \; manymsg s2 83 \;;
 #X text 15 294 bangs out left outlet on save (before sending saved
 values);
-#X obj 402 18 declare -stdlib iemlib;
+#X obj 402 18 declare -lib iemlib;
 #X obj 460 140 iem_prepend 0;
 #X connect 0 0 8 0;
 #X connect 0 1 8 1;

@@ -1,5 +1,5 @@
 #N canvas 395 28 632 592 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 175 110 mrpeach/unpackOSC;
 #X obj 185 160 mrpeach/pipelist;
 #X obj 174 87 mrpeach/udpreceive \$1;
@@ -12,7 +12,7 @@
 #X obj 176 272 t l s;
 #X obj 146 295 list split 1;
 #X obj 253 265 route symbol;
-#X obj 353 179 declare -stdlib zexy;
+#X obj 353 179 declare -lib zexy;
 #X obj 168 245 symbol2list /;
 #X obj 249 293 symbol2list;
 #X connect 0 0 1 0;

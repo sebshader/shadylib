@@ -1,5 +1,5 @@
 #N canvas 402 58 907 816 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 143 111 inlet~;
 #X obj 130 614 outlet~;
 #X obj 180 205 phasor~;
@@ -48,7 +48,7 @@
 #X text 452 67 when the fraction of samples are equal \, special treatment
 is needed? not sure about the maths on this;
 #X obj 246 370 -~;
-#X obj 268 45 declare -stdlib zexy;
+#X obj 268 45 declare -lib zexy;
 #X obj 436 136 ==~ 0;
 #X obj 486 139 ==~ 0;
 #X obj 580 235 ==~;

@@ -1,5 +1,5 @@
 #N canvas 585 76 804 515 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 261 245 print;
 #X obj 110 172 show;
 #X msg 6 321 50 51 32 53 51 50 48 48 48 48 48 32 52 51 96;
@@ -50,7 +50,7 @@ inlet. spaces between elements are converted to 32s;
 #X obj 209 206 bytes2any 128 96;
 #X obj 325 181 bytes2any 128 96;
 #X obj 468 212 list-abs/list-drip;
-#X obj 635 50 declare -stdlib zexy;
+#X obj 635 50 declare -lib zexy;
 #X obj 535 323 list2symbol;
 #X connect 1 0 2 0;
 #X connect 5 0 7 0;

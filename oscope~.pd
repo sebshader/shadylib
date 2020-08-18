@@ -1,5 +1,5 @@
 #N canvas 637 214 787 430 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 425 21 loadbang;
 #X obj 74 119 inlet~;
 #X obj 378 50 inlet;
@@ -48,7 +48,7 @@
 #X obj 618 174 spigot;
 #X msg 655 148 1;
 #X msg 619 208 0;
-#X obj 199 8 declare -stdlib iemlib;
+#X obj 199 8 declare -lib iemlib;
 #X obj 416 94 speedlim 1000;
 #X obj 188 151 b;
 #X connect 0 0 5 0;

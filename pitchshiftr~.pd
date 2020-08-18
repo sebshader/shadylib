@@ -1,5 +1,5 @@
 #N canvas 208 279 880 656 12;
-#X declare -stdlib zexy -stdlib iemlib;
+#X declare -lib zexy -lib iemlib;
 #X obj 325 411 *~;
 #X obj 435 280 line~;
 #X obj 260 247 /;
@@ -55,7 +55,7 @@
 #X obj 364 277 < 0;
 #X obj 292 348 demultiplex~;
 #X obj 533 347 demultiplex~;
-#X obj 208 43 declare -stdlib zexy -stdlib iemlib;
+#X obj 208 43 declare -lib zexy -lib iemlib;
 #X obj 325 463 vdhs~ \$1;
 #X obj 485 477 vdhs~ \$1;
 #X obj 262 144 f \$2;

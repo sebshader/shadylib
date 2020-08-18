@@ -1,5 +1,5 @@
 #N canvas 373 173 830 584 10;
-#X declare -stdlib zexy;
+#X declare -lib zexy;
 #X obj 199 229 show;
 #X msg 197 252 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 0 1 0 0 1 0;
@@ -27,7 +27,7 @@ number;
 #X obj 193 175 binlist;
 #X obj 242 399 list length;
 #X floatatom 257 424 5 0 0 0 - - -;
-#X obj 489 161 declare -stdlib zexy;
+#X obj 489 161 declare -lib zexy;
 #X obj 117 232 list2symbol;
 #X obj 196 289 list2symbol;
 #X obj 172 380 symbol2list;

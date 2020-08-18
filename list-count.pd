@@ -1,5 +1,5 @@
 #N canvas 245 250 571 348 12;
-#X declare -stdlib zexy -stdlib iemlib;
+#X declare -lib zexy -lib iemlib;
 #X obj 154 51 inlet;
 #X obj 365 68 inlet;
 #X obj 184 245 ekext/cup;
@@ -16,7 +16,7 @@
 #X obj 391 186 zexy/nop;
 #X msg 117 215 0;
 #X obj 299 57 init \$1;
-#X obj 60 19 declare -stdlib zexy -stdlib iemlib;
+#X obj 60 19 declare -lib zexy -lib iemlib;
 #X obj 158 149 demultiplex;
 #X obj 162 115 drip;
 #X connect 0 0 6 0;

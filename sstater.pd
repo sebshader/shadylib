@@ -1,12 +1,12 @@
 #N canvas 845 424 450 300 10;
-#X declare -stdlib iemlib;
+#X declare -lib iemlib;
 #X obj 226 107 r \$1;
 #X obj 66 129 r \$2;
 #X obj 66 160 outlet;
 #X obj 337 108 inlet;
 #X obj 226 193 s \$1-s;
 #X obj 226 158 prepender \$2;
-#X obj 217 58 declare -stdlib iemlib;
+#X obj 217 58 declare -lib iemlib;
 #X obj 226 131 iem_anything;
 #X connect 0 0 7 0;
 #X connect 1 0 2 0;
