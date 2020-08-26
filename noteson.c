@@ -1,29 +1,7 @@
 #include "m_pd.h"
+#include "shadylib.h"
 
 /* from x_list.c in pd sources */
-#ifdef _WIN32
-# include <malloc.h> /* MSVC or mingw on windows */
-#elif defined(__linux__) || defined(__APPLE__)
-# include <alloca.h> /* linux, mac, mingw, cygwin */
-#else
-# include <stdlib.h> /* BSDs for example */
-#endif
-
-#ifndef HAVE_ALLOCA     /* can work without alloca() but we never need it */
-#define HAVE_ALLOCA 1
-#endif
-
-#define LIST_NGETBYTE 100 /* bigger that this we use alloc, not alloca */
-
-#if HAVE_ALLOCA
-#define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)((n) < LIST_NGETBYTE ?  \
-        alloca((n) * sizeof(t_atom)) : getbytes((n) * sizeof(t_atom))))
-#define ATOMS_FREEA(x, n) ( \
-    ((n) < LIST_NGETBYTE || (freebytes((x), (n) * sizeof(t_atom)), 0)))
-#else
-#define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)getbytes((n) * sizeof(t_atom)))
-#define ATOMS_FREEA(x, n) (freebytes((x), (n) * sizeof(t_atom)))
-#endif
 
 static t_class *noteson_class;
 
