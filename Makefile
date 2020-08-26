@@ -16,7 +16,7 @@ highest~.c        phasorator~.c     sampphase~.c      upmet.c \
 inrange.c         pib~.c            scaler.c          vdhs~.c \
 pinb~.c           scaler~.c         voisim~.c 		  log2.c \
 modf~.c           powclip~.c        shadylook.c		lag~.c \
-multatord~.c	  siglinterp~.c		realpass~.c
+multatord~.c	  siglinterp~.c		realpass~.c		noteson.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
