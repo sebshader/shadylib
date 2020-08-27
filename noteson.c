@@ -14,6 +14,7 @@ typedef struct _notesonelem
 typedef struct _noteson
 {
     t_object x_obj;
+	t_outlet *s_empty;
     float x_velo;
 	int mode;
 	int size;
@@ -33,6 +34,7 @@ static void *noteson_new(t_floatarg mode)
     x->x_velo = 0;
     floatinlet_new(&x->x_obj, &x->x_velo);
     outlet_new(&x->x_obj, &s_list);
+	x->s_empty = outlet_new(&x->x_obj, &s_bang);
     x->x_first = 0;
 	noteson_mode(x, mode);
     return (x);
@@ -112,6 +114,10 @@ static void noteson_float(t_noteson *x, t_float f)
         }
     }
 	outc = x->size;
+	if(!outc) {
+		outlet_bang(x->s_empty);
+		return;
+	}
 	e2 = x->x_first;
 	ATOMS_ALLOCA(outv, outc);
 	for (int n = 0; n < outc; n++, e2 = e2->e_next)
@@ -134,7 +140,7 @@ static void noteson_clear(t_noteson *x)
 static void noteson_flush(t_noteson *x)
 {
     noteson_clear(x);
-	outlet_bang(x->x_obj.ob_outlet);
+	outlet_bang(x->s_empty);
 }
 
 void noteson_setup(void)
