@@ -23,8 +23,8 @@ static void *sampphase_new(t_floatarg f, t_floatarg t)
     x->x_held = f;
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
     x->x_phase = 0;
-    outlet_new(&x->x_obj, gensym("signal"));
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
+    outlet_new(&x->x_obj, &s_signal);
     return (x);
 }
 

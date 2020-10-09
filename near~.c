@@ -193,9 +193,9 @@ t_class *near_class;
 void *near_new(t_floatarg attack, t_floatarg release)
 {
     t_near *x = (t_near *)pd_new(near_class);
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("attack"));  
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("release"));
-    outlet_new(&x->x_obj, gensym("signal"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("attack"));  
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("release"));
+    outlet_new(&x->x_obj, &s_signal);
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = 0;
     x->x_sr = sys_getsr();
@@ -212,7 +212,7 @@ void near_tilde_setup(void)
     near_class = class_new(gensym("near~"), (t_newmethod)near_new,
     	0, sizeof(t_near), 0,  A_DEFFLOAT, A_DEFFLOAT, 0);
     class_addmethod(near_class, (t_method)near_float,
-		    gensym("float"), A_FLOAT, 0);
+		    &s_float, A_FLOAT, 0);
     class_addmethod(near_class, (t_method)near_dsp, gensym("dsp"), A_CANT, 0); 
     class_addmethod(near_class, (t_method)near_attack,
 		    gensym("attack"), A_GIMME, 0);

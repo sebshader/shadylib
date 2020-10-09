@@ -274,11 +274,11 @@ void *neadsr_new(t_floatarg attack, t_floatarg decay,
 		t_floatarg sustain, t_floatarg release)
 {
     t_neadsr *x = (t_neadsr *)pd_new(neadsr_class);
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("attack"));  
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("decay"));  
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("sustain"));
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("release"));
-    outlet_new(&x->x_obj, gensym("signal"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("attack"));  
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("decay"));  
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("sustain"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("release"));
+    outlet_new(&x->x_obj, &s_signal);
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = -1;
     x->x_sr = sys_getsr();
@@ -299,7 +299,7 @@ void neadsr_tilde_setup(void)
     	0, sizeof(t_neadsr), 0,  A_DEFFLOAT, 
 			    A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
     class_addmethod(neadsr_class, (t_method)neadsr_float,
-		    gensym("float"), A_FLOAT, 0);
+		    &s_float, A_FLOAT, 0);
     class_addmethod(neadsr_class, (t_method)neadsr_dsp, gensym("dsp"), A_CANT, 
             0); 
     class_addmethod(neadsr_class, (t_method)neadsr_attack,

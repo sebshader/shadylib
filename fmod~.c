@@ -14,7 +14,7 @@ static void *sigfmod_new(t_floatarg mod)
 {
     t_fmod *x = (t_fmod *)pd_new(sigfmod_class);
     floatinlet_new(&x->x_obj, &x->x_g);
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
     x->x_f = 0;
     if(mod == 0) mod = 1;
     x->x_g = mod;

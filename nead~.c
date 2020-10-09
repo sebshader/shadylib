@@ -196,9 +196,9 @@ t_class *nead_class;
 
 void *nead_new(t_floatarg attack, t_floatarg decay) {
     t_nead *x = (t_nead *)pd_new(nead_class);
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("attack"));  
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("decay"));  
-    outlet_new(&x->x_obj, gensym("signal"));
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("attack"));  
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("decay"));  
+    outlet_new(&x->x_obj, &s_signal);
     x->x_ctl.c_state = 0;
     x->x_ctl.c_target = 0;
     x->x_sr = sys_getsr();
@@ -215,7 +215,7 @@ void nead_tilde_setup(void)
     nead_class = class_new(gensym("nead~"), (t_newmethod)nead_new,
     	0, sizeof(t_nead), 0,  A_DEFFLOAT, A_DEFFLOAT, 0);
     class_addmethod(nead_class, (t_method)nead_float,
-		    gensym("float"), A_FLOAT, 0);
+		    &s_float, A_FLOAT, 0);
     class_addmethod(nead_class, (t_method)nead_dsp, gensym("dsp"), A_CANT, 0); 
     class_addmethod(nead_class, (t_method)nead_attack,
 		    gensym("attack"), A_GIMME, 0);

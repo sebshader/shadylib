@@ -11,8 +11,8 @@ t_class *sigmodf_class;
 
 static void *sigmodf_new() {
     t_modf *x = (t_modf *)pd_new(sigmodf_class);
-    outlet_new(&x->x_obj, gensym("signal"));
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
+    outlet_new(&x->x_obj, &s_signal);
     return (x);
 }
 

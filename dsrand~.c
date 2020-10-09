@@ -134,8 +134,8 @@ static void *dsrand_new(t_symbol *s, int argc, t_atom *argv) {
 	else
 		state = dsrand_makeseed();
 
-    outlet_new(&x->x_obj, gensym("signal"));
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
+    outlet_new(&x->x_obj, &s_signal);
     x->x_lastin = 0;
     x->x_ahead = 0;
     x->x_behind = 0;

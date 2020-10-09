@@ -97,8 +97,8 @@ static void *upmet_new(t_symbol *unitname, t_floatarg f, t_floatarg tempo)
     upmet_ft1(x, f);
     x->x_hit = 0;
     x->x_clock = clock_new(x, (t_method)upmet_tick);
-    outlet_new(&x->x_obj, gensym("bang"));
-    inlet_new(&x->x_obj, &x->x_obj.ob_pd, gensym("float"), gensym("ft1"));
+    outlet_new(&x->x_obj, &s_bang);
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
     if (tempo != 0)
         upmet_tempo(x, unitname, tempo);
     return (x);

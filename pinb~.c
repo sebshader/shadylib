@@ -10,7 +10,7 @@ t_class *sigpinb_class;
 
 static void *sigpinb_new() {
     t_pinb *x = (t_pinb *)pd_new(sigpinb_class);
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
     return (x);
 }
 

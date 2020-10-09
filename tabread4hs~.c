@@ -52,7 +52,7 @@ void *tabread4hs_tilde_new(t_symbol *s) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)pd_new(tabread4hs_tilde_class);
     x->x_arrayname = s;
     x->x_vec = 0;
-    outlet_new(&x->x_obj, gensym("signal"));
+    outlet_new(&x->x_obj, &s_signal);
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
 	x->x_f = 0;
     x->x_onset = 0;
