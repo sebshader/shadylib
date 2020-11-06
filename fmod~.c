@@ -5,7 +5,7 @@ typedef struct fmod
 {
     t_object x_obj;
     t_float x_f;
-    float x_g;
+    t_float x_g;
 } t_fmod;
 
 t_class *sigfmod_class;

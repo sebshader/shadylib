@@ -29,9 +29,14 @@
 #X obj 196 154 delwrite~ lindsay 2000;
 #X text 573 220 lagrange;
 #X text 572 192 hermite spline;
-#X obj 487 353 vdhs~ lindsay2;
 #X obj 391 351 vdhs~ lindsay;
 #X obj 186 22 sndfread~;
+#X floatatom 581 287 5 0 0 0 - - -;
+#X obj 487 353 vdhs~ lindsay2;
+#X obj 657 388 vdhs~ lindsay 2;
+#X text 625 282 2nd inlet/2nd argument: interpolation type: 0 - hermite
+spline 1 - linear 2 - none only updated when dsp is started for the
+object;
 #X connect 0 0 7 0;
 #X connect 0 0 14 1;
 #X connect 2 0 14 0;
@@ -47,7 +52,7 @@
 #X connect 15 0 8 0;
 #X connect 15 0 13 0;
 #X connect 15 0 30 0;
-#X connect 15 0 31 0;
+#X connect 15 0 33 0;
 #X connect 16 0 11 1;
 #X connect 16 0 9 1;
 #X connect 17 0 16 0;
@@ -62,9 +67,14 @@
 #X connect 21 0 23 0;
 #X connect 23 0 20 0;
 #X connect 23 1 20 1;
-#X connect 30 0 12 0;
-#X connect 31 0 10 0;
-#X connect 32 0 24 0;
-#X connect 32 0 27 0;
-#X connect 32 1 25 0;
-#X connect 32 1 26 0;
+#X connect 30 0 10 0;
+#X connect 31 0 24 0;
+#X connect 31 0 27 0;
+#X connect 31 1 25 0;
+#X connect 31 1 26 0;
+#X connect 32 0 30 1;
+#X connect 32 0 13 0;
+#X connect 32 0 30 0;
+#X connect 32 0 8 0;
+#X connect 32 0 33 1;
+#X connect 33 0 12 0;
