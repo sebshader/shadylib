@@ -1,5 +1,0 @@
-#N canvas 306 91 450 300 12;
-#X obj 71 147 nop~;
-#X text 37 50 does nothing;
-#X text 26 102 replacement for nop because nop creates
-a [z~ 64];
