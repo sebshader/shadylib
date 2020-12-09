@@ -1,4 +1,4 @@
-#N canvas 366 212 450 300 10;
+#N canvas 562 152 450 300 10;
 #X obj 242 147 makerpath;
 #X obj 235 190 print;
 #X msg 209 91 larandom.pd;
@@ -8,6 +8,18 @@ transforms it into an absolute pathname;
 #X msg 307 96 ../test.pd;
 #X msg 95 70 /this/is/alsready/absolutemm;
 #X text 43 264 leaves absolute paths alone;
+#N canvas 258 144 450 300 levels 0;
+#X obj 72 181 makerpath 1;
+#X floatatom 139 159 5 0 0 0 - - -;
+#X text 144 139 0 works here but not as a creation argument;
+#X obj 84 211 print;
+#X text 46 33 creation argument/right inlet is level (defaults to root
+canvas);
+#X msg 47 133 some/file.txt;
+#X connect 0 0 3 0;
+#X connect 1 0 0 1;
+#X connect 5 0 0 0;
+#X restore 123 198 pd levels;
 #X connect 0 0 1 0;
 #X connect 2 0 0 0;
 #X connect 3 0 0 0;
