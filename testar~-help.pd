@@ -1,4 +1,4 @@
-#N canvas 349 32 628 581 10;
+#N canvas 715 32 628 581 10;
 #X obj 16 48 testar~;
 #X obj 17 14 osc~ 220;
 #X obj 320 48 testar~ 100;
@@ -15,9 +15,10 @@
 set to 0;
 #X obj 327 342 testar~ 100 -2 2;
 #X text 344 308 testar~ 100 -2 2;
-#X text 47 536 simple array writing tool for viewing and debugging
-;
 #X text 74 304 testar~ 100 1;
+#X text 47 536 simple array writing tool for viewing and debugging
+(bang triggers write) lower and upper are lower and upper y values
+;
 #X connect 1 0 0 0;
 #X connect 1 0 2 0;
 #X connect 5 0 4 0;
