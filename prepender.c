@@ -46,13 +46,6 @@ typedef struct prepender
   t_atom   x_id;
 } t_prepender;
 
-static inline void atoms_copy(int argc, t_atom *from, t_atom *to)
-{
-    int i;
-    for (i = 0; i < argc; i++)
-        to[i] = from[i];
-}
-
 static void prepender_any(t_prepender *x, t_symbol *s, int argc, t_atom *argv)
 {
 	t_atom *outv;

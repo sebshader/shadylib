@@ -210,6 +210,39 @@ EXTERN t_sample *shadylib_cosectbl;
 /* maximum harmonics for small frequencies */
 #define MAXHARM ((int)((4294967295/(2*BUZZSIZE)) - 2))
 
+#include <string.h>
+
+#ifdef _WIN32
+# include <malloc.h> /* MSVC or mingw on windows */
+#elif defined(__linux__) || defined(__APPLE__)
+# include <alloca.h> /* linux, mac, mingw, cygwin */
+#else
+# include <stdlib.h> /* BSDs for example */
+#endif
+
+#ifndef HAVE_ALLOCA     /* can work without alloca() but we never need it */
+#define HAVE_ALLOCA 1
+#endif
+
+#define LIST_NGETBYTE 100 /* bigger that this we use alloc, not alloca */
+
+/* -------------- utility functions: storage, copying  -------------- */
+    /* List element for storage.  Keep an atom and, in case it's a pointer,
+        an associated 'gpointer' to protect against stale pointers. */
+typedef struct _listelem
+{
+    t_atom l_a;
+    t_gpointer l_p;
+} t_listelem;
+
+typedef struct _alist
+{
+    t_pd l_pd;          /* object to point inlets to */
+    int l_n;            /* number of items */
+    int l_npointer;     /* number of pointers */
+    t_listelem *l_vec;  /* pointer to items */
+} t_alist;
+
 #if HAVE_ALLOCA
 #define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)((n) < LIST_NGETBYTE ?  \
         alloca((n) * sizeof(t_atom)) : getbytes((n) * sizeof(t_atom))))
@@ -219,3 +252,15 @@ EXTERN t_sample *shadylib_cosectbl;
 #define ATOMS_ALLOCA(x, n) ((x) = (t_atom *)getbytes((n) * sizeof(t_atom)))
 #define ATOMS_FREEA(x, n) (freebytes((x), (n) * sizeof(t_atom)))
 #endif
+
+EXTERN void atoms_copy(int argc, t_atom *from, t_atom *to);
+EXTERN t_class *alist_class;
+EXTERN void alist_init(t_alist *x);
+EXTERN void alist_clear(t_alist *x);
+EXTERN void alist_copyin(t_alist *x, t_symbol *s, int argc, t_atom *argv,
+    int where);
+EXTERN void alist_list(t_alist *x, t_symbol *s, int argc, t_atom *argv);
+EXTERN void alist_anything(t_alist *x, t_symbol *s, int argc, t_atom *argv);
+EXTERN void alist_toatoms(t_alist *x, t_atom *to, int onset, int count);
+EXTERN void alist_clone(t_alist *x, t_alist *y, int onset, int count);
+EXTERN void alist_setup(void);

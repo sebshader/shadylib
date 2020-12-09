@@ -45,7 +45,6 @@ typedef struct _tabread4hs_tilde {
     t_word *x_vec;
     t_symbol *x_arrayname;
     t_float x_f;
-    t_float x_onset;
 } t_tabread4hs_tilde;
 
 void *tabread4hs_tilde_new(t_symbol *s) {
@@ -55,7 +54,6 @@ void *tabread4hs_tilde_new(t_symbol *s) {
     outlet_new(&x->x_obj, &s_signal);
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
 	x->x_f = 0;
-    x->x_onset = 0;
     return (x);
 }
 
@@ -67,7 +65,6 @@ t_int *tabread4hs_tilde_perform(t_int *w) {
     int n = (int)(w[5]);    
     int maxindex;
     t_word *buf = x->x_vec, *wp;
-    double onset = x->x_onset;
     int i;
     
     maxindex = x->x_npoints - 3;

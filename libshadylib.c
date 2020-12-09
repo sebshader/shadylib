@@ -514,3 +514,127 @@ t_int *shadylib_trid_perf2(t_int *w) {
     }
     return (w+5);
 }
+
+void atoms_copy(int argc, t_atom *from, t_atom *to)
+{
+    int i;
+    for (i = 0; i < argc; i++)
+        to[i] = from[i];
+}
+
+t_class *alist_class;
+
+void alist_init(t_alist *x)
+{
+    x->l_pd = alist_class;
+    x->l_n = x->l_npointer = 0;
+    x->l_vec = 0;
+}
+
+void alist_clear(t_alist *x)
+{
+    int i;
+    for (i = 0; i < x->l_n; i++)
+    {
+        if (x->l_vec[i].l_a.a_type == A_POINTER)
+            gpointer_unset(x->l_vec[i].l_a.a_w.w_gpointer);
+    }
+    if (x->l_vec)
+        freebytes(x->l_vec, x->l_n * sizeof(*x->l_vec));
+}
+
+void alist_copyin(t_alist *x, t_symbol *s, int argc, t_atom *argv,
+    int where)
+{
+    int i, j;
+    for (i = 0, j = where; i < argc; i++, j++)
+    {
+        x->l_vec[j].l_a = argv[i];
+        if (x->l_vec[j].l_a.a_type == A_POINTER)
+        {
+            x->l_npointer++;
+            gpointer_copy(x->l_vec[j].l_a.a_w.w_gpointer, &x->l_vec[j].l_p);
+            x->l_vec[j].l_a.a_w.w_gpointer = &x->l_vec[j].l_p;
+        }
+    }
+}
+
+    /* set contents to a list */
+void alist_list(t_alist *x, t_symbol *s, int argc, t_atom *argv)
+{
+    alist_clear(x);
+    if (!(x->l_vec = (t_listelem *)getbytes(argc * sizeof(*x->l_vec))))
+    {
+        x->l_n = 0;
+        error("list: out of memory");
+        return;
+    }
+    x->l_n = argc;
+    x->l_npointer = 0;
+    alist_copyin(x, s, argc, argv, 0);
+}
+
+    /* set contents to an arbitrary non-list message */
+void alist_anything(t_alist *x, t_symbol *s, int argc, t_atom *argv)
+{
+    int i;
+    alist_clear(x);
+    if (!(x->l_vec = (t_listelem *)getbytes((argc+1) * sizeof(*x->l_vec))))
+    {
+        x->l_n = 0;
+        error("list_alloc: out of memory");
+        return;
+    }
+    x->l_n = argc+1;
+    x->l_npointer = 0;
+    SETSYMBOL(&x->l_vec[0].l_a, s);
+    for (i = 0; i < argc; i++)
+    {
+        x->l_vec[i+1].l_a = argv[i];
+        if (x->l_vec[i+1].l_a.a_type == A_POINTER)
+        {
+            x->l_npointer++;
+            gpointer_copy(x->l_vec[i+1].l_a.a_w.w_gpointer, &x->l_vec[i+1].l_p);
+            x->l_vec[i+1].l_a.a_w.w_gpointer = &x->l_vec[i+1].l_p;
+        }
+    }
+}
+
+void alist_toatoms(t_alist *x, t_atom *to, int onset, int count)
+{
+    int i;
+    for (i = 0; i < count; i++)
+        to[i] = x->l_vec[onset + i].l_a;
+}
+
+
+void alist_clone(t_alist *x, t_alist *y, int onset, int count)
+{
+    int i;
+    y->l_pd = alist_class;
+    y->l_n = count;
+    y->l_npointer = 0;
+    if (!(y->l_vec = (t_listelem *)getbytes(y->l_n * sizeof(*y->l_vec))))
+    {
+        y->l_n = 0;
+        error("list_alloc: out of memory");
+    }
+    else for (i = 0; i < count; i++)
+    {
+        y->l_vec[i].l_a = x->l_vec[onset + i].l_a;
+        if (y->l_vec[i].l_a.a_type == A_POINTER)
+        {
+            gpointer_copy(y->l_vec[i].l_a.a_w.w_gpointer, &y->l_vec[i].l_p);
+            y->l_vec[i].l_a.a_w.w_gpointer = &y->l_vec[i].l_p;
+            y->l_npointer++;
+        }
+    }
+}
+
+void alist_setup(void)
+{
+    alist_class = class_new(gensym("list inlet"),
+        0, 0, sizeof(t_alist), 0, 0);
+    class_addlist(alist_class, alist_list);
+    class_addanything(alist_class, alist_anything);
+}
