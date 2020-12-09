@@ -39,12 +39,16 @@ static void list_delim_list(t_list_delim *x, t_symbol *s,
 				for(int j = 0; j < outc; j++) {
 					if(outv[j].a_type == A_SYMBOL) {
 						const char *against = atom_getsymbol(outv+j)->s_name;
-						if(strlen(against) > strlength &&
-							strncmp(c, against, strlength) == 0) {
+						size_t alength = strlen(against);
+						if(!(alength%strlength) && alength > strlength) {
+							for(size_t k = 0; k < alength; k += strlength)
+								if (strncmp(c, against + k, strlength) != 0)
+									goto cont;
 							strncpy(namebuf, against+strlength, MAXPDSTRING);
 							outv[j].a_w.w_symbol = gensym(namebuf);
 						}
 					}
+					cont:;
 				}
 				outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
 				ATOMS_FREEA(outv, outc);
