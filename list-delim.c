@@ -1,6 +1,6 @@
 #include "shadylib.h"
 
-t_class *list_delim_class;
+static t_class *list_delim_class;
 
 typedef struct _list_delim
 {

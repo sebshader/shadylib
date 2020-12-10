@@ -3,30 +3,29 @@
 before banging and resetting both;
 #X obj 118 152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 125 91 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 89 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 143 94 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 203 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X floatatom 173 78 5 0 0 0 - - -;
-#X floatatom 215 82 5 0 0 0 - - -;
-#X text 25 43 after receiving a number of bangs specified by both 1st
-and 2nd arguments \, (or 3rd and 4th inlets) output a bang;
-#X msg 36 158 1;
-#X text 6 181 float to a trigger inlet sets the step # for that inlet
-(1-based);
+#X floatatom 111 78 5 0 0 0 - - -;
+#X floatatom 224 83 5 0 0 0 - - -;
 #X floatatom 153 148 5 0 0 0 - - -;
 #X floatatom 190 146 5 0 0 0 - - -;
-#X text 45 238 last 2 outlets give counts of the 2 counters;
 #X obj 122 116 synlets 2 3;
-#X msg 277 83 1;
-#X text 275 98 reset (1 to both inlets);
-#X connect 2 0 12 0;
-#X connect 3 0 12 1;
-#X connect 4 0 12 2;
-#X connect 5 0 12 3;
-#X connect 7 0 12 0;
-#X connect 12 0 1 0;
-#X connect 12 1 9 0;
-#X connect 12 2 10 0;
-#X connect 13 0 12 0;
-#X connect 13 0 12 1;
+#X msg 158 79 set 1;
+#X text 25 43 after receiving a number of bangs specified by both 1st
+and 2nd arguments \, (or numbers sent to 1st and 2nd inlets) output
+a bang;
+#X text 6 181 "set" to a trigger inlet sets the step # for that inlet
+(1-based);
+#X msg 36 86 set 4;
+#X connect 2 0 8 0;
+#X connect 3 0 8 1;
+#X connect 4 0 8 0;
+#X connect 5 0 8 1;
+#X connect 8 0 1 0;
+#X connect 8 1 6 0;
+#X connect 8 2 7 0;
+#X connect 9 0 8 0;
+#X connect 9 0 8 1;
+#X connect 12 0 8 0;
