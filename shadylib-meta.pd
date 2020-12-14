@@ -1,6 +1,6 @@
 #N canvas 15 49 200 200 10;
-#N canvas 210 125 420 300 META 1;
+#N canvas 210 125 420 300 META 0;
 #X text 11 41 NAME shadylib;
 #X text 10 25 AUTHOR Seb Shader;
-#X text 10 10 VERSION 2.2.0;
+#X text 10 10 VERSION 2.3.0;
 #X restore 10 10 pd META;
