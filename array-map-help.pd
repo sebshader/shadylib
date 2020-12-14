@@ -1,4 +1,4 @@
-#N canvas 755 104 685 451 12;
+#N canvas 537 60 702 479 12;
 #X obj 48 285 array-map maphelp;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array maphelp 100 float 2;
