@@ -20,7 +20,7 @@ static t_int *op_perf0(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_sample *add = x->invals[1].vec;
-	double dphase = x->x_phase + (double)UNITBIT32;
+	double dphase = x->x_phase + (double)SHADYLIB_UNITBIT32;
     union shadylib_tabfudge tf;
     union shadylib_tabfudge inter;
     uint32_t casto;
@@ -35,8 +35,8 @@ static t_int *op_perf0(t_int *w) {
         #else
         dphase += *in++ * conv;
         #endif
-        casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
+        inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         #ifdef FP_FAST_FMA
         *out++ = fma(inter.tf_d, *mul++, *add++);
         #else
@@ -44,8 +44,8 @@ static t_int *op_perf0(t_int *w) {
         #endif
         tf.tf_d = dphase;
     }
-    tf.tf_i[HIOFFSET] = NORMHIPART;
-    x->x_phase = tf.tf_d - UNITBIT32;
+    tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+    x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
     return (w+5);
 }
 
@@ -56,7 +56,7 @@ static t_int *op_perf1(t_int *w) {
 	int n = (int)(w[4]);
 	t_sample *mul = x->invals[0].vec;
 	t_float add = x->invals[1].val;
-	double dphase = x->x_phase + (double)UNITBIT32;
+	double dphase = x->x_phase + (double)SHADYLIB_UNITBIT32;
     union shadylib_tabfudge tf; 
     union shadylib_tabfudge inter;
     uint32_t casto;
@@ -71,8 +71,8 @@ static t_int *op_perf1(t_int *w) {
         #else
         dphase += *in++ * conv;
         #endif
-        casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
+        inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         #ifdef FP_FAST_FMA
         *out++ = fma(inter.tf_d, *mul++, add);
         #else
@@ -80,8 +80,8 @@ static t_int *op_perf1(t_int *w) {
         #endif
         tf.tf_d = dphase;
     }
-    tf.tf_i[HIOFFSET] = NORMHIPART;
-    x->x_phase = tf.tf_d - UNITBIT32;
+    tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+    x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
     return (w+5);
 }
 
@@ -92,7 +92,7 @@ static t_int *op_perf2(t_int *w) {
 	int n = (int)(w[4]);
 	t_float mul = x->invals[0].val;
 	t_float add = x->invals[1].val;
-	double dphase = x->x_phase + (double)UNITBIT32;
+	double dphase = x->x_phase + (double)SHADYLIB_UNITBIT32;
     union shadylib_tabfudge tf;
     union shadylib_tabfudge inter;
     uint32_t casto;
@@ -107,8 +107,8 @@ static t_int *op_perf2(t_int *w) {
         #else
         dphase += *in++ * conv;
         #endif
-        casto = (uint32_t)tf.tf_i[LOWOFFSET];
-        inter.tf_i[HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
+        casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
+        inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         #ifdef FP_FAST_FMA
         *out++ = fma(inter.tf_d, mul, add);
         #else
@@ -116,8 +116,8 @@ static t_int *op_perf2(t_int *w) {
         #endif
         tf.tf_d = dphase;
     }
-    tf.tf_i[HIOFFSET] = NORMHIPART;
-    x->x_phase = tf.tf_d - UNITBIT32;
+    tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+    x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
     return (w+5);
 }
 

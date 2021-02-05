@@ -5,14 +5,14 @@ static t_class *multatord_class;
 typedef struct _multatord {
 	t_object x_obj;
 	t_float x_f;
-	shadylib_t_oscctl x_osc;
+	t_shadylib_oscctl x_osc;
 	float rwave;
 } t_multatord;
 
 /* this is just wrap~ with multiply*/
 static t_int *multator_saw_perf0(t_int *w)
 {
-    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
+    t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);
@@ -39,7 +39,7 @@ static t_int *multator_saw_perf0(t_int *w)
 
 static t_int *multator_saw_perf1(t_int *w)
 {
-    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
+    t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);
@@ -66,7 +66,7 @@ static t_int *multator_saw_perf1(t_int *w)
 
 static t_int *multator_saw_perf2(t_int *w)
 {
-    shadylib_t_oscctl *x = (shadylib_t_oscctl *)(w[1]);
+    t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);

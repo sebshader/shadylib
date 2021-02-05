@@ -88,13 +88,13 @@ static t_int *scalarbuzz_perform(t_int *w) {
     float max = x->max;
 	while(n--) {
 		freq = fmin(fabs(*in++), max);
-		fread = phase*BUZZSIZE;
+		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
 		res1 = shadylib_cosectbl[tabrd];
 		res2 = shadylib_cosectbl[tabrd2];
 		res3 = fread - tabrd;
-		if(res1 == BADVAL || res2 == BADVAL) {
+		if(res1 == SHADYLIB_BADVAL || res2 == SHADYLIB_BADVAL) {
 			res1 = shadylib_sintbl[tabrd];
 			res2 = shadylib_sintbl[tabrd2];
 			#ifdef FP_FAST_FMA
@@ -122,7 +122,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
 			#endif
 		}
 		rat = g/freq - 1;
-		rat = fmax(fmin(rat, MAXHARM), 1);
+		rat = fmax(fmin(rat, SHADYLIB_MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -133,7 +133,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
 		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
@@ -149,7 +149,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
 
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
@@ -193,13 +193,13 @@ static t_int *buzz_perform(t_int *w) {
 	while(n--) {
 		freq = fmin(fabs(*in++), max);
 		g = fmin(*in2++, max);
-		fread = phase*BUZZSIZE;
+		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
 		res1 = shadylib_cosectbl[tabrd];
 		res2 = shadylib_cosectbl[tabrd2];
 		res3 = fread - tabrd;
-		if(res1 == BADVAL || res2 == BADVAL) {
+		if(res1 == SHADYLIB_BADVAL || res2 == SHADYLIB_BADVAL) {
 			res1 = shadylib_sintbl[tabrd];
 			res2 = shadylib_sintbl[tabrd2];
 			#ifdef FP_FAST_FMA
@@ -227,7 +227,7 @@ static t_int *buzz_perform(t_int *w) {
 			#endif
 		}
 		rat = g/freq - 1;
-		rat = fmax(fmin(rat, MAXHARM), 1);
+		rat = fmax(fmin(rat, SHADYLIB_MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -238,7 +238,7 @@ static t_int *buzz_perform(t_int *w) {
 		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
@@ -254,7 +254,7 @@ static t_int *buzz_perform(t_int *w) {
 
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		

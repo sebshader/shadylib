@@ -6,7 +6,7 @@ static t_class *shadylook_class;
 
 typedef struct _look {
 	t_object x_obj;
-	shadylib_t_tabtype type;
+	t_shadylib_tabtype type;
 } t_look;
 
 static void *shadylook_new(t_symbol *which) {

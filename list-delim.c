@@ -34,8 +34,8 @@ static void list_delim_list(t_list_delim *x, t_symbol *s,
     for(i = 0; i < argc; i++){
 		if(testatoms(c, argv+i)) {
 			if(firstpass) {
-				ATOMS_ALLOCA(outv, outc);
-				atoms_copy(outc, argv+firstindex, outv);
+				SHADYLIB_ATOMS_ALLOCA(outv, outc);
+				shadylib_atoms_copy(outc, argv+firstindex, outv);
 				for(int j = 0; j < outc; j++) {
 					if(outv[j].a_type == A_SYMBOL) {
 						const char *against = atom_getsymbol(outv+j)->s_name;
@@ -51,7 +51,7 @@ static void list_delim_list(t_list_delim *x, t_symbol *s,
 					cont:;
 				}
 				outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
-				ATOMS_FREEA(outv, outc);
+				SHADYLIB_ATOMS_FREEA(outv, outc);
 				firstpass = 0;
 				outc = 0;
 			}
@@ -64,8 +64,8 @@ static void list_delim_list(t_list_delim *x, t_symbol *s,
 		}
     }
 	if(firstpass) {
-		ATOMS_ALLOCA(outv, outc);
-		atoms_copy(outc, argv+firstindex, outv);
+		SHADYLIB_ATOMS_ALLOCA(outv, outc);
+		shadylib_atoms_copy(outc, argv+firstindex, outv);
 		for(int j = 0; j < outc; j++) {
 			if(outv[j].a_type == A_SYMBOL) {
 				const char *against = atom_getsymbol(outv+j)->s_name;
@@ -77,7 +77,7 @@ static void list_delim_list(t_list_delim *x, t_symbol *s,
 			}
 		}
 		outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
-		ATOMS_FREEA(outv, outc);
+		SHADYLIB_ATOMS_FREEA(outv, outc);
 		firstpass = 0;
 		outc = 0;
 	}
@@ -87,11 +87,11 @@ static void list_delim_anything(t_list_delim *x, t_symbol *s,
     int argc, t_atom *argv)
 {
     t_atom *outv;
-    ATOMS_ALLOCA(outv, argc+1);
+    SHADYLIB_ATOMS_ALLOCA(outv, argc+1);
     SETSYMBOL(outv, s);
-    atoms_copy(argc, argv, outv + 1);
+    shadylib_atoms_copy(argc, argv, outv + 1);
     list_delim_list(x, &s_list, argc+1, outv);
-    ATOMS_FREEA(outv, argc+1);
+    SHADYLIB_ATOMS_FREEA(outv, argc+1);
 }
 
 void setup_list0x2ddelim(void)

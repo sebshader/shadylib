@@ -58,13 +58,13 @@ static t_int *bpbuzz_perform(t_int *w) {
     
 	for(int i=0; i < n; i++) {
 		freq = fmin(fabs(*in++), max);
-		fread = phase*BUZZSIZE;
+		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
 		res1 = shadylib_cosectbl[tabrd];
 		res2 = shadylib_cosectbl[tabrd2];
 		res3 = fread - tabrd;
-		if(res1 == BADVAL || res2 == BADVAL) {
+		if(res1 == SHADYLIB_BADVAL || res2 == SHADYLIB_BADVAL) {
 			res1 = shadylib_sintbl[tabrd];
 			res2 = shadylib_sintbl[tabrd2];
 			#ifdef FP_FAST_FMA
@@ -75,7 +75,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 			if(fabs(res2)  < 0.0005f) {
 				final = 1;
 				
-				rat = fmax(fmin(max/freq, MAXHARM), 1);
+				rat = fmax(fmin(max/freq, SHADYLIB_MAXHARM), 1);
 				n2 = rat;
 				n2 *= 2;
 				
@@ -88,7 +88,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 			res2 = res1 + (res2 - res1)*res3;
 			#endif
 		}
-		rat = fmax(fmin(max/freq - 1, MAXHARM), 1);
+		rat = fmax(fmin(max/freq - 1, SHADYLIB_MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -99,7 +99,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		#ifdef FP_FAST_FMA
@@ -114,7 +114,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		
@@ -134,7 +134,7 @@ gotfinal:
 			rat = phase + oduty + dphase;
 			goto gotfinal2;
 		}
-		rat = fmax(fmin(max*(1 - ((1 - 2*dconv)*dconv))/freq - 1, MAXHARM), 1);
+		rat = fmax(fmin(max*(1 - ((1 - 2*dconv)*dconv))/freq - 1, SHADYLIB_MAXHARM), 1);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -144,14 +144,14 @@ gotfinal:
 		// ints can take maxharm
 		tabrd = fread;
 		fread = fread - tabrd;
-		fread *= BUZZSIZE;
+		fread *= SHADYLIB_BUZZSIZE;
 		tabrd = fread;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res3 = fread - tabrd;
 		tabrd2 = tabrd + 1;
 		res1 = shadylib_cosectbl[tabrd];
 		res2 = shadylib_cosectbl[tabrd2];
-		if(res1 == BADVAL || res2 == BADVAL) {
+		if(res1 == SHADYLIB_BADVAL || res2 == SHADYLIB_BADVAL) {
 			res1 = shadylib_sintbl[tabrd];
 			res2 = shadylib_sintbl[tabrd2];
 			res2 = res1 + (res2 - res1)*res3;
@@ -173,7 +173,7 @@ gotfinal:
 		#endif
 		tabrd = res4;
 		res1 = res4 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res3 = shadylib_sintbl[tabrd];
 		tabrd++;
 		#ifdef FP_FAST_FMA
@@ -188,7 +188,7 @@ gotfinal:
 
 		tabrd = res1;
 		res4 = res1 - tabrd;
-		tabrd = tabrd & (BUZZSIZE - 1);
+		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
 		res1 = shadylib_sintbl[tabrd];
 		tabrd++;
 		

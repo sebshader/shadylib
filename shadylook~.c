@@ -6,7 +6,7 @@ static t_class *siglook_class;
 typedef struct _siglook {
 	t_object x_obj;
 	t_float x_f;
-	shadylib_t_tabtype type;
+	t_shadylib_tabtype type;
 } t_siglook;
 
 static void *siglook_new(t_symbol *which) {
@@ -34,7 +34,7 @@ static void look_gauss(t_siglook *x){
 }
 
 static t_int *siglook_perform(t_int *w) {
-	shadylib_t_tabtype type = *(shadylib_t_tabtype *)(w[1]);
+	t_shadylib_tabtype type = *(t_shadylib_tabtype *)(w[1]);
 	t_sample *in = (t_sample *)(w[2]);
 	t_sample *out = (t_sample *)(w[3]);
 	int n = (int)(w[4]);

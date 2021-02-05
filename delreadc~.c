@@ -31,8 +31,8 @@ static void *sigdelreadc_new(t_symbol *s, t_floatarg f)
 
 static void sigdelreadc_float(t_sigdelreadc *x, t_float f)
 {
-    t_sigdelwritec *delwriter =
-        (t_sigdelwritec *)pd_findbyclass(x->x_sym, sigdelwritec_class);
+    t_shadylib_sigdelwritec *delwriter =
+        (t_shadylib_sigdelwritec *)pd_findbyclass(x->x_sym, shadylib_sigdelwritec_class);
     x->x_deltime = f;
     if (delwriter)
     {
@@ -47,11 +47,11 @@ static void sigdelreadc_float(t_sigdelreadc *x, t_float f)
 static t_int *sigdelreadc_perform(t_int *w)
 {
     t_sample *out = (t_sample *)(w[1]);
-    shadylib_t_delwritectl *c = (shadylib_t_delwritectl *)(w[2]);
+    t_shadylib_delwritectl *c = (t_shadylib_delwritectl *)(w[2]);
     int delsamps = *(int *)(w[3]);
     int n = (int)(w[4]);
     int phase = c->c_phase - delsamps, nsamps = c->c_n;
-    t_sample *vp = c->c_vec, *bp, *ep = vp + (c->c_n + XTRASAMPS);
+    t_sample *vp = c->c_vec, *bp, *ep = vp + (c->c_n + SHADYLIB_XTRASAMPS);
     if (phase < 0) phase += nsamps;
     bp = vp + phase;
 
@@ -65,14 +65,14 @@ static t_int *sigdelreadc_perform(t_int *w)
 
 static void sigdelreadc_dsp(t_sigdelreadc *x, t_signal **sp)
 {
-    t_sigdelwritec *delwriter =
-        (t_sigdelwritec *)pd_findbyclass(x->x_sym, sigdelwritec_class);
+    t_shadylib_sigdelwritec *delwriter =
+        (t_shadylib_sigdelwritec *)pd_findbyclass(x->x_sym, shadylib_sigdelwritec_class);
     x->x_sr = sp[0]->s_sr * 0.001;
     x->x_n = sp[0]->s_n;
     if (delwriter)
     {
-        sigdelwritec_updatesr(delwriter, sp[0]->s_sr);
-        sigdelwritec_checkvecsize(delwriter, sp[0]->s_n);
+        shadylib_sigdelwritec_updatesr(delwriter, sp[0]->s_sr);
+        shadylib_sigdelwritec_checkvecsize(delwriter, sp[0]->s_n);
         x->x_zerodel = (delwriter->x_sortno == ugen_getsortno() ?
             0 : delwriter->x_vecsize);
         sigdelreadc_float(x, x->x_deltime);

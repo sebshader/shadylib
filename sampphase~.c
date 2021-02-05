@@ -37,17 +37,17 @@ static t_int *sampphase_perform(t_int *w)
     int n = (int)(w[5]);
     int bool = x->x_samptrue;
     union shadylib_tabfudge tf;
-    tf.tf_d = x->x_phase + (double)UNITBIT32;
+    tf.tf_d = x->x_phase + (double)SHADYLIB_UNITBIT32;
 	float conv = x->x_conv;
 	
     if (bool) {
     	t_sample samp = x->x_held;
     	while (n--) {
     		if ((*in != 0.0 && samp == 0.0) ||\
-				 (tf.tf_i[HIOFFSET] != NORMHIPART)) samp = *in;
+				 (tf.tf_i[SHADYLIB_HIOFFSET] != SHADYLIB_NORMHIPART)) samp = *in;
 			in++;
-			tf.tf_i[HIOFFSET] = NORMHIPART;
-    		*out1++ = tf.tf_d - UNITBIT32;
+			tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+    		*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
     		*out2++ = samp;
     		#ifdef FP_FAST_FMA
     		tf.tf_d = fma(samp, conv, tf.tf_d);
@@ -59,19 +59,19 @@ static t_int *sampphase_perform(t_int *w)
     } else {
     	double dphase = tf.tf_d;
     	while (n--) {
-    		tf.tf_i[HIOFFSET] = NORMHIPART;
+    		tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
     		#ifdef FP_FAST_FMA
     		dphase = fma(*in, conv, dphase);
     		#else
         	dphase += *in * conv;
         	#endif
         	*out2++ = *in++;
-        	*out1++ = tf.tf_d - UNITBIT32;
+        	*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
         	tf.tf_d = dphase;
     	}
 	}
-    tf.tf_i[HIOFFSET] = NORMHIPART;
-   	x->x_phase = tf.tf_d - UNITBIT32;
+    tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+   	x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
     return (w+6);
 }
 

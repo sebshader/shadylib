@@ -20,9 +20,9 @@
 #include "shadylib.h"
 
 typedef struct neadsrctl {
-	shadylib_t_stage c_attack;
-	shadylib_t_stage c_decay;
-	shadylib_t_stage c_release;
+	t_shadylib_stage c_attack;
+	t_shadylib_stage c_decay;
+	t_shadylib_stage c_release;
 	t_sample c_sustain;
 	t_sample c_state;
 	t_sample c_linr; //holds the state to release from
@@ -164,7 +164,7 @@ t_int *neadsr_perform(t_int *w)
     t_sample sustain = ctl->c_sustain;
     int target = ctl->c_target;
     int n = (int)(w[2]);
-    shadylib_t_stage stage;
+    t_shadylib_stage stage;
 	if (target == -1) {
 		/*release*/
 		if(state == 0.0) while(n--) *out++ = 0.0;
@@ -237,7 +237,7 @@ t_int *neadsr_perform(t_int *w)
 	}
 	done:
     /* save state */
-    ctl->c_state = IS_DENORMAL(state) ? 0 : state;
+    ctl->c_state = SHADYLIB_IS_DENORMAL(state) ? 0 : state;
     ctl->c_target = target;
     return (w+4);
 }
@@ -245,7 +245,7 @@ t_int *neadsr_perform(t_int *w)
 void neadsr_dsp(t_neadsr *x, t_signal **sp)
 {
 	if(sp[0]->s_sr != x->x_sr) {/*need to recalculate everything*/
-		shadylib_t_stage thistage;
+		t_shadylib_stage thistage;
 		float factor = sp[0]->s_sr/x->x_sr;
 		x->x_sr = sp[0]->s_sr;
 		thistage = x->x_ctl.c_attack;
@@ -283,7 +283,7 @@ void *neadsr_new(t_floatarg attack, t_floatarg decay,
     x->x_ctl.c_target = -1;
     x->x_sr = sys_getsr();
     x->x_ctl.c_attack.nsamp = shadylib_ms2samps(attack, x->x_sr);
-    shadylib_f2axfade(1-(log(1.0/3.0)/log(ENVELOPE_RANGE)),
+    shadylib_f2axfade(1-(log(1.0/3.0)/log(SHADYLIB_ENVELOPE_RANGE)),
     	&(x->x_ctl.c_attack), 0); /* 1/3 by default */
     x->x_ctl.c_decay.nsamp = shadylib_ms2samps(decay, x->x_sr);
     shadylib_f2dxfade(0.0, &(x->x_ctl.c_decay), 0);

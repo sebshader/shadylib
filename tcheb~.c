@@ -11,10 +11,9 @@ typedef struct _tcheb_tilde {
 } t_tcheb_tilde;
 
 t_int *tcheb_tilde_perform(t_int *w) {
-	t_tcheb_tilde *x = (t_tcheb_tilde*) (w[1]);
-	t_sample *in1 = (t_sample*) (w[2]), *in2 = (t_sample*) (w[3]),
-		*out = (t_sample*) (w[4]);
-	int n = (int) (w[5]), l;
+	t_sample *in1 = (t_sample*) (w[1]), *in2 = (t_sample*) (w[2]),
+		*out = (t_sample*) (w[3]);
+	int n = (int) (w[4]), l;
 	uint32_t newo, dir;
 	float inord; //change floorf below for pd-double
 	double t1, t2, tin, temp;
@@ -70,11 +69,11 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		*out++ = (t_sample)(t1 + (t2 - t1)*inord);
 		#endif
 	}
-	return (w + 6);
+	return (w + 5);
 }
 
 void tcheb_tilde_dsp(t_tcheb_tilde *x, t_signal **sp) {
-	dsp_add(tcheb_tilde_perform, 5, x, sp[0]->s_vec,  sp[1]->s_vec,
+	dsp_add(tcheb_tilde_perform, 4, sp[0]->s_vec,  sp[1]->s_vec,
 		sp[2]->s_vec, sp[0]->s_n);
 }
 

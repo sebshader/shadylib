@@ -33,7 +33,7 @@ static t_int *sigvdhs_perform_no(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
     t_sample *out = (t_sample *)(w[2]);
-    shadylib_t_delwritectl *ctl = (shadylib_t_delwritectl *)(w[3]);
+    t_shadylib_delwritectl *ctl = (t_shadylib_delwritectl *)(w[3]);
     t_sigvdhs *x = (t_sigvdhs *)(w[4]);
     int n = (int)(w[5]);
 
@@ -60,7 +60,7 @@ static t_int *sigvdhs_perform_lin(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
     t_sample *out = (t_sample *)(w[2]);
-    shadylib_t_delwritectl *ctl = (shadylib_t_delwritectl *)(w[3]);
+    t_shadylib_delwritectl *ctl = (t_shadylib_delwritectl *)(w[3]);
     t_sigvdhs *x = (t_sigvdhs *)(w[4]);
     int n = (int)(w[5]);
 
@@ -98,7 +98,7 @@ static t_int *sigvdhs_perform_hs(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
     t_sample *out = (t_sample *)(w[2]);
-    shadylib_t_delwritectl *ctl = (shadylib_t_delwritectl *)(w[3]);
+    t_shadylib_delwritectl *ctl = (t_shadylib_delwritectl *)(w[3]);
     t_sigvdhs *x = (t_sigvdhs *)(w[4]);
     int n = (int)(w[5]);
 
@@ -143,8 +143,8 @@ static t_int *sigvdhs_perform_hs(t_int *w)
 
 static void sigvdhs_dsp(t_sigvdhs *x, t_signal **sp)
 {
-    t_sigdelwritec *delwriter =
-        (t_sigdelwritec *)pd_findbyclass(x->x_sym, sigdelwritec_class);
+    t_shadylib_sigdelwritec *delwriter =
+        (t_shadylib_sigdelwritec *)pd_findbyclass(x->x_sym, shadylib_sigdelwritec_class);
     x->x_sr = sp[0]->s_sr * 0.001;
     if (delwriter)
     {
@@ -159,7 +159,8 @@ static void sigvdhs_dsp(t_sigvdhs *x, t_signal **sp)
 			default:
 				modefn = sigvdhs_perform_hs;
 		}
-        sigdelwritec_checkvecsize(delwriter, sp[0]->s_n);
+		/* no updatesr() but pd doesn't either for vd~/delread4~ ?? */
+        shadylib_sigdelwritec_checkvecsize(delwriter, sp[0]->s_n);
         x->x_zerodel = (delwriter->x_sortno == ugen_getsortno() ?
             0 : delwriter->x_vecsize);
         dsp_add(modefn, 5,

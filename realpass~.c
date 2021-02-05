@@ -21,14 +21,14 @@ static void realpass_updatesr (t_realpass *x, t_float sr) /* added by Mathieu Bo
 {
     int nsamps = x->x_ttime * sr * (t_float)(0.001f);
     if (nsamps < 1) nsamps = 1;
-    nsamps += ((- nsamps) & (SAMPBLK - 1));
-    nsamps += DEFDELVS;
+    nsamps += ((- nsamps) & (SHADYLIB_SAMPBLK - 1));
+    nsamps += SHADYLIB_DEFDELVS;
     if (x->c_n != nsamps) {
       x->c_vec = (t_sample *)resizebytes(x->c_vec,
-        (x->c_n + XTRASAMPS) * sizeof(t_sample),
-        (nsamps + XTRASAMPS) * sizeof(t_sample));
+        (x->c_n + SHADYLIB_XTRASAMPS) * sizeof(t_sample),
+        (nsamps + SHADYLIB_XTRASAMPS) * sizeof(t_sample));
       x->c_n = nsamps;
-      x->c_phase = XTRASAMPS;
+      x->c_phase = SHADYLIB_XTRASAMPS;
     }
 }
 
@@ -45,7 +45,7 @@ static t_int *realpass_perform(t_int *w)
     int idelsamps;
     t_sample limit = nsamps - 3;
     t_sample *vp = x->c_vec, *bp, *wp = vp + phase, 
-    	*ep = vp + (nsamps + XTRASAMPS);
+    	*ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
     t_sample delsamps, frac, a, b, c, d, cminusb;
     phase += n;
     while (n--)
@@ -97,7 +97,7 @@ static t_int *realpass_perform(t_int *w)
             vp[1] = ep[-3];
             vp[2] = ep[-2];
             vp[3] = ep[-1];
-            wp = vp + XTRASAMPS;
+            wp = vp + SHADYLIB_XTRASAMPS;
             phase -= nsamps;
         }
     }
@@ -126,21 +126,21 @@ static void *realpass_new(t_float time, t_float coef, t_float size)
     outlet_new(&x->x_obj, &s_signal);
     x->x_f = 0;
     x->c_n = 0;
-    x->c_vec = getbytes(XTRASAMPS * sizeof(t_sample));
+    x->c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
     memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(XTRASAMPS));
+		sizeof(t_sample)*(SHADYLIB_XTRASAMPS));
     return(x);
 }
 
 static void realpass_clear(t_realpass *x) {
 	memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(x->c_n + XTRASAMPS));
+		sizeof(t_sample)*(x->c_n + SHADYLIB_XTRASAMPS));
 }
 
 static void realpass_free(t_realpass *x)
 {
     freebytes(x->c_vec,
-        (x->c_n + XTRASAMPS) * sizeof(t_sample));
+        (x->c_n + SHADYLIB_XTRASAMPS) * sizeof(t_sample));
 }
 
 void realpass_tilde_setup(void)

@@ -119,11 +119,11 @@ static void noteson_float(t_noteson *x, t_float f)
 		return;
 	}
 	e2 = x->x_first;
-	ATOMS_ALLOCA(outv, outc);
+	SHADYLIB_ATOMS_ALLOCA(outv, outc);
 	for (int n = 0; n < outc; n++, e2 = e2->e_next)
         SETFLOAT(outv + n, e2->e_value);
 	outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
-    ATOMS_FREEA(outv, outc);
+    SHADYLIB_ATOMS_FREEA(outv, outc);
 }
 
 static void noteson_clear(t_noteson *x)

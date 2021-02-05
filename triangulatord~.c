@@ -5,7 +5,7 @@ static t_class *triangulatord_class;
 typedef struct _triangulatord {
 	t_object x_obj;
 	t_float x_f;
-	shadylib_t_oscctl x_osc;
+	t_shadylib_oscctl x_osc;
 } t_triangulatord;
 
 static void triangulatord_dsp(t_triangulatord *x, t_signal **sp) {

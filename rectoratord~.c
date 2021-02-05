@@ -5,7 +5,7 @@ static t_class *rectoratord_class;
 typedef struct _rectoratord {
 	t_object x_obj;
 	t_float x_f;
-	shadylib_t_oscctl x_osc;
+	t_shadylib_oscctl x_osc;
 } t_rectoratord;
 
 static void rectoratord_dsp(t_rectoratord *x, t_signal **sp) {

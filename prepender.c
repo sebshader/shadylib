@@ -51,20 +51,20 @@ static void prepender_any(t_prepender *x, t_symbol *s, int argc, t_atom *argv)
 	t_atom *outv;
     
     if(x->x_id.a_type == A_FLOAT) {
-    	ATOMS_ALLOCA(outv, argc + 2);
-    	atoms_copy(argc, argv, outv + 2);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 2);
+    	shadylib_atoms_copy(argc, argv, outv + 2);
     	argc += 2;
     	SETSYMBOL(outv+1, s);
     	*outv = x->x_id;
 		outlet_list(x->x_obj.ob_outlet, &s_list, argc, outv);
     } else {
-    	ATOMS_ALLOCA(outv, argc + 1);
-    	atoms_copy(argc, argv, outv + 1);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 1);
+    	shadylib_atoms_copy(argc, argv, outv + 1);
     	argc++;
     	SETSYMBOL(outv, s);
 		outlet_anything(x->x_obj.ob_outlet, x->x_id.a_w.w_symbol, argc, outv);
     }
-    ATOMS_FREEA(outv, argc);
+    SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
 static void prepender_list(t_prepender *x, t_symbol *s,
@@ -73,17 +73,17 @@ static void prepender_list(t_prepender *x, t_symbol *s,
     t_atom *outv;
     
     if(x->x_id.a_type == A_FLOAT) {
-    	ATOMS_ALLOCA(outv, argc + 1);
-    	atoms_copy(argc, argv, outv + 1);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 1);
+    	shadylib_atoms_copy(argc, argv, outv + 1);
     	*outv = x->x_id;
     	argc++;
 		outlet_list(x->x_obj.ob_outlet, &s_list, argc, outv);
     } else {
-    	ATOMS_ALLOCA(outv, argc);
-    	atoms_copy(argc, argv, outv);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc);
+    	shadylib_atoms_copy(argc, argv, outv);
 		outlet_anything(x->x_obj.ob_outlet, x->x_id.a_w.w_symbol, argc, outv);
     }
-    ATOMS_FREEA(outv, argc);
+    SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
 
@@ -91,11 +91,11 @@ static void prepender_float(t_prepender *x, t_floatarg f)
 {    
     if(x->x_id.a_type == A_FLOAT) {
     	t_atom *outv;
-    	ATOMS_ALLOCA(outv, 2);
+    	SHADYLIB_ATOMS_ALLOCA(outv, 2);
     	SETFLOAT(outv + 1, f);
     	*outv = x->x_id;
 		outlet_list(x->x_obj.ob_outlet, &s_list, 2, outv);
-		ATOMS_FREEA(outv, 2);
+		SHADYLIB_ATOMS_FREEA(outv, 2);
     } else {
     	t_atom fman;
     	SETFLOAT(&fman, f);
@@ -109,20 +109,20 @@ static void proxy_any(t_proxy *x, t_symbol *s, int argc, t_atom *argv)
 	t_atom *outv;
     
     if(x->id.a_type == A_FLOAT) {
-    	ATOMS_ALLOCA(outv, argc + 2);
-    	atoms_copy(argc, argv, outv + 2);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 2);
+    	shadylib_atoms_copy(argc, argv, outv + 2);
     	argc += 2;
     	SETSYMBOL(outv+1, s);
     	*outv = x->id;
 		outlet_list(x->x->x_obj.ob_outlet, &s_list, argc, outv);
     } else {
-    	ATOMS_ALLOCA(outv, argc + 1);
-    	atoms_copy(argc, argv, outv + 1);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 1);
+    	shadylib_atoms_copy(argc, argv, outv + 1);
     	argc++;
     	SETSYMBOL(outv, s);
 		outlet_anything(x->x->x_obj.ob_outlet, x->id.a_w.w_symbol, argc, outv);
     }
-    ATOMS_FREEA(outv, argc);
+    SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
 static void proxy_list(t_proxy *x, t_symbol *s,
@@ -131,17 +131,17 @@ static void proxy_list(t_proxy *x, t_symbol *s,
     t_atom *outv;
     
     if(x->id.a_type == A_FLOAT) {
-    	ATOMS_ALLOCA(outv, argc + 1);
-    	atoms_copy(argc, argv, outv + 1);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc + 1);
+    	shadylib_atoms_copy(argc, argv, outv + 1);
     	argc++;
     	*outv = x->id;
 		outlet_list(x->x->x_obj.ob_outlet, &s_list, argc, outv);
     } else {
-    	ATOMS_ALLOCA(outv, argc);
-    	atoms_copy(argc, argv, outv);
+    	SHADYLIB_ATOMS_ALLOCA(outv, argc);
+    	shadylib_atoms_copy(argc, argv, outv);
 		outlet_anything(x->x->x_obj.ob_outlet, x->id.a_w.w_symbol, argc, outv);
     }
-    ATOMS_FREEA(outv, argc);
+    SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
 
@@ -149,11 +149,11 @@ static void proxy_float(t_proxy *x, t_floatarg f)
 {    
     if(x->id.a_type == A_FLOAT) {
     	t_atom *outv;
-    	ATOMS_ALLOCA(outv, 2);
+    	SHADYLIB_ATOMS_ALLOCA(outv, 2);
     	SETFLOAT(outv + 1, f);
     	outv[0] = x->id;
 		outlet_list(x->x->x_obj.ob_outlet, &s_list, 2, outv);
-		ATOMS_FREEA(outv, 2);
+		SHADYLIB_ATOMS_FREEA(outv, 2);
     } else {
     	t_atom fman;
     	SETFLOAT(&fman, f);

@@ -5,7 +5,7 @@ static t_class *operatord_class;
 typedef struct _operatord {
 	t_object x_obj;
 	t_float x_f;
-	shadylib_t_oscctl x_osc;
+	t_shadylib_oscctl x_osc;
 } t_operatord;
 
 static void operatord_dsp(t_operatord *x, t_signal **sp) {
