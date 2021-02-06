@@ -42,16 +42,16 @@
 array set ::pd_colors {
 canvas_fill "#FF8800"
 gop_box "black"
-obj_box_text "green"
-msg_box_text "light blue"
+obj_box_text "#00FF00"
+msg_box_text "white"
 comment "white"
 selected "yellow"
-obj_box_outline_broken "grey"
-obj_box_outline "blue"
-msg_box_outline "#0B8100"
-msg_box_fill "blue"
+obj_box_outline_broken "light blue"
+obj_box_outline "#0B8100"
+msg_box_outline "purple"
+msg_box_fill "purple"
 obj_box_fill "#0B8100"
-signal_cord "#99c0ff"
+signal_cord "blue"
 msg_cord "black"
 msg_iolet "white"
 signal_iolet "blue"
@@ -78,8 +78,29 @@ pdwindow_debug_text "green"
 helpbrowser_fill "#000"
 helpbrowser_text "deep sky blue"
 helpbrowser_highlight "red"
+canvas_text_cursor "deep sky blue"
 }
+set ::pd_colors(txt_highlight_front) "$::pd_colors(selected)"
+set ::pd_colors(msg_iolet_border) "blue"
+set ::pd_colors(signal_iolet_border) $::pd_colors(signal_cord)
+
+
 #random colors for everything
 #proc ::pdtk_canvas::get_color {type {window 0}} {
 #	return [format #%06x [expr {int(rand() * 0xFFFFFF)}]]
 #}
+
+# proc redraw_cords {name, blank, op} {
+# 	foreach wind [wm stackorder .] {
+# 		if {[winfo class $wind] eq "PatchWindow"} {
+# 			set canv ${wind}.c
+# 			foreach record [$canv find withtag cord] {
+# 				set tag [lindex [$canv gettags $record] 0]
+# 				set coords [lreplace [$canv coords $tag] 2 end-2]
+# 				::pdtk_canvas::pdtk_coords {*}$coords $tag $canv
+# 			}
+# 		}
+# 	}	
+# }
+# 
+# trace variable ::curve_cords w redraw_cords
