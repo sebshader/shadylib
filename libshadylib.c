@@ -515,7 +515,7 @@ t_int *shadylib_trid_perf2(t_int *w) {
     return (w+5);
 }
 
-void atoms_copy(int argc, t_atom *from, t_atom *to)
+void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to)
 {
     int i;
     for (i = 0; i < argc; i++)
