@@ -1,3 +1,3 @@
 figure out garray + switch~ redrawing mystery?
 route that keeps selector?
-relationals that can [set( instead of output?
+unlimited inlets for synlets
