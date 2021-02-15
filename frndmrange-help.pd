@@ -1,0 +1,15 @@
+#N canvas 232 249 494 260 10;
+#X obj 62 67 frndmrange 4 2;
+#X floatatom 102 24 5 0 0 0 - - -;
+#X floatatom 143 25 5 0 0 0 - - -;
+#X obj 62 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 27 184 floating point random range: 1st inlet: messages to
+frandom \, 1st arg/2nd inlet is the range \, 2nd arg/3rd inlet is number
+to add;
+#X floatatom 62 91 5 0 0 0 - - -;
+#X text 167 67 <- outputs #s between 2 and 6;
+#X connect 0 0 5 0;
+#X connect 1 0 0 1;
+#X connect 2 0 0 2;
+#X connect 3 0 0 0;

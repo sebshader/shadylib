@@ -8,7 +8,7 @@
 #X obj 334 167 f \$2;
 #X obj 334 202 if 0 1;
 #X obj 175 139 scaler 1 \$3;
-#X obj 175 95 frandom \$1;
+#X obj 175 95 random \$1;
 #X connect 0 0 9 0;
 #X connect 2 0 9 1;
 #X connect 3 0 8 1;
