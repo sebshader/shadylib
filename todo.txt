@@ -1,3 +1,2 @@
 figure out garray + switch~ redrawing mystery?
 route that keeps selector?
-unlimited inlets for synlets

@@ -2,121 +2,191 @@
 
 static t_class *synlets_class;
 static t_class *proxy_class;
+#define MAX_INLET 256
 
 typedef struct proxy
 {
 	t_object obj;
 	struct _synlets *x;		/* we'll put the other struct in here */
+	int x_count; /* count for inlet */
+	int x_lim; /* limit for this inlet */
+	int x_done; /* have we reached our limit? */
+	t_outlet *f_out; /* outlet for count */
 } t_proxy;
 
 typedef struct _synlets {
 	t_object x_obj;
-	int x_leftcount;
-	int x_rightcount;
-	int x_leftdone;
-	int x_rightdone;
-	int x_leftlim;
-	int x_rightlim;
-	t_proxy *x_proxy;
-	t_outlet *b_out1, *f_out2, *f_out3;
+    int x_donecount; /* # of inlets that are done */
+	int x_count; /* count for leftmost inlet */
+	int x_lim; /* limit for leftmost inlet */
+	int x_done; /* have we reached our limit? */
+	t_int x_ninstance; /* proxy instances for non-leftmost inlets */
+    t_proxy **x_proxies;
+	t_outlet *b_out, *f_out;
 } t_synlets;
 
 static void output(t_synlets *x) {
-	x->x_leftcount = 0;
-	x->x_rightcount = 0;
-	x->x_leftdone = 0;
-	x->x_rightdone = 0;
-	outlet_float(x->f_out3, 0.0);
-	outlet_float(x->f_out2, 0.0);
-	outlet_bang(x->b_out1);
+    t_proxy *y;
+	x->x_donecount = 0;
+    for(int i = x->x_ninstance - 1; i >= 0; i--)
+	{
+	    y = x->x_proxies[i];
+	    y->x_count = 0;
+	    y->x_done = 0;
+	    if(!y->x_lim) x->x_donecount++; /* account for 0  as lim */
+		outlet_float(y->f_out, 0.0);
+	}
+	x->x_count = 0;
+	x->x_done = 0;
+	outlet_float(x->f_out, 0.0);
+	outlet_bang(x->b_out);
+}
+
+static void synlets_bang(t_synlets *x) {
+	int count = x->x_count;
+	count++;
+	if(count >= x->x_lim && !x->x_done) {
+		if(x->x_donecount >= x->x_ninstance) {
+			output(x);
+			return;
+		} else {
+		    x->x_done = 1;
+		    if(x->x_lim) x->x_donecount++;
+		}
+	}
+	x->x_count = count;
+	outlet_float(x->f_out, count);
 }
 
 static void synlets_float(t_synlets *x, t_floatarg in) {
 	int llim = in;
-	x->x_leftlim = llim;
-	if(llim <= x->x_leftcount) {
-		if (x->x_rightdone) output(x);
-		else x->x_leftdone = 1;
-	} else if (x->x_leftdone) x->x_leftdone = 0;
-}
-
-static void synlets_bang(t_synlets *x) {
-	int count = x->x_leftcount;
-	count++;
-	if(count >= x->x_leftlim)
-		if(x->x_rightdone) {
-			output(x);
-			return;
-		} else x->x_leftdone = 1;
-	x->x_leftcount = count;
-	outlet_float(x->f_out2, count);
+	if(llim <= x->x_count) {if(!x->x_done) {
+        if (x->x_donecount >= x->x_ninstance) output(x);
+        else {
+            x->x_done = 1;
+            if(x->x_lim) x->x_donecount++;
+        }
+	} } else if (x->x_done) {
+	    x->x_done = 0;
+	    x->x_donecount--;
+	}
+	x->x_lim = llim;
 }
 
 static void synlets_set(t_synlets *x, t_floatarg val) {
 	int intval = val;
-	if (intval >= x->x_leftlim) x->x_leftdone = 1;
-	x->x_leftcount = intval;
+	int llim = x->x_lim;
+	x->x_count = intval;
+	if(llim <= intval) {if(!x->x_done) {
+        x->x_done = 1;
+        x->x_donecount++;
+	} } else if (x->x_done) {
+	    x->x_done = 0;
+	    x->x_donecount--;
+	}
 }
 
 static void proxy_bang(t_proxy *x) {
-	int count = x->x->x_rightcount;
+	int count = x->x_count;
 	count++;
-	if(count >= x->x->x_rightlim)
-		if(x->x->x_leftdone) {
+	if(count >= x->x_lim && !x->x_done) {
+		if(x->x->x_donecount >= x->x->x_ninstance) {
 			output(x->x);
 			return;
-		} else x->x->x_rightdone = 1;
-	x->x->x_rightcount = count;
-	outlet_float(x->x->f_out3, count);
+		} else {
+		    x->x_done = 1;
+		    if(x->x_lim) x->x->x_donecount++;
+		}
+	}
+	x->x_count = count;
+	outlet_float(x->f_out, count);
 }
 
-static void proxy_float(t_proxy *x, t_floatarg f) {
-	int llim = f;
-	x->x->x_rightlim = llim;
-	if(llim <= x->x->x_rightcount) {
-		if (x->x->x_leftdone) output(x->x);
-		else x->x->x_rightdone = 1;
-	} else if (x->x->x_rightdone) x->x->x_rightdone = 0;
+static void proxy_float(t_proxy *x, t_floatarg in) {
+	int llim = in;
+	if(llim <= x->x_count) {if(!x->x_done) {
+        if (x->x->x_donecount >= x->x->x_ninstance) output(x->x);
+        else {
+            x->x_done = 1;
+            if(x->x_lim) x->x->x_donecount++;
+        }
+	} } else if (x->x_done) {
+	    x->x_done = 0;
+	    x->x->x_donecount--;
+	}
+	x->x_lim = llim;
 }
 
 static void proxy_set(t_proxy *x, t_floatarg val) {
 	int intval = val;
-	if (intval >= x->x->x_rightlim) x->x->x_rightdone = 1;
-	x->x->x_rightcount = intval;
+	int llim = x->x_lim;
+	x->x_count = intval;
+	if(llim <= intval) {if(!x->x_done) {
+        x->x_done = 1;
+        x->x->x_donecount++;
+	} } else if (x->x_done) {
+	    x->x_done = 0;
+	    x->x->x_donecount--;
+	}
 }
 
-static void *synlets_new(t_symbol *name, int argc, t_atom *argv)
+static void *synlets_new(t_symbol *s, int argc, t_atom *argv)
 {
+	t_proxy *iter;
+
     t_synlets *x = (t_synlets *)pd_new(synlets_class);
-	x->x_leftcount = 0;
-	x->x_rightcount = 0;
-	x->x_leftdone = 0;
-	x->x_rightdone = 0;
-	x->x_proxy = (t_proxy *)pd_new(proxy_class);
-	x->x_proxy->x = x;
-	switch(argc) {
-		case 0:
-			x->x_leftlim = 1;
-		case 1:
-			x->x_rightlim = 1;
-		default:;
+	x->b_out = outlet_new(&x->x_obj, &s_bang);
+	x->x_count = 0;
+	x->x_donecount = 0;
+	x->x_done = 0;
+	x->f_out = outlet_new(&x->x_obj, &s_float);
+	if(argc < 2) {
+		x->x_ninstance	= 1;
+		x->x_proxies = getbytes(sizeof(t_proxy *));
+		*(x->x_proxies) = (t_proxy *)pd_new(proxy_class);
+		(*(x->x_proxies))->x_count = 0;
+		(*(x->x_proxies))->x_done = 0;
+		(*(x->x_proxies))->x_lim = 1;
+		(*(x->x_proxies))->x = x;
+		if(argc) {
+		    x->x_lim = atom_getint(argv);
+		} else x->x_lim = 1;
+		if(!x->x_lim) x->x_donecount++;
+		inlet_new(&x->x_obj, &(*(x->x_proxies))->obj.ob_pd, 0, 0);
+		(*(x->x_proxies))->f_out = outlet_new(&x->x_obj, &s_float);
+		return (void *)x;
+	} else if(argc > MAX_INLET) argc = MAX_INLET;
+	argc--;
+	x->x_ninstance	= argc;
+	x->x_proxies = getbytes(sizeof(t_proxy *) * argc);
+	x->x_lim = atom_getint(argv);
+	if(!x->x_lim) x->x_donecount++;
+	for(int i = 0; i < argc; i++)
+	{
+		iter = (t_proxy *)pd_new(proxy_class);
+		x->x_proxies[i] = iter;
+		iter->x = x;		/* make x visible to the proxy inlets */
+		iter->x_lim = atom_getint(argv+i+1);
+		if(!iter->x_lim) x->x_donecount++;
+		iter->x_count = 0;
+		iter->x_done = 0;
+			/* the inlet we're going to create belongs to the object 
+		       't_prepender' but the destination is the instance 'i'
+		       of the proxy class 't_proxy'                           */
+		inlet_new(&x->x_obj, &iter->obj.ob_pd, 0, 0);
+		iter->f_out = outlet_new(&x->x_obj, &s_float);
 	}
-	switch(argc) {
-		default:
-			x->x_rightlim = atom_getint(argv+1);
-		case 1:
-			x->x_leftlim = atom_getint(argv);
-		case 0:;
-	}
-    x->b_out1 = outlet_new(&x->x_obj,&s_bang);
-    x->f_out2 = outlet_new(&x->x_obj,&s_float);
-    x->f_out3 = outlet_new(&x->x_obj,&s_float);
-    inlet_new(&x->x_obj, &x->x_proxy->obj.ob_pd, 0, 0);
-    return (x);
+    return (void *)x;
 }
 
-static void synlets_free(t_synlets *x) {
-	pd_free((t_pd *)x->x_proxy);
+static void synlets_free(t_synlets *x)
+{
+	if(!x->x_ninstance) return;
+	for(int i = 0; i < x->x_ninstance; i++)
+	{
+		pd_free((t_pd *)x->x_proxies[i]);
+	}
+	freebytes(x->x_proxies, sizeof(t_proxy *) * x->x_ninstance);
 }
 
 void synlets_setup(void)
