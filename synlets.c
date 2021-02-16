@@ -38,6 +38,7 @@ static void output(t_synlets *x) {
 	}
 	x->x_count = 0;
 	x->x_done = 0;
+	if(!x->x_lim) x->x_donecount++;
 	outlet_float(x->f_out, 0.0);
 	outlet_bang(x->b_out);
 }
@@ -46,7 +47,7 @@ static void synlets_bang(t_synlets *x) {
 	int count = x->x_count;
 	count++;
 	if(count >= x->x_lim && !x->x_done) {
-		if(x->x_donecount >= x->x_ninstance) {
+		if(x->x_donecount >= (x->x_ninstance + !x->x_lim)) {
 			output(x);
 			return;
 		} else {
@@ -90,7 +91,7 @@ static void proxy_bang(t_proxy *x) {
 	int count = x->x_count;
 	count++;
 	if(count >= x->x_lim && !x->x_done) {
-		if(x->x->x_donecount >= x->x->x_ninstance) {
+		if(x->x->x_donecount >= (x->x->x_ninstance + !x->x_lim)) {
 			output(x->x);
 			return;
 		} else {
