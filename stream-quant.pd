@@ -1,5 +1,5 @@
-#N canvas 742 173 698 605 10;
-#X declare -lib iemlib;
+#N canvas 94 82 698 605 10;
+#X declare -lib zexy;
 #X obj 75 481 streamwrite-slow;
 #X obj 278 15 inlet;
 #X obj 168 226 list split 1;
@@ -31,7 +31,7 @@
 #X obj 168 255 demultiplex 0 1 2;
 #X msg 392 320 stream-quant: no message after /;
 #X obj 195 375 wrap;
-#X obj 456 72 declare -lib iemlib;
+#X obj 456 72 declare -lib zexy;
 #X connect 0 0 8 0;
 #X connect 1 0 21 1;
 #X connect 2 0 28 0;
