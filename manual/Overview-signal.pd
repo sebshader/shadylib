@@ -25,7 +25,7 @@
 #X text 85 504 gets triggers from input phasor~ like samphold~ and
 pulls a new random number;
 #X obj 16 553 egrains~;
-#X text 249 4145 end;
+#X text 249 4175 end;
 #X obj 15 581 expline~;
 #X text 90 582 exponential line~;
 #X obj 21 616 fmod~;
@@ -139,29 +139,29 @@ offset;
 #X obj 25 3501 tcheb~;
 #X text 92 3499 chebyshev polynomial waveshaper with signal control
 for order;
-#X obj 35 3715 transpose~;
-#X text 121 3715 signal semitones-to-pitch ratio conversion;
-#X obj 32 3745 triangulator~;
-#X text 142 3746 triangle wave with multiply and addition;
-#X text 143 3772 same \, controlled by phasor~;
-#X text 79 3841 variable delay with hermite spline interpolation;
-#X obj 27 3896 voisim~;
-#X text 95 3894 vosim algorithm;
-#X obj 27 3924 volpan~;
-#X text 97 3921 control the volume and pan of a mono signal with signals
+#X obj 35 3745 transpose~;
+#X text 121 3745 signal semitones-to-pitch ratio conversion;
+#X obj 32 3775 triangulator~;
+#X text 142 3776 triangle wave with multiply and addition;
+#X text 143 3802 same \, controlled by phasor~;
+#X text 79 3871 variable delay with hermite spline interpolation;
+#X obj 27 3926 voisim~;
+#X text 95 3924 vosim algorithm;
+#X obj 27 3954 volpan~;
+#X text 97 3951 control the volume and pan of a mono signal with signals
 ;
-#X obj 21 3966 wavepacket~;
-#X obj 27 3839 vdhs~;
-#X obj 34 4106 xfade~;
-#X text 127 3962 taken from pd examples: F06 \, packets;
-#X text 93 4033 from E06.exponential example: exponential waveshaping
+#X obj 21 3996 wavepacket~;
+#X obj 27 3869 vdhs~;
+#X obj 34 4136 xfade~;
+#X text 127 3992 taken from pd examples: F06 \, packets;
+#X text 93 4063 from E06.exponential example: exponential waveshaping
 ;
-#X obj 28 4001 wscauchy~;
-#X text 109 3992 started as F03 pulse.spectrum example (cauchy waveshaping)
+#X obj 28 4031 wscauchy~;
+#X text 109 4022 started as F03 pulse.spectrum example (cauchy waveshaping)
 \, but used 1/2 angle formula;
-#X text 102 4072 E.07 evenodd example: even-odd waveshaping;
-#X obj 32 4069 wssincos~;
-#X obj 31 4038 wsexp~;
+#X text 102 4102 E.07 evenodd example: even-odd waveshaping;
+#X obj 32 4099 wssincos~;
+#X obj 31 4068 wsexp~;
 #X obj 23 3196 sndfwritem~;
 #X obj 21 3095 sndfread~;
 #X obj 21 3280 sndfwrites~;
@@ -190,9 +190,9 @@ for order;
 #X obj 353 24 declare -path ../;
 #X obj 38 2641 rpowline~;
 #X text 118 2643 reverse powline~;
-#X obj 22 3774 triangulatord~;
-#X obj 27 3803 trinoise~;
-#X text 111 3801 triangular distribution of noise;
+#X obj 22 3804 triangulatord~;
+#X obj 27 3833 trinoise~;
+#X text 111 3831 triangular distribution of noise;
 #X obj 24 2884 shnoise~;
 #X obj 18 107 blsasqri~;
 #X text 107 106 band-limited saw \, square \, and triangle waves;
@@ -217,6 +217,8 @@ with vdhs~);
 #X text 302 3578 debugging array writer;
 #X obj 35 2246 pitchshiftr~;
 #X text 133 2247 pitchshift from delay line;
-#X text 96 4107 cross-fade between 2 outlets;
-#X obj 25 3867 velvet~;
-#X text 87 3868 velvet noise generator;
+#X text 96 4137 cross-fade between 2 outlets;
+#X obj 25 3897 velvet~;
+#X text 87 3898 velvet noise generator;
+#X obj 21 3713 totally-velvet~;
+#X text 149 3712 velvet noise described as "total random noise";

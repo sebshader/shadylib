@@ -1,0 +1,24 @@
+#N canvas 318 117 652 484 10;
+#X floatatom 38 100 5 0 0 1 density - -;
+#X obj 38 120 pack f 10;
+#X obj 38 141 line~;
+#X obj 38 167 totally-velvet~;
+#X obj 39 208 output~;
+#N canvas 0 22 450 278 (subpatch) 0;
+#X array \$0-test 5000 float 2;
+#X coords 0 1 5000 -1 200 140 1 0 0;
+#X restore 72 272 graph;
+#X obj 235 227 tabwrite~ \$0-test;
+#X obj 235 186 metro 500;
+#X obj 235 159 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 187 75 a type of velvet noise described by Artificial Reverberation
+Based on a Pseudo-Random Impulse Response by Rubak and Johansen;
+#X connect 0 0 1 0;
+#X connect 1 0 2 0;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X connect 3 0 4 1;
+#X connect 3 0 6 0;
+#X connect 7 0 6 0;
+#X connect 8 0 7 0;
