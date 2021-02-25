@@ -60,7 +60,7 @@ static void sigdelreadc_set(t_sigdelreadc *x, t_symbol *s) {
             x->x_cspace = &delwriter->x_cspace;
         }
     } else if (*x->x_sym->s_name)
-        error("delreadc~: %s: no such delwritec~",x->x_sym->s_name);
+        error("delreadc~: %s: no such delwritec~", s->s_name);
 }
 
 static t_int *sigdelreadc_perform(t_int *w)
@@ -101,7 +101,7 @@ static void sigdelreadc_dsp(t_sigdelreadc *x, t_signal **sp)
             sp[0]->s_vec, &x->x_cspace, &x->x_delsamps, sp[0]->s_n);
     }
     else if (*x->x_sym->s_name)
-        error("delreadc~: %s: no such delwritec~",x->x_sym->s_name);
+        error("delreadc~: %s: no such delwritec~", x->x_sym->s_name);
 }
 
 void delreadc_tilde_setup(void)
