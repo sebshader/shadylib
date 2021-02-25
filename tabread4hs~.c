@@ -47,7 +47,7 @@ typedef struct _tabread4hs_tilde {
     t_float x_f;
 } t_tabread4hs_tilde;
 
-void *tabread4hs_tilde_new(t_symbol *s) {
+static void *tabread4hs_tilde_new(t_symbol *s) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)pd_new(tabread4hs_tilde_class);
     x->x_arrayname = s;
     x->x_vec = 0;
@@ -57,7 +57,7 @@ void *tabread4hs_tilde_new(t_symbol *s) {
     return (x);
 }
 
-t_int *tabread4hs_tilde_perform(t_int *w) {
+static t_int *tabread4hs_tilde_perform(t_int *w) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)(w[1]);
     t_sample *in1 = (t_sample *)(w[2]);
     t_sample *in2 = (t_sample *)(w[3]);
@@ -123,7 +123,7 @@ t_int *tabread4hs_tilde_perform(t_int *w) {
     return (w+6);
 }
 
-void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s) {
+static void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s) {
     t_garray *a;
     
     x->x_arrayname = s;
@@ -137,7 +137,7 @@ void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s) {
     } else garray_usedindsp(a);
 }
 
-void tabread4hs_tilde_dsp(t_tabread4hs_tilde *x, t_signal **sp) {
+static void tabread4hs_tilde_dsp(t_tabread4hs_tilde *x, t_signal **sp) {
     tabread4hs_tilde_set(x, x->x_arrayname);
 
     dsp_add(tabread4hs_tilde_perform, 5, x,
