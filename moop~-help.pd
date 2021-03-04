@@ -1,4 +1,4 @@
-#N canvas 281 23 1159 702 10;
+#N canvas 201 61 1159 702 10;
 #X obj 268 435 oscope~;
 #X msg 50 89 20;
 #X msg 249 205 times 0 5;
@@ -20,7 +20,7 @@ argument to times is the milliseconds to ramp (regardless of transposition)
 \, and the second is the number of times to ramp \, which defaults
 to 1 if the second argument isn't there.;
 #X text 432 382 2nd arg is to hold or not;
-#X text 136 122 set range;
+#X text 83 111 set range;
 #X msg 55 127 range 44000;
 #X text 377 251 negative periods start at "range" and go backwards
 ;
@@ -28,8 +28,8 @@ to 1 if the second argument isn't there.;
 #X obj 760 534 soundfiler;
 #X msg 772 484 read -resize \$1 test;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array test 1.02984e+07 float 2;
-#X coords 0 1 1.02984e+07 -1 200 140 1;
+#X array test 1.19388e+07 float 2;
+#X coords 0 1 1.19388e+07 -1 200 140 1;
 #X restore 537 439 graph;
 #X obj 778 453 openpanel;
 #X obj 779 422 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -51,10 +51,10 @@ tabread4~ should be;
 #X text 470 152 if the second argument is not a float then moop~ will
 infinitely repeat;
 #X msg 435 83 tempo 1;
-#X floatatom 644 93 5 0 0 0 - - -, f 5;
+#X floatatom 644 93 5 0 0 0 - - -;
 #X obj 612 72 mstof;
 #X msg 345 159 times \$1 pluto;
-#X floatatom 621 22 5 0 0 0 - - -, f 5;
+#X floatatom 621 22 5 0 0 0 - - -;
 #X obj 620 46 mtof;
 #X text 763 239 "hold" samples and holds transposition or not;
 #X msg 217 67 tempo 200 \, times 2 2 \, tempo 1;
@@ -67,6 +67,8 @@ another "times");
 #X msg 263 231 0 \, 44100 2000;
 #X msg 244 162 times -1500 2;
 #X obj 140 170 smoother~ 100;
+#X text 746 258 range is the sample number relative to onset to read
+backwards from;
 #X connect 1 0 28 0;
 #X connect 2 0 28 0;
 #X connect 3 0 28 0;
