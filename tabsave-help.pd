@@ -123,8 +123,7 @@
 #X obj 70 356 phasor~;
 #X obj 103 294 mtof;
 #X obj 90 319 smoother~ 5;
-#X floatatom 104 263 5 0 0 0 - - -, f 5;
-#X obj 46 570 output~;
+#X floatatom 104 263 5 0 0 0 - - -;
 #X obj 70 464 tabread4~ an_array;
 #X msg 192 395 \; an_array normalize \;;
 #X obj 368 178 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -135,18 +134,19 @@
 #X obj 236 307 array;
 #X msg 480 318 an_array;
 #X obj 393 353 tabload an_array;
+#X obj 46 570 outputc~;
 #X connect 0 0 2 0;
-#X connect 2 0 22 0;
-#X connect 7 0 14 0;
+#X connect 2 0 21 0;
+#X connect 7 0 13 0;
 #X connect 8 0 7 0;
 #X connect 9 0 8 0;
 #X connect 10 0 11 0;
 #X connect 11 0 9 0;
 #X connect 12 0 10 0;
-#X connect 14 0 13 0;
-#X connect 14 0 13 1;
-#X connect 16 0 18 0;
-#X connect 18 0 2 0;
-#X connect 18 0 4 0;
-#X connect 19 0 18 0;
-#X connect 21 0 22 1;
+#X connect 13 0 22 0;
+#X connect 13 0 22 1;
+#X connect 15 0 17 0;
+#X connect 17 0 2 0;
+#X connect 17 0 4 0;
+#X connect 18 0 17 0;
+#X connect 20 0 21 1;
