@@ -21,12 +21,11 @@ static void highest_set(t_highest *x, t_float nsamps) {
 	x->x_result = 0;
 	x->x_count = 0;
 	if(nsamps != 0.0) {
+		int isamps = fmin(fabs(nsamps), MAXPRD);
 		int n = x->x_blocksize;
-    	if(nsamps > MAXPRD) nsamps = MAXPRD;
-    	x->x_period = nsamps;
-    	if ((x->x_period) % n) x->x_realperiod =
-        	x->x_period + n - (x->x_period % n);
-    	else x->x_realperiod = x->x_period;
+    	x->x_period = isamps;
+		/* get next multiple of n */
+		x->x_realperiod = isamps+(n-1) - (isamps+(n-1)&(n-1));
     }
 }
 
@@ -45,7 +44,7 @@ static void *highest_tilde_new(t_floatarg nsamps) {
 	x->x_outlet = outlet_new(&x->x_obj, &s_float);
     x->x_clock = clock_new(x, (t_method)highest_tilde_tick);
     x->x_blocksize = 64;
-    if(nsamps < 1) x->x_period = 1024;
+    if(!nsamps) x->x_period = 1024;
     else highest_set(x , nsamps);
     x->x_f = 0;
     return (x);
@@ -75,11 +74,11 @@ static t_int *highest_tilde_perform(t_int *w) {
 
 static void highest_tilde_dsp(t_highest *x, t_signal **sp)
 {
+	/* assume n is a power of 2 */
 	int n = sp[0]->s_n;
 	x->x_blocksize = n;
-    if (x->x_period % n) x->x_realperiod =
-        x->x_period + n - (x->x_period % n);
-    else x->x_realperiod = x->x_period;
+	/* get next multiple of n */
+	x->x_realperiod = x->x_period+(n-1) - (x->x_period+(n-1)&(n-1));
     x->x_count = 0;
     dsp_add(highest_tilde_perform, 3, x, sp[0]->s_vec, n);
 }

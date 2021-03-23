@@ -1,4 +1,4 @@
-#N canvas 101 384 708 383 10;
+#N canvas 397 132 708 383 10;
 #X obj 283 26 smoother~;
 #X floatatom 267 150 5 0 0 0 - - -;
 #X text 135 34 set period to report;
@@ -7,11 +7,15 @@
 #X obj 290 76 osc~;
 #X obj 405 98 oscope~;
 #X msg 159 57 set 44100;
-#X obj 228 138 print;
 #X obj 261 96 highest~ 2048;
+#X msg 227 57 set 2048;
+#X obj 141 150 print highest;
+#X msg 117 57 set 64;
 #X connect 0 0 5 0;
 #X connect 5 0 6 0;
-#X connect 5 0 9 0;
-#X connect 7 0 9 0;
-#X connect 9 0 1 0;
+#X connect 5 0 8 0;
+#X connect 7 0 8 0;
+#X connect 8 0 1 0;
+#X connect 8 0 10 0;
 #X connect 9 0 8 0;
+#X connect 11 0 8 0;
