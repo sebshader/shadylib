@@ -3,7 +3,7 @@
 #X obj 179 118 transpose~;
 #X msg 288 102 \; pd dsp 1;
 #X obj 188 139 dbgr~;
-#X text 128 181 todo: faster exp2;
 #X obj 182 77 smoother~ 0;
+#X text 128 181 todo: faster exp2?;
 #X connect 1 0 3 0;
-#X connect 5 0 1 0;
+#X connect 4 0 1 0;

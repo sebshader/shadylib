@@ -1,5 +1,4 @@
-#include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
 
 #define MAX_HARM 254.0
 //#define COSTAB_2 (COSTABSIZE >> 1)
@@ -72,7 +71,7 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	return (w + 5);
 }
 
-void tcheb_tilde_dsp(t_tcheb_tilde *x, t_signal **sp) {
+void tcheb_tilde_dsp(t_tcheb_tilde* UNUSED(x), t_signal **sp) {
 	dsp_add(tcheb_tilde_perform, 4, sp[0]->s_vec,  sp[1]->s_vec,
 		sp[2]->s_vec, sp[0]->s_n);
 }

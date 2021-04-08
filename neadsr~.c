@@ -47,7 +47,8 @@ static void neadsr_float(t_neadsr *x, t_floatarg f) {
     }
 }
 
-static void neadsr_attack(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
+static void neadsr_attack(t_neadsr *x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
@@ -64,7 +65,8 @@ static void neadsr_attack(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
 	}
 }
 
-static void neadsr_decay(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
+static void neadsr_decay(t_neadsr *x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
@@ -86,7 +88,8 @@ static void neadsr_sustain(t_neadsr *x, t_floatarg f)
 	x->x_ctl.c_sustain = fmax(0.0, fmin(1.0,f));
 }
 
-static void neadsr_release(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
+static void neadsr_release(t_neadsr *x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {

@@ -224,7 +224,7 @@ static void operator_ft1(t_operator *x, t_float f)
     x->x_phase = SHADYLIB_BUZZSIZE * (f + 0.25);
 }
 
-static void *operator_new(t_symbol *s, int argc, t_atom *argv) {
+static void *operator_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_operator *x = (t_operator *)pd_new(operator_class);
 	x->x_phase = 0.25;
 	outlet_new(&x->x_obj, &s_signal);

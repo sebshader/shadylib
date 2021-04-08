@@ -24,7 +24,7 @@ static void bpbuzz_phase(t_bpbuzz *x, t_float f) {
 	x->phase = f - floorf(f);
 }
 
-static void *bpbuzz_new(t_symbol *s, int argc, t_atom *argv) {
+static void *bpbuzz_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_bpbuzz *x = (t_bpbuzz *)pd_new(bpbuzz_class);
 	float oduty = argc ? atom_getfloatarg(0, argc, argv) : 0.5;
 	x->phase = 0.0;

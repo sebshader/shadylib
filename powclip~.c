@@ -1,6 +1,4 @@
-#include "m_pd.h"
-#include <stdlib.h>
-#include <math.h>
+#include "shadylib.h"
 
 static t_class *powclip_class, *scalarpowclip_class;
 
@@ -30,7 +28,7 @@ static void base_maketable(void)
     base_table[BASTABSIZE - 2] = 1;
 }
 
-static void powclip_freebase(t_class *dummy) {
+static void powclip_freebase(t_class* UNUSED(dummy)) {
 	freebytes(base_table, sizeof(t_sample) * (BASTABSIZE));
 }
 
@@ -47,7 +45,7 @@ typedef struct _scalarpowclip
     t_float x_g;            /* inlet value */
 } t_scalarpowclip;
 
-static void *powclip_new(t_symbol *s, int argc, t_atom *argv)
+static void *powclip_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
     if (argc > 1) post("powclip~: extra arguments ignored");
     if (argc) 
@@ -147,7 +145,7 @@ t_int *scalarpowclip_perform(t_int *w)
     return (w+5);
 }
 
-static void powclip_dsp(t_powclip *x, t_signal **sp)
+static void powclip_dsp(t_powclip* UNUSED(x), t_signal **sp)
 {
     dsp_add(powclip_perform, 4, sp[0]->s_vec, sp[1]->s_vec, 
     	sp[2]->s_vec, sp[0]->s_n);

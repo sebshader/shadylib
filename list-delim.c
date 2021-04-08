@@ -23,7 +23,7 @@ static inline int testatoms(const char *tester, t_atom *against){
 	else return 0;
 }
 
-static void list_delim_list(t_list_delim *x, t_symbol *s,
+static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
     int argc, t_atom *argv)
 {
     const char *c = x->x_s->s_name;

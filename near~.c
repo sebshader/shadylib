@@ -45,7 +45,8 @@ static void near_float(t_near *x, t_floatarg f) {
     }
 }
 
-static void near_attack(t_near *x, t_symbol *s, int argc, t_atom *argv) {
+static void near_attack(t_near* x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
@@ -62,7 +63,8 @@ static void near_attack(t_near *x, t_symbol *s, int argc, t_atom *argv) {
 	}
 }
 
-static void near_release(t_near *x, t_symbol *s, int argc, t_atom *argv) {
+static void near_release(t_near* x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {

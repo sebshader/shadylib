@@ -1,4 +1,4 @@
-#include "m_pd.h"
+#include "shadylib.h"
 
 static t_class *siglinterp_class, *scalarsiglinterp_class;
 
@@ -24,7 +24,7 @@ typedef struct _scalarsiglinterp
     t_float x_g;            /* inlet value */
 } t_scalarsiglinterp;
 
-static void *siglinterp_new(t_symbol *s, int argc, t_atom *argv)
+static void *siglinterp_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
 	int nsigs;
 	if(argc) {
@@ -34,7 +34,8 @@ static void *siglinterp_new(t_symbol *s, int argc, t_atom *argv)
 		nsigs = 2;
 	}
 	if (argc >= 2) {
-        t_scalarsiglinterp *x = (t_scalarsiglinterp *)pd_new(scalarsiglinterp_class);
+        t_scalarsiglinterp *x = 
+            (t_scalarsiglinterp *)pd_new(scalarsiglinterp_class);
         x->n_in = nsigs--;
         while(nsigs--)
         	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);

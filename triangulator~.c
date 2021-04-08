@@ -151,7 +151,7 @@ static void triangulator_ft1(t_triangulator *x, t_float f)
     x->x_phase = f + .25;
 }
 
-static void *triangulator_new(t_symbol *s, int argc, t_atom *argv) {
+static void *triangulator_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_triangulator *x = (t_triangulator *)pd_new(triangulator_class);
 	x->x_phase = 0.25;
 	outlet_new(&x->x_obj, &s_signal);

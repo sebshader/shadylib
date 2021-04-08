@@ -40,7 +40,7 @@ static void scalarbuzz_freq(t_scalarbuzz *x, t_float f) {
 	x->argset = 0;
 }
 
-static void *buzz_new(t_symbol *s, int argc, t_atom *argv)
+static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
 {
     if (argc > 1) post("buzz~: extra arguments ignored");
     if (argc) 

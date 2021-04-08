@@ -1,4 +1,4 @@
-#include "m_pd.h"
+#include "shadylib.h"
 
 //linear congruential method from "Algorithms in C" by Robert Sedgewick
 #define m 16777216 // 2^24: 24 digits are 0
@@ -95,7 +95,7 @@ static int frandom_makeseed(void) {
 	return nextseed;
 }
 
-static void *frandom_new(t_symbol *s, int argc, t_atom *argv) {
+static void *frandom_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	unsigned int state; 
     t_frandom *x = (t_frandom *)pd_new(frandom_class);
 

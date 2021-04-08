@@ -124,7 +124,7 @@ static void phasorator_ft1(t_phasorator *x, t_float f)
     x->x_phase = f;
 }
 
-static void *phasorator_new(t_symbol *s, int argc, t_atom *argv) {
+static void *phasorator_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_phasorator *x = (t_phasorator *)pd_new(phasorator_class);
 	x->x_phase = 0.0;
 	outlet_new(&x->x_obj, &s_signal);

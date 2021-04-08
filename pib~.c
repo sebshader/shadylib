@@ -1,4 +1,4 @@
-#include "m_pd.h"
+#include "shadylib.h"
 
 static t_class *pib_tilde_class;
 
@@ -17,7 +17,7 @@ static void pib_tilde_bang(t_pib *x) {
 	outlet_float(x->x_obj.ob_outlet, clock_gettimesince(x->x_time));
 }
 
-static void pib_tilde_dsp(t_pib *x, t_signal **sp)
+static void pib_tilde_dsp(t_pib *x, t_signal** UNUSED(sp))
 {
     dsp_add(pib_tilde_perform, 1, &x->x_time);
 }

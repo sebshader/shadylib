@@ -188,7 +188,7 @@ static void rcombf_dsp(t_rcombf *x, t_signal **sp)
     rcombf_updatesr(x, sp[0]->s_sr);
 }
 
-static void *rcombf_new(t_symbol *s, int argc, t_atom *argv)
+static void *rcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
 	t_float time = 1000;
 	t_float size = 0.0;

@@ -1,6 +1,19 @@
 #include "m_pd.h"
 #include <math.h>
 
+/* suppress unused warnings */
+#ifdef __GNUC__
+#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+#else
+#  define UNUSED(x) UNUSED_ ## x
+#endif
+
+#ifdef __GNUC__
+#  define UNUSED_FUNCTION(x) __attribute__((__unused__)) UNUSED_ ## x
+#else
+#  define UNUSED_FUNCTION(x) UNUSED_ ## x
+#endif
+
 #define SHADYLIB_UNITBIT32 1572864.  /* 3*2^19; bit 32 has place value 1 */
 
 #ifdef IRIX

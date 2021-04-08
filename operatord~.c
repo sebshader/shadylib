@@ -26,7 +26,7 @@ static void operatord_dsp(t_operatord *x, t_signal **sp) {
 	}
 }
 
-static void *operatord_new(t_symbol *s, int argc, t_atom *argv) {
+static void *operatord_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_operatord *x = (t_operatord *)pd_new(operatord_class);
 	outlet_new(&x->x_obj, &s_signal);
 	switch(argc) {

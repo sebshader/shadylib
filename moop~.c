@@ -32,7 +32,7 @@ static void moop_tempo(t_moop *x, t_floatarg tempo) {
 	x->x_tempo = (tempo > 0) ? tempo : 1;
 }
 
-static void moop_time(t_moop *x, t_symbol *s, int argc, t_atom *argv) {
+static void moop_time(t_moop *x, t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_float time;
 	if(argc > 0) {
 		if(argv[0].a_type == A_FLOAT) {

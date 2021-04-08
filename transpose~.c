@@ -1,5 +1,4 @@
-#include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
 
 static t_class *transpose_tilde_class;
 
@@ -21,16 +20,14 @@ t_int *transpose_tilde_perform(t_int *w)
 {
     t_sample *in = (t_sample *)(w[1]);
     t_sample *out = (t_sample *)(w[2]);
-    t_transpose_tilde *x = (t_transpose_tilde *)(w[3]);
-    int n = (int)(w[4]);
-    while (n--) *out++ = exp2f(*in++/12);
-    return (w+5);
+    int n = (int)(w[3]);
+    while (n--) *out++ = exp2f(*in++*(1.0/12));
+    return (w+4);
 }
 
-static void transpose_tilde_dsp(t_transpose_tilde *x, t_signal **sp)
-{
-    dsp_add(transpose_tilde_perform, 4,
-        sp[0]->s_vec, sp[1]->s_vec, x, sp[0]->s_n);
+static void transpose_tilde_dsp(t_transpose_tilde* UNUSED(x), t_signal **sp) {
+    dsp_add(transpose_tilde_perform, 3,
+        sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 }
 
 void transpose_tilde_setup(void)

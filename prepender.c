@@ -67,7 +67,7 @@ static void prepender_any(t_prepender *x, t_symbol *s, int argc, t_atom *argv)
     SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
-static void prepender_list(t_prepender *x, t_symbol *s,
+static void prepender_list(t_prepender *x, t_symbol* UNUSED(s),
     int argc, t_atom *argv)
 {
     t_atom *outv;
@@ -125,7 +125,7 @@ static void proxy_any(t_proxy *x, t_symbol *s, int argc, t_atom *argv)
     SHADYLIB_ATOMS_FREEA(outv, argc);
 }
 
-static void proxy_list(t_proxy *x, t_symbol *s,
+static void proxy_list(t_proxy *x, t_symbol* UNUSED(s),
     int argc, t_atom *argv)
 {
     t_atom *outv;
@@ -166,7 +166,7 @@ static void proxy_float(t_proxy *x, t_floatarg f)
 static t_class *prepender_class;
 static t_class *proxy_class;
 
-static void *prepender_new(t_symbol *s, int argc, t_atom *argv)
+static void *prepender_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
 	t_proxy *iter;
 

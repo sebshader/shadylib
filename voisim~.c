@@ -1,5 +1,4 @@
-#include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
 #define SINSQRSIZE 512
 
 static t_sample *sinsqr_tbl; 
@@ -15,7 +14,7 @@ static void vosim_maketab(void) {
 	}
 }
 
-static void vosim_freetab(t_class *dummy) {
+static void vosim_freetab(t_class* UNUSED(dummy)) {
 	freebytes(sinsqr_tbl, (SINSQRSIZE) * sizeof(t_sample));
 }
 
@@ -134,7 +133,7 @@ static void vosim_reset(t_vosim *x)
 }
 
 /* args: frequency, center freq., duty cycle, decay */
-static void *vosim_new(t_symbol *s, int argc, t_atom *argv) {
+static void *vosim_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_vosim *x = (t_vosim *)pd_new(vosim_class);
 	x->x_f = 0.0;
 	x->x_conv = 1.0;

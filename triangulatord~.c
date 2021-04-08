@@ -26,7 +26,7 @@ static void triangulatord_dsp(t_triangulatord *x, t_signal **sp) {
 	}
 }
 
-static void *triangulatord_new(t_symbol *s, int argc, t_atom *argv) {
+static void *triangulatord_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_triangulatord *x = (t_triangulatord *)pd_new(triangulatord_class);
 	outlet_new(&x->x_obj, &s_signal);
 	switch(argc) {

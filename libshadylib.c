@@ -48,7 +48,7 @@ void shadylib_maketabs(void) {
 	shadylib_rexptab[SHADYLIB_TABLESIZE - 1] = 0;
 }
 
-void shadylib_freetabs(t_class *dummy) {
+void shadylib_freetabs(t_class* UNUSED(dummy)) {
 	if(shadylib_rexptab) {
 		freebytes(shadylib_rexptab, sizeof(t_float)*SHADYLIB_TABLESIZE*3);
 		shadylib_rexptab = NULL;
@@ -78,9 +78,10 @@ void shadylib_makebuzz(void) {
 	}
 }
 
-void shadylib_freebuzz(t_class *dummy) {
+void shadylib_freebuzz(t_class* UNUSED(dummy)) {
 	if(shadylib_sintbl) {
-		freebytes(shadylib_sintbl, sizeof(sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2));
+		freebytes(shadylib_sintbl, 
+		    sizeof(sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2));
 		shadylib_sintbl = NULL;
 	}
 }
@@ -543,8 +544,8 @@ void shadylib_alist_clear(t_shadylib_alist *x)
         freebytes(x->l_vec, x->l_n * sizeof(*x->l_vec));
 }
 
-void shadylib_alist_copyin(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv,
-    int where)
+void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv, int where)
 {
     int i, j;
     for (i = 0, j = where; i < argc; i++, j++)

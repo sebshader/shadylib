@@ -45,7 +45,8 @@ static void nead_float(t_nead *x, t_floatarg f) {
     }
 }
 
-static void nead_attack(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
+static void nead_attack(t_nead* x, t_symbol* UNUSED(s), int argc,
+    t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {
@@ -62,7 +63,7 @@ static void nead_attack(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
 	}
 }
 
-static void nead_decay(t_nead *x, t_symbol *s, int argc, t_atom *argv) {
+static void nead_decay(t_nead* x, t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_int samps;
 	int abool;
 	if(argc > 0) {

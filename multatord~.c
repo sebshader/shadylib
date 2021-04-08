@@ -154,7 +154,7 @@ static void multatord_dsp(t_multatord *x, t_signal **sp) {
 	}
 }
 
-static void *multatord_new(t_symbol *s, int argc, t_atom *argv) {
+static void *multatord_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	t_multatord *x = (t_multatord *)pd_new(multatord_class);
 	outlet_new(&x->x_obj, &s_signal);
 	x->rwave = (argc >= 3) ? atom_getfloatarg(2, argc, argv) : 0;

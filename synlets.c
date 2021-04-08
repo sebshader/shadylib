@@ -1,4 +1,4 @@
-#include "m_pd.h"
+#include "shadylib.h"
 
 static t_class *synlets_class;
 static t_class *proxy_class;
@@ -131,7 +131,7 @@ static void proxy_set(t_proxy *x, t_floatarg val) {
 	}
 }
 
-static void *synlets_new(t_symbol *s, int argc, t_atom *argv)
+static void *synlets_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
 	t_proxy *iter;
 

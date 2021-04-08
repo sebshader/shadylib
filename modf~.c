@@ -1,5 +1,4 @@
-#include <math.h>
-#include "m_pd.h"
+#include "shadylib.h"
 
 typedef struct modf
 {
@@ -29,7 +28,7 @@ static t_int *sigmodf_perform(t_int *w) {
     return (w + 5);
 }
 
-static void sigmodf_dsp(t_modf *x, t_signal **sp)
+static void sigmodf_dsp(t_modf* UNUSED(x), t_signal **sp)
 {
     dsp_add(sigmodf_perform, 4, sp[0]->s_vec, sp[1]->s_vec,
             sp[2]->s_vec, sp[0]->s_n);
