@@ -1,6 +1,5 @@
 /* recirculating comb filter */
 #include "shadylib.h"
-#include <string.h>
 
 static t_class *rcombf_class;
 /*modified from pd source */
@@ -213,8 +212,8 @@ static void *rcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 			which++;
     	} else {
     		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (!strcmp(sarg->s_name, "-n")) norm = 1;
-    		else if(!strcmp(sarg->s_name, "-l")) {
+    		if (sarg == gensym("-n")) norm = 1;
+    		else if(sarg == gensym("-l")) {
     			i++;
     			if(i < argc)
     				size = atom_getfloatarg(i, argc, argv);

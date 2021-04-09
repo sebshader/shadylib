@@ -1,5 +1,4 @@
 #include "shadylib.h"
-#include <string.h>
 
 static t_class *shadylook_class;
 
@@ -11,9 +10,9 @@ typedef struct _look {
 
 static void *shadylook_new(t_symbol *which) {
 	t_look *x = (t_look *)pd_new(shadylook_class);
-	if(!strcmp(which->s_name, "gauss"))
+	if(which == gensym("gauss"))
 		x->type = GAUS;
-	else if(!strcmp(which->s_name, "cauchy"))
+	else if(which == gensym("cauchy"))
 		x->type = CAUCH;
 	else x->type = REXP;
 	outlet_new(&x->x_obj, &s_float);

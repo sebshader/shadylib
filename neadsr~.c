@@ -16,7 +16,6 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.*/
 
-#include <string.h>
 #include "shadylib.h"
 
 typedef struct neadsrctl {
@@ -107,7 +106,7 @@ static void neadsr_release(t_neadsr *x, t_symbol* UNUSED(s), int argc,
 }
 
 static void neadsr_any(t_neadsr *x, t_symbol *s, int argc, t_atom *argv) {
-	if(!strcmp(s->s_name, "curves")) { 
+	if(s == gensym("curves")) { 
 		switch(argc) {
 			default:;
 			case 3: if(argv[2].a_type == A_FLOAT) {

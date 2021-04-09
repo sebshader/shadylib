@@ -8,18 +8,20 @@
 #X text 187 19 non-recirculating combfilter using lagrange interpolation
 ;
 #X obj 318 202 nrcombf~ -n 200 0.8 200;
-#X text 225 105 other args (in order): delay time \, feedforward gain
-\, length of buffer;
 #X text 15 378 if -n is not specified \, an input gain inlet appears
 \, initialized to 1;
 #X obj 213 136 sndfread~;
 #X obj 236 227 nrcombf~ -n 200 0.8 200;
 #X text 241 43 flags (can be anywhere in args): -n: normalize output
 by dividing by 1 + abs(feedback);
+#X text 6 260 inlets: signal \, delay time(ms) \, feedback \, (conditional)
+input gain, f 37;
+#X text 225 105 other args (in order): delay time (ms) \, feedforward
+gain \, length of buffer;
 #X connect 2 0 6 0;
-#X connect 2 0 10 0;
+#X connect 2 0 9 0;
 #X connect 6 0 0 1;
 #X connect 6 0 1 0;
-#X connect 9 0 10 0;
-#X connect 9 1 6 0;
-#X connect 10 0 0 0;
+#X connect 8 0 9 0;
+#X connect 8 1 6 0;
+#X connect 9 0 0 0;

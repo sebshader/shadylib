@@ -16,7 +16,6 @@
  *   along with this program; if not, write to the Free Software
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.*/
 
-#include <string.h>
 #include "shadylib.h"
 
 typedef struct nearctl {
@@ -82,7 +81,7 @@ static void near_release(t_near* x, t_symbol* UNUSED(s), int argc,
 }
 
 static void near_any(t_near *x, t_symbol *s, int argc, t_atom *argv) {
-	if(!strcmp(s->s_name, "curves")) { 
+	if(s == gensym("curves")) { 
 		switch(argc) {
 			default:;
 			case 2: if(argv[1].a_type == A_FLOAT) {

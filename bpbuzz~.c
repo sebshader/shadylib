@@ -1,6 +1,4 @@
 #include "shadylib.h"
-#include <float.h>
-#include <string.h>
 
 static t_class *bpbuzz_class;
 /* this algorithm is mainly from supercollider

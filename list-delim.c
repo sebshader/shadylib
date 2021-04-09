@@ -17,17 +17,17 @@ static void *list_delim_new(t_symbol *s)
     return (x);
 }
 
-static inline int testatoms(const char *tester, t_atom *against){
+static inline int testatoms(t_symbol *tester, t_atom *against){
 	if (against->a_type == A_SYMBOL)
-		return (strcmp(tester, atom_getsymbol(against)->s_name) == 0);
+		return tester == atom_getsymbol(against);
 	else return 0;
 }
 
 static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
     int argc, t_atom *argv)
 {
-    const char *c = x->x_s->s_name;
-    size_t strlength = strlen(c);
+    t_symbol *c = x->x_s;
+    size_t strlength = strlen(c->s_name);
     char namebuf[MAXPDSTRING];
     t_atom *outv;
     int outc = 0, firstindex = 0, i, firstpass = 0;
@@ -42,7 +42,8 @@ static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
 						size_t alength = strlen(against);
 						if(!(alength%strlength) && alength > strlength) {
 							for(size_t k = 0; k < alength; k += strlength)
-								if (strncmp(c, against + k, strlength) != 0)
+								if (strncmp(c->s_name, against + k, strlength)
+								    != 0)
 									goto cont;
 							strncpy(namebuf, against+strlength, MAXPDSTRING);
 							outv[j].a_w.w_symbol = gensym(namebuf);
@@ -70,7 +71,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
 			if(outv[j].a_type == A_SYMBOL) {
 				const char *against = atom_getsymbol(outv+j)->s_name;
 				if(strlen(against) > strlength &&
-					strncmp(c, against, strlength) == 0) {
+					strncmp(c->s_name, against, strlength) == 0) {
 					strncpy(namebuf, against+strlength, MAXPDSTRING);
 					outv[j].a_w.w_symbol = gensym(namebuf);
 				}

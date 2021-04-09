@@ -223,6 +223,7 @@ EXTERN t_sample *shadylib_cosectbl;
 /* maximum harmonics for small frequencies */
 #define SHADYLIB_MAXHARM ((int)((4294967295/(2*SHADYLIB_BUZZSIZE)) - 2))
 
+/* memset */
 #include <string.h>
 
 #ifdef _WIN32

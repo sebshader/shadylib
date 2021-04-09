@@ -1,6 +1,5 @@
 /* real allpass filter */
 #include "shadylib.h"
-#include <string.h>
 
 static t_class *realpass_class;
 /*modified from pd source */
