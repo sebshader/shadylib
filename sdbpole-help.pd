@@ -1,5 +1,5 @@
-#N canvas 421 63 630 547 10;
-#X obj 126 138 dbpole;
+#N canvas 417 149 692 530 10;
+#X text 47 31 like dbpole \, but accepts samples instead of ms;
 #X floatatom 126 117 5 0 0 0 - - -;
 #X floatatom 126 167 5 0 0 0 - - -;
 #N canvas 0 22 450 278 (subpatch) 0;
@@ -15,13 +15,11 @@
 -1 -1;
 #X msg 209 185 1 0 0 \, 0 0 \$1;
 #X text 316 291 44100 samples;
-#X text 116 492 also see version for samples:;
-#X obj 303 490 sdbpole;
-#X text 13 60 takes time in milliseconds to get from 1 to 0.001 (60db
-lower) and turns it into the pole coefficient;
-#X connect 0 0 2 0;
-#X connect 0 0 4 1;
-#X connect 1 0 0 0;
+#X obj 126 138 sdbpole;
+#X obj 203 495 dbpole;
+#X text 13 60 takes time in samples to get from 1 to 0.001 (60db lower)
+and turns it into the pole coefficient;
+#X connect 1 0 12 0;
 #X connect 4 0 8 0;
 #X connect 5 0 4 0;
 #X connect 6 0 10 0;
@@ -29,3 +27,5 @@ lower) and turns it into the pole coefficient;
 #X connect 9 0 7 0;
 #X connect 9 0 8 0;
 #X connect 10 0 5 0;
+#X connect 12 0 2 0;
+#X connect 12 0 4 1;
