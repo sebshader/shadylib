@@ -1,7 +1,7 @@
-#N canvas 513 264 992 461 10;
+#N canvas 228 162 992 461 10;
 #X obj 145 174 sequencer;
 #X obj 145 290 hradio 36 1 0 16 empty empty empty 0 -8 0 10 -262144
--1 -1 0;
+-1 -1 3;
 #X obj 55 302 print step;
 #X floatatom 758 306 5 0 0 0 - - -;
 #X obj 724 155 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -30,6 +30,7 @@
 #X text 212 359 nesting display- (clockwise from top left): repeat
 indicator \, always on/off \, step # \, repeat #;
 #X text 318 96 see manual/sequencerdoc.txt;
+#X text 300 31 sequencer/step generator with nested steps;
 #X connect 0 0 1 0;
 #X connect 0 0 2 0;
 #X connect 0 1 3 0;

@@ -1,5 +1,5 @@
 #N canvas 452 87 645 526 12;
-#X floatatom 430 148 4 0 0 0 - - -, f 4;
+#X floatatom 430 148 4 0 0 0 - - -;
 #X msg 32 125 1;
 #X text 92 135 nonzero number or "bang" to start;
 #X msg 52 168 0;
@@ -47,6 +47,7 @@ times);
 #X msg 479 100 3000;
 #X msg 528 131 500;
 #X obj 455 69 t b b;
+#X obj 220 470 updel;
 #X connect 0 0 28 1;
 #X connect 0 0 31 1;
 #X connect 1 0 30 0;

@@ -21,7 +21,7 @@ is a scaler value 1 and higher that scales the hanning window down
 array to read from. overlaps 2 read heads with a hanning window;
 #X obj 66 276 vline~;
 #X obj 126 23 openpanel;
-#X floatatom 136 92 5 0 0 0 - - -, f 5;
+#X floatatom 136 92 5 0 0 0 - - -;
 #X obj 145 171 stoms;
 #X obj 119 142 t f f;
 #X obj 96 195 pack f f;
@@ -37,7 +37,7 @@ array to read from. overlaps 2 read heads with a hanning window;
 #X text 386 151 you may have to hit this to start the sampphase;
 #X msg 431 278 window 2;
 #X msg 493 282 window 1;
-#X floatatom 197 129 5 0 0 1 manual_position - -, f 5;
+#X floatatom 197 129 5 0 0 1 manual_position(seconds) - -;
 #X obj 373 91 samplerate~;
 #X obj 195 148 *;
 #X obj 376 57 banger;

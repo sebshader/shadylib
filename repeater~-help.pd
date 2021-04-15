@@ -25,7 +25,7 @@ not (0) on a given step \, starting after the buffer is written;
 #X msg 406 110 2000 2000;
 #X obj 575 206 osc~ 1;
 #X msg 307 53 add2 200;
-#X floatatom 354 273 5 0 0 0 - - -, f 5;
+#X floatatom 354 273 5 0 0 0 - - -;
 #X text 464 328 right outlet: number of the repeat;
 #X msg 164 176 hold 300;
 #X text 14 244 change the time as it's holding;
@@ -34,21 +34,21 @@ not (0) on a given step \, starting after the buffer is written;
 #X text 39 153 hold for a certain amount of ms;
 #X text 444 279 buffer size is 1000 ms by default \, else specified
 by argument.;
-#X floatatom 207 114 5 0 0 0 - - -, f 5;
+#X floatatom 207 114 5 0 0 0 - - -;
 #X msg 212 214 time \$1;
 #X obj 264 141 sndfread~;
-#X floatatom 670 194 5 0 0 0 - - -, f 5;
+#X floatatom 670 194 5 0 0 0 - - -;
 #X obj 320 212 zexy/nop;
 #X obj 400 262 zexy/nop;
 #X msg 152 127 hold \$1;
-#X floatatom 159 88 5 0 0 0 - - -, f 5;
+#X floatatom 159 88 5 0 0 0 - - -;
 #X msg 117 49 0;
 #X text 148 48 turn off;
 #X obj 169 70 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X msg 87 412 play hold \$1;
 #X msg 83 359 0;
-#X floatatom 119 378 5 0 0 0 - - -, f 5;
+#X floatatom 119 378 5 0 0 0 - - -;
 #X obj 129 360 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 436 53 1000;
@@ -59,6 +59,8 @@ by argument.;
 #X text 552 40 record/play for 725 ms twice \, then reverse for 1450
 and 725;
 #X obj 330 312 repeater~ 4000;
+#X text 488 480 beat repeater with signal transposition that can take
+lists of tiimes \, first time is how long to record for.;
 #X connect 1 0 13 0;
 #X connect 2 0 14 0;
 #X connect 3 0 32 0;

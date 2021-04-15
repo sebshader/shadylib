@@ -1,7 +1,7 @@
-#N canvas 0 22 450 300 10;
-#X text 235 54 square a control signal;
-#X obj 189 124 sqr;
-#X floatatom 191 102 5 0 0 0 - - -;
-#X floatatom 188 143 5 0 0 0 - - -;
+#N canvas 0 23 259 180 10;
+#X text 60 17 square a control signal;
+#X obj 93 70 sqr;
+#X floatatom 95 48 5 0 0 0 - - -;
+#X floatatom 92 89 5 0 0 0 - - -;
 #X connect 1 0 3 0;
 #X connect 2 0 1 0;

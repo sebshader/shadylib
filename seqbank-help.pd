@@ -13,10 +13,10 @@
 -1 -1;
 #X text 395 242 clear everything;
 #X obj 58 67 sequencer;
-#X floatatom 122 567 5 0 0 0 - - -, f 5;
-#X floatatom 163 565 5 0 0 0 - - -, f 5;
-#X floatatom 225 569 5 0 0 0 - - -, f 5;
-#X floatatom 624 544 5 0 0 0 - - -, f 5;
+#X floatatom 122 567 5 0 0 0 - - -;
+#X floatatom 163 565 5 0 0 0 - - -;
+#X floatatom 225 569 5 0 0 0 - - -;
+#X floatatom 624 544 5 0 0 0 - - -;
 #X obj 632 291 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 651 288 output subpatch #;
@@ -30,6 +30,9 @@ each numberbox has receive name \$0-nbx\$2\$1r \, where \$0 is subpatch
 #X text 504 640 you can also read directly from the array: \$0-seqbank
 ;
 #X text 266 207 starting at row 2 column 0 \, enter;
+#X text 166 20 seqbank is a bank of 3 16-step sequencer rows that can
+be accessed/addressed by step number in its left inlet \, for fast
+editing;
 #X connect 0 0 13 0;
 #X connect 0 1 14 0;
 #X connect 0 2 15 0;

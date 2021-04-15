@@ -5,14 +5,14 @@
 #X obj 161 216 *~;
 #X obj 135 183 cos~;
 #X obj 196 61 mtof;
-#X floatatom 196 36 5 0 0 0 - - -, f 5;
+#X floatatom 196 36 5 0 0 0 - - -;
 #X obj 71 36 metro 100;
 #X obj 69 130 samphold~;
 #X obj 70 107 sig~;
 #X obj 135 159 *~;
-#X floatatom 66 82 5 0 0 0 - - -, f 5;
+#X floatatom 66 82 5 0 0 0 - - -;
 #X obj 71 57 cyclecount 20;
-#X obj 74 17 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 74 17 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X obj 276 15 loadbang;
 #X msg 273 59 5;
@@ -22,6 +22,8 @@ of the fundamental;
 #X obj 199 168 pthng~;
 #X obj 304 263 oscope~;
 #X text 279 163 hanning pulse train;
+#X text 340 65 takes phasor~ input for phase;
+#X text 340 115 right inlet is waveshaping amount;
 #X connect 0 0 1 0;
 #X connect 1 0 10 0;
 #X connect 1 0 8 1;

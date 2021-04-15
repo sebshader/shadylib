@@ -1,10 +1,10 @@
-#N canvas 619 288 450 300 10;
+#N canvas 469 82 450 300 10;
 #X obj 88 83 saver savetxt;
 #X obj 71 168 txtsave savetxt;
 #X obj 308 93 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 4000 1;
 #X obj 273 190 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 0 1;
+-1 -1 2100 1;
 #X obj 248 206 f;
 #X obj 202 149 stater savetxt s4;
 #X obj 187 95 sstater savetxt s3;
@@ -12,6 +12,7 @@
 #X msg 27 63 write saveit.txt;
 #X msg 24 34 read saveit.txt;
 #X text 145 28 always supply a global name to avoid errors;
+#X text 188 50 1st read saveit.txt \, then press load;
 #X connect 0 0 1 1;
 #X connect 0 1 1 2;
 #X connect 0 2 1 3;

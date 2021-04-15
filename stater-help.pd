@@ -1,7 +1,8 @@
-#N canvas 558 82 450 300 10;
-#X text 110 113 works with saver to save parameters;
-#X obj 112 171 stater globalname objectname;
-#X obj 267 40 saver;
-#X text 102 212 inlet is parameter to save \, left outlet outputs a
-bang on save right outlet loads the saved value;
-#X text 194 57 see help:;
+#N canvas 558 82 462 286 10;
+#X text 31 95 works with saver to save parameters;
+#X obj 33 153 stater globalname objectname;
+#X obj 188 22 saver;
+#X text 115 39 see help:;
+#X text 23 194 inlet is parameter to save \, left outlet outputs a
+bang on save (use it to supply the correct value to the left inlet)
+\, right outlet loads the saved value;

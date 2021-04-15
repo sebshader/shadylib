@@ -10,6 +10,8 @@ bang \; bang 45 \; list bang 45 \;;
 -1;
 #X obj 346 247 list-delim /;
 #X obj 351 271 print;
+#X text 91 28 converts a stream in text format to list format (with
+"/"s);
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 5 0;

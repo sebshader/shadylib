@@ -1,4 +1,4 @@
-#N canvas 359 589 738 412 10;
+#N canvas 291 127 689 223 10;
 #X text 291 22 open a soundfile \, then read it. outputs stereo.;
 #X text 336 42 inlets: file path \, open \, read \, stop.;
 #X text 207 140 outlets: stereo audio out \, bang upon finishing soundfile

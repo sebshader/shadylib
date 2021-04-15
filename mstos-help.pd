@@ -1,7 +1,7 @@
-#N canvas 0 22 450 300 10;
-#X obj 153 172 mstos;
-#X text 108 52 how many samples in this many ms?;
-#X floatatom 155 152 5 0 0 0 - - -;
-#X floatatom 153 202 5 0 0 0 - - -;
+#N canvas 0 23 309 177 10;
+#X obj 88 81 mstos;
+#X text 15 20 how many samples in this many ms?;
+#X floatatom 90 61 5 0 0 0 - - -;
+#X floatatom 88 111 5 0 0 0 - - -;
 #X connect 0 0 3 0;
 #X connect 2 0 0 0;

@@ -1,4 +1,4 @@
-#N canvas 0 22 450 300 10;
+#N canvas 394 134 450 300 10;
 #X obj 264 112 circle~;
 #X obj 237 154 volpan~;
 #X obj 261 88 phasor~;
@@ -6,9 +6,10 @@
 #X obj 196 113 osc~ 440;
 #X obj 175 71 smoother~;
 #X obj 248 189 dac~;
-#X text 106 34 inside are a few comments;
 #X obj 314 184 gainc~;
 #X text 325 155 also see:;
+#X text 44 232 uses some kinda equal-power panning;
+#X text 15 154 inlets: signal \, gain \, pan (0-1);
 #X connect 0 0 1 2;
 #X connect 0 1 1 1;
 #X connect 1 0 6 0;

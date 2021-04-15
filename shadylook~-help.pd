@@ -1,20 +1,20 @@
-#N canvas 496 162 853 515 10;
-#X obj 261 153 shadylook~;
+#N canvas 496 162 465 318 10;
+#X obj 71 123 shadylook~;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array siglook 44100 float 2;
 #X coords 0 1 44099 0 200 140 1 0 0;
-#X restore 407 246 graph;
-#X obj 264 200 tabwrite~ siglook;
-#X obj 365 55 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X restore 211 114 graph;
+#X obj 74 170 tabwrite~ siglook;
+#X obj 167 23 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X msg 350 85 0 \, 1 1000;
-#X obj 352 122 line~;
-#X msg 223 100 rexp;
-#X msg 232 79 gauss;
-#X msg 283 102 cauchy;
-#X text 438 106 signal version of shadylook;
-#X obj 520 138 shadylook;
-#X msg 209 337 \; pd dsp 1;
+#X msg 152 53 0 \, 1 1000;
+#X obj 154 90 line~;
+#X msg 33 70 rexp;
+#X msg 42 49 gauss;
+#X msg 93 72 cauchy;
+#X text 256 40 signal version of shadylook;
+#X obj 338 72 shadylook;
+#X msg 70 220 \; pd dsp 1;
 #X connect 0 0 2 0;
 #X connect 3 0 4 0;
 #X connect 3 0 2 0;

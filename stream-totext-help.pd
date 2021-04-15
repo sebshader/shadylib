@@ -3,4 +3,5 @@
 #X msg 170 72 / this // is a list / here's another // list / bang /
 bang 45;
 #X obj 165 109 stream-totext stream-totext-help;
+#X text 115 27 converts stream in list format to text format;
 #X connect 1 0 2 0;

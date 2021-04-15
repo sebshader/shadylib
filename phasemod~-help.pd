@@ -6,10 +6,10 @@
 #X obj 85 110 smoother~;
 #X obj 177 206 outputc~;
 #X obj 247 116 *~ 2;
-#X text 74 158 carrier;
-#X text 271 159 modulator(s);
+#X text 249 158 modulator(s);
 #X obj 310 248 modulator~;
 #X text 310 226 see also:;
+#X text 67 89 carrier frequency;
 #X connect 0 0 4 0;
 #X connect 0 0 4 1;
 #X connect 2 0 5 0;
