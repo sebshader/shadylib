@@ -45,7 +45,7 @@
 #X obj 297 80 f \$3;
 #X obj 415 291 f;
 #X obj 517 129 declare -lib zexy;
-#N canvas 209 274 962 699 subpatch--- 1;
+#N canvas 209 274 962 699 subpatch--- 0;
 #X obj 17 20 inlet newval;
 #X obj 210 21 inlet outval;
 #X obj 115 19 inlet inval;

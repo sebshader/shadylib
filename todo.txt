@@ -1,4 +1,3 @@
 figure out garray + switch~ redrawing mystery?
-route that keeps selector?
 pipebang tempo args?
-figure out whether OSCdispatch/udispatch can be deprecated due to new pd objects
+check text-> stream bangs (come out as symbols)
