@@ -1,11 +1,12 @@
 #include "m_pd.h"
+#include <math.h>
 
 static t_class *inrange_class;
 
 typedef struct _inrange {
 	t_object x_obj;
-	/* 0 means 1st inlet lo, 1 means 1st inlet hi */
-	int x_state;
+	t_float x_left;
+	t_float x_right;
 	t_float x_lo;
 	t_float x_hi;
 	t_outlet *f_out1, *f_out2;
@@ -16,51 +17,32 @@ static void inrange_float(t_inrange *x, t_floatarg in) {
 		outlet_float(x->f_out1, in);
 	else outlet_float(x->f_out2, in);
 }
+
+static inline void setrange(t_inrange* x, t_float* set, t_float comp,
+    t_float in) {
+    *set = in;
+    if(in > comp) {
+        x->x_lo = comp;
+        x->x_hi = in;
+    } else {
+        x->x_lo = in;
+        x->x_hi = comp;
+    }
+}
 	
 static void inrange_f1(t_inrange *x, t_floatarg in) {
-	if(x->x_state)
-		if(in >= x->x_lo) x->x_hi = in;
-		else {
-			x->x_hi = x->x_lo;
-			x->x_lo = in;
-			x->x_state = 0;
-		}
-	else {
-		if(in <= x->x_hi) x->x_lo = in;
-		else {
-			x->x_lo = x->x_hi;
-			x->x_hi = in;
-			x->x_state = 1;
-		}
-	}		
+	setrange(x, &x->x_left, x->x_right, in);
 }
 
 static void inrange_f2(t_inrange *x, t_floatarg in) {
-	if(x->x_state)
-		if(in <= x->x_hi) x->x_lo = in;
-		else {
-			x->x_lo = x->x_hi;
-			x->x_hi = in;
-			x->x_state = 0;
-		}
-	else {
-		if(in >= x->x_lo) x->x_hi = in;
-		else {
-			x->x_hi = x->x_lo;
-			x->x_lo = in;
-			x->x_state = 1;
-		}
-	}		
+	setrange(x, &x->x_right, x->x_left, in);
 }
 	
 static void *inrange_new(t_floatarg f1, t_floatarg f2)
 {
     t_inrange *x = (t_inrange *)pd_new(inrange_class);
-    x->x_state = 0;
-    x->x_lo = 0.0;
-    x->x_hi = 0.0;
+    x->x_left = f1;
     inrange_f2(x, f2);
-    inrange_f1(x, f1);
     x->f_out1 = outlet_new(&x->x_obj,&s_float);
     x->f_out2 = outlet_new(&x->x_obj,&s_float);
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("f1"));
