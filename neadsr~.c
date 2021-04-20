@@ -84,7 +84,7 @@ static void neadsr_decay(t_neadsr *x, t_symbol* UNUSED(s), int argc,
 
 static void neadsr_sustain(t_neadsr *x, t_floatarg f)
 {
-	x->x_ctl.c_sustain = fmax(0.0, fmin(1.0,f));
+	x->x_ctl.c_sustain = shadylib_clamp(f, 0.0, 1.0);
 }
 
 static void neadsr_release(t_neadsr *x, t_symbol* UNUSED(s), int argc,
@@ -175,8 +175,8 @@ t_int *neadsr_perform(t_int *w)
 			stage.base = ctl->c_linr;
 			while(n--){
 				*out++ = state;
-				#ifdef FP_FAST_FMA
-				state = fma(state, stage.op, stage.base);
+				#ifdef FP_FAST_FMAF
+				state = fmaf(state, stage.op, stage.base);
 				#else
 				state = state*stage.op + stage.base;
 				#endif
@@ -193,8 +193,8 @@ t_int *neadsr_perform(t_int *w)
 		while(n){
 			n--;/*put outside of while so n != -1*/
 			*out++ = state;
-			#ifdef FP_FAST_FMA
-			state = fma(state, stage.op, stage.base);
+			#ifdef FP_FAST_FMAF
+			state = fmaf(state, stage.op, stage.base);
 			#else
 			state = state*stage.op + stage.base;
 			#endif
@@ -214,8 +214,8 @@ t_int *neadsr_perform(t_int *w)
 			do {
 				n--;
 				*out++ = state;
-				#ifdef FP_FAST_FMA
-				state = fma(state, stage.op, stage.base);
+				#ifdef FP_FAST_FMAF
+				state = fmaf(state, stage.op, stage.base);
 				#else
 				state = state*stage.op + stage.base;
 				#endif
@@ -227,8 +227,8 @@ t_int *neadsr_perform(t_int *w)
 			do {
 				n--;
 				*out++ = state;
-				#ifdef FP_FAST_FMA
-				state = fma(state, stage.op, stage.base);
+				#ifdef FP_FAST_FMAF
+				state = fmaf(state, stage.op, stage.base);
 				#else
 				state = state*stage.op + stage.base;
 				#endif

@@ -68,24 +68,24 @@ static void *powclip_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 }
 
 static inline t_sample powclip_calculate (t_sample in1, t_sample in2) {
-	t_sample absin1 = fabs(in1);
-	absin1 = fmin(absin1, 1);
-	if(in2 <= 0) return copysign(absin1, in1);
+	t_sample absin1 = fabsf(in1);
+	absin1 = shadylib_min(absin1, 1);
+	if(in2 <= 0) return copysignf(absin1, in1);
 	else if(in2 >= 1) {
 		int readpoint;
-		double fred = absin1 * (BASTABSIZE - 2), val;
+		t_sample fred = absin1 * (BASTABSIZE - 2), val;
 		readpoint = fred;
 		fred -= readpoint;
 		val = base_table[readpoint++];
-	#ifdef FP_FAST_FMA
-		return copysign(fma(fred, (base_table[readpoint] - val), val), in1);
+	#ifdef FP_FAST_FMAF
+		return copysignf(fmaf(fred, (base_table[readpoint] - val), val), in1);
 	} else {
-		return copysign(fma(-in2, pow(absin1, 1.0/in2), absin1)/(1 - in2), in1);
+		return copysignf(fmaf(-in2, powf(absin1, 1.0/in2), absin1)/(1 - in2), in1);
 	} 
 	#else
-		return copysign(val + (base_table[readpoint] - val)*fred, in1);
+		return copysignf(val + (base_table[readpoint] - val)*fred, in1);
 	} else {
-		return copysign((absin1 - in2*pow(absin1, 1.0/in2))/(1 - in2), in1);
+		return copysignf((absin1 - in2*powf(absin1, 1.0/in2))/(1 - in2), in1);
 	}
 	#endif
 }
@@ -110,35 +110,35 @@ t_int *scalarpowclip_perform(t_int *w)
     int n = (int)(w[4]);
     t_sample abstin, tin;
     if(f <= 0) while(n--) {
-    	tin = fmin(fmax(*in++, -1), 1);
-    	*out++ = tin;
+        tin = *in++;
+    	*out++ = shadylib_clamp(tin, -1, 1);
 	} else if(f >= 1) {
 		int readpoint;
-		double fred, val;
+		t_sample fred, val;
 		while (n--) {
 			tin = *in++;
-			abstin = fmin(fabs(tin), 1);
+			abstin = shadylib_min(fabsf(tin), 1);
 			fred = abstin * (BASTABSIZE - 2);
 			readpoint = fred;
 			fred -= readpoint;
 			val = base_table[readpoint++];
-			#ifdef FP_FAST_FMA
-			*out++ = copysign(fma(fred, (base_table[readpoint] - val),
+			#ifdef FP_FAST_FMAF
+			*out++ = copysignf(fmaf(fred, (base_table[readpoint] - val),
 				val), tin);
 			#else
-			*out++ = copysign(val + (base_table[readpoint] - val)*fred, tin);
+			*out++ = copysignf(val + (base_table[readpoint] - val)*fred, tin);
 			#endif
 		}
 	} else {
-		double finverse = 1.0/f, fscale = 1/(1 - f);
+		t_sample finverse = 1.0/f, fscale = 1/(1 - f);
 		while (n--) {
 			tin = *in++;
-			abstin = fmin(fabs(tin), 1);
-			#ifdef FP_FAST_FMA
-			*out++ = copysign(fma(-f, pow(abstin, finverse), abstin)*fscale,
+			abstin = shadylib_min(fabsf(tin), 1);
+			#ifdef FP_FAST_FMAF
+			*out++ = copysignf(fmaf(-f, powf(abstin, finverse), abstin)*fscale,
 				tin);
 			#else
-			*out++ = copysign((abstin - f*pow(abstin, finverse))*fscale, tin);
+			*out++ = copysignf((abstin - f*powf(abstin, finverse))*fscale, tin);
 			#endif
 		} 
 	}

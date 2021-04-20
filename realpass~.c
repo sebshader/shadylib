@@ -68,10 +68,10 @@ static t_int *realpass_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-       #ifdef FP_FAST_FMA
-       delsamps = fma(frac, (
-            cminusb - 0.1666667f * (1.-frac) * fma(
-                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+       #ifdef FP_FAST_FMAF
+       delsamps = fmaf(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fmaf(
+                (fmaf(-3.0f, cminusb, d - a)), frac, fmaf(-3.0, b, fmaf(2.0, a, d))
             )
         ), b);
         #else
@@ -81,10 +81,10 @@ static t_int *realpass_perform(t_int *w)
             )
         );
         #endif
-        
-        a = fmax(fmin(*coef++, 1), -1);
-        #ifdef FP_FAST_FMA
-        c = fma(delsamps, -a, f);
+        a = *coef++;
+        a = shadylib_clamp(a, -1.0, 1.0);
+        #ifdef FP_FAST_FMAF
+        c = fmaf(delsamps, -a, f);
         #else
         c = f - delsamps*a;
         #endif

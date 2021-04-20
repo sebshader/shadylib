@@ -36,7 +36,7 @@ static void buzz_phase(t_buzz *x, t_float f) {
 }
 
 static void scalarbuzz_freq(t_scalarbuzz *x, t_float f) {
-	x->x_g = fminf(x->max, fmaxf(f, 0));
+	x->x_g = shadylib_clamp(f, 0, x->max);
 	x->argset = 0;
 }
 
@@ -82,12 +82,13 @@ static t_int *scalarbuzz_perform(t_int *w) {
     double conv = x->x_conv;
     double phase = x->phase;
     double rat, frat, res1, res2, res3, res4, fread;
-    t_sample freq;
+    double freq;
     uint32_t tabrd, tabrd2, n2;
-    float g = x->x_g;
+    double g = x->x_g;
     float max = x->max;
 	while(n--) {
-		freq = fmin(fabs(*in++), max);
+	    freq = fabsf(*in++);
+		freq = shadylib_min(freq, max);
 		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
@@ -122,7 +123,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
 			#endif
 		}
 		rat = g/freq - 1;
-		rat = fmax(fmin(rat, SHADYLIB_MAXHARM), 1);
+		rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -187,12 +188,14 @@ static t_int *buzz_perform(t_int *w) {
     double phase = x->phase;
     double rat, frat, res1, res2, res3, res4, fread;
     float max = x->max;
-    t_sample freq;
+    double freq, g;
     uint32_t tabrd, tabrd2, n2;
-    t_sample g;
+
 	while(n--) {
-		freq = fmin(fabs(*in++), max);
-		g = fmin(*in2++, max);
+	    freq = fabsf(*in++);
+		freq = shadylib_min(freq, max);
+		g = *in2++;
+		g = shadylib_min(g, max);
 		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
@@ -227,7 +230,7 @@ static t_int *buzz_perform(t_int *w) {
 			#endif
 		}
 		rat = g/freq - 1;
-		rat = fmax(fmin(rat, SHADYLIB_MAXHARM), 1);
+		rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;

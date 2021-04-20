@@ -30,7 +30,7 @@ static void *bpbuzz_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 	pd_float(
         (t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal),
             oduty);
-	x->x_duty = x->x_oduty = 0.495 - 0.49*fmin(fmax(oduty, 0), 1);
+	x->x_duty = x->x_oduty = 0.495 - 0.49*shadylib_clamp(oduty, 0.0, 1.0);
 	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("phase"));
 	outlet_new(&x->x_obj, &s_signal);
 	outlet_new(&x->x_obj, &s_signal);
@@ -50,12 +50,12 @@ static t_int *bpbuzz_perform(t_int *w) {
     double conv = x->x_conv, dconv = x->d_conv;
     double phase = x->phase, dphase = x->dphase;
     double rat, frat, res1, res2, res3, res4, fread;
-    t_sample freq, final;
+    double freq, final, max = x->max, duty = x->x_duty, oduty = x->x_oduty;
     uint32_t tabrd, tabrd2, n2;
-    float max = x->max, duty = x->x_duty, oduty = x->x_oduty;
     
 	for(int i=0; i < n; i++) {
-		freq = fmin(fabs(*in++), max);
+	    freq = fabs(*in++);
+		freq = shadylib_min(freq, max);
 		fread = phase*SHADYLIB_BUZZSIZE;
 		tabrd = fread;
 		tabrd2 = tabrd + 1;
@@ -73,7 +73,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 			if(fabs(res2)  < 0.0005f) {
 				final = 1;
 				
-				rat = fmax(fmin(max/freq, SHADYLIB_MAXHARM), 1);
+				rat = shadylib_clamp(max/freq, 1, SHADYLIB_MAXHARM);
 				n2 = rat;
 				n2 *= 2;
 				
@@ -86,7 +86,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 			res2 = res1 + (res2 - res1)*res3;
 			#endif
 		}
-		rat = fmax(fmin(max/freq - 1, SHADYLIB_MAXHARM), 1);
+		rat = shadylib_clamp(max/freq, 1, SHADYLIB_MAXHARM);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -132,7 +132,8 @@ gotfinal:
 			rat = phase + oduty + dphase;
 			goto gotfinal2;
 		}
-		rat = fmax(fmin(max*(1 - ((1 - 2*dconv)*dconv))/freq - 1, SHADYLIB_MAXHARM), 1);
+		rat = max*(1 - ((1 - 2*dconv)*dconv))/freq - 1;
+		rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
@@ -211,7 +212,7 @@ gotfinal2:
 			
 			dphase = dphase - duty + oduty;
 			oduty = duty;
-			duty = fmin(fmax(*in2, 0), 1);
+			duty = shadylib_clamp(*in2, 0, 1);
 			#ifdef FP_FAST_FMA
 			duty = fma(duty, -0.49, .495);
 			#else

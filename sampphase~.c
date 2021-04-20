@@ -49,22 +49,14 @@ static t_int *sampphase_perform(t_int *w)
 			tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
     		*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
     		*out2++ = samp;
-    		#ifdef FP_FAST_FMA
-    		tf.tf_d = fma(samp, conv, tf.tf_d);
-    		#else
     		tf.tf_d += samp * conv;
-    		#endif
 		}
 		x->x_held = samp;
     } else {
     	double dphase = tf.tf_d;
     	while (n--) {
     		tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
-    		#ifdef FP_FAST_FMA
-    		dphase = fma(*in, conv, dphase);
-    		#else
-        	dphase += *in * conv;
-        	#endif
+    		dphase += *in * conv;
         	*out2++ = *in++;
         	*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
         	tf.tf_d = dphase;

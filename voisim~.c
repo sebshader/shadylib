@@ -71,34 +71,37 @@ static t_int *vosim_perform(t_int *w) {
 			outphase = outphase - caster;
 			res = outphase;
 			inphase = 0;
-			phsinc = fmax(in[i], 0);
+			phsinc = *in;
+			phsinc = shadylib_max(phsinc, 0);
 			outfreq = phsinc*conv;
-			infreq = fmax(phsinc, cen[i])*conv;
+			infreq = shadylib_max(phsinc, *cen)*conv;
 		} else if (inphase >= 1.) {
-			phsinc = fmax(in[i], 0);
+			phsinc = shadylib_max(*in, 0);
 			outfreq = phsinc*conv;
-			infreq = fmax(phsinc, cen[i])*conv;
+			infreq = shadylib_max(phsinc, *cen)*conv;
 			caster = inphase;
 			inphase = inphase - caster;
 			/* routphase is now the limit */
 			phsinc = outfreq/infreq;
-			routphase = fmin(1 - phsinc, duty);
+			routphase = shadylib_min(1 - phsinc, duty);
 			routphase = routphase - outphase - res;
 			if(routphase < 0) {
 				curdec = 0;
 			} else {
-				curdec *= fmax(fmin(decay, 1.), -1.);
+				curdec *= shadylib_clamp(decay, -1.0, 1.0);
 				/* a little fading */
-				curdec *= fmin(routphase/phsinc, 1.);
+				curdec *= shadylib_min(routphase/phsinc, 1.0);
 			}
 		 } else if (outfreq == 0 || curdec == 0 || outfreq == infreq) {
-			phsinc = fmax(in[i], 0);
+			phsinc = shadylib_max(*in, 0);
 			outfreq = phsinc*conv;
-			infreq = fmax(phsinc, cen[i])*conv;
+			infreq = shadylib_max(phsinc, *cen)*conv;
 		}
-		out[i] = readtab(inphase*(SINSQRSIZE- 1))*curdec;
+		*out++ = readtab(inphase*(SINSQRSIZE- 1))*curdec;
 		outphase += outfreq;
 		inphase += infreq;
+		in++;
+		cen++;
 	}
 	x->x_res = res;
 	x->curdec = curdec;

@@ -69,10 +69,10 @@ static t_int *nrcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-        #ifdef FP_FAST_FMA
-       delsamps = fma(frac, (
-            cminusb - 0.1666667f * (1.-frac) * fma(
-                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+        #ifdef FP_FAST_FMAF
+       delsamps = fmaf(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fmaf(
+                (fmaf(-3.0f, cminusb, d - a)), frac, fmaf(-3.0, b, fmaf(2.0, a, d))
             )
         ), b);
         #else
@@ -82,10 +82,12 @@ static t_int *nrcombf_perform(t_int *w)
             )
         );
         #endif
-        b = fmax(fmin(*norm++, 1), -1);
-        a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        #ifdef FP_FAST_FMA
-        *out++ = fma(delsamps, a, f)*b;
+        b = *norm++;
+        b = shadylib_clamp(b, -1.0, 1.0);
+        a = *fb++;
+        a = shadylib_clamp(a, -0x1.fffffp-1, 0x1.fffffp-1);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(delsamps, a, f)*b;
         #else
         *out++ = (f + delsamps*a)*b;
         #endif
@@ -140,10 +142,10 @@ static t_int *nnrcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-       #ifdef FP_FAST_FMA
-       delsamps = fma(frac, (
-            cminusb - 0.1666667f * (1.-frac) * fma(
-                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+       #ifdef FP_FAST_FMAF
+       delsamps = fmaf(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fmaf(
+                (fmaf(-3.0f, cminusb, d - a)), frac, fmaf(-3.0, b, fmaf(2.0, a, d))
             )
         ), b);
         #else
@@ -153,11 +155,12 @@ static t_int *nnrcombf_perform(t_int *w)
             )
         );
         #endif
-        a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        #ifdef FP_FAST_FMA
-        *out++ = fma(delsamps, a, f)/(1 + fabs(a));
+        a = *fb++;
+        a = shadylib_clamp(a, -0x1.fffffp-1, 0x1.fffffp-1);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(delsamps, a, f)/(1 + fabsf(a));
         #else
-        *out++ = (f + delsamps*a)/(1 + fabs(a));
+        *out++ = (f + delsamps*a)/(1 + fabsf(a));
         #endif
         *wp++ = f;
         if (wp == ep)

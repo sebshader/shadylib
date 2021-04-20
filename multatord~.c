@@ -24,10 +24,10 @@ static t_int *multator_saw_perf0(t_int *w)
     {
         f = *in++;
         k = f;
-        #ifdef FP_FAST_FMA
-        if (k <= f) f = fma(f-k, 2, -1);
-        else f = fma(f-k+1, 2, -1);
-        *out++ = fma(f, *mul++, *add++);
+        #ifdef FP_FAST_FMAF
+        if (k <= f) f = fmaf(f-k, 2, -1);
+        else f = fmaf(f-k+1, 2, -1);
+        *out++ = fmaf(f, *mul++, *add++);
         #else
         if (k <= f) f = (f-k)*2 - 1;
         else f = (f-k+1)*2 - 1;
@@ -51,10 +51,10 @@ static t_int *multator_saw_perf1(t_int *w)
     {
         f = *in++;
         k = f;
-        #ifdef FP_FAST_FMA
-        if (k <= f) f = fma(f-k, 2, -1);
-        else f = fma(f-k+1, 2, -1);
-        *out++ = fma(f, *mul++, add);
+        #ifdef FP_FAST_FMAF
+        if (k <= f) f = fmaf(f-k, 2, -1);
+        else f = fmaf(f-k+1, 2, -1);
+        *out++ = fmaf(f, *mul++, add);
         #else
         if (k <= f) f = (f-k)*2 - 1;
         else f = (f-k+1)*2 - 1;
@@ -78,10 +78,10 @@ static t_int *multator_saw_perf2(t_int *w)
     {
         f = *in++;
         k = f;
-        #ifdef FP_FAST_FMA
-        if (k <= f) f = fma(f-k, 2, -1);
-        else f = fma(f-k+1, 2, -1);
-        *out++ = fma(f, mul, add);
+        #ifdef FP_FAST_FMAF
+        if (k <= f) f = fmaf(f-k, 2, -1);
+        else f = fmaf(f-k+1, 2, -1);
+        *out++ = fmaf(f, mul, add);
         #else
         if (k <= f) f = (f-k)*2 - 1;
         else f = (f-k+1)*2 - 1;

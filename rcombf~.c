@@ -49,10 +49,10 @@ static t_int *rcombf_perform(t_int *w)
     phase += n;
     while (n--)
     {
-    	t_sample f = *in++;
+    	t_sample f = *in++, inorm = *norm++;
         if (PD_BIGORSMALL(f))
             f = 0;
-        f *= fmax(fmin(*norm++, 1), -1);
+        f *= shadylib_clamp(inorm, -1.0, 1.0);
         t_sample delsamps = x->x_sr * (*time++), frac;
         
         t_sample a, b, c, d, cminusb;
@@ -69,10 +69,10 @@ static t_int *rcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-       #ifdef FP_FAST_FMA
-       delsamps = fma(frac, (
-            cminusb - 0.1666667f * (1.-frac) * fma(
-                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+       #ifdef FP_FAST_FMAF
+       delsamps = fmaf(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fmaf(
+                (fmaf(-3.0f, cminusb, d - a)), frac, fmaf(-3.0, b, fmaf(2.0, a, d))
             )
         ), b);
         #else
@@ -82,9 +82,10 @@ static t_int *rcombf_perform(t_int *w)
             )
         );
         #endif
-        a = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        #ifdef FP_FAST_FMA
-        c = fma(delsamps, a, f);
+        a = *fb++;
+        a = shadylib_clamp(a, -0x1.fffffp-1, 0x1.fffffp-1);
+        #ifdef FP_FAST_FMAF
+        c = fmaf(delsamps, a, f);
         #else
         c = f + delsamps*a;
         #endif
@@ -125,8 +126,9 @@ static t_int *nrcombf_perform(t_int *w)
     	f = *in++;
     	if (PD_BIGORSMALL(f))
             f = 0;
-    	feedback = fmax(fmin(*fb++, 0x1.fffffp-1), -0x1.fffffp-1);
-        f *= 1 - fabs(feedback);
+        feedback = *fb++;
+    	feedback = shadylib_clamp(feedback, -0x1.fffffp-1, 0x1.fffffp-1);
+        f *= 1 - fabsf(feedback);
         delsamps = x->x_sr * (*time++);
         
         if (!(delsamps >= 1.f))    /* too small or NAN */
@@ -142,10 +144,10 @@ static t_int *nrcombf_perform(t_int *w)
         b = bp[-1];
         a = bp[0];
         cminusb = c-b;
-        #ifdef FP_FAST_FMA
-       delsamps = fma(frac, (
-            cminusb - 0.1666667f * (1.-frac) * fma(
-                (fma(-3.0f, cminusb, d - a)), frac, fma(-3.0, b, fma(2.0, a, d))
+        #ifdef FP_FAST_FMAF
+       delsamps = fmaf(frac, (
+            cminusb - 0.1666667f * (1.-frac) * fmaf(
+                (fmaf(-3.0f, cminusb, d - a)), frac, fmaf(-3.0, b, fmaf(2.0, a, d))
             )
         ), b);
         #else
@@ -155,8 +157,8 @@ static t_int *nrcombf_perform(t_int *w)
             )
         );
         #endif
-        #ifdef FP_FAST_FMA
-        c = fma(delsamps, feedback, f);
+        #ifdef FP_FAST_FMAF
+        c = fmaf(delsamps, feedback, f);
         #else
         c = f + delsamps*feedback;
         #endif

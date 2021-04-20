@@ -17,8 +17,8 @@ t_int *scaler_perform(t_int *w)
     t_sample *out = (t_sample *)(w[4]);
     int n = (int)(w[5]);
     while (n--)
-    	#ifdef FP_FAST_FMA
-    	*out++ = fma(*in++, mul, add);
+    	#ifdef FP_FAST_FMAF
+    	*out++ = fmaf(*in++, mul, add);
     	#else
     	*out++ = (*in++)*mul + add;
     	#endif

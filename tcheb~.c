@@ -14,11 +14,11 @@ t_int *tcheb_tilde_perform(t_int *w) {
 		*out = (t_sample*) (w[3]);
 	int n = (int) (w[4]), l;
 	uint32_t newo, dir;
-	float inord; //change floorf below for pd-double
+	t_sample inord; //change floorf below for pd-double
 	double t1, t2, tin, temp;
 	while(n--) {
 		inord = *in2++;
-		inord = fmin(MAX_HARM, fmax(0., inord));
+		inord = shadylib_clamp(inord, 0.0, MAX_HARM);
 		newo = inord + 2;
 		/* this is basically a binary stack for even-odd computations
 		we do (n+1)/2 because later we can only do 2n - 1 for odd
@@ -28,7 +28,7 @@ t_int *tcheb_tilde_perform(t_int *w) {
 				dir = (1 & newo) | dir;
 		}
 		t1 = *in1++;
-		t1 = fmax(-1.0, fmin(t1, 1.0));
+		t1 = shadylib_clamp(t1, -1.0, 1.0);
 		t2 = 2.0*t1*t1 - 1.0; 
 		tin = t1;
 		for(int i = 0; i < l; i++) {
@@ -61,12 +61,8 @@ t_int *tcheb_tilde_perform(t_int *w) {
 			}
 			dir >>= 1;
 		}
-		inord = (inord - floorf(inord));
-		#ifdef FP_FAST_FMA
-		*out++ = (t_sample)(fma(t2 - t1, inord, t1));
-		#else
+		inord = inord - floorf(inord);
 		*out++ = (t_sample)(t1 + (t2 - t1)*inord);
-		#endif
 	}
 	return (w + 5);
 }

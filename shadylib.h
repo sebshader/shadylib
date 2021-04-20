@@ -1,6 +1,12 @@
 #include "m_pd.h"
 #include <math.h>
 
+/* this seems faster than fmin/fmax sometimes bc of type conversion */
+#define shadylib_min(X, Y)  ((X) < (Y) ? (X) : (Y))
+#define shadylib_max(X, Y)  ((X) > (Y) ? (X) : (Y))
+/* clamp x between y and z */
+#define shadylib_clamp(X, Y, Z) ((X) > (Z) ? (Z) : ((X) < (Y) ? (Y) : (X)))
+
 /* suppress unused warnings */
 #ifdef __GNUC__
 #  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))

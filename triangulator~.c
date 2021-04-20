@@ -30,17 +30,13 @@ static t_int *op_perf0(t_int *w) {
 
     while (n--)
     {
-        #ifdef FP_FAST_FMA
-        dphase = fma(*in++, conv, dphase);
-        #else
         dphase += *in++ * conv;
-        #endif
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, *add++);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, *mul++, *add++);
         #else
         *out++ = inter*(*mul++) + (*add++);
         #endif
@@ -68,17 +64,13 @@ static t_int *op_perf1(t_int *w) {
 
     while (n--)
     {
-        #ifdef FP_FAST_FMA
-        dphase = fma(*in++, conv, dphase);
-        #else
         dphase += *in++ * conv;
-        #endif
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, add);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, *mul++, add);
         #else
         *out++ = inter*(*mul++) + add;
         #endif
@@ -106,17 +98,13 @@ static t_int *op_perf2(t_int *w) {
 
     while (n--)
     {
-        #ifdef FP_FAST_FMA
-        dphase = fma(*in++, conv, dphase);
-        #else
         dphase += *in++ * conv;
-        #endif
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, mul, add);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, mul, add);
         #else
         *out++ = inter*mul + add;
         #endif

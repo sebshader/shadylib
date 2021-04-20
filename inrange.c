@@ -1,5 +1,4 @@
 #include "m_pd.h"
-#include <math.h>
 
 static t_class *inrange_class;
 

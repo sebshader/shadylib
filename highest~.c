@@ -21,7 +21,7 @@ static void highest_set(t_highest *x, t_float nsamps) {
 	x->x_result = 0;
 	x->x_count = 0;
 	if(nsamps != 0.0) {
-		int isamps = fmin(fabs(nsamps), MAXPRD);
+		int isamps = shadylib_min(fabsf(nsamps), MAXPRD);
 		int n = x->x_blocksize;
     	x->x_period = isamps;
 		/* get next multiple of n */

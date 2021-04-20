@@ -12,15 +12,15 @@ t_float shadylib_readtab(t_shadylib_tabtype type, t_float index) {
 	int iindex;
 	t_float frac, index2;
 	index *= SHADYLIB_TABLESIZE;
-	index = fmax(index, 0);
+	index = shadylib_max(index, 0);
 	if (index >= SHADYLIB_TABLESIZE - 1) return tab[SHADYLIB_TABLESIZE - 1];
 	else {
 		iindex = index;
 		frac = index - iindex;
 		index = tab[iindex++];
 		index2 = tab[iindex] - index;
-#ifdef FP_FAST_FMA
-		return fma(frac, index2, index);
+#ifdef FP_FAST_FMAF
+		return fmaf(frac, index2, index);
 #else
         return index2*frac + index;
 #endif
@@ -102,7 +102,7 @@ t_int shadylib_ms2samps(t_float time, t_float sr)
 }
 
 void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp) {
-	a = fmax(fmin(a, 1.0), 0.0);
+	a = shadylib_clamp(a, 0.0, 1.0);
 	if(a != 1.0) { /*exponential*/
 		a = shadylib_ain2reala(a);
 		if(stage->lin == a && samesamp) return;
@@ -127,7 +127,7 @@ void shadylib_ms2axfade (t_shadylib_stage *stage) {
 }
 
 void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
-	a = fmax(fmin(a, 1.0), 0.0);
+	a = shadylib_clamp(a, 0.0, 1.0);
 	if(a != 1.0) {/*exponential*/
 		a = shadylib_ain2reala(a);
 		if(stage->lin == shadylib_scalerange(a) && samesamp) return;
@@ -152,7 +152,7 @@ void shadylib_ms2dxfade (t_shadylib_stage *stage) {
 }
 
 void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
-	a = fmax(fmin(a, 1.0), 0.0);
+	a = shadylib_clamp(a, 0.0, 1.0);
 	if(a != 1.0) {/*exponential*/
 		a = shadylib_ain2reala(a);
 		if(stage->lin == shadylib_scalerange(a) && samesamp) return;
@@ -250,25 +250,15 @@ t_int *shadylib_opd_perf0(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[SHADYLIB_HIOFFSET] & (SHADYLIB_BUZZSIZE-1));
-        	#ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, (*mul++), (*add++));
-        	#else
-            dphase = f1 + frac * (f2 - f1);
+        	dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + (*add++);
-            #endif
         tf.tf_i[SHADYLIB_HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - SHADYLIB_UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
-            #ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, (*mul++), (*add++));
-        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + (*add++);
-            #endif
     return (w+5);
 }
 
@@ -301,25 +291,15 @@ t_int *shadylib_opd_perf1(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[SHADYLIB_HIOFFSET] & (SHADYLIB_BUZZSIZE-1));
-        #ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, (*mul++), add);
-        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + add;
-            #endif
         tf.tf_i[SHADYLIB_HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - SHADYLIB_UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
-            #ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, (*mul++), add);
-        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*(*mul++) + add;
-            #endif
     return (w+5);
 }
 
@@ -352,25 +332,15 @@ t_int *shadylib_opd_perf2(t_int *w) {
             f1 = addr[0];
             f2 = addr[1];
         addr = tab + (tf.tf_i[SHADYLIB_HIOFFSET] & (SHADYLIB_BUZZSIZE-1));
-    		#ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, mul, add);
-        	#else
-            dphase = f1 + frac * (f2 - f1);
+    		dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*mul + add;
-            #endif
         tf.tf_i[SHADYLIB_HIOFFSET] = normhipart;
     }
             frac = tf.tf_d - SHADYLIB_UNITBIT32;
             f1 = addr[0];
             f2 = addr[1];
-            #ifdef FP_FAST_FMA
-        	dphase = fma(frac, f2 - f1, f1);
-            *out++ = fma(dphase, mul, add);
-        	#else
             dphase = f1 + frac * (f2 - f1);
             *out++ = dphase*mul + add;
-            #endif
     return (w+5);
 }
 
@@ -389,11 +359,7 @@ t_int *shadylib_recd_perf0(t_int *w) {
         casto = (uint32_t)(*in++ * 4294967295);
         /* set the sign bit of double 1.0 */
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter.tf_d, *mul++, *add++);
-        #else
         *out++ = inter.tf_d*(*mul++) + (*add++);
-        #endif
     }
     return (w+5);
 }
@@ -412,11 +378,7 @@ t_int *shadylib_recd_perf1(t_int *w) {
     {
         casto = (uint32_t)(*in++ * 4294967295);
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter.tf_d, *mul++, add);
-        #else
         *out++ = inter.tf_d*(*mul++) + add;
-        #endif
     }
     return (w+5);
 }
@@ -435,11 +397,7 @@ t_int *shadylib_recd_perf2(t_int *w) {
     {
         casto = (uint32_t)(*in++ * 4294967295);
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter.tf_d, mul, add);
-        #else
         *out++ = inter.tf_d*mul + add;
-        #endif
     }
     return (w+5);
 }
@@ -459,8 +417,8 @@ t_int *shadylib_trid_perf0(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, *add++);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, *mul++, *add++);
         #else
         *out++ = inter*(*mul++) + (*add++);
         #endif
@@ -483,8 +441,8 @@ t_int *shadylib_trid_perf1(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, *mul++, add);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, *mul++, add);
         #else
         *out++ = inter*(*mul++) + add;
         #endif
@@ -507,8 +465,8 @@ t_int *shadylib_trid_perf2(t_int *w) {
         if(casto & 2147483648) /* bit 31 */
         	casto = ~casto;
         inter = (t_sample)casto/1073741823.5 - 1;
-        #ifdef FP_FAST_FMA
-        *out++ = fma(inter, mul, add);
+        #ifdef FP_FAST_FMAF
+        *out++ = fmaf(inter, mul, add);
         #else
         *out++ = inter*mul + add;
         #endif
