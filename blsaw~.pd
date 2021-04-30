@@ -19,6 +19,7 @@
 #X obj 522 275 clip~ 0 0.333333;
 #X obj 526 245 rminus~ 0.33333;
 #X text 516 299 this semms to work?;
+#X obj 483 115 r pd-dsp-started;
 #X connect 0 0 3 2;
 #X connect 2 0 3 0;
 #X connect 2 0 14 0;
@@ -40,3 +41,4 @@
 #X connect 16 0 18 0;
 #X connect 17 0 15 1;
 #X connect 18 0 17 0;
+#X connect 20 0 8 0;

@@ -52,6 +52,8 @@
 #X connect 16 0 14 0;
 #X restore 222 172 pd dsp logic;
 #X msg 227 133 1;
+#X obj 339 147 r pd-dsp-started;
+#X obj 339 168 outlet;
 #X connect 0 0 3 0;
 #X connect 0 0 2 0;
 #X connect 3 0 7 0;
@@ -61,4 +63,5 @@
 #X connect 10 0 2 0;
 #X connect 11 0 4 0;
 #X connect 12 0 11 0;
+#X connect 13 0 14 0;
 #X coords 0 -1 1 1 90 19 1 5 5;

@@ -28,6 +28,7 @@
 #X obj 234 131 f;
 #X obj 195 185 clip~ 0.01 0.99;
 #X obj 302 312 lag~ 0.9995;
+#X obj 442 28 r pd-dsp-started;
 #X connect 0 0 6 0;
 #X connect 0 0 19 0;
 #X connect 0 0 21 0;
@@ -63,3 +64,4 @@
 #X connect 27 0 16 1;
 #X connect 27 0 17 0;
 #X connect 28 0 12 0;
+#X connect 29 0 6 0;

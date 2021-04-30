@@ -1,17 +1,18 @@
 #N canvas 238 108 450 300 10;
-#X text 134 82 outlets: loadbang and dsp state (0 and 1);
-#X obj 198 181 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+#X obj 198 181 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
 1;
 #X obj 111 177 print sent a;
 #X obj 253 174 s pd;
 #X msg 255 150 dsp 1;
 #X msg 299 151 dsp 0;
-#X text 47 50 sends bang to loadbang. if argument is 1 then it turns
+#X text 43 29 sends bang to loadbang. if argument is 1 then it turns
 the dsp on;
 #X text 51 119 toggle sets dsp on \, bang resends bang;
 #X text 178 97 inlet: to dsp;
 #X obj 109 141 banger 1;
-#X connect 4 0 3 0;
-#X connect 5 0 3 0;
-#X connect 9 0 2 0;
-#X connect 9 1 1 0;
+#X text 30 65 outlets: loadbang \, dsp state (0 and 1) \, and bang
+from pd-dsp-started (when the dsp graph is remade);
+#X connect 3 0 2 0;
+#X connect 4 0 2 0;
+#X connect 8 0 1 0;
+#X connect 8 1 0 0;

@@ -11,10 +11,11 @@
 #X obj 82 199 +~ 0.5;
 #X obj 97 223 wrap~;
 #X obj 82 245 -~;
+#X obj 247 58 change -1;
+#X obj 136 14 r pd-dsp-started;
 #X connect 0 0 6 0;
 #X connect 1 0 2 0;
-#X connect 2 0 5 0;
-#X connect 2 0 7 1;
+#X connect 2 0 12 0;
 #X connect 3 0 8 1;
 #X connect 5 0 6 2;
 #X connect 6 0 7 0;
@@ -24,3 +25,6 @@
 #X connect 9 0 10 0;
 #X connect 10 0 11 1;
 #X connect 11 0 4 0;
+#X connect 12 0 5 0;
+#X connect 12 0 7 1;
+#X connect 13 0 2 0;

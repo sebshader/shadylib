@@ -62,6 +62,7 @@
 #X obj 326 166 max 1;
 #X obj 476 31 declare -lib zexy;
 #X obj 105 154 <~ 0;
+#X obj 276 5 r pd-dsp-started;
 #X connect 0 0 27 2;
 #X connect 0 0 12 0;
 #X connect 0 0 36 0;
@@ -117,3 +118,4 @@
 #X connect 36 1 5 0;
 #X connect 37 0 36 2;
 #X connect 39 0 30 1;
+#X connect 40 0 15 0;

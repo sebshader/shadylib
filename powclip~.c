@@ -69,7 +69,7 @@ static void *powclip_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 
 static inline t_sample powclip_calculate (t_sample in1, t_sample in2) {
 	t_sample absin1 = fabsf(in1);
-	absin1 = shadylib_min(absin1, 1);
+	absin1 = shadylib_min(absin1, 1.0);
 	if(in2 <= 0) return copysignf(absin1, in1);
 	else if(in2 >= 1) {
 		int readpoint;
@@ -117,7 +117,7 @@ t_int *scalarpowclip_perform(t_int *w)
 		t_sample fred, val;
 		while (n--) {
 			tin = *in++;
-			abstin = shadylib_min(fabsf(tin), 1);
+			abstin = shadylib_min(fabsf(tin), 1.0);
 			fred = abstin * (BASTABSIZE - 2);
 			readpoint = fred;
 			fred -= readpoint;

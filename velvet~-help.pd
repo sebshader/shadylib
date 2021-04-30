@@ -45,6 +45,7 @@ is less grid-like \, 0 will output a pulse periodically;
 the probability of the impulses being positive or negative (has effect
 from -1 to 1);
 #X obj 166 197 outputc~;
+#X obj 554 151 r pd-dsp-started;
 #X connect 0 0 2 0;
 #X connect 0 0 18 0;
 #X connect 1 0 23 0;
@@ -76,3 +77,4 @@ from -1 to 1);
 #X connect 27 0 32 1;
 #X connect 29 0 27 1;
 #X connect 30 0 27 2;
+#X connect 33 0 12 0;

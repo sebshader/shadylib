@@ -6,8 +6,10 @@
 #X obj 244 128 *;
 #X obj 251 182 outlet;
 #X text 6 62 how many samples in inlet's ms;
+#X obj 333 35 r pd-dsp-started;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 4 1;
 #X connect 3 0 4 0;
 #X connect 4 0 5 0;
+#X connect 7 0 0 0;

@@ -1,8 +1,8 @@
 #N canvas 7 114 1014 728 10;
 #X obj 156 225 buzz~;
 #X obj 90 326 outputc~;
-#X obj 192 32 loadbang;
-#X obj 192 51 samplerate~;
+#X obj 181 14 loadbang;
+#X obj 181 33 samplerate~;
 #X text 243 182 phase;
 #X obj 184 74 / 2;
 #X text 266 126 frequency to extend harmonics to;
@@ -11,7 +11,7 @@
 #X obj 77 105 mtof;
 #X floatatom 81 79 5 0 0 0 - - -;
 #X obj 179 114 smoother~ 100;
-#X obj 170 16 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+#X obj 155 9 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X floatatom 615 277 5 0 0 0 - - -;
 #X obj 367 81 expline;
@@ -459,11 +459,13 @@ no argument then the second inlet will be a signal-inlet;
 #X obj 562 442 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
 1;
 #X msg 561 462 linamp \$1;
+#X obj 39 9 r pd-dsp-started;
+#X obj 181 54 change -1;
 #X connect 0 0 1 1;
 #X connect 0 0 1 0;
 #X connect 0 0 31 0;
 #X connect 2 0 3 0;
-#X connect 3 0 5 0;
+#X connect 3 0 37 0;
 #X connect 5 0 11 0;
 #X connect 5 0 15 1;
 #X connect 5 0 23 1;
@@ -486,3 +488,5 @@ no argument then the second inlet will be a signal-inlet;
 #X connect 29 0 27 0;
 #X connect 34 0 35 0;
 #X connect 35 0 31 1;
+#X connect 36 0 3 0;
+#X connect 37 0 5 0;

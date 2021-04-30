@@ -32,7 +32,7 @@
 #X obj 430 123 f;
 #X obj 269 562 outlet~;
 #X text 313 120 (semitones);
-#X obj 150 189 samplerate~;
+#X obj 149 133 samplerate~;
 #X obj 113 209 swap;
 #X obj 117 239 /;
 #X obj 463 33 t b b;
@@ -52,7 +52,7 @@
 #X obj 692 94 t b f;
 #X obj 704 163 sel 1 0;
 #X obj 702 232 zexy/nop;
-#X obj 150 210 * 0.5;
+#X obj 148 179 * 0.5;
 #X obj 62 396 delwritec~ \$0-pitshft \$1;
 #X obj 501 89 if 0 \$1;
 #X obj 427 155 clip 1 \$1;
@@ -78,6 +78,8 @@
 #X obj 208 43 declare -lib zexy -lib iemlib;
 #X obj 206 418 scaler~ 0.5 -0.25;
 #X obj 377 441 scaler~ 0.5 -0.25;
+#X obj 122 97 r pd-dsp-started;
+#X obj 149 154 change -1;
 #X connect 0 0 4 0;
 #X connect 1 0 0 1;
 #X connect 1 0 9 1;
@@ -111,7 +113,7 @@
 #X connect 28 0 35 0;
 #X connect 29 0 55 0;
 #X connect 29 0 71 0;
-#X connect 32 0 52 0;
+#X connect 32 0 79 0;
 #X connect 33 0 34 0;
 #X connect 33 1 34 1;
 #X connect 34 0 36 0;
@@ -172,3 +174,5 @@
 #X connect 74 1 65 0;
 #X connect 76 0 5 0;
 #X connect 77 0 11 0;
+#X connect 78 0 32 0;
+#X connect 79 0 52 0;

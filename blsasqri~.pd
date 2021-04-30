@@ -6,7 +6,7 @@
 #X obj 195 661 outlet~;
 #X obj 67 154 inlet~;
 #X obj 645 534 outlet~;
-#X obj 113 114 samplerate~;
+#X obj 107 91 samplerate~;
 #X obj 67 180 clip~ 0;
 #X obj 114 147 * 0.5;
 #X obj 263 157 inlet~;
@@ -84,6 +84,8 @@
 #X obj 300 130 f;
 #X obj 164 302 lag~ 0.9995;
 #X obj 278 308 lag~;
+#X obj 94 52 r pd-dsp-started;
+#X obj 114 115 change -1;
 #X connect 0 0 6 0;
 #X connect 0 0 59 0;
 #X connect 0 0 62 0;
@@ -93,9 +95,7 @@
 #X connect 1 2 5 0;
 #X connect 2 0 1 2;
 #X connect 4 0 7 0;
-#X connect 6 0 8 0;
-#X connect 6 0 20 0;
-#X connect 6 0 44 1;
+#X connect 6 0 71 0;
 #X connect 7 0 1 0;
 #X connect 7 0 44 0;
 #X connect 7 0 69 0;
@@ -175,3 +175,7 @@
 #X connect 69 0 41 0;
 #X connect 69 0 37 0;
 #X connect 69 0 55 0;
+#X connect 70 0 6 0;
+#X connect 71 0 8 0;
+#X connect 71 0 44 1;
+#X connect 71 0 20 0;
