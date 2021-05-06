@@ -9,7 +9,7 @@ typedef struct _tcheb_tilde {
 	t_float dumf;
 } t_tcheb_tilde;
 
-t_int *tcheb_tilde_perform(t_int *w) {
+static t_int *tcheb_tilde_perform(t_int *w) {
 	t_sample *in1 = (t_sample*) (w[1]), *in2 = (t_sample*) (w[2]),
 		*out = (t_sample*) (w[3]);
 	int n = (int) (w[4]), l;
@@ -67,12 +67,12 @@ t_int *tcheb_tilde_perform(t_int *w) {
 	return (w + 5);
 }
 
-void tcheb_tilde_dsp(t_tcheb_tilde* UNUSED(x), t_signal **sp) {
+static void tcheb_tilde_dsp(t_tcheb_tilde* UNUSED(x), t_signal **sp) {
 	dsp_add(tcheb_tilde_perform, 4, sp[0]->s_vec,  sp[1]->s_vec,
 		sp[2]->s_vec, sp[0]->s_n);
 }
 
-void* tcheb_tilde_new(t_floatarg def) {
+static void* tcheb_tilde_new(t_floatarg def) {
 	t_tcheb_tilde* x = (t_tcheb_tilde*) pd_new(tcheb_tilde_class);
 	
 	signalinlet_new(&x->x_obj, def);

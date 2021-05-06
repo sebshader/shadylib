@@ -17,7 +17,8 @@ inrange.c         pib~.c            scaler.c          vdhs~.c \
 pinb~.c           scaler~.c         voisim~.c 		  log2.c \
 modf~.c           powclip~.c        shadylook.c		lag~.c \
 multatord~.c	  siglinterp~.c		realpass~.c		noteson.c \
-list-delim.c      synlets.c			frandom.c		array-redraw.c
+list-delim.c      synlets.c			frandom.c		array-redraw.c \
+downsample~.c
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
