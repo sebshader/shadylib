@@ -1,5 +1,4 @@
 #N canvas 0 22 450 300 10;
-#X obj 224 173 outputc~;
 #X text 58 70 like output~ \, but right inlet accepts gain values and
 outputc~ also accepts gain as a creation argument;
 #X floatatom 316 131 5 0 1 0 - - -;
@@ -7,5 +6,6 @@ outputc~ also accepts gain as a creation argument;
 -1 -1 0 1;
 #X text 77 171 can record too;
 #X text 164 257 outlet is gain;
-#X connect 2 0 0 2;
-#X connect 3 0 2 0;
+#X obj 224 173 ./outputc~;
+#X connect 1 0 5 2;
+#X connect 2 0 1 0;

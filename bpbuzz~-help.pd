@@ -1,18 +1,18 @@
 #N canvas 254 23 682 504 10;
-#X obj 117 92 smoother~;
-#X obj 148 189 outputc~;
-#X obj 246 183 oscope~;
+#X obj 246 183 ./oscope~;
 #X text 103 76 freq;
 #X text 151 46 duty cycle (0-1);
 #X text 223 15 like buzz~ \, but bipolar and with pwm control;
 #X text 231 364 outlets: bipolar output \, unipolar output (same as
 buzz~) \, phase;
-#X obj 63 443 bpbuzz~ 0.5 44100;
-#X obj 138 141 bpbuzz~ 0.25 -d;
-#X obj 286 42 smoother~ 20 0.5;
 #X text 212 416 inlets: frequency \, duty cycle \, phase;
 #X text 260 110 bpbuzz's top harmonic cannot be controlled;
-#X connect 0 0 8 0;
-#X connect 8 0 1 0;
-#X connect 8 0 2 0;
-#X connect 9 0 8 1;
+#X obj 138 141 ./bpbuzz~ 0.25 -d;
+#X obj 117 92 ./smoother~;
+#X obj 148 189 ./outputc~;
+#X obj 286 42 ./smoother~ 20 0.5;
+#X obj 63 443 ./bpbuzz~ 0.5 44100;
+#X connect 7 0 0 0;
+#X connect 7 0 9 0;
+#X connect 8 0 7 0;
+#X connect 10 0 7 1;

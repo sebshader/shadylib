@@ -22,9 +22,9 @@
 #X text 80 21 powline audio ramp;
 #X text 183 202 rightmost inlet/ argument: power;
 #X text 139 301 todo: make into external/clean up;
-#X floatatom 143 201 5 0 0 0 - - -, f 5;
+#X floatatom 143 201 5 0 0 0 - - -;
 #X obj 123 262 tabwrite~ rspowlinetest;
-#X obj 77 226 rpowline~ 2;
+#X obj 77 226 ./rpowline~ 2;
 #X connect 1 0 2 0;
 #X connect 1 0 17 0;
 #X connect 2 0 18 0;

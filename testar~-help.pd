@@ -1,9 +1,9 @@
 #N canvas 715 32 628 581 10;
-#X obj 16 48 testar~;
+#X obj 16 48 ./testar~;
 #X obj 17 14 osc~ 220;
-#X obj 320 48 testar~ 100;
-#X text 355 25 testar~ 100;
-#X obj 20 338 testar~ 100 1;
+#X obj 320 48 ./testar~ 100;
+#X text 355 25 ./testar~ 100;
+#X obj 20 338 ./testar~ 100 1;
 #X obj 20 310 line~;
 #X obj 20 268 stoms;
 #X msg 20 247 64;
@@ -13,9 +13,9 @@
 #X msg 20 289 1 \, 0 \$1;
 #X text 46 224 2 arguments is size \, upper bound with lower bound
 set to 0;
-#X obj 327 342 testar~ 100 -2 2;
-#X text 344 308 testar~ 100 -2 2;
-#X text 74 304 testar~ 100 1;
+#X obj 327 342 ./testar~ 100 -2 2;
+#X text 344 308 ./testar~ 100 -2 2;
+#X text 74 304 ./testar~ 100 1;
 #X text 47 536 simple array writing tool for viewing and debugging
 (bang triggers write) lower and upper are lower and upper y values
 ;

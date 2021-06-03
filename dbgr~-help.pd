@@ -4,5 +4,5 @@
 #X text 30 114 argument: how fast numbers are shown in ms (default
 100);
 #X text 32 250 pretty much the same as snaps~ from jmmmp;
-#X obj 144 168 dbgr~;
+#X obj 144 168 ./dbgr~;
 #X connect 1 0 4 0;

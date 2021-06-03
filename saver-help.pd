@@ -1,13 +1,9 @@
 #N canvas 291 179 581 359 10;
-#X obj 69 70 saver globname;
 #X obj 440 183 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 6900 1;
+-1 -1 0 1;
 #X obj 361 278 hsl 128 15 0 127 0 0 empty empty empty -2 -8 0 10 -262144
--1 -1 3500 1;
-#X obj 76 154 msgsave;
-#X obj 311 180 sstater globname s1;
+-1 -1 0 1;
 #X msg 72 221 \; s2 35 \; s1 69 \;;
-#X obj 333 228 stater globname s2;
 #X obj 336 294 f;
 #X obj 65 33 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -20,15 +16,19 @@
 from receiving objects (during save);
 #X text 190 57 central manager for state saving under a global name
 ;
-#X connect 0 0 3 0;
-#X connect 0 1 3 1;
-#X connect 0 2 3 2;
-#X connect 1 0 4 0;
-#X connect 2 0 7 1;
-#X connect 3 0 5 0;
-#X connect 4 0 1 0;
-#X connect 6 0 7 0;
-#X connect 6 1 2 0;
-#X connect 7 0 6 0;
-#X connect 8 0 0 0;
-#X connect 9 0 0 1;
+#X obj 300 183 ./sstater globname s1;
+#X obj 333 228 ./stater globname s2;
+#X obj 76 154 ./msgsave;
+#X obj 69 70 ./saver globname;
+#X connect 0 0 10 0;
+#X connect 1 0 3 1;
+#X connect 3 0 11 0;
+#X connect 4 0 13 0;
+#X connect 5 0 13 1;
+#X connect 10 0 0 0;
+#X connect 11 0 3 0;
+#X connect 11 1 1 0;
+#X connect 12 0 2 0;
+#X connect 13 0 12 0;
+#X connect 13 1 12 1;
+#X connect 13 2 12 2;

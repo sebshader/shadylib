@@ -1,28 +1,28 @@
 #N canvas 256 199 718 347 10;
-#X floatatom 64 216 5 0 0 0 - - -, f 5;
+#X floatatom 64 216 5 0 0 0 - - -;
 #X obj 75 136 metro 500;
-#X floatatom 142 114 5 0 0 0 - - -, f 5;
+#X floatatom 142 114 5 0 0 0 - - -;
 #X obj 81 113 del 50;
 #X obj 184 157 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
 -1 -1 1;
-#X floatatom 221 108 5 0 0 0 - - -, f 5;
+#X floatatom 221 108 5 0 0 0 - - -;
 #X obj 81 77 loadbang;
 #X obj 228 85 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 223 64 set next step;
 #X text 330 66 cyclecount: very simple counter. inlets: step \, top
 limit \, set step \, mode. argument: top limit \, mode;
-#X obj 79 172 cyclecount 20 0;
 #X msg 143 84 11;
 #X text 248 159 mode: when setting the step or putting a new top limit
 in if the current step is over the limit \, 0 to this inlet/arg will
 mod the current step and 1 will 0 it;
-#X connect 1 0 10 0;
-#X connect 2 0 10 1;
+#X obj 79 172 ./cyclecount 20 0;
+#X connect 1 0 12 0;
+#X connect 2 0 12 1;
 #X connect 3 0 1 0;
-#X connect 4 0 10 3;
-#X connect 5 0 10 2;
+#X connect 4 0 12 3;
+#X connect 5 0 12 2;
 #X connect 6 0 3 0;
 #X connect 7 0 5 0;
-#X connect 10 0 0 0;
-#X connect 11 0 2 0;
+#X connect 10 0 2 0;
+#X connect 12 0 0 0;

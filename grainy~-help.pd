@@ -1,7 +1,7 @@
 #N canvas 507 390 450 300 10;
-#X obj 116 182 grainy~;
 #X text 141 39 granular synthesis;
 #X text 39 101 inlets: read point of sound file \, grain size (samples)
 \, and input phasor~ outlets: 2 out of phase grain readers @ 1 & 3
 \, which should be added to the 2 sample-and-held readpoints at 2 &
 4 phase of the second grain is given out of the last outlet.;
+#X obj 116 182 ./grainy~;

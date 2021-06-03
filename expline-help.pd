@@ -1,5 +1,5 @@
 #N canvas 679 163 573 556 10;
-#X floatatom 22 428 8 0 0 0 - - -, f 8;
+#X floatatom 22 428 8 0 0 0 - - -;
 #X msg 32 231 0 1000;
 #X msg 47 253 39;
 #X msg 23 208 1 1000;
@@ -29,10 +29,10 @@ starts!);
 #X text 125 366 second inlet sets grain (not cleared \, acts as normal
 inlet);
 #X text 278 416 2 time grain in milliseconds (20 by default);
-#X text 123 14 - exponential ramp generator;
-#X obj 66 15 expline;
-#X obj 22 402 expline 0 100;
-#X obj 176 452 expline~;
+#X text 130 14 - exponential ramp generator;
+#X obj 66 15 ./expline;
+#X obj 22 402 ./expline 0 100;
+#X obj 176 452 ./expline~;
 #X connect 1 0 22 0;
 #X connect 2 0 22 0;
 #X connect 3 0 22 0;

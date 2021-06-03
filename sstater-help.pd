@@ -1,4 +1,4 @@
 #N canvas 222 256 450 300 10;
 #X text 110 113 works with saver to save parameters;
 #X text 120 143 for when you only want to save 1 float somewhere;
-#X obj 145 191 sstater globalname objectname;
+#X obj 145 191 ./sstater globalname objectname;

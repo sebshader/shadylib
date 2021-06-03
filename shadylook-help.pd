@@ -1,6 +1,6 @@
 #N canvas 275 89 783 467 10;
 #X obj 271 190 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
--1 -1 12700 1;
+-1 -1 0 1;
 #X msg 313 85 gauss;
 #N canvas 0 23 450 278 (subpatch) 0;
 #X array map 101 float 2;
@@ -12,9 +12,7 @@
 #X obj 142 191 * 0.01;
 #X obj 95 259 tabwrite map;
 #X msg 48 158 cauchy;
-#X obj 86 212 shadylook gauss;
 #X msg 98 181 rexp;
-#X obj 263 125 shadylook cauchy;
 #X msg 347 101 cauchy;
 #X msg 277 96 rexp;
 #X msg 96 140 gauss;
@@ -23,21 +21,23 @@
 #X text 417 104 cauchy: 1/(x^2 + 1) from 0 to x=32;
 #X text 231 363 all mappings receive values between 0 and 1;
 #X text 412 76 gauss: e^(-(x^2)) from 0 to x=4;
-#X obj 140 147 iterate 101;
 #X obj 216 18 vsl 15 128 0 1 0 0 empty empty empty 0 -9 0 10 -262144
 -1 -1 0 1;
-#X connect 1 0 11 0;
+#X obj 263 125 ./shadylook cauchy;
+#X obj 140 147 ./iterate 101;
+#X obj 86 212 ./shadylook gauss;
+#X connect 1 0 18 0;
 #X connect 4 0 19 0;
 #X connect 5 0 6 0;
 #X connect 5 1 7 1;
-#X connect 6 0 9 0;
-#X connect 8 0 9 0;
-#X connect 9 0 3 0;
-#X connect 9 0 7 0;
-#X connect 10 0 9 0;
-#X connect 11 0 0 0;
-#X connect 12 0 11 0;
-#X connect 13 0 11 0;
-#X connect 14 0 9 0;
+#X connect 6 0 20 0;
+#X connect 8 0 20 0;
+#X connect 9 0 20 0;
+#X connect 10 0 18 0;
+#X connect 11 0 18 0;
+#X connect 12 0 20 0;
+#X connect 17 0 18 0;
+#X connect 18 0 0 0;
 #X connect 19 0 5 0;
-#X connect 20 0 11 0;
+#X connect 20 0 3 0;
+#X connect 20 0 7 0;

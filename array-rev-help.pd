@@ -16,10 +16,10 @@
 -1.18572 -1.18572 -1.14286 -1.07143 -1.02858 -0.800005;
 #X coords 0 1 100 -1 200 140 1;
 #X restore 216 68 graph;
-#X obj 58 164 array-rev \$0-myarray;
 #X obj 57 92 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X text 52 42 reverse an array;
 #X msg 63 224 set anarray;
 #X text 143 225 sets array;
-#X connect 2 0 1 0;
+#X obj 58 164 ./array-rev \$0-myarray;
+#X connect 1 0 5 0;

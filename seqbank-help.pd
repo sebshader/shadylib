@@ -1,5 +1,5 @@
 #N canvas 516 23 924 721 10;
-#X obj 53 321 seqbank;
+#X obj 53 321 ./seqbank;
 #X msg 65 288 clear 1;
 #X text 116 288 clears the whole line;
 #X msg 67 206 2 0 9 8 77 465 34 0 0 0 68;
@@ -7,12 +7,11 @@
 #X text 145 229 now starting at row 0 column 7;
 #X msg 69 262 1 14 7 6 4 4;
 #X text 167 262 wraps to next row;
-#X obj 363 270 iterate 3;
 #X msg 366 292 clear \$1;
 #X obj 369 247 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X text 395 242 clear everything;
-#X obj 58 67 sequencer;
+#X obj 58 67 ./sequencer;
 #X floatatom 122 567 5 0 0 0 - - -;
 #X floatatom 163 565 5 0 0 0 - - -;
 #X floatatom 225 569 5 0 0 0 - - -;
@@ -33,20 +32,21 @@ each numberbox has receive name \$0-nbx\$2\$1r \, where \$0 is subpatch
 #X text 166 20 seqbank is a bank of 3 16-step sequencer rows that can
 be accessed/addressed by step number in its left inlet \, for fast
 editing;
-#X connect 0 0 13 0;
-#X connect 0 1 14 0;
-#X connect 0 2 15 0;
-#X connect 0 3 16 0;
-#X connect 0 3 21 1;
+#X obj 363 270 ./iterate 3;
+#X connect 0 0 12 0;
+#X connect 0 1 13 0;
+#X connect 0 2 14 0;
+#X connect 0 3 15 0;
+#X connect 0 3 20 1;
 #X connect 1 0 0 0;
 #X connect 3 0 0 0;
 #X connect 4 0 0 0;
 #X connect 6 0 0 0;
-#X connect 8 0 9 0;
-#X connect 9 0 0 0;
-#X connect 10 0 8 0;
-#X connect 12 0 0 0;
-#X connect 17 0 0 1;
-#X connect 19 0 12 0;
+#X connect 8 0 0 0;
+#X connect 9 0 26 0;
+#X connect 11 0 0 0;
+#X connect 16 0 0 1;
+#X connect 18 0 11 0;
+#X connect 19 0 20 0;
 #X connect 20 0 21 0;
-#X connect 21 0 22 0;
+#X connect 26 0 8 0;

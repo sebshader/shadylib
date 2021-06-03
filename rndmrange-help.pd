@@ -11,15 +11,15 @@ by \, number to add by.;
 #X floatatom 217 94 5 0 0 0 - - -;
 #X floatatom 254 95 5 0 0 0 - - -;
 #X floatatom 143 157 5 0 0 0 - - -;
-#X obj 143 129 rndmrange 6 0.5 2.5;
-#X text 272 129 <- output values between 2.5 and 5 inclusive in steps
+#X text 281 129 <- output values between 2.5 and 5 inclusive in steps
 of 0.5;
 #X text 110 190 note: implementation switched from using [random] to
 using [frandom] and back again recently.. sorry!;
 #X text 190 231 also see:;
-#X obj 254 232 frndmrange;
-#X connect 4 0 9 0;
-#X connect 5 0 9 1;
-#X connect 6 0 9 2;
-#X connect 7 0 9 3;
-#X connect 9 0 8 0;
+#X obj 254 232 ./frndmrange;
+#X obj 143 129 ./rndmrange 6 0.5 2.5;
+#X connect 4 0 13 0;
+#X connect 5 0 13 1;
+#X connect 6 0 13 2;
+#X connect 7 0 13 3;
+#X connect 13 0 8 0;

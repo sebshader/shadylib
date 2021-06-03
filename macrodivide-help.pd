@@ -13,7 +13,6 @@
 #X obj 50 89 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X msg 352 129 set 0;
-#X obj 58 140 cyclecount 11;
 #X msg 159 142 mode \$1;
 #X obj 163 101 hradio 15 1 0 2 empty empty empty 0 -8 0 10 -262144
 -1 -1 1;
@@ -32,7 +31,6 @@ before output;
 if 0 \, output will stay the same and on the right mutlitple (e.g.
 2nd time outputting 5 will go to 3rd time at the next number) \, Otherwise
 \, the 0 will be "mod"d.;
-#X obj 76 218 macrodivide 11 2;
 #X text 474 34 0 to 2nd inlet mode is for what to favor when the output
 is > the new value: either keep it the same (0) or jump to the current
 0 rounded down to the nearest multiple of the step size (1) or round
@@ -43,22 +41,24 @@ input and output always match up at the end;
 1 will 0 it when the new length is < the previous output;
 #X text 472 295 arguments: step size \, multiple \, input mode \, favor
 output(same as "mode" to 2nd inlet) \, and output mode;
-#X connect 0 0 19 0;
-#X connect 1 0 11 0;
-#X connect 3 0 19 2;
+#X obj 58 140 ./cyclecount 11;
+#X obj 76 218 ./macrodivide 11 2;
+#X connect 0 0 23 0;
+#X connect 1 0 22 0;
+#X connect 3 0 23 2;
 #X connect 4 0 5 0;
-#X connect 5 0 11 1;
-#X connect 5 0 19 1;
+#X connect 5 0 22 1;
+#X connect 5 0 23 1;
 #X connect 6 0 9 0;
 #X connect 6 1 4 0;
 #X connect 9 0 1 0;
-#X connect 10 0 19 1;
-#X connect 11 0 0 0;
-#X connect 12 0 19 0;
-#X connect 13 0 11 3;
-#X connect 13 0 12 0;
-#X connect 14 0 19 1;
-#X connect 15 0 14 0;
-#X connect 16 0 19 3;
-#X connect 19 0 2 0;
-#X connect 21 0 6 0;
+#X connect 10 0 23 1;
+#X connect 11 0 23 0;
+#X connect 12 0 11 0;
+#X connect 12 0 22 3;
+#X connect 13 0 23 1;
+#X connect 14 0 13 0;
+#X connect 15 0 23 3;
+#X connect 19 0 6 0;
+#X connect 22 0 0 0;
+#X connect 23 0 2 0;

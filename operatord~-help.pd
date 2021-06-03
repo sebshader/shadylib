@@ -1,15 +1,15 @@
 #N canvas 417 197 641 343 10;
 #X text 261 66 like operator~ \, but with phasor~ inlet rather than
 having phase generated in the patch (for phase syncing);
-#X obj 253 185 operatord~;
-#X obj 246 155 operatord~ 40;
 #X obj 82 62 phasor~;
-#X obj 81 17 smoother~;
-#X obj 17 145 oscope~;
+#X obj 17 145 ./oscope~;
 #X msg 464 180 \; pd dsp 1;
 #X text 272 109 arguments: multiply \, add;
-#X obj 85 92 operatord~ 0.5 0;
 #X text 336 154 single argument is # to add;
-#X connect 3 0 8 0;
-#X connect 4 0 3 0;
-#X connect 8 0 5 0;
+#X obj 85 92 ./operatord~ 0.5 0;
+#X obj 238 155 ./operatord~ 40;
+#X obj 253 185 ./operatord~;
+#X obj 81 17 ./smoother~;
+#X connect 1 0 6 0;
+#X connect 6 0 2 0;
+#X connect 9 0 1 0;

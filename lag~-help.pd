@@ -1,5 +1,5 @@
 #N canvas 873 94 457 349 10;
-#X obj 52 199 dbgr~;
+#X obj 52 199 ./dbgr~;
 #X floatatom 54 106 5 0 0 0 - - -;
 #X floatatom 204 63 5 0 0 0 - - -;
 #X msg 205 34 1000;
@@ -7,18 +7,18 @@
 #X msg 115 126 0.9995;
 #X text 252 65 lag in ms to 60db decay;
 #X msg 95 106 set 4;
-#X obj 52 164 lag~ 0.9995;
 #X msg 177 203 \; pd dsp 1;
-#X obj 207 101 dbpole;
 #X obj 204 14 loadbang;
 #X text 30 261 takes a real pole as an argument and makes a "lag" (kind
 of like [line~] but with a pole/lowpass instead;
-#X connect 1 0 8 0;
-#X connect 2 0 10 0;
+#X obj 52 164 ./lag~ 0.9995;
+#X obj 207 101 ./dbpole;
+#X connect 1 0 11 0;
+#X connect 2 0 12 0;
 #X connect 3 0 2 0;
-#X connect 5 0 8 1;
-#X connect 7 0 8 0;
-#X connect 8 0 0 0;
-#X connect 10 0 8 1;
-#X connect 10 0 4 0;
-#X connect 11 0 3 0;
+#X connect 5 0 11 1;
+#X connect 7 0 11 0;
+#X connect 9 0 3 0;
+#X connect 11 0 0 0;
+#X connect 12 0 4 0;
+#X connect 12 0 11 1;

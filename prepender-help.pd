@@ -7,9 +7,7 @@
 #X msg 161 146 la;
 #X msg 168 120 40;
 #X msg 185 134 list dog cat;
-#X obj 109 196 prepender one 2;
-#X obj 242 205 prepender;
-#X text 304 204 defaults to "list";
+#X text 315 204 defaults to "list";
 #X msg 252 173 blah blah;
 #X text 189 16 prepender has all hot inlets and prepends a certain
 selector according to inlet. For numberical "selectors" they are simply
@@ -18,14 +16,16 @@ will replace the "list" \, "float" \, and "symbol" selectors with the
 given selector. "anthing" selectors will be moved into the 1st position
 of the message and replaced by the given selector;
 #X msg 99 104 symbol cat;
-#X connect 0 0 8 0;
-#X connect 2 0 8 0;
-#X connect 3 0 8 0;
-#X connect 4 0 8 0;
-#X connect 5 0 8 1;
-#X connect 6 0 8 1;
-#X connect 7 0 8 1;
-#X connect 8 0 1 0;
-#X connect 9 0 1 0;
-#X connect 11 0 9 0;
-#X connect 13 0 8 0;
+#X obj 242 205 ./prepender;
+#X obj 109 196 ./prepender one 2;
+#X connect 0 0 13 0;
+#X connect 2 0 13 0;
+#X connect 3 0 13 0;
+#X connect 4 0 13 0;
+#X connect 5 0 13 1;
+#X connect 6 0 13 1;
+#X connect 7 0 13 1;
+#X connect 9 0 12 0;
+#X connect 11 0 13 0;
+#X connect 12 0 1 0;
+#X connect 13 0 1 0;

@@ -1,22 +1,22 @@
 #N canvas 466 234 450 300 10;
 #X obj 84 112 print greater_than;
-#X floatatom 123 49 5 0 0 0 - - -, f 5;
-#X floatatom 58 47 5 0 0 0 - - -, f 5;
-#X floatatom 294 47 5 0 0 0 - - -, f 5;
-#X floatatom 229 45 5 0 0 0 - - -, f 5;
+#X floatatom 123 49 5 0 0 0 - - -;
+#X floatatom 58 47 5 0 0 0 - - -;
+#X floatatom 294 47 5 0 0 0 - - -;
+#X floatatom 229 45 5 0 0 0 - - -;
 #X obj 255 110 print less_than;
 #X obj 101 133 print not_greater;
 #X obj 286 133 print not_less;
-#X obj 250 79 bangif < 4;
 #X text 31 191 you can use any conditional as an argument along with
 a numeric argument \, and the left outlet will be banged if true and
 the right outlet will be banged if not;
-#X obj 79 81 bangif > 4;
-#X connect 1 0 10 1;
-#X connect 2 0 10 0;
-#X connect 3 0 8 1;
-#X connect 4 0 8 0;
-#X connect 8 0 5 0;
-#X connect 8 1 7 0;
-#X connect 10 0 0 0;
-#X connect 10 1 6 0;
+#X obj 79 81 ./bangif > 4;
+#X obj 250 79 ./bangif < 4;
+#X connect 1 0 9 1;
+#X connect 2 0 9 0;
+#X connect 3 0 10 1;
+#X connect 4 0 10 0;
+#X connect 9 0 0 0;
+#X connect 9 1 6 0;
+#X connect 10 0 5 0;
+#X connect 10 1 7 0;

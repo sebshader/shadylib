@@ -10,10 +10,10 @@
 #X obj 187 215 list store;
 #X obj 192 157 list;
 #X obj 256 2 loadbang;
-#X obj 200 179 prepender append;
 #X obj 37 99 declare -lib iemlib;
 #X msg 257 29 args 0;
 #X obj 259 53 pdcontrol;
+#X obj 200 179 ./prepender append;
 #X connect 0 0 3 0;
 #X connect 1 0 8 0;
 #X connect 3 0 7 0;
@@ -24,8 +24,8 @@
 #X connect 5 1 6 0;
 #X connect 6 1 8 1;
 #X connect 7 0 2 0;
-#X connect 8 0 10 0;
-#X connect 9 0 12 0;
-#X connect 10 0 7 0;
-#X connect 12 0 13 0;
-#X connect 13 0 8 1;
+#X connect 8 0 13 0;
+#X connect 9 0 11 0;
+#X connect 11 0 12 0;
+#X connect 12 0 8 1;
+#X connect 13 0 7 0;

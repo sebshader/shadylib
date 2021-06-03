@@ -16,7 +16,6 @@ a bang;
 #X text 6 181 "set" to a trigger inlet sets the step # for that inlet
 (1-based);
 #X msg 36 86 set 4;
-#X obj 42 240 synlets 0 0;
 #X obj 40 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X obj 42 262 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -25,7 +24,6 @@ a bang;
 #X floatatom 71 266 5 0 0 0 - - -;
 #X obj 108 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 189 231 synlets;
 #X obj 228 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 189 204 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
@@ -42,8 +40,6 @@ a bang;
 #X floatatom 366 265 5 0 0 0 - - -;
 #X obj 309 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 122 116 synlets 4 3;
-#X obj 309 231 synlets 5;
 #X text 218 289 # of bangs defaults to 1;
 #X obj 86 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -53,7 +49,6 @@ a bang;
 -1 -1;
 #X obj 111 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 62 321 synlets 4 3 2 1 0;
 #X obj 161 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X obj 62 349 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
@@ -65,39 +60,44 @@ a bang;
 #X floatatom 161 346 5 0 0 0 - - -;
 #X text 18 10 syncs inlets: waits for a number of bangs in each inlet
 before banging and resetting both;
-#X connect 1 0 28 0;
-#X connect 2 0 28 1;
-#X connect 3 0 28 0;
-#X connect 4 0 28 1;
-#X connect 7 0 28 0;
-#X connect 7 0 28 1;
-#X connect 10 0 28 0;
-#X connect 11 0 13 0;
-#X connect 11 1 15 0;
-#X connect 11 2 14 0;
-#X connect 12 0 11 0;
-#X connect 16 0 11 1;
-#X connect 17 0 22 0;
-#X connect 17 1 20 0;
-#X connect 17 2 21 0;
-#X connect 18 0 17 1;
-#X connect 19 0 17 0;
-#X connect 23 0 29 1;
-#X connect 24 0 29 0;
-#X connect 28 0 0 0;
-#X connect 28 1 5 0;
-#X connect 28 2 6 0;
-#X connect 29 0 27 0;
-#X connect 29 1 25 0;
-#X connect 29 2 26 0;
-#X connect 31 0 35 1;
-#X connect 32 0 35 0;
-#X connect 33 0 35 3;
-#X connect 34 0 35 2;
-#X connect 35 0 37 0;
-#X connect 35 1 38 0;
-#X connect 35 2 39 0;
-#X connect 35 3 40 0;
-#X connect 35 4 41 0;
-#X connect 35 5 42 0;
-#X connect 36 0 35 4;
+#X obj 309 231 ./synlets 5;
+#X obj 122 116 ./synlets 4 3;
+#X obj 189 231 ./synlets;
+#X obj 42 240 ./synlets 0 0;
+#X obj 62 321 ./synlets 4 3 2 1 0;
+#X connect 1 0 40 0;
+#X connect 2 0 40 1;
+#X connect 3 0 40 0;
+#X connect 4 0 40 1;
+#X connect 7 0 40 0;
+#X connect 7 0 40 1;
+#X connect 10 0 40 0;
+#X connect 11 0 42 0;
+#X connect 15 0 42 1;
+#X connect 16 0 41 1;
+#X connect 17 0 41 0;
+#X connect 21 0 39 1;
+#X connect 22 0 39 0;
+#X connect 27 0 43 1;
+#X connect 28 0 43 0;
+#X connect 29 0 43 3;
+#X connect 30 0 43 2;
+#X connect 31 0 43 4;
+#X connect 39 0 25 0;
+#X connect 39 1 23 0;
+#X connect 39 2 24 0;
+#X connect 40 0 0 0;
+#X connect 40 1 5 0;
+#X connect 40 2 6 0;
+#X connect 41 0 20 0;
+#X connect 41 1 18 0;
+#X connect 41 2 19 0;
+#X connect 42 0 12 0;
+#X connect 42 1 14 0;
+#X connect 42 2 13 0;
+#X connect 43 0 32 0;
+#X connect 43 1 33 0;
+#X connect 43 2 34 0;
+#X connect 43 3 35 0;
+#X connect 43 4 36 0;
+#X connect 43 5 37 0;

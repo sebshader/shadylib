@@ -1,18 +1,18 @@
 #N canvas 398 154 527 314 10;
-#X obj 206 121 temposet 200 bpm;
 #X text 22 8 if 2nd argument is the symbol "bpm" 1st argument is tempo
 in bpm. if not \, it's in ms. the bangs are for making the bpm and
 ms tempos integers. left inlet is tempo in ms \, right is bpm. the
 /3 and /4 is in reference to the ms;
-#X floatatom 209 83 5 0 0 0 ms - -, f 5;
-#X floatatom 301 87 5 0 0 2 bpm - -, f 5;
-#X floatatom 198 241 5 0 0 3 ms - -, f 5;
-#X floatatom 267 244 5 0 0 3 bpm - -, f 5;
-#X floatatom 317 247 5 0 0 3 ms/3 - -, f 5;
-#X floatatom 391 245 5 0 0 0 ms/4 - -, f 5;
-#X connect 0 0 4 0;
-#X connect 0 1 5 0;
-#X connect 0 2 6 0;
-#X connect 0 3 7 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 1;
+#X floatatom 209 83 5 0 0 0 ms - -;
+#X floatatom 301 87 5 0 0 2 bpm - -;
+#X floatatom 198 241 5 0 0 3 ms - -;
+#X floatatom 267 244 5 0 0 3 bpm - -;
+#X floatatom 317 247 5 0 0 3 ms/3 - -;
+#X floatatom 391 245 5 0 0 0 ms/4 - -;
+#X obj 206 121 ./temposet 200 bpm;
+#X connect 1 0 7 0;
+#X connect 2 0 7 1;
+#X connect 7 0 3 0;
+#X connect 7 1 4 0;
+#X connect 7 2 5 0;
+#X connect 7 3 6 0;

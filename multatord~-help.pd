@@ -3,8 +3,7 @@
 #X text 121 189 multiplies by the 2nd inlet \, then adds 5;
 #X text 26 144 first inlet is frequency;
 #X text 106 214 everything set by signals;
-#X obj 405 340 outputc~;
-#X obj 167 334 oscope~;
+#X obj 167 334 ./oscope~;
 #X floatatom 391 149 5 0 0 0 - - -;
 #X text 571 215 same as osc~ 440;
 #X obj 595 151 hradio 15 1 0 4 empty empty empty 0 -8 0 10 -262144
@@ -13,19 +12,20 @@
 sampled at phase boundaries;
 #X text 29 63 variable wave oscillator (for lfos) everything else is
 like operator~;
-#X obj 35 166 multatord~ 4 5;
-#X obj 40 191 multatord~ 5;
-#X obj 38 218 multatord~;
 #X obj 399 177 phasor~ 100;
 #X text 540 131 3rd arg is starting wave;
-#X obj 406 224 multatord~ 0.5 0 2;
 #X floatatom 477 176 5 0 0 0 - - -;
 #X floatatom 519 175 5 0 0 0 - - -;
-#X connect 6 0 14 0;
-#X connect 8 0 16 3;
-#X connect 14 0 16 0;
-#X connect 16 0 4 0;
-#X connect 16 0 4 1;
-#X connect 16 0 5 0;
-#X connect 17 0 16 1;
-#X connect 18 0 16 2;
+#X obj 20 164 ./multatord~ 4 5;
+#X obj 21 189 ./multatord~ 5;
+#X obj 19 216 ./multatord~;
+#X obj 406 224 ./multatord~ 0.5 0 2;
+#X obj 405 340 ./outputc~;
+#X connect 5 0 10 0;
+#X connect 7 0 17 3;
+#X connect 10 0 17 0;
+#X connect 12 0 17 1;
+#X connect 13 0 17 2;
+#X connect 17 0 4 0;
+#X connect 17 0 18 0;
+#X connect 17 0 18 1;

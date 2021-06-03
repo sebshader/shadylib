@@ -1,4 +1,4 @@
 #N canvas 321 127 450 300 10;
 #X obj 268 40 netreceive \$1 1;
-#X obj 269 77 lispatch;
+#X obj 269 77 ./lispatch;
 #X connect 0 0 1 0;

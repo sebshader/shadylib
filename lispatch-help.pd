@@ -1,7 +1,6 @@
 #N canvas 641 64 450 300 10;
 #X obj 247 168 r this;
 #X obj 116 173 r that;
-#X obj 200 87 lispatch;
 #X msg 207 16 that is a list;
 #X msg 317 23 this is another list;
 #X obj 249 198 print num2;
@@ -9,8 +8,9 @@
 #X text 54 126 takes an "anything" and sends to a receive based on
 the first item;
 #X msg 229 66 list that works too;
-#X connect 0 0 5 0;
-#X connect 1 0 6 0;
-#X connect 3 0 2 0;
-#X connect 4 0 2 0;
-#X connect 8 0 2 0;
+#X obj 200 87 ./lispatch;
+#X connect 0 0 4 0;
+#X connect 1 0 5 0;
+#X connect 2 0 8 0;
+#X connect 3 0 8 0;
+#X connect 7 0 8 0;

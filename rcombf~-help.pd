@@ -1,6 +1,5 @@
 #N canvas 375 46 693 433 10;
-#X obj 255 290 outputc~;
-#X obj 345 255 oscope~;
+#X obj 345 255 ./oscope~;
 #X msg 135 170 clear;
 #X text 241 43 flags (can be anywhere in args): -n: normalize output
 by multiplying by 1 - abs(feedback);
@@ -11,17 +10,18 @@ by multiplying by 1 - abs(feedback);
 ;
 #X text 25 388 if -n is not specified \, an input gain inlet appears
 \, initialized to 1;
-#X obj 345 202 rcombf~ -n 500 0.8 2000;
-#X obj 236 227 rcombf~ -n 500 0.8 2000;
-#X obj 213 136 sndfread~;
 #X text 6 260 inlets: signal \, delay time(ms) \, feedback \, (conditional)
 input gain, f 37;
 #X text 225 105 other args (in order): delay time (ms) \, feedback
 \, length of buffer;
-#X connect 2 0 8 0;
-#X connect 2 0 9 0;
-#X connect 8 0 0 1;
-#X connect 8 0 1 0;
-#X connect 9 0 0 0;
-#X connect 10 0 9 0;
-#X connect 10 1 8 0;
+#X obj 236 227 ./rcombf~ -n 500 0.8 2000;
+#X obj 345 202 ./rcombf~ -n 500 0.8 2000;
+#X obj 255 290 ./outputc~;
+#X obj 213 136 ./sndfread~;
+#X connect 1 0 9 0;
+#X connect 1 0 10 0;
+#X connect 9 0 11 0;
+#X connect 10 0 0 0;
+#X connect 10 0 11 1;
+#X connect 12 0 9 0;
+#X connect 12 1 10 0;

@@ -4,7 +4,7 @@
 #X obj 15 142 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
 #X floatatom 14 222 5 0 0 0 - - -;
-#X obj 43 92 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 43 92 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
 ;
 #X msg 198 112 clear;
 #X text 240 112 cancel subdivision output from current bang;
@@ -12,23 +12,23 @@
 subdivisions to make \, 3rd (and 2nd arg) is the time frame of the
 macro beat in tempo \, set by 3rd & 4th arg;
 #X floatatom 160 74 5 0 0 0 - - -;
-#X obj 43 114 upmet 2 120 permin;
 #X obj 166 26 loadbang;
 #X msg 166 48 2;
 #X msg 249 141 tempo 60 permin;
-#X obj 55 166 subdivide 7 2 120 permin;
 #X floatatom 349 65 5 1 7 0 - - -;
 #X text 386 66 change subdivision;
-#X connect 3 0 8 0;
-#X connect 4 0 12 1;
-#X connect 7 0 8 1;
-#X connect 7 0 12 2;
-#X connect 8 0 1 0;
-#X connect 8 0 12 0;
-#X connect 9 0 10 0;
-#X connect 10 0 7 0;
-#X connect 11 0 8 0;
-#X connect 11 0 12 1;
-#X connect 12 0 0 0;
-#X connect 12 0 2 0;
-#X connect 13 0 12 1;
+#X obj 43 114 ./upmet 2 120 permin;
+#X obj 55 166 ./subdivide 7 2 120 permin;
+#X connect 3 0 13 0;
+#X connect 4 0 14 1;
+#X connect 7 0 13 1;
+#X connect 7 0 14 2;
+#X connect 8 0 9 0;
+#X connect 9 0 7 0;
+#X connect 10 0 13 0;
+#X connect 10 0 14 1;
+#X connect 11 0 14 1;
+#X connect 13 0 1 0;
+#X connect 13 0 14 0;
+#X connect 14 0 0 0;
+#X connect 14 0 2 0;

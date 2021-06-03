@@ -1,14 +1,14 @@
 #N canvas 0 22 475 259 10;
-#X obj 224 138 shnoise~;
 #X text 20 24 sampled-and-held-noise \, wrapper for phasor~ and dsrand~
 ;
-#X obj 200 61 smoother~;
 #X text 67 146 argument is seed;
 #X text 80 77 frequency of noise;
 #X msg 288 109 0.5;
 #X text 328 107 for phase;
 #X text 154 188 outets: phase \, new value \, old value;
-#X obj 246 160 dbgr~;
-#X connect 0 1 8 0;
-#X connect 2 0 0 0;
-#X connect 5 0 0 1;
+#X obj 246 160 ./dbgr~;
+#X obj 224 138 ./shnoise~;
+#X obj 200 61 ./smoother~;
+#X connect 3 0 7 1;
+#X connect 7 1 6 0;
+#X connect 8 0 7 0;

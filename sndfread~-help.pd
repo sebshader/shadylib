@@ -4,6 +4,6 @@
 #X text 207 140 outlets: stereo audio out \, bang upon finishing soundfile
 \, and filename as symbol (from l2s from zexy).;
 #X obj 142 153 dac~;
-#X obj 132 72 sndfread~;
+#X obj 132 72 ./sndfread~;
 #X connect 4 0 3 0;
 #X connect 4 1 3 1;

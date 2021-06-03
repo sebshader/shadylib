@@ -1,11 +1,11 @@
 #N canvas 333 60 710 552 10;
-#X obj 187 158 bilexnoise~;
 #X obj 221 87 smoother~;
 #X obj 144 120 smoother~;
 #X text 28 30 bilateral exponential distribution. functions like shnoise~
 \, except 2nd inlet is a scale factor. might be expensive;
-#X obj 305 208 oscope~;
+#X obj 305 208 ./oscope~;
 #X msg 126 294 \; pd dsp 1;
-#X connect 0 2 4 0;
-#X connect 1 0 0 1;
-#X connect 2 0 0 0;
+#X obj 187 158 ./bilexnoise~;
+#X connect 0 0 5 1;
+#X connect 1 0 5 0;
+#X connect 5 2 3 0;

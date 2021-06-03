@@ -1,3 +1,3 @@
 figure out garray + switch~ redrawing mystery?
 pipebang tempo args?
-check text-> stream bangs (come out as symbols)
+add rectorator~/rectoratord~ and triangulator~/triangulatord~ pulse-width args?

@@ -17,7 +17,7 @@
 #X msg 202 253 0;
 #X obj 156 317 ekext/cup;
 #X obj 77 177 list prepend /;
-#N canvas 777 138 651 593 checkdupes 0;
+#N canvas 777 138 651 593 checkdupes 1;
 #X obj 191 6 inlet;
 #X obj 246 556 outlet;
 #X obj 238 180 symbol;
@@ -42,7 +42,7 @@
 #X obj 227 115 drip;
 #X obj 235 276 drip;
 #X obj 316 459 zexy/nop;
-#X obj 235 301 bangif != 47;
+#X obj 235 301 ./bangif != 47;
 #X connect 0 0 4 0;
 #X connect 2 0 7 0;
 #X connect 3 0 18 1;
@@ -83,10 +83,10 @@
 #X restore 162 153 pd checkdupes;
 #X obj 76 151 timer \$1 \$2;
 #X obj 51 244 list store;
-#X obj 76 215 prepender append;
 #X obj 311 145 declare -lib zexy;
 #X obj 16 27 relay tempo;
-#X connect 0 0 22 0;
+#X obj 76 215 ./prepender append;
+#X connect 0 0 21 0;
 #X connect 2 0 19 0;
 #X connect 2 1 6 0;
 #X connect 3 0 7 0;
@@ -109,10 +109,10 @@
 #X connect 13 0 5 0;
 #X connect 14 0 9 1;
 #X connect 15 0 9 1;
-#X connect 16 0 20 0;
-#X connect 17 0 20 0;
+#X connect 16 0 22 0;
+#X connect 17 0 22 0;
 #X connect 18 0 16 0;
 #X connect 19 0 11 0;
-#X connect 20 0 19 0;
-#X connect 22 0 18 0;
-#X connect 22 1 8 0;
+#X connect 21 0 18 0;
+#X connect 21 1 8 0;
+#X connect 22 0 19 0;

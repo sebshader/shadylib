@@ -1,5 +1,4 @@
 #N canvas 181 92 613 334 10;
-#X obj 160 57 udispatch 3009;
 #X obj 64 170 print handle;
 #X obj 66 134 r handle;
 #X obj 220 135 r it;
@@ -7,5 +6,6 @@
 #X text 181 11 creates a udp receiver that sends to the first thing
 in the FUDI message;
 #X text 286 137 send a message starting with "it" on port 3009;
-#X connect 2 0 1 0;
-#X connect 3 0 4 0;
+#X obj 160 57 ./udispatch 3009;
+#X connect 1 0 0 0;
+#X connect 2 0 3 0;

@@ -9,10 +9,10 @@
 the dsp on;
 #X text 51 119 toggle sets dsp on \, bang resends bang;
 #X text 178 97 inlet: to dsp;
-#X obj 109 141 banger 1;
 #X text 30 65 outlets: loadbang \, dsp state (0 and 1) \, and bang
 from pd-dsp-started (when the dsp graph is remade);
+#X obj 109 141 ./banger 1;
 #X connect 3 0 2 0;
 #X connect 4 0 2 0;
-#X connect 8 0 1 0;
-#X connect 8 1 0 0;
+#X connect 9 0 1 0;
+#X connect 9 1 0 0;

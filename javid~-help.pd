@@ -1,13 +1,13 @@
 #N canvas 208 135 782 536 12;
-#X obj 126 229 javid~;
 #X obj 122 206 phasor~;
-#X obj 212 257 oscope~;
-#X obj 125 87 smoother~;
-#X obj 78 286 outputc~;
+#X obj 212 257 ./oscope~;
 #X text 307 104 not-quite sine cubic approximation from youtuber javidx9
 https://www.youtube.com/watch?v=1xlCVBIF_ig;
-#X connect 0 0 2 0;
-#X connect 0 0 4 0;
-#X connect 0 0 4 1;
-#X connect 1 0 0 0;
+#X obj 126 229 ./javid~;
+#X obj 125 87 ./smoother~;
+#X obj 78 286 ./outputc~;
+#X connect 0 0 3 0;
 #X connect 3 0 1 0;
+#X connect 3 0 5 0;
+#X connect 3 0 5 1;
+#X connect 4 0 0 0;

@@ -1,7 +1,7 @@
 #N canvas 264 117 450 300 10;
 #X obj 152 44 loadbang;
-#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 -262144 -262144
--62784 0 1;
+#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 -62784 -262144
+-62784 1 1;
 #X obj 181 224 outlet;
 #X obj 203 86 f \$1;
 #X obj 232 225 outlet;

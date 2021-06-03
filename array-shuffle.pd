@@ -18,7 +18,7 @@
 #X obj 241 440 tabread;
 #X obj 153 443 tabread;
 #X obj 177 535 tabwrite;
-#X obj 270 222 prepender set;
+#X obj 270 222 ./prepender set;
 #X connect 0 0 12 0;
 #X connect 1 0 2 0;
 #X connect 2 0 0 1;

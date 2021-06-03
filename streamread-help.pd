@@ -3,17 +3,17 @@
 #X text 22 14 works with streamwrite to write and read streams of anything
 except / \, which it uses to delimit messages;
 #X text 101 191 args: tempo & units;
-#X obj 87 232 streamwrite;
 #X msg 170 91 1;
 #X obj 241 159 bng 15 250 50 0 empty empty donnnne 17 7 0 10 -262144
 -1 -1;
-#X obj 157 133 streamread 0.5 permsec;
 #X msg 99 54 tempo 3 permsec;
 #X obj 185 162 print;
 #X msg 220 86 / 200 this is / 350 an / 400 input stream / 500 bang
 / 600 bang 45;
-#X connect 4 0 6 0;
-#X connect 6 0 8 0;
-#X connect 6 1 5 0;
-#X connect 7 0 6 0;
-#X connect 9 0 6 1;
+#X obj 157 133 ./streamread 0.5 permsec;
+#X obj 87 232 ./streamwrite;
+#X connect 3 0 8 0;
+#X connect 5 0 8 0;
+#X connect 7 0 8 1;
+#X connect 8 0 6 0;
+#X connect 8 1 4 0;

@@ -1,6 +1,4 @@
 #N canvas 0 23 677 377 10;
-#X obj 195 170 grainyback~;
-#X obj 154 96 egrains~;
 #X text 246 97 arguments: array and window;
 #N canvas 0 22 450 300 fake-dac~ 0;
 #X obj 156 78 inlet~;
@@ -12,10 +10,12 @@
 #X text 92 28 grainyback~ is for piggybacking onto an egrains~. if
 the 2 phase readers are combined in a single channel \, this makes
 it easier to do multiple soundfiles/channels;
-#X connect 0 0 3 1;
-#X connect 0 1 3 1;
-#X connect 1 0 3 0;
-#X connect 1 1 3 0;
-#X connect 1 2 0 0;
-#X connect 1 3 0 1;
-#X connect 1 4 0 2;
+#X obj 154 96 ./egrains~;
+#X obj 195 170 ./grainyback~;
+#X connect 5 0 1 0;
+#X connect 5 1 1 0;
+#X connect 5 2 6 0;
+#X connect 5 3 6 1;
+#X connect 5 4 6 2;
+#X connect 6 0 1 1;
+#X connect 6 1 1 1;

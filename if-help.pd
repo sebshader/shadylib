@@ -1,13 +1,12 @@
 #N canvas 307 108 450 300 10;
 #X msg 196 22 0;
-#X floatatom 222 44 5 0 0 0 - - -, f 5;
+#X floatatom 222 44 5 0 0 0 - - -;
 #X msg 318 35 25;
 #X msg 168 24 23;
-#X floatatom 186 92 5 0 0 0 - - -, f 5;
-#X floatatom 268 46 5 0 0 0 - - -, f 5;
-#X floatatom 142 46 5 0 0 0 - - -, f 5;
-#X floatatom 225 91 5 0 0 0 - - -, f 5;
-#X obj 186 69 if 0 24;
+#X floatatom 186 92 5 0 0 0 - - -;
+#X floatatom 268 46 5 0 0 0 - - -;
+#X floatatom 142 46 5 0 0 0 - - -;
+#X floatatom 225 91 5 0 0 0 - - -;
 #X obj 286 127 sfruit/if;
 #X text 300 108 also see "if" in sfruit;
 #X obj 273 85 print replaced;
@@ -17,12 +16,13 @@ in the 1st outlet. If not \, output the number in the 1st inlet. The
 2nd outlet just prunes the 1st inlet of the 2nd inlet/1st creation
 argument (like select) and the third outlet only outputs the replaced
 value.;
-#X connect 0 0 8 0;
-#X connect 1 0 8 1;
-#X connect 2 0 8 1;
-#X connect 3 0 8 0;
-#X connect 5 0 8 2;
-#X connect 6 0 8 0;
-#X connect 8 0 4 0;
-#X connect 8 1 7 0;
-#X connect 8 2 11 0;
+#X obj 186 69 ./if 0 24;
+#X connect 0 0 12 0;
+#X connect 1 0 12 1;
+#X connect 2 0 12 1;
+#X connect 3 0 12 0;
+#X connect 5 0 12 2;
+#X connect 6 0 12 0;
+#X connect 12 0 4 0;
+#X connect 12 1 7 0;
+#X connect 12 2 10 0;

@@ -1,5 +1,4 @@
 #N canvas 379 22 450 300 10;
-#X obj 225 90 list-dripdex;
 #X obj 228 157 list prepend;
 #X obj 298 132 list;
 #X obj 199 182 list;
@@ -7,13 +6,14 @@
 #X msg 220 47 these words will now be numbered;
 #X text 68 26 like list-drip but second outlet gives index;
 #X obj 225 68 t a b;
+#X obj 225 90 ./list-dripdex;
 #X connect 0 0 1 0;
-#X connect 0 1 1 0;
-#X connect 0 2 3 0;
-#X connect 1 0 2 0;
-#X connect 1 0 3 1;
-#X connect 2 0 1 1;
-#X connect 3 0 4 0;
-#X connect 5 0 7 0;
+#X connect 0 0 2 1;
+#X connect 1 0 0 1;
+#X connect 2 0 3 0;
+#X connect 4 0 6 0;
+#X connect 6 0 7 0;
+#X connect 6 1 0 1;
 #X connect 7 0 0 0;
-#X connect 7 1 1 1;
+#X connect 7 1 0 0;
+#X connect 7 2 2 0;

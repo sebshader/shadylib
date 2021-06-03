@@ -15,15 +15,15 @@
 #X obj 193 290 timer;
 #X obj 200 263 t b b;
 #X obj 208 314 print timer;
-#X obj 87 213 messtro 500 msec;
 #X text 36 23 uses 2 arguments or "tempo" message to set the tempo
 ;
-#X connect 3 0 12 0;
-#X connect 6 0 12 0;
-#X connect 8 0 12 1;
+#X obj 87 213 ./messtro 500 msec;
+#X connect 3 0 13 0;
+#X connect 6 0 13 0;
+#X connect 8 0 13 1;
 #X connect 9 0 11 0;
 #X connect 10 0 9 0;
 #X connect 10 1 9 1;
-#X connect 12 0 4 0;
-#X connect 12 1 0 0;
-#X connect 12 1 10 0;
+#X connect 13 0 4 0;
+#X connect 13 1 0 0;
+#X connect 13 1 10 0;

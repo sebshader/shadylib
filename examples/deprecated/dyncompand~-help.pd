@@ -11,7 +11,7 @@
 #X msg 548 151 0.41 0.75 0.95;
 #X obj 553 173 unpack f f f;
 #X obj 379 371 phasor~;
-#X obj 577 517 oscope~;
+#X obj 577 517 ./oscope~;
 #X obj 531 408 sig~;
 #X obj 485 483 -~ 1;
 #X obj 391 414 *~ 2;

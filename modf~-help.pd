@@ -1,10 +1,10 @@
 #N canvas 0 23 450 300 10;
-#X obj 90 110 modf~;
-#X obj 79 153 dbgr~;
-#X obj 121 199 dbgr~;
+#X obj 79 153 ./dbgr~;
+#X obj 121 199 ./dbgr~;
 #X text 71 6 splits a signal into integer and fractional parts;
 #X msg 300 93 \; pd dsp 1;
-#X obj 92 49 smoother~ 0;
-#X connect 0 0 1 0;
-#X connect 0 1 2 0;
+#X obj 92 49 ./smoother~ 0;
+#X obj 90 110 ./modf~;
+#X connect 4 0 5 0;
 #X connect 5 0 0 0;
+#X connect 5 1 1 0;

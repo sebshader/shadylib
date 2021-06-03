@@ -1,17 +1,17 @@
 #N canvas 385 264 450 300 10;
-#X obj 175 174 phasemod~;
 #X text 23 14 to make phase modulation take up less room in patches
 ;
 #X obj 244 94 osc~ 30;
-#X obj 85 110 smoother~;
-#X obj 177 206 outputc~;
 #X obj 247 116 *~ 2;
 #X text 249 158 modulator(s);
-#X obj 310 248 modulator~;
 #X text 310 226 see also:;
 #X text 67 89 carrier frequency;
-#X connect 0 0 4 0;
-#X connect 0 0 4 1;
-#X connect 2 0 5 0;
-#X connect 3 0 0 0;
-#X connect 5 0 0 1;
+#X obj 85 110 ./smoother~;
+#X obj 175 174 ./phasemod~;
+#X obj 177 206 ./outputc~;
+#X obj 310 248 ./modulator~;
+#X connect 1 0 2 0;
+#X connect 2 0 7 1;
+#X connect 6 0 7 0;
+#X connect 7 0 8 0;
+#X connect 7 0 8 1;

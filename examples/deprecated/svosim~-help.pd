@@ -18,7 +18,7 @@
 #X obj 305 72 *~ 0;
 #X text 257 -52 toggle center freq control;
 #X msg 222 -13 5;
-#X obj 320 194 oscope~;
+#X obj 320 194 ./oscope~;
 #X connect 0 0 1 0;
 #X connect 0 0 1 1;
 #X connect 0 0 18 0;

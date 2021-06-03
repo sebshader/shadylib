@@ -6,12 +6,12 @@
 #X text 72 70 cosine in (or another signal that goes from -1 to 1)
 ;
 #X obj 93 143 max~ 0;
-#X obj 24 234 shadylook~ rexp;
 #X text 191 103 0.144785 = -1/ln(.001);
-#X obj 27 118 scaler~ 0.144785 0.144785;
-#X connect 0 0 8 0;
-#X connect 1 0 6 0;
+#X obj 27 118 ./scaler~ 0.144785 0.144785;
+#X obj 24 234 ./shadylook~ rexp;
+#X connect 0 0 7 0;
+#X connect 1 0 8 0;
 #X connect 2 0 5 0;
 #X connect 5 0 1 1;
-#X connect 6 0 3 0;
-#X connect 8 0 1 0;
+#X connect 7 0 1 0;
+#X connect 8 0 3 0;

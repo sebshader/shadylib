@@ -1,5 +1,4 @@
 #N canvas 0 22 638 344 10;
-#X obj 281 138 transpose;
 #X floatatom 282 162 8 0 0 0 - - -;
 #X floatatom 277 107 5 0 0 0 - - -;
 #X msg 325 98 12;
@@ -8,9 +7,10 @@
 #X msg 292 81 5;
 #X text 85 40 takes an interval in semitones in and outputs an approximate
 pitch ratio;
-#X connect 0 0 1 0;
-#X connect 2 0 0 0;
-#X connect 3 0 0 0;
-#X connect 4 0 0 0;
-#X connect 5 0 0 0;
-#X connect 6 0 0 0;
+#X obj 281 138 ./transpose;
+#X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 3 0 7 0;
+#X connect 4 0 7 0;
+#X connect 5 0 7 0;
+#X connect 7 0 0 0;

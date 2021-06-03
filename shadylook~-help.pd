@@ -1,5 +1,4 @@
 #N canvas 496 162 465 318 10;
-#X obj 71 123 shadylook~;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array siglook 44100 float 2;
 #X coords 0 1 44099 0 200 140 1 0 0;
@@ -13,13 +12,14 @@
 #X msg 42 49 gauss;
 #X msg 93 72 cauchy;
 #X text 256 40 signal version of shadylook;
-#X obj 338 72 shadylook;
 #X msg 70 220 \; pd dsp 1;
-#X connect 0 0 2 0;
+#X obj 71 123 ./shadylook~;
+#X obj 338 72 ./shadylook;
+#X connect 2 0 3 0;
+#X connect 2 0 1 0;
 #X connect 3 0 4 0;
-#X connect 3 0 2 0;
-#X connect 4 0 5 0;
-#X connect 5 0 0 0;
-#X connect 6 0 0 0;
-#X connect 7 0 0 0;
-#X connect 8 0 0 0;
+#X connect 4 0 10 0;
+#X connect 5 0 10 0;
+#X connect 6 0 10 0;
+#X connect 7 0 10 0;
+#X connect 10 0 1 0;

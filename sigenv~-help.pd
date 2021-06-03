@@ -1,18 +1,18 @@
 #N canvas 93 107 642 448 10;
-#X obj 352 153 operator~;
-#X obj 347 182 sigenv~ 7;
-#X obj 382 104 smoother~;
-#X obj 306 100 smoother~;
 #X text 53 40 calculate RMS with a lowpass filter set @ argument/inlet.
 should be around 0.7 for a sine wave with amplitude 1 lowering the
 argument/ inlet will make the RMS window bigger (and less responsive)
 \, and visa-versa.;
-#X floatatom 441 162 5 0 0 0 - - -, f 5;
-#X obj 322 235 oscope~;
-#X obj 382 207 dbgr~;
-#X connect 0 0 1 0;
-#X connect 1 0 6 0;
-#X connect 1 0 7 0;
-#X connect 2 0 0 1;
-#X connect 3 0 0 0;
-#X connect 5 0 1 1;
+#X floatatom 441 162 5 0 0 0 - - -;
+#X obj 322 235 ./oscope~;
+#X obj 382 207 ./dbgr~;
+#X obj 382 104 ./smoother~;
+#X obj 306 100 ./smoother~;
+#X obj 352 153 ./operator~;
+#X obj 347 182 ./sigenv~ 7;
+#X connect 1 0 7 1;
+#X connect 4 0 6 1;
+#X connect 5 0 6 0;
+#X connect 6 0 7 0;
+#X connect 7 0 2 0;
+#X connect 7 0 3 0;

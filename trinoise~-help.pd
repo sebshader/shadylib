@@ -1,11 +1,11 @@
 #N canvas 700 226 674 430 10;
-#X obj 120 68 smoother~;
-#X obj 123 198 oscope~;
+#X obj 123 198 ./oscope~;
 #X text 213 113 same stuff as shnoise~ except that there are 2 dsrands
 on the inside so 2nd arg is number to add to the 1st arg(and seed)
 to get the second seed. defaults to 845011 for no reason;
-#X obj 127 135 trinoise~;
 #X text 238 76 creates a triangular distribution (numbers around 0
 are more likely);
-#X connect 0 0 3 0;
-#X connect 3 1 1 0;
+#X obj 127 135 ./trinoise~;
+#X obj 120 68 ./smoother~;
+#X connect 3 1 0 0;
+#X connect 4 0 3 0;

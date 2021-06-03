@@ -6,7 +6,7 @@
 #X obj 198 139 outlet;
 #X obj 197 119 bang;
 #X obj 150 125 bang;
-#X obj 144 63 frandom 100;
+#X obj 144 63 ./frandom 100;
 #X connect 0 0 6 0;
 #X connect 0 1 5 0;
 #X connect 1 0 7 0;

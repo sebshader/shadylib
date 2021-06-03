@@ -1,10 +1,10 @@
 #N canvas 571 96 450 300 10;
-#X obj 193 193 dbgr~;
-#X obj 186 154 fmod~ 5;
-#X floatatom 272 131 5 0 0 0 - - -, f 5;
+#X obj 193 193 ./dbgr~;
+#X floatatom 272 131 5 0 0 0 - - -;
 #X text 25 28 fmod from math.h. 0 is replaced by 1 in the argument
 ;
-#X obj 185 102 smoother~ 0;
-#X connect 1 0 0 0;
-#X connect 2 0 1 1;
-#X connect 4 0 1 0;
+#X obj 186 154 ./fmod~ 5;
+#X obj 185 102 ./smoother~ 0;
+#X connect 1 0 3 1;
+#X connect 3 0 0 0;
+#X connect 4 0 3 0;

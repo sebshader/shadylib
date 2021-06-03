@@ -5,11 +5,11 @@
 #X obj 66 160 outlet;
 #X obj 337 108 inlet;
 #X obj 226 193 s \$1-s;
-#X obj 226 158 prepender \$2;
 #X obj 217 58 declare -lib iemlib;
 #X obj 226 131 iem_anything;
-#X connect 0 0 7 0;
+#X obj 226 158 ./prepender \$2;
+#X connect 0 0 6 0;
 #X connect 1 0 2 0;
-#X connect 3 0 7 1;
-#X connect 5 0 4 0;
-#X connect 7 0 5 0;
+#X connect 3 0 6 1;
+#X connect 6 0 7 0;
+#X connect 7 0 4 0;

@@ -5,12 +5,12 @@
 #X msg 223 77 2 dog;
 #X msg 272 100 5 6;
 #X msg 61 82 2 3 5;
-#X floatatom 112 82 5 0 0 0 - - -, f 5;
+#X floatatom 112 82 5 0 0 0 - - -;
 #X text 69 6 get a multiple of the same thing in a list;
 #X text 93 29 creation arguments sets 1 initial item to put;
 #X msg 309 94 20;
 #X text 17 47 you can use lists also;
-#X obj 172 125 list-const 20 lala;
+#X obj 172 125 ./list-const 20 lala;
 #X connect 0 0 11 0;
 #X connect 1 0 2 0;
 #X connect 3 0 11 0;

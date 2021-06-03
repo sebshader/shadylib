@@ -8,24 +8,25 @@
 #X restore 220 312 graph;
 #X obj 142 247 rpole~;
 #X obj 197 212 vline~;
-#X obj 213 164 stoms;
 #X msg 212 141 1;
 #X obj 151 273 tabwrite~ array-\$0;
 #X obj 258 124 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
 #X msg 209 185 1 0 0 \, 0 0 \$1;
 #X text 316 291 44100 samples;
-#X obj 126 138 sdbpole;
-#X obj 203 495 dbpole;
+#X obj 74 377 dbpole;
 #X text 13 60 takes time in samples to get from 1 to 0.001 (60db lower)
 and turns it into the pole coefficient;
-#X connect 1 0 12 0;
-#X connect 4 0 8 0;
+#X obj 126 138 ./sdbpole;
+#X text 50 356 see also:;
+#X obj 213 164 ./stoms;
+#X connect 1 0 13 0;
+#X connect 4 0 7 0;
 #X connect 5 0 4 0;
-#X connect 6 0 10 0;
-#X connect 7 0 6 0;
-#X connect 9 0 7 0;
-#X connect 9 0 8 0;
-#X connect 10 0 5 0;
-#X connect 12 0 2 0;
-#X connect 12 0 4 1;
+#X connect 6 0 15 0;
+#X connect 8 0 6 0;
+#X connect 8 0 7 0;
+#X connect 9 0 5 0;
+#X connect 13 0 2 0;
+#X connect 13 0 4 1;
+#X connect 15 0 9 0;

@@ -5,7 +5,7 @@
 #X obj 244 108 inlet;
 #X obj 244 150 s \$1-s;
 #X obj 148 133 outlet;
-#X obj 244 129 prepender \$2;
+#X obj 244 129 ./prepender \$2;
 #X connect 0 0 2 0;
 #X connect 1 0 5 0;
 #X connect 3 0 6 0;

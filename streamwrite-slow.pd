@@ -32,7 +32,7 @@
 #X obj 244 273 drip;
 #X obj 227 115 drip;
 #X obj 316 459 zexy/nop;
-#X obj 252 301 bangif != 47;
+#X obj 252 301 ./bangif != 47;
 #X connect 0 0 4 0;
 #X connect 2 0 7 0;
 #X connect 3 0 18 1;

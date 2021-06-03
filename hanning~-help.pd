@@ -1,5 +1,4 @@
 #N canvas 0 22 589 382 10;
-#X obj 233 175 hanning~;
 #X text 240 63 hanning window over range 0 to 1;
 #X obj 340 276 tabwrite~ test;
 #N canvas 0 22 450 278 (subpatch) 0;
@@ -5738,8 +5737,9 @@
 #X obj 239 152 line~;
 #X msg 245 124 0 \, 1 1000;
 #X obj 350 250 bang;
-#X connect 0 0 2 0;
-#X connect 4 0 0 0;
-#X connect 5 0 4 0;
-#X connect 5 0 6 0;
-#X connect 6 0 2 0;
+#X obj 233 175 ./hanning~;
+#X connect 3 0 6 0;
+#X connect 4 0 3 0;
+#X connect 4 0 5 0;
+#X connect 5 0 1 0;
+#X connect 6 0 1 0;

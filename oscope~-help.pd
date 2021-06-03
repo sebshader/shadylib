@@ -11,8 +11,8 @@ argument controls).;
 a blocksize of 1024;
 #X text 54 335 if the second argument is 1 the scope will update the
 display after every block;
-#X obj 167 138 oscope~ 44100 1;
-#X obj 465 226 oscope~ 44100;
+#X obj 167 138 ./oscope~ 44100 1;
+#X obj 465 226 ./oscope~ 44100;
 #X connect 0 0 9 0;
 #X connect 0 0 10 0;
 #X connect 1 0 0 0;

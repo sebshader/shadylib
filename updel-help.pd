@@ -1,5 +1,4 @@
 #N canvas 192 35 659 724 12;
-#X obj 148 9 updel;
 #X floatatom 153 416 0 0 0 0 - - -;
 #X text 193 10 - CALLBACK AFTER TIME updel;
 #X msg 29 198 stop;
@@ -22,14 +21,8 @@
 #X text 335 464 - updel time (float);
 #X text 336 482 - tempo (float) and time unit (symbol) as in "tempo"
 message, f 31;
-#X obj 299 545 updel 1 60 permin;
 #X text 39 536 example: specify a updel of one beat at 60 beats per
 minute, f 31;
-#X obj 330 602 updel 1 1 persec;
-#X obj 330 578 updel 1 1 sec;
-#X obj 471 578 updel 1 44100 samp;
-#X obj 471 602 updel 44100 1 samp;
-#X obj 330 625 updel 0.01676 1 min;
 #X text 39 577 other possible ways to get a one-second delay (but the
 rightmost ones are sample-rate dependent), f 35;
 #X text 70 35 The updel object sends a bang to its outlet after a delay
@@ -49,7 +42,6 @@ the unit is set to 1/2 millisecond so that '1000' gives a delay of
 even "120000 permin". A more traditionally musical way to specify a
 one-second delay would be "updel 1" with "tempo 60 permin" as in the
 second example below.;
-#X obj 20 443 updel 1000 1 msec;
 #X obj 209 664 delay;
 #X obj 68 287 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
@@ -66,23 +58,31 @@ second example below.;
 #X text 212 144 updel differs from delay in that if you change the
 delaytime the currently scheduled delay will be rescheduled to reflect
 the proportion;
-#X obj 110 639 upmet;
-#X connect 1 0 31 1;
-#X connect 1 0 42 1;
-#X connect 3 0 40 0;
-#X connect 7 0 40 0;
-#X connect 9 0 40 0;
-#X connect 16 0 40 0;
-#X connect 31 0 8 0;
-#X connect 33 0 38 0;
-#X connect 34 0 35 0;
-#X connect 35 0 39 0;
-#X connect 37 0 39 0;
-#X connect 38 0 40 0;
-#X connect 38 1 34 0;
-#X connect 38 1 37 0;
-#X connect 39 0 31 1;
-#X connect 39 0 42 1;
-#X connect 40 0 31 0;
-#X connect 40 0 42 0;
-#X connect 42 0 41 0;
+#X obj 136 9 ./updel;
+#X obj 13 443 ./updel 1000 1 msec;
+#X obj 299 545 ./updel 1 60 permin;
+#X obj 330 578 ./updel 1 1 sec;
+#X obj 330 602 ./updel 1 1 persec;
+#X obj 330 625 ./updel 0.01676 1 min;
+#X obj 471 578 ./updel 1 44100 samp;
+#X obj 471 602 ./updel 44100 1 samp;
+#X obj 110 639 ./upmet;
+#X connect 0 0 34 1;
+#X connect 0 0 37 1;
+#X connect 2 0 32 0;
+#X connect 6 0 32 0;
+#X connect 8 0 32 0;
+#X connect 15 0 32 0;
+#X connect 25 0 30 0;
+#X connect 26 0 27 0;
+#X connect 27 0 31 0;
+#X connect 29 0 31 0;
+#X connect 30 0 32 0;
+#X connect 30 1 26 0;
+#X connect 30 1 29 0;
+#X connect 31 0 34 1;
+#X connect 31 0 37 1;
+#X connect 32 0 34 0;
+#X connect 32 0 37 0;
+#X connect 34 0 33 0;
+#X connect 37 0 7 0;

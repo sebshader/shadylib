@@ -4,14 +4,14 @@
 #X floatatom 234 126 5 0 0 0 - - -;
 #X obj 273 175 print not;
 #X obj 199 214 print in range;
-#X obj 197 148 inrange 55;
 #X text 38 91 an arg of 1 number represents the 1st inlet \, with the
 second being 0;
 #X text 63 44 inclusive range \, 2nd and 3rd inlets/1st/2nd args set
 range \, if the first inlet is within the range then it is put out
 of the 1st outlet \, otherwise put out of the 2nd;
-#X connect 0 0 5 0;
-#X connect 1 0 5 2;
-#X connect 2 0 5 1;
-#X connect 5 0 4 0;
-#X connect 5 1 3 0;
+#X obj 197 148 ./inrange 55;
+#X connect 0 0 7 0;
+#X connect 1 0 7 2;
+#X connect 2 0 7 1;
+#X connect 7 0 4 0;
+#X connect 7 1 3 0;

@@ -1,4 +1,4 @@
-#N canvas 224 23 646 678 10;
+#N canvas 120 51 646 678 10;
 #X declare -lib zexy;
 #X obj 223 616 outlet;
 #X obj 371 515 outlet;
@@ -21,7 +21,7 @@
 #X obj 122 71 route float;
 #X obj 185 174 t b l l;
 #X obj 204 204 drip;
-#X obj 204 239 bangif != 47;
+#X obj 204 239 ./bangif != 47;
 #X connect 0 0 13 0;
 #X connect 1 0 14 0;
 #X connect 2 0 4 0;

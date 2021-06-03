@@ -13,7 +13,7 @@ list like lispatch;
 #X obj 78 278 print stufftest1;
 #X obj 203 247 print moretest2;
 #X obj 273 273 print stufftest2;
-#X obj 164 148 dispatchOSC 9000;
+#X obj 164 148 ./dispatchOSC 9000;
 #X connect 2 0 3 0;
 #X connect 3 0 6 0;
 #X connect 3 1 7 0;

@@ -1,7 +1,7 @@
 #N canvas 479 277 450 300 10;
-#X obj 74 62 ftos;
-#X floatatom 74 34 5 0 0 0 - - -, f 5;
-#X floatatom 72 91 5 0 0 0 - - -, f 5;
+#X floatatom 74 34 5 0 0 0 - - -;
+#X floatatom 72 91 5 0 0 0 - - -;
 #X text 114 61 get the period in samples from the frequency;
-#X connect 0 0 2 0;
-#X connect 1 0 0 0;
+#X obj 74 62 ./ftos;
+#X connect 0 0 3 0;
+#X connect 3 0 1 0;

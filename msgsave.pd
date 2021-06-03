@@ -4,7 +4,7 @@
 #X obj 259 119 inlet;
 #X obj 210 208 outlet;
 #X msg 216 168 set \, add;
-#X obj 165 144 prepender add;
+#X obj 165 144 ./prepender add;
 #X connect 0 0 5 0;
 #X connect 1 0 4 0;
 #X connect 2 0 3 0;
