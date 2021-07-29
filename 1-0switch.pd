@@ -3,6 +3,8 @@
 #X obj 211 97 outlet;
 #X text 45 124 switches 1 and 0 (I find myself needing this quite a
 bit);
-#X obj 211 55 expr 1 - $f1;
+#X msg 211 45 1 \$1;
+#X obj 211 66 -;
 #X connect 0 0 3 0;
-#X connect 3 0 1 0;
+#X connect 3 0 4 0;
+#X connect 4 0 1 0;
