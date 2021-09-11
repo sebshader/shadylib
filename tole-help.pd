@@ -1,0 +1,18 @@
+#N canvas 572 240 450 300 10;
+#X obj 165 161 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 178 98 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 202 159 print tole;
+#X text 120 33 non-gui toggle;
+#X text 120 54 arguments: initial value \, non-zero value;
+#X msg 212 94 30;
+#X msg 129 96 set 0;
+#X msg 257 94 nonzero 50;
+#X obj 164 125 ./tole 30 30;
+#X connect 1 0 8 0;
+#X connect 5 0 8 0;
+#X connect 6 0 8 0;
+#X connect 7 0 8 0;
+#X connect 8 0 0 0;
+#X connect 8 0 2 0;

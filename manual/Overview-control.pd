@@ -94,18 +94,18 @@ outputting a bang and resetting;
 #X text 166 3161 a gui to help with tempo;
 #X obj 38 3273 ../testro 500;
 #X text 173 3274 quick metro for testing things;
-#X obj 45 3299 ../transpose;
-#X text 127 3301 semitones to pitch-ratio conversion;
-#X obj 49 3432 ../ttempo;
-#X obj 51 3525 ../udispatch;
-#X text 160 3524 listens on a port for fudi udp messages and sends
+#X obj 45 3333 ../transpose;
+#X text 139 3334 semitones to pitch-ratio conversion;
+#X obj 49 3466 ../ttempo;
+#X obj 51 3559 ../udispatch;
+#X text 160 3558 listens on a port for fudi udp messages and sends
 them with lispatch;
-#X text 330 3693 end;
+#X text 330 3727 end;
 #X obj 35 1048 ../makerpath;
 #X text 134 1046 get the absolute path of a file relative to the root
 canvas;
-#X obj 46 3650 ../valuer;
-#X text 140 3651 dynamic "value" object (name);
+#X obj 46 3684 ../valuer;
+#X text 140 3685 dynamic "value" object (name);
 #X obj 41 298 ../bangif == 3;
 #X text 156 297 bangs left outlet if left inlet is 1st arg the 2nd
 arg/inlet;
@@ -145,12 +145,12 @@ a parameter;
 #X obj 49 3117 ../tabsave;
 #X text 130 3114 saves an array into size and array fields messages
 ;
-#X obj 32 3327 ../tseq;
-#X text 158 3399 sequence of toggles;
-#X text 148 3443 find distance in ms between 2 taps in ms;
-#X obj 49 3569 ../updel;
-#X obj 49 3603 ../upmet;
-#X text 116 3563 updel and upmet are slightly more expensive versions
+#X obj 32 3361 ../tseq;
+#X text 158 3433 sequence of toggles;
+#X text 148 3477 find distance in ms between 2 taps in ms;
+#X obj 49 3603 ../updel;
+#X obj 49 3637 ../upmet;
+#X text 116 3597 updel and upmet are slightly more expensive versions
 of delay and metro that update the callback times that are already
 in the scheduling list if they change (continously variable tempo)
 ;
@@ -164,7 +164,7 @@ in the scheduling list if they change (continously variable tempo)
 #X text 135 1937 use with saver to save both messages and files;
 #X text 118 1887 use with textsave or msgsave (or saveroute) to save
 parameters;
-#X obj 50 3478 ../txtsave \$0-overview;
+#X obj 50 3512 ../txtsave \$0-overview;
 #X obj 38 231 ../array-shuffle;
 #X text 171 229 shuffle array;
 #X obj 29 1547 ../noteson;
@@ -178,7 +178,7 @@ parameters;
 milliseconds;
 #X obj 37 989 ../log2;
 #X text 125 988 log base 2;
-#X text 217 3479 used with saver to save to text files;
+#X text 217 3513 used with saver to save to text files;
 #X obj 32 511 ../frandom;
 #X text 118 510 generate random float in range 0-argument/2nd inlet
 ;
@@ -195,3 +195,5 @@ in samples;
 #X obj 399 34 declare -path ../;
 #X text 300 11 pdlua doesn't work with relative paths in objectname?
 ;
+#X obj 50 3304 ../tole;
+#X text 136 3305 non-graphical toggle (otherwise like [tgl]);
