@@ -1,108 +1,108 @@
-#N canvas 500 23 1180 685 10;
+#N canvas 260 23 1180 685 10;
 #X declare -lib zexy -lib iemlib;
-#X obj 221 293 cnv 15 580 108 empty empty empty 20 12 0 14 -259649
--66577 0;
+#X obj 221 293 cnv 15 580 108 empty empty empty 20 12 0 14 #fc6400
+#404040 0;
 #X obj 166 546 del;
 #X obj 546 161 inlet;
-#X floatatom 637 295 5 1 16 1 - #0-steplet #0-step;
-#X floatatom 723 295 5 0 0 1 - #0-recglob #0-sendglob;
+#X floatatom 637 295 5 1 16 1 - #0-steplet #0-step 0;
+#X floatatom 723 295 5 0 0 1 - #0-recglob #0-sendglob 0;
 #X msg 166 569 bang;
-#X obj 335 295 tgl 15 0 \$0-started \$0-start start 17 7 0 10 -258113
--4034 -1 0 1;
+#X obj 335 295 tgl 15 0 \$0-started \$0-start start 17 7 0 10 #fc0400
+#00fc04 #000000 0 1;
 #X obj 76 275 sel 1;
 #X obj 33 74 inlet;
 #X obj 388 145 inlet;
 #X msg 132 523 stop;
 #X obj 390 295 tgl 15 0 \$0-random \$0-randlet randomize 17 7 0 10
--258113 -3577 -1 0 1;
+#fc0400 #00dce0 #000000 0 1;
 #X obj 220 150 inlet;
 #X obj 304 153 inlet;
-#X floatatom 465 295 5 0 15 1 - #0-offset #0-offsetted;
-#X floatatom 548 295 5 0 0 1 - #0-counter #0-NOTHING;
-#X floatatom 243 382 2 0 15 0 - #0-nest0 #0-jumpto0;
-#X floatatom 226 382 2 0 99 0 - #0-repeat0 #0-repsend0;
-#X floatatom 225 364 2 0 0 0 - #0-indicator0 #0-NOTHING;
-#X floatatom 281 382 2 0 15 0 - #0-nest1 #0-jumpto1;
-#X floatatom 261 382 2 0 99 0 - #0-repeat1 #0-repsend1;
-#X floatatom 261 364 2 0 0 0 - #0-indicator1 #0-NOTHING;
-#X floatatom 316 382 2 0 15 0 - #0-nest2 #0-jumpto2;
-#X floatatom 299 382 2 0 99 0 - #0-repeat2 #0-repsend2;
-#X floatatom 299 364 2 0 0 0 - #0-indicator2 #0-NOTHING;
-#X floatatom 352 382 2 0 15 0 - #0-nest3 #0-jumpto3;
-#X floatatom 335 382 2 0 99 0 - #0-repeat3 #0-repsend3;
-#X floatatom 335 364 2 0 0 0 - #0-indicator3 #0-NOTHING;
-#X floatatom 389 382 2 0 15 0 - #0-nest4 #0-jumpto4;
-#X floatatom 371 382 2 0 99 0 - #0-repeat4 #0-repsend4;
-#X floatatom 372 364 2 0 0 0 - #0-indicator4 #0-NOTHING;
-#X floatatom 424 382 2 0 15 0 - #0-nest5 #0-jumpto5;
-#X floatatom 407 382 2 0 99 0 - #0-repeat5 #0-repsend5;
-#X floatatom 407 364 2 0 0 0 - #0-indicator5 #0-NOTHING;
-#X floatatom 462 382 2 0 15 0 - #0-nest6 #0-jumpto6;
-#X floatatom 443 382 2 0 99 0 - #0-repeat6 #0-repsend6;
-#X floatatom 443 364 2 0 0 0 - #0-indicator6 #0-NOTHING;
-#X floatatom 496 382 2 0 15 0 - #0-nest7 #0-jumpto7;
-#X floatatom 479 382 2 0 99 0 - #0-repeat7 #0-repsend7;
-#X floatatom 479 364 2 0 0 0 - #0-indicator7 #0-NOTHING;
-#X floatatom 568 382 2 1 16 0 - #0-nest9 #0-jumpto9;
-#X floatatom 551 382 2 0 99 0 - #0-repeat9 #0-repsend9;
-#X floatatom 551 364 2 0 0 0 - #0-indicator9 #0-NOTHING;
-#X floatatom 604 382 2 1 16 0 - #0-nest10 #0-jumpto10;
-#X floatatom 587 382 2 0 99 0 - #0-repeat10 #0-repsend10;
-#X floatatom 588 364 2 0 0 0 - #0-indicator10 #0-NOTHING;
-#X floatatom 641 382 2 1 16 0 - #0-nest11 #0-jumpto11;
-#X floatatom 623 382 2 0 99 0 - #0-repeat11 #0-repsend11;
-#X floatatom 623 364 2 0 0 0 - #0-indicator11 #0-NOTHING;
-#X floatatom 675 382 2 1 16 0 - #0-nest12 #0-jumpto12;
-#X floatatom 658 382 2 0 99 0 - #0-repeat12 #0-repsend12;
-#X floatatom 658 364 2 0 0 0 - #0-indicator12 #0-NOTHING;
-#X floatatom 711 382 2 1 16 0 - #0-nest13 #0-jumpto13;
-#X floatatom 694 382 2 0 99 0 - #0-repeat13 #0-repsend13;
-#X floatatom 694 364 2 0 0 0 - #0-indicator13 #0-NOTHING;
-#X floatatom 747 382 2 1 16 0 - #0-nest14 #0-jumpto14;
-#X floatatom 729 382 2 0 99 0 - #0-repeat14 #0-repsend14;
-#X floatatom 729 364 2 0 0 0 - #0-indicator14 #0-NOTHING;
-#X floatatom 783 382 2 1 16 0 - #0-nest15 #0-jumpto15;
-#X floatatom 765 382 2 0 99 0 - #0-repeat15 #0-repsend15;
-#X floatatom 765 364 2 0 0 0 - #0-indicator15 #0-NOTHING;
-#X floatatom 534 382 2 0 15 0 - #0-nest8 #0-jumpto8;
-#X floatatom 516 382 2 0 99 0 - #0-repeat8 #0-repsend8;
-#X floatatom 515 364 2 0 0 0 - #0-indicator8 #0-NOTHING;
-#X obj 568 364 tgl 15 0 \$0-sendalws9 \$0-alws9 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 605 364 tgl 15 0 \$0-sendalws10 \$0-alws10 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 640 364 tgl 15 0 \$0-sendalws11 \$0-alws11 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 675 364 tgl 15 0 \$0-sendalws12 \$0-alws12 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 712 364 tgl 15 0 \$0-sendalws13 \$0-alws13 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 746 364 tgl 15 0 \$0-sendalws14 \$0-alws14 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 782 364 tgl 15 0 \$0-sendalws15 \$0-alws15 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 532 364 tgl 15 0 \$0-sendalws8 \$0-alws8 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 496 364 tgl 15 0 \$0-sendalws7 \$0-alws7 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 424 364 tgl 15 0 \$0-sendalws5 \$0-alws5 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 461 364 tgl 15 0 \$0-sendalws6 \$0-alws6 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 388 364 tgl 15 0 \$0-sendalws4 \$0-alws4 empty 17 -7 0 10 -257985
--4160 -1 0 1;
+#X floatatom 465 295 5 0 15 1 - #0-offset #0-offsetted 0;
+#X floatatom 548 295 5 0 0 1 - #0-counter #0-NOTHING 0;
+#X floatatom 243 382 2 0 15 0 - #0-nest0 #0-jumpto0 0;
+#X floatatom 226 382 2 0 99 0 - #0-repeat0 #0-repsend0 0;
+#X floatatom 225 364 2 0 0 0 - #0-indicator0 #0-NOTHING 0;
+#X floatatom 281 382 2 0 15 0 - #0-nest1 #0-jumpto1 0;
+#X floatatom 261 382 2 0 99 0 - #0-repeat1 #0-repsend1 0;
+#X floatatom 261 364 2 0 0 0 - #0-indicator1 #0-NOTHING 0;
+#X floatatom 316 382 2 0 15 0 - #0-nest2 #0-jumpto2 0;
+#X floatatom 299 382 2 0 99 0 - #0-repeat2 #0-repsend2 0;
+#X floatatom 299 364 2 0 0 0 - #0-indicator2 #0-NOTHING 0;
+#X floatatom 352 382 2 0 15 0 - #0-nest3 #0-jumpto3 0;
+#X floatatom 335 382 2 0 99 0 - #0-repeat3 #0-repsend3 0;
+#X floatatom 335 364 2 0 0 0 - #0-indicator3 #0-NOTHING 0;
+#X floatatom 389 382 2 0 15 0 - #0-nest4 #0-jumpto4 0;
+#X floatatom 371 382 2 0 99 0 - #0-repeat4 #0-repsend4 0;
+#X floatatom 372 364 2 0 0 0 - #0-indicator4 #0-NOTHING 0;
+#X floatatom 424 382 2 0 15 0 - #0-nest5 #0-jumpto5 0;
+#X floatatom 407 382 2 0 99 0 - #0-repeat5 #0-repsend5 0;
+#X floatatom 407 364 2 0 0 0 - #0-indicator5 #0-NOTHING 0;
+#X floatatom 462 382 2 0 15 0 - #0-nest6 #0-jumpto6 0;
+#X floatatom 443 382 2 0 99 0 - #0-repeat6 #0-repsend6 0;
+#X floatatom 443 364 2 0 0 0 - #0-indicator6 #0-NOTHING 0;
+#X floatatom 496 382 2 0 15 0 - #0-nest7 #0-jumpto7 0;
+#X floatatom 479 382 2 0 99 0 - #0-repeat7 #0-repsend7 0;
+#X floatatom 479 364 2 0 0 0 - #0-indicator7 #0-NOTHING 0;
+#X floatatom 568 382 2 1 16 0 - #0-nest9 #0-jumpto9 0;
+#X floatatom 551 382 2 0 99 0 - #0-repeat9 #0-repsend9 0;
+#X floatatom 551 364 2 0 0 0 - #0-indicator9 #0-NOTHING 0;
+#X floatatom 604 382 2 1 16 0 - #0-nest10 #0-jumpto10 0;
+#X floatatom 587 382 2 0 99 0 - #0-repeat10 #0-repsend10 0;
+#X floatatom 588 364 2 0 0 0 - #0-indicator10 #0-NOTHING 0;
+#X floatatom 641 382 2 1 16 0 - #0-nest11 #0-jumpto11 0;
+#X floatatom 623 382 2 0 99 0 - #0-repeat11 #0-repsend11 0;
+#X floatatom 623 364 2 0 0 0 - #0-indicator11 #0-NOTHING 0;
+#X floatatom 675 382 2 1 16 0 - #0-nest12 #0-jumpto12 0;
+#X floatatom 658 382 2 0 99 0 - #0-repeat12 #0-repsend12 0;
+#X floatatom 658 364 2 0 0 0 - #0-indicator12 #0-NOTHING 0;
+#X floatatom 711 382 2 1 16 0 - #0-nest13 #0-jumpto13 0;
+#X floatatom 694 382 2 0 99 0 - #0-repeat13 #0-repsend13 0;
+#X floatatom 694 364 2 0 0 0 - #0-indicator13 #0-NOTHING 0;
+#X floatatom 747 382 2 1 16 0 - #0-nest14 #0-jumpto14 0;
+#X floatatom 729 382 2 0 99 0 - #0-repeat14 #0-repsend14 0;
+#X floatatom 729 364 2 0 0 0 - #0-indicator14 #0-NOTHING 0;
+#X floatatom 783 382 2 1 16 0 - #0-nest15 #0-jumpto15 0;
+#X floatatom 765 382 2 0 99 0 - #0-repeat15 #0-repsend15 0;
+#X floatatom 765 364 2 0 0 0 - #0-indicator15 #0-NOTHING 0;
+#X floatatom 534 382 2 0 15 0 - #0-nest8 #0-jumpto8 0;
+#X floatatom 516 382 2 0 99 0 - #0-repeat8 #0-repsend8 0;
+#X floatatom 515 364 2 0 0 0 - #0-indicator8 #0-NOTHING 0;
+#X obj 568 364 tgl 15 0 \$0-sendalws9 \$0-alws9 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 605 364 tgl 15 0 \$0-sendalws10 \$0-alws10 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 640 364 tgl 15 0 \$0-sendalws11 \$0-alws11 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 675 364 tgl 15 0 \$0-sendalws12 \$0-alws12 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 712 364 tgl 15 0 \$0-sendalws13 \$0-alws13 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 746 364 tgl 15 0 \$0-sendalws14 \$0-alws14 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 782 364 tgl 15 0 \$0-sendalws15 \$0-alws15 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 532 364 tgl 15 0 \$0-sendalws8 \$0-alws8 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 496 364 tgl 15 0 \$0-sendalws7 \$0-alws7 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 424 364 tgl 15 0 \$0-sendalws5 \$0-alws5 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 461 364 tgl 15 0 \$0-sendalws6 \$0-alws6 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 388 364 tgl 15 0 \$0-sendalws4 \$0-alws4 empty 17 -7 0 10 #f8fc00
+#0400fc #000000 0 1;
 #X obj 316 364 tgl 15 0 \$0-sendalws2 \$0-alws2 clockwise_currentrepeat_always_steptojumpto_numberofjumps
-20 -12 0 12 -257985 -4160 -13381 0 1;
-#X obj 280 364 tgl 15 0 \$0-sendalws1 \$0-alws1 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 352 364 tgl 15 0 \$0-sendalws3 \$0-alws3 empty 17 7 0 10 -257985
--4160 -1 0 1;
-#X obj 242 364 tgl 15 0 \$0-sendalws0 \$0-alws0 empty 17 -7 0 10 -257985
--4160 -1 0 1;
+20 -12 0 12 #f8fc00 #0400fc #0c4410 0 1;
+#X obj 280 364 tgl 15 0 \$0-sendalws1 \$0-alws1 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 352 364 tgl 15 0 \$0-sendalws3 \$0-alws3 empty 17 7 0 10 #f8fc00
+#0400fc #000000 0 1;
+#X obj 242 364 tgl 15 0 \$0-sendalws0 \$0-alws0 empty 17 -7 0 10 #f8fc00
+#0400fc #000000 0 1;
 #X obj 227 346 tgl 15 0 \$0-alllways \$0-allways always_on/off 17 7
-0 10 -241351 -159808 -1 0 1;
+0 10 #e8ec18 #9c00fc #000000 0 1;
 #X obj 597 158 inlet;
-#X floatatom 225 297 5 0 0 0 - #0-this #0-NOTHING;
+#X floatatom 225 297 5 0 0 0 - #0-this #0-NOTHING 0;
 #X obj 693 180 f \$0;
 #X obj 797 16 r neststep-\$0;
 #X obj 765 159 r nestalways-\$0;
@@ -233,7 +233,7 @@
 #X connect 27 0 15 1;
 #X restore 318 454 pd nester0;
 #X obj 286 295 bng 15 250 50 0 \$0-zero \$0-NOTHINGREC zero 17 7 0
-10 -4034 -1 -1;
+10 #00fc04 #000000 #000000;
 #X obj 26 198 f;
 #X obj 25 221 sel 0 1;
 #X obj 43 245 t b b;
@@ -1934,73 +1934,73 @@
 #X restore 609 520 pd nester15;
 #X obj 419 31 declare -lib zexy -lib iemlib;
 #N canvas 0 22 450 300 label 0;
-#X obj 101 101 cnv 15 38 14 empty empty offset 1 8 0 10 -13381 -260097
+#X obj 101 101 cnv 15 38 14 empty empty offset 1 8 0 10 #0c4410 #fc8000
 0;
 #X coords 0 -1 1 1 40 16 2 100 100;
 #X restore 499 295 pd label;
 #N canvas 0 22 450 300 label 0;
-#X obj 101 101 cnv 15 43 14 empty empty counter 1 8 0 10 -13381 -260097
+#X obj 101 101 cnv 15 43 14 empty empty counter 1 8 0 10 #0c4410 #fc8000
 0;
 #X coords 0 -1 1 1 45 16 2 100 100;
 #X restore 582 295 pd label;
 #N canvas 0 22 450 300 label 0;
-#X obj 101 101 cnv 15 32 14 empty empty steps 1 8 0 10 -13381 -260097
+#X obj 101 101 cnv 15 32 14 empty empty steps 1 8 0 10 #0c4410 #fc8000
 0;
 #X coords 0 -1 1 1 34 16 2 100 100;
 #X restore 671 295 pd label;
 #N canvas 0 22 450 300 label 0;
-#X obj 101 101 cnv 15 32 14 empty empty tempo 1 8 0 10 -13381 -260097
+#X obj 101 101 cnv 15 32 14 empty empty tempo 1 8 0 10 #0c4410 #fc8000
 0;
 #X coords 0 -1 1 1 34 16 2 100 100;
 #X restore 757 295 pd label;
-#X obj 225 316 cnv 15 33 26 empty empty -0- 8 5 0 10 -13381 -260097
+#X obj 225 316 cnv 15 33 26 empty empty -0- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 261 316 cnv 15 33 26 empty empty -1- 8 5 0 10 -13381 -260097
+#X obj 261 316 cnv 15 33 26 empty empty -1- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 297 316 cnv 15 33 26 empty empty -2- 8 5 0 10 -13381 -260097
+#X obj 297 316 cnv 15 33 26 empty empty -2- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 333 316 cnv 15 33 26 empty empty -3- 8 5 0 10 -13381 -260097
+#X obj 333 316 cnv 15 33 26 empty empty -3- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 513 316 cnv 15 33 26 empty empty -8- 8 5 0 10 -13381 -260097
+#X obj 513 316 cnv 15 33 26 empty empty -8- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 657 316 cnv 15 33 26 empty empty -12- 5 5 0 10 -13381 -260097
+#X obj 657 316 cnv 15 33 26 empty empty -12- 5 5 0 10 #00ff04 #ff0400
 0;
-#X obj 369 316 cnv 15 33 26 empty empty -4- 8 5 0 10 -13381 -260097
+#X obj 369 316 cnv 15 33 26 empty empty -4- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 405 316 cnv 15 33 26 empty empty -5- 8 5 0 10 -13381 -260097
+#X obj 405 316 cnv 15 33 26 empty empty -5- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 765 316 cnv 15 33 26 empty empty -15- 5 5 0 10 -13381 -260097
+#X obj 765 316 cnv 15 33 26 empty empty -15- 5 5 0 10 #00ff04 #ff0400
 0;
-#X obj 441 316 cnv 15 33 26 empty empty -6- 8 5 0 10 -13381 -260097
+#X obj 441 316 cnv 15 33 26 empty empty -6- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 477 316 cnv 15 33 26 empty empty -7- 8 5 0 10 -13381 -260097
+#X obj 477 316 cnv 15 33 26 empty empty -7- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 549 316 cnv 15 33 26 empty empty -9- 8 5 0 10 -13381 -260097
+#X obj 549 316 cnv 15 33 26 empty empty -9- 8 5 0 10 #00ff04 #ff0400
 0;
-#X obj 585 316 cnv 15 33 26 empty empty -10- 5 5 0 10 -13381 -260097
+#X obj 585 316 cnv 15 33 26 empty empty -10- 5 5 0 10 #00ff04 #ff0400
 0;
-#X obj 729 316 cnv 15 33 26 empty empty -14- 5 5 0 10 -13381 -260097
+#X obj 729 316 cnv 15 33 26 empty empty -14- 5 5 0 10 #00ff04 #ff0400
 0;
-#X obj 693 316 cnv 15 33 26 empty empty -13- 5 5 0 10 -13381 -260097
+#X obj 693 316 cnv 15 33 26 empty empty -13- 5 5 0 10 #00ff04 #ff0400
 0;
-#X obj 621 316 cnv 15 33 26 empty empty -11- 5 5 0 10 -13381 -260097
+#X obj 621 316 cnv 15 33 26 empty empty -11- 5 5 0 10 #00ff04 #ff0400
 0;
-#X floatatom 225 327 5 0 0 2 - #0-intemp0 #0-outtemp0;
-#X floatatom 261 327 5 0 0 2 - #0-intemp1 #0-outtemp1;
-#X floatatom 297 327 5 0 0 2 - #0-intemp2 #0-outtemp2;
-#X floatatom 333 327 5 0 0 2 - #0-intemp3 #0-outtemp3;
-#X floatatom 369 327 5 0 0 2 - #0-intemp4 #0-outtemp4;
-#X floatatom 405 327 5 0 0 2 - #0-intemp5 #0-outtemp5;
-#X floatatom 441 327 5 0 0 2 - #0-intemp6 #0-outtemp6;
-#X floatatom 477 327 5 0 0 2 - #0-intemp7 #0-outtemp7;
-#X floatatom 513 327 5 0 0 2 - #0-intemp8 #0-outtemp8;
-#X floatatom 549 327 5 0 0 2 - #0-intemp9 #0-outtemp9;
-#X floatatom 585 327 5 0 0 2 - #00-intemp10 #0-outtemp10;
-#X floatatom 621 327 5 0 0 2 - #0-intemp11 #0-outtemp11;
-#X floatatom 657 327 5 0 0 2 - #0-intemp12 #0-outtemp12;
-#X floatatom 693 327 5 0 0 2 - #0-intemp13 #0-outtemp13;
-#X floatatom 729 327 5 0 0 2 - #0-intemp14 #0-outtemp14;
-#X floatatom 765 327 5 0 0 2 - #0-intemp15 #0-outtemp15;
+#X floatatom 225 327 5 0 0 2 - #0-intemp0 #0-outtemp0 0;
+#X floatatom 261 327 5 0 0 2 - #0-intemp1 #0-outtemp1 0;
+#X floatatom 297 327 5 0 0 2 - #0-intemp2 #0-outtemp2 0;
+#X floatatom 333 327 5 0 0 2 - #0-intemp3 #0-outtemp3 0;
+#X floatatom 369 327 5 0 0 2 - #0-intemp4 #0-outtemp4 0;
+#X floatatom 405 327 5 0 0 2 - #0-intemp5 #0-outtemp5 0;
+#X floatatom 441 327 5 0 0 2 - #0-intemp6 #0-outtemp6 0;
+#X floatatom 477 327 5 0 0 2 - #0-intemp7 #0-outtemp7 0;
+#X floatatom 513 327 5 0 0 2 - #0-intemp8 #0-outtemp8 0;
+#X floatatom 549 327 5 0 0 2 - #0-intemp9 #0-outtemp9 0;
+#X floatatom 585 327 5 0 0 2 - #00-intemp10 #0-outtemp10 0;
+#X floatatom 621 327 5 0 0 2 - #0-intemp11 #0-outtemp11 0;
+#X floatatom 657 327 5 0 0 2 - #0-intemp12 #0-outtemp12 0;
+#X floatatom 693 327 5 0 0 2 - #0-intemp13 #0-outtemp13 0;
+#X floatatom 729 327 5 0 0 2 - #0-intemp14 #0-outtemp14 0;
+#X floatatom 765 327 5 0 0 2 - #0-intemp15 #0-outtemp15 0;
 #X connect 1 0 5 0;
 #X connect 2 0 155 0;
 #X connect 5 0 101 0;
