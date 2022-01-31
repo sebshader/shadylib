@@ -8,12 +8,11 @@ iteration number and tempo multiplier;
 #X msg 118 68 4 1;
 #X text 310 109 right inlet sets tempo;
 #X text 179 65 output 3 times at tempo 2;
-#X text 214 248 uses metro not upmet;
 #X msg 42 90 tempo 120 permin;
 #X msg 215 90 3;
 #X msg 285 109 0.5;
-#X obj 150 105 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 150 105 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
 #X text 242 90 3 times @ last tempo;
 #X text 169 107 last everything;
 #X text 126 232 argumets are same as metro \, repeats are last argument
@@ -24,12 +23,12 @@ iteration number and tempo multiplier;
 #X obj 366 268 ./subdivide;
 #X obj 234 287 for++;
 #X obj 201 268 declare -lib iemlib;
-#X connect 0 0 17 0;
-#X connect 4 0 17 0;
-#X connect 8 0 17 0;
-#X connect 9 0 17 0;
-#X connect 10 0 17 1;
-#X connect 11 0 17 0;
-#X connect 15 0 17 0;
-#X connect 16 0 17 0;
-#X connect 17 0 1 0;
+#X connect 0 0 16 0;
+#X connect 4 0 16 0;
+#X connect 7 0 16 0;
+#X connect 8 0 16 0;
+#X connect 9 0 16 1;
+#X connect 10 0 16 0;
+#X connect 14 0 16 0;
+#X connect 15 0 16 0;
+#X connect 16 0 1 0;
