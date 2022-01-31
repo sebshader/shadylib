@@ -100,12 +100,12 @@ outputting a bang and resetting;
 #X obj 51 3559 ../udispatch;
 #X text 160 3558 listens on a port for fudi udp messages and sends
 them with lispatch;
-#X text 330 3727 end;
+#X text 334 3643 end;
 #X obj 35 1048 ../makerpath;
 #X text 134 1046 get the absolute path of a file relative to the root
 canvas;
-#X obj 46 3684 ../valuer;
-#X text 140 3685 dynamic "value" object (name);
+#X obj 50 3600 ../valuer;
+#X text 144 3601 dynamic "value" object (name);
 #X obj 41 298 ../bangif == 3;
 #X text 156 297 bangs left outlet if left inlet is 1st arg the 2nd
 arg/inlet;
@@ -148,12 +148,6 @@ a parameter;
 #X obj 32 3361 ../tseq;
 #X text 158 3433 sequence of toggles;
 #X text 148 3477 find distance in ms between 2 taps in ms;
-#X obj 49 3603 ../updel;
-#X obj 49 3637 ../upmet;
-#X text 116 3597 updel and upmet are slightly more expensive versions
-of delay and metro that update the callback times that are already
-in the scheduling list if they change (continously variable tempo)
-;
 #X text 163 1575 pass numbers through if they match a condition;
 #X obj 29 1575 ../passif >= 6;
 #X obj 34 568 ../ftos;

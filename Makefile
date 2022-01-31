@@ -11,8 +11,8 @@ buzz~.c           nead~.c           rectoratord~.c    tcheb~.c \
 delreadc~.c       near~.c           rectorator~.c     transpose~.c \
 delwritec~.c      nrcombf~.c        rminus~.c         triangulatord~.c \
 dsrand~.c         operatord~.c      rootinfo.c        triangulator~.c \
-fmod~.c           operator~.c       rover~.c          updel.c \
-highest~.c        phasorator~.c     sampphase~.c      upmet.c \
+fmod~.c           operator~.c       rover~.c \
+highest~.c        phasorator~.c     sampphase~.c \
 inrange.c         pib~.c            scaler.c          vdhs~.c \
 pinb~.c           scaler~.c         voisim~.c 		  log2.c \
 modf~.c           powclip~.c        shadylook.c		lag~.c \
