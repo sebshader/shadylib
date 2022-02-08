@@ -85,7 +85,7 @@ static void moop_period(t_moop *x, t_floatarg period) {
 	x->x_period = x->x_tperiod/x->x_sr;
 }
 
-void moop_tilde_set(t_moop *x, t_symbol *s) {
+static void moop_tilde_set(t_moop *x, t_symbol *s) {
     t_garray *a;
     int points;
     x->x_arrayname = s;

@@ -45,7 +45,7 @@ static void sigvdhs_set(t_sigvdhs *x, t_symbol *s) {
             x->x_cspace = &delwriter->x_cspace;
         }
     } else if (*x->x_sym->s_name)
-        error("vdhs~: %s: no such delwritec~", s->s_name);
+        pd_error(x, "vdhs~: %s: no such delwritec~", s->s_name);
 }
 
 static t_int *sigvdhs_perform_no(t_int *w)
@@ -189,7 +189,7 @@ static void sigvdhs_dsp(t_sigvdhs *x, t_signal **sp)
                 &x->x_cspace, x, sp[0]->s_n);
     }
     else if (*x->x_sym->s_name)
-        error("vdhs~: %s: no such delwritec~", x->x_sym->s_name);
+        pd_error(x, "vdhs~: %s: no such delwritec~", x->x_sym->s_name);
 }
 
 void vdhs_tilde_setup(void)
