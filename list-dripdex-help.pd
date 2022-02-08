@@ -1,4 +1,4 @@
-#N canvas 379 22 450 300 10;
+#N canvas 379 23 450 300 10;
 #X obj 228 157 list prepend;
 #X obj 298 132 list;
 #X obj 199 182 list;
@@ -7,6 +7,7 @@
 #X text 68 26 like list-drip but second outlet gives index;
 #X obj 225 68 t a b;
 #X obj 225 90 ./list-dripdex;
+#X text 111 250 see also: [drip] in zexy;
 #X connect 0 0 1 0;
 #X connect 0 0 2 1;
 #X connect 1 0 0 1;

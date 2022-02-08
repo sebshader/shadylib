@@ -6,7 +6,7 @@
 #X obj 196 209 outlet~;
 #X obj 254 215 outlet~;
 #X obj 271 21 inlet;
-#X obj 202 167 dsrand~ \$1;
+#X obj 202 167 ./dsrand~ \$1;
 #X connect 0 0 1 0;
 #X connect 1 0 2 0;
 #X connect 2 0 3 0;

@@ -15,7 +15,7 @@
 #X obj 84 148 -~ 1;
 #X obj 241 173 *~;
 #X obj 241 194 *~ 0.5;
-#X obj 82 128 rover~;
+#X obj 82 128 ./rover~;
 #X connect 0 0 6 0;
 #X connect 1 0 2 0;
 #X connect 2 0 10 0;
