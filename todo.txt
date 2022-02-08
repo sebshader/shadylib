@@ -1,5 +1,4 @@
 figure out garray + switch~ redrawing mystery?
 pipebang tempo args?
-add rectorator~/rectoratord~ and triangulator~/triangulatord~ pulse-width args?
 routem? - route all matching selectors to one outlet
 percents - list of percent values, output the interval # chosen.

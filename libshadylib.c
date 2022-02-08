@@ -525,7 +525,7 @@ void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *arg
     if (!(x->l_vec = (t_shadylib_listelem *)getbytes(argc * sizeof(*x->l_vec))))
     {
         x->l_n = 0;
-        pd_error(x, "list: out of memory");
+        pd_error(0, "list: out of memory");
         return;
     }
     x->l_n = argc;
@@ -541,7 +541,7 @@ void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom 
     if (!(x->l_vec = (t_shadylib_listelem *)getbytes((argc+1) * sizeof(*x->l_vec))))
     {
         x->l_n = 0;
-        pd_error(x, "list_alloc: out of memory");
+        pd_error(0, "list_alloc: out of memory");
         return;
     }
     x->l_n = argc+1;
@@ -576,7 +576,7 @@ void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, i
     if (!(y->l_vec = (t_shadylib_listelem *)getbytes(y->l_n * sizeof(*y->l_vec))))
     {
         y->l_n = 0;
-        pd_error(x, "list_alloc: out of memory");
+        pd_error(0, "list_alloc: out of memory");
     }
     else for (i = 0; i < count; i++)
     {
