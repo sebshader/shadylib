@@ -3,5 +3,5 @@ pipebang tempo args?
 routem? - route all matching selectors to one outlet
 percents - list of percent values, output the interval # chosen.
 find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, sndfread etc.,)
-check prepender for memory leaks
-check checkdupes in stream objects
+redo checkdupes in stream objects with list-relim
+maybe make oldbob~ (old "broken" version of bob~)

@@ -1,0 +1,24 @@
+#N canvas 349 53 450 300 10;
+#X obj 132 194 print;
+#X msg 116 111 5 6;
+#X msg 252 140 symbol pan;
+#X msg 72 90 list pan 6 panpan6 panpan;
+#X msg 241 106 symbol /;
+#X msg 131 141 list / 5 6 //;
+#X msg 151 113 12;
+#X obj 132 173 list-relim /;
+#X msg 28 140 symbol data;
+#X msg 203 55 pan pan;
+#X text 178 10 add delimiter (opposite of list-delim);
+#X obj 308 46 ./list-delim;
+#X text 53 229 only modifies symbols that only consist of repititions
+of the delimiter;
+#X connect 1 0 7 0;
+#X connect 2 0 7 1;
+#X connect 3 0 7 0;
+#X connect 4 0 7 1;
+#X connect 5 0 7 0;
+#X connect 6 0 7 0;
+#X connect 7 0 0 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;

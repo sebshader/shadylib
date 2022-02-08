@@ -23,7 +23,7 @@ static inline int testatoms(t_symbol *tester, t_atom *against){
 	else return 0;
 }
 
-static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
+static void list_delim_list(t_list_delim *x, t_symbol* s,
     int argc, t_atom *argv)
 {
     t_symbol *c = x->x_s;
@@ -51,7 +51,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
 					}
 					cont:;
 				}
-				outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
+				outlet_list(x->x_obj.ob_outlet, s, outc, outv);
 				SHADYLIB_ATOMS_FREEA(outv, outc);
 				firstpass = 0;
 				outc = 0;
@@ -77,7 +77,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* UNUSED(s),
 				}
 			}
 		}
-		outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
+		outlet_list(x->x_obj.ob_outlet, s, outc, outv);
 		SHADYLIB_ATOMS_FREEA(outv, outc);
 		firstpass = 0;
 		outc = 0;
