@@ -1,15 +1,15 @@
 #N canvas 295 23 535 367 10;
-#X obj 189 184 print;
-#X msg 313 99 symbol /;
+#X obj 193 202 print;
+#X msg 299 148 symbol /;
 #X text 57 225 split a list according to a certain symbol \, which
 also acts as an escape character for itself;
-#X msg 312 78 symbol pan;
-#X msg 136 54 pan panpan 60 23 panpanpan panpanpa pan3 pan blah balmk
-;
-#X msg 207 29 this /is a / // seperator;
-#X obj 207 123 ./list-delim pan;
-#X connect 1 0 6 1;
-#X connect 3 0 6 1;
-#X connect 4 0 6 0;
-#X connect 5 0 6 0;
-#X connect 6 0 0 0;
+#X msg 290 125 symbol pan;
+#X msg 193 63 this /is a / // seperator;
+#X obj 193 172 ./list-delim pan;
+#X msg 131 90 pan panpan 60 23 panpanpan panpanpa pan3 pan blah balmk
+pan pan3;
+#X connect 1 0 5 1;
+#X connect 3 0 5 1;
+#X connect 4 0 5 0;
+#X connect 5 0 0 0;
+#X connect 6 0 5 0;

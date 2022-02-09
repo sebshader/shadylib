@@ -40,14 +40,12 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
 					if(outv[j].a_type == A_SYMBOL) {
 						const char *against = atom_getsymbol(outv+j)->s_name;
 						size_t alength = strlen(against);
-						if(!(alength%strlength) && alength > strlength) {
-							for(size_t k = 0; k < alength; k += strlength)
-								if (strncmp(c->s_name, against + k, strlength)
-								    != 0)
-									goto cont;
-							strncpy(namebuf, against+strlength, MAXPDSTRING);
-							outv[j].a_w.w_symbol = gensym(namebuf);
-						}
+                        for(size_t k = 0; k < alength; k += strlength)
+                            if (strncmp(c->s_name, against + k, strlength)
+                                != 0)
+                                goto cont;
+                        strncpy(namebuf, against+strlength, MAXPDSTRING);
+                        outv[j].a_w.w_symbol = gensym(namebuf);
 					}
 					cont:;
 				}
@@ -69,13 +67,14 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
 		shadylib_atoms_copy(outc, argv+firstindex, outv);
 		for(int j = 0; j < outc; j++) {
 			if(outv[j].a_type == A_SYMBOL) {
-				const char *against = atom_getsymbol(outv+j)->s_name;
-				if(strlen(against) > strlength &&
-					strncmp(c->s_name, against, strlength) == 0) {
-					strncpy(namebuf, against+strlength, MAXPDSTRING);
-					outv[j].a_w.w_symbol = gensym(namebuf);
-				}
-			}
+                const char *against = atom_getsymbol(outv+j)->s_name;
+                size_t alength = strlen(against);
+                for(size_t k = 0; k < alength; k += strlength)
+                    if (strncmp(c->s_name, against + k, strlength) != 0)
+                        goto cont;
+                strncpy(namebuf, against+strlength, MAXPDSTRING);
+                outv[j].a_w.w_symbol = gensym(namebuf);
+            }
 		}
 		outlet_list(x->x_obj.ob_outlet, s, outc, outv);
 		SHADYLIB_ATOMS_FREEA(outv, outc);

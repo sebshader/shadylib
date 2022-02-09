@@ -32,13 +32,11 @@ static void list_relim_list(t_list_relim *x, t_symbol* s,
 		if(outv[i].a_type == A_SYMBOL) {
 			const char *against = atom_getsymbol(outv+i)->s_name;
 			size_t alength = strlen(against);
-			if(!(alength%strlength)) {
-				for(size_t k = 0; k < alength; k += strlength)
-                    if (strncmp(c->s_name, against + k, strlength) != 0)
-                        goto cont;
-                strncpy(namebuf+strlength, against, strdiff);
-                outv[i].a_w.w_symbol = gensym(namebuf);
-            }
+            for(size_t k = 0; k < alength; k += strlength)
+                if (strncmp(c->s_name, against + k, strlength) != 0)
+                    goto cont;
+            strncpy(namebuf+strlength, against, strdiff);
+            outv[i].a_w.w_symbol = gensym(namebuf);
         }
         cont:;
     }
@@ -62,25 +60,21 @@ static void list_relim_anything(t_list_relim *x, t_symbol *s,
 		if(outv[i].a_type == A_SYMBOL) {
 			against = atom_getsymbol(outv+i)->s_name;
 			alength = strlen(against);
-			if(!(alength%strlength)) {
-				for(size_t k = 0; k < alength; k += strlength)
-                    if (strncmp(c->s_name, against + k, strlength) != 0)
-                        goto cont;
-                strncpy(namebuf+strlength, against, strdiff);
-                outv[i].a_w.w_symbol = gensym(namebuf);
-            }
+            for(size_t k = 0; k < alength; k += strlength)
+                if (strncmp(c->s_name, against + k, strlength) != 0)
+                    goto cont;
+            strncpy(namebuf+strlength, against, strdiff);
+            outv[i].a_w.w_symbol = gensym(namebuf);
         }
         cont:;
     }
     against = s->s_name;
     alength = strlen(against);
-    if(!(alength%strlength)) {
-        for(size_t k = 0; k < alength; k += strlength)
-            if (strncmp(c->s_name, against + k, strlength) != 0)
-                goto send;
-        strncpy(namebuf+strlength, against, strdiff);
-        outsym = gensym(namebuf);
-    }
+    for(size_t k = 0; k < alength; k += strlength)
+        if (strncmp(c->s_name, against + k, strlength) != 0)
+            goto send;
+    strncpy(namebuf+strlength, against, strdiff);
+    outsym = gensym(namebuf);
     send:
     outlet_anything(x->x_obj.ob_outlet, outsym, argc, outv);
     SHADYLIB_ATOMS_FREEA(outv, argc);
