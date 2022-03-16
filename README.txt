@@ -3,7 +3,7 @@ to make & install: type "make install" in this (shadylib) directory
 This is a pure data library
 
 Many abstractions and externals are just ports and modifications of existing
-programs, primarily patches from the pure data help files.
+programs, and patches from the pure data help files.
 
 Some external libraries are needed, primarily zexy and iemlib, and cup/
 cupd from ekext.

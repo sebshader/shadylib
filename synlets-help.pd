@@ -1,14 +1,14 @@
 #N canvas 311 23 516 404 10;
-#X obj 118 152 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 89 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 203 81 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X floatatom 111 78 5 0 0 0 - - -;
-#X floatatom 224 83 5 0 0 0 - - -;
-#X floatatom 153 148 5 0 0 0 - - -;
-#X floatatom 190 146 5 0 0 0 - - -;
+#X obj 118 152 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 89 81 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 203 81 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X floatatom 111 78 5 0 0 0 - - - 0;
+#X floatatom 224 83 5 0 0 0 - - - 0;
+#X floatatom 153 148 5 0 0 0 - - - 0;
+#X floatatom 190 146 5 0 0 0 - - - 0;
 #X msg 158 79 set 1;
 #X text 25 43 after receiving a number of bangs specified by both 1st
 and 2nd arguments \, (or numbers sent to 1st and 2nd inlets) output
@@ -16,88 +16,88 @@ a bang;
 #X text 6 181 "set" to a trigger inlet sets the step # for that inlet
 (1-based);
 #X msg 36 86 set 4;
-#X obj 40 213 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 42 262 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X floatatom 106 266 5 0 0 0 - - -;
-#X floatatom 71 266 5 0 0 0 - - -;
-#X obj 108 212 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 228 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 189 204 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 208 265 5 0 0 0 - - -;
-#X floatatom 246 265 5 0 0 0 - - -;
-#X obj 189 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 360 208 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 309 204 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 328 265 5 0 0 0 - - -;
-#X floatatom 366 265 5 0 0 0 - - -;
-#X obj 309 265 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 40 213 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 42 262 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X floatatom 106 266 5 0 0 0 - - - 0;
+#X floatatom 71 266 5 0 0 0 - - - 0;
+#X obj 108 212 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 228 208 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 189 204 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X floatatom 208 265 5 0 0 0 - - - 0;
+#X floatatom 246 265 5 0 0 0 - - - 0;
+#X obj 189 265 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 360 208 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 309 204 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X floatatom 328 265 5 0 0 0 - - - 0;
+#X floatatom 366 265 5 0 0 0 - - - 0;
+#X obj 309 265 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
 #X text 218 289 # of bangs defaults to 1;
-#X obj 86 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 62 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X obj 136 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 111 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 161 297 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X obj 62 349 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
--1;
-#X floatatom 81 346 5 0 0 0 - - -;
-#X floatatom 101 365 5 0 0 0 - - -;
-#X floatatom 121 346 5 0 0 0 - - -;
-#X floatatom 141 365 5 0 0 0 - - -;
-#X floatatom 161 346 5 0 0 0 - - -;
-#X text 18 10 syncs inlets: waits for a number of bangs in each inlet
-before banging and resetting both;
+#X obj 86 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 62 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 136 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 111 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 161 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 62 349 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X floatatom 81 346 5 0 0 0 - - - 0;
+#X floatatom 101 365 5 0 0 0 - - - 0;
+#X floatatom 121 346 5 0 0 0 - - - 0;
+#X floatatom 141 365 5 0 0 0 - - - 0;
+#X floatatom 161 346 5 0 0 0 - - - 0;
 #X obj 309 231 ./synlets 5;
 #X obj 122 116 ./synlets 4 3;
 #X obj 189 231 ./synlets;
 #X obj 42 240 ./synlets 0 0;
 #X obj 62 321 ./synlets 4 3 2 1 0;
-#X connect 1 0 40 0;
-#X connect 2 0 40 1;
-#X connect 3 0 40 0;
-#X connect 4 0 40 1;
-#X connect 7 0 40 0;
-#X connect 7 0 40 1;
-#X connect 10 0 40 0;
-#X connect 11 0 42 0;
-#X connect 15 0 42 1;
-#X connect 16 0 41 1;
-#X connect 17 0 41 0;
-#X connect 21 0 39 1;
-#X connect 22 0 39 0;
-#X connect 27 0 43 1;
-#X connect 28 0 43 0;
-#X connect 29 0 43 3;
-#X connect 30 0 43 2;
-#X connect 31 0 43 4;
-#X connect 39 0 25 0;
-#X connect 39 1 23 0;
-#X connect 39 2 24 0;
-#X connect 40 0 0 0;
-#X connect 40 1 5 0;
-#X connect 40 2 6 0;
-#X connect 41 0 20 0;
-#X connect 41 1 18 0;
-#X connect 41 2 19 0;
-#X connect 42 0 12 0;
-#X connect 42 1 14 0;
-#X connect 42 2 13 0;
-#X connect 43 0 32 0;
-#X connect 43 1 33 0;
-#X connect 43 2 34 0;
-#X connect 43 3 35 0;
-#X connect 43 4 36 0;
-#X connect 43 5 37 0;
+#X text 18 10 syncs inlets: waits for a number of bangs in each inlet
+before banging and resetting all;
+#X connect 1 0 39 0;
+#X connect 2 0 39 1;
+#X connect 3 0 39 0;
+#X connect 4 0 39 1;
+#X connect 7 0 39 0;
+#X connect 7 0 39 1;
+#X connect 10 0 39 0;
+#X connect 11 0 41 0;
+#X connect 15 0 41 1;
+#X connect 16 0 40 1;
+#X connect 17 0 40 0;
+#X connect 21 0 38 1;
+#X connect 22 0 38 0;
+#X connect 27 0 42 1;
+#X connect 28 0 42 0;
+#X connect 29 0 42 3;
+#X connect 30 0 42 2;
+#X connect 31 0 42 4;
+#X connect 38 0 25 0;
+#X connect 38 1 23 0;
+#X connect 38 2 24 0;
+#X connect 39 0 0 0;
+#X connect 39 1 5 0;
+#X connect 39 2 6 0;
+#X connect 40 0 20 0;
+#X connect 40 1 18 0;
+#X connect 40 2 19 0;
+#X connect 41 0 12 0;
+#X connect 41 1 14 0;
+#X connect 41 2 13 0;
+#X connect 42 0 32 0;
+#X connect 42 1 33 0;
+#X connect 42 2 34 0;
+#X connect 42 3 35 0;
+#X connect 42 4 36 0;
+#X connect 42 5 37 0;
