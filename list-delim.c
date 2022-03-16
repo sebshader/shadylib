@@ -71,15 +71,14 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
                 size_t alength = strlen(against);
                 for(size_t k = 0; k < alength; k += strlength)
                     if (strncmp(c->s_name, against + k, strlength) != 0)
-                        goto cont;
+                        goto cont2;
                 strncpy(namebuf, against+strlength, MAXPDSTRING);
                 outv[j].a_w.w_symbol = gensym(namebuf);
             }
+            cont2:;
 		}
 		outlet_list(x->x_obj.ob_outlet, s, outc, outv);
 		SHADYLIB_ATOMS_FREEA(outv, outc);
-		firstpass = 0;
-		outc = 0;
 	}
 }
 
