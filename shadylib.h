@@ -287,3 +287,4 @@ EXTERN void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, 
 EXTERN void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, int count);
 EXTERN void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count);
 EXTERN void shadylib_alist_setup(void);
+EXTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);

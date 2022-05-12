@@ -90,22 +90,22 @@ functions in a table;
 #X text 142 3061 2 inlets wait for a certain number of bangs before
 outputting a bang and resetting;
 #X obj 52 3063 ../synlets;
-#X obj 45 3190 ../temposet;
-#X text 166 3191 a gui to help with tempo;
-#X obj 38 3303 ../testro 500;
-#X text 173 3304 quick metro for testing things;
-#X obj 45 3363 ../transpose;
-#X text 139 3364 semitones to pitch-ratio conversion;
-#X obj 49 3496 ../ttempo;
-#X obj 51 3589 ../udispatch;
-#X text 160 3588 listens on a port for fudi udp messages and sends
+#X obj 45 3220 ../temposet;
+#X text 166 3221 a gui to help with tempo;
+#X obj 38 3333 ../testro 500;
+#X text 173 3334 quick metro for testing things;
+#X obj 45 3393 ../transpose;
+#X text 139 3394 semitones to pitch-ratio conversion;
+#X obj 49 3526 ../ttempo;
+#X obj 51 3619 ../udispatch;
+#X text 160 3618 listens on a port for fudi udp messages and sends
 them with lispatch;
-#X text 334 3673 end;
+#X text 334 3703 end;
 #X obj 35 1078 ../makerpath;
 #X text 134 1076 get the absolute path of a file relative to the root
 canvas;
-#X obj 50 3630 ../valuer;
-#X text 144 3631 dynamic "value" object (name);
+#X obj 50 3660 ../valuer;
+#X text 144 3661 dynamic "value" object (name);
 #X obj 41 298 ../bangif == 3;
 #X text 156 297 bangs left outlet if left inlet is 1st arg the 2nd
 arg/inlet;
@@ -140,14 +140,14 @@ a parameter;
 #X text 178 2751 convert stream from text (text define);
 #X obj 40 2855 ../stream-totext;
 #X text 170 2851 convert stream to text;
-#X obj 51 3105 ../tabload;
-#X text 136 3105 sets size or elements of an array from a list;
-#X obj 49 3147 ../tabsave;
-#X text 130 3144 saves an array into size and array fields messages
+#X obj 51 3135 ../tabload;
+#X text 136 3135 sets size or elements of an array from a list;
+#X obj 49 3177 ../tabsave;
+#X text 130 3174 saves an array into size and array fields messages
 ;
-#X obj 32 3391 ../tseq;
-#X text 158 3463 sequence of toggles;
-#X text 148 3507 find distance in ms between 2 taps in ms;
+#X obj 32 3421 ../tseq;
+#X text 158 3493 sequence of toggles;
+#X text 148 3537 find distance in ms between 2 taps in ms;
 #X text 163 1605 pass numbers through if they match a condition;
 #X obj 29 1605 ../passif >= 6;
 #X obj 34 568 ../ftos;
@@ -158,7 +158,7 @@ a parameter;
 #X text 135 1967 use with saver to save both messages and files;
 #X text 118 1917 use with textsave or msgsave (or saveroute) to save
 parameters;
-#X obj 50 3542 ../txtsave \$0-overview;
+#X obj 50 3572 ../txtsave \$0-overview;
 #X obj 38 231 ../array-shuffle;
 #X text 171 229 shuffle array;
 #X obj 29 1577 ../noteson;
@@ -172,7 +172,7 @@ parameters;
 milliseconds;
 #X obj 37 1019 ../log2;
 #X text 125 1018 log base 2;
-#X text 217 3543 used with saver to save to text files;
+#X text 217 3573 used with saver to save to text files;
 #X obj 32 511 ../frandom;
 #X text 118 510 generate random float in range 0-argument/2nd inlet
 ;
@@ -189,8 +189,11 @@ in samples;
 #X obj 399 34 declare -path ../;
 #X text 300 11 pdlua doesn't work with relative paths in objectname?
 ;
-#X obj 50 3334 ../tole;
-#X text 136 3335 non-graphical toggle (otherwise like [tgl]);
+#X obj 50 3364 ../tole;
+#X text 136 3365 non-graphical toggle (otherwise like [tgl]);
 #X obj 37 961 ../list-relim;
 #X text 138 961 opposite of list-delim: add delimiters where necessary
 ;
+#X obj 53 3099 ../syphon;
+#X text 134 3096 split messages according to if the 1st element matches
+a list;

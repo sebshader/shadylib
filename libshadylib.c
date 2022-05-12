@@ -597,3 +597,37 @@ void shadylib_alist_setup(void)
     class_addlist(shadylib_alist_class, shadylib_alist_list);
     class_addanything(shadylib_alist_class, shadylib_alist_anything);
 }
+
+static const char* print_atomtype (t_atomtype intype) {
+    switch(intype) {
+        case A_NULL: return "A_NULL";
+        case A_FLOAT: return "A_FLOAT";
+        case A_SYMBOL: return "A_SYMBOL";
+        case A_POINTER: return "A_POINTER";
+        case A_SEMI: return "A_SEMI";
+        case A_COMMA: return "A_COMMA";
+        case A_DEFFLOAT: return "A_DEFFLOAT";
+        case A_DEFSYM: return "A_DEFSYM";
+        case A_DOLLAR: return "A_DOLLAR";
+        case A_DOLLSYM: return "A_DOLLSYM";
+        case A_GIMME: return "A_GIMME";
+        case A_CANT: return "A_CANT";
+    }
+}
+
+int shadylib_atoms_eq(t_atom *first, t_atom *second) {
+    if (first->a_type == second->a_type) {
+        switch(first->a_type) {
+            case A_FLOAT:
+                return first->a_w.w_float == second->a_w.w_float;
+            case A_SYMBOL:
+                return first->a_w.w_symbol == second->a_w.w_symbol;
+            case A_POINTER:
+                return first->a_w.w_gpointer == second->a_w.w_gpointer;
+            default: 
+                pd_error(0, "shadylib_atms_cmp: unsupported type %s", print_atomtype(first->a_type));
+                return 0;
+        }
+    }
+    return 0;
+}

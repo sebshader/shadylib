@@ -1,8 +1,6 @@
 figure out garray + switch~ redrawing mystery?
 pipebang tempo args?
-routem? - route all matching selectors to one outlet
 percents - list of percent values, output the interval # chosen.
 find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, sndfread etc.,)
-maybe make oldbob~ (old "broken" version of bob~)
 look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
