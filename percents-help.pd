@@ -1,0 +1,33 @@
+#N canvas 205 131 450 300 10;
+#X obj 90 94 percents 5 12 90;
+#X obj 90 63 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000;
+#X floatatom 90 135 5 0 0 0 - - - 0;
+#X obj 128 138 print bucket;
+#X msg 144 45 seed 550;
+#X msg 144 25 50 60 70 80 90;
+#X text 240 25 set new list;
+#X text 44 211 outputs bucket number given a series of increasing percentages
+(outputs what bucket the random number generated was in. number of
+buckets is n+1 where n is number of percentages (goes from 0 to n)
+;
+#X msg 167 70 50 blah 75;
+#X text 236 70 non-numbers are ignored;
+#X msg 62 22 0;
+#X msg 29 48 100;
+#X text 200 45 set seed;
+#X text 120 174 list must be in increasing order to work properly!
+;
+#X obj 278 133 print percentage;
+#X floatatom 222 131 5 0 0 0 - - - 0;
+#X text 257 111 percentage doesnt include 100;
+#X connect 0 0 2 0;
+#X connect 0 0 3 0;
+#X connect 0 1 14 0;
+#X connect 0 1 15 0;
+#X connect 1 0 0 0;
+#X connect 4 0 0 0;
+#X connect 5 0 0 0;
+#X connect 8 0 0 0;
+#X connect 10 0 0 0;
+#X connect 11 0 0 0;

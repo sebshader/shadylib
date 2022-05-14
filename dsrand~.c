@@ -6,52 +6,6 @@
 #define b 2375621 /* arbitrary number ending in ...(even digit)21
                        with 1 digit less than m */
 
-/*below is a program to test the number generator
-//chisquare: test if within 128 (2*sqrt(4096)) of 4096
-
-#include <stdio.h>
-
-#define m 16777216 
-#define m1 4096
-#define b 2375621
-
-//you can (and should) substitute 60000 with other values greater than 40960
-#define N 60000
-
-int mult(int p, int q) {
-	int p1, p0, q1, q0;
-	p1 = p/m1; p0 = p%m1;
-	q1 = q/m1; q0 = q%m1;
-	return (((p0*q1 + p1*q0)%m1)*m1 + p0*q0)%m;
-}
-
-int randomtest(int in) {
-	in = (mult(in, b) + 1)%m;
-	return in;
-}
-
-int tab[m1];
-
-int main (int argc, char **argv) {
-	int state = 0, i;
-	float result;
-	for(i = 0; i < m1; i++) tab[i] = 0;
-	for(i = 0; i < N; i++) {
-		state = randomtest(state); 
-		tab[state/m1]++;
-	}
-	state = 0;
-	for(i = 0; i < m1; i++) {
-		state += tab[i]*tab[i];
-	}
-	printf("state = %i\n", state);
-	result = (((float)state)/N)*m1 - N;
-	printf("result = %f\n", result);
-	printf("difference: %f (absolute value should be < 128)\n", m1 - result);
-}
-
-*/
-
 static t_class *dsrand_class;
 
 typedef struct _dsrand {
@@ -63,21 +17,9 @@ typedef struct _dsrand {
 	t_sample x_lastin;
 } t_dsrand;
 
-// 579 = b/m1, 4037 = b%m1
-static int mult(unsigned int p) {
-	unsigned int p1, p0;
-	p1 = p/m1; p0 = p%m1;
-	return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
-}
-
 // get a number from -1 to 1
 static inline float ritoflt(unsigned int toflt) {
-	return toflt*(1/8388608.0f) - 1;
-}
-
-static inline int randlcm(unsigned int in) {
-	in = (mult(in) + 1)%m;
-	return in;
+	return toflt*(1/8388607.5f) - 1;
 }
 
 static void dsrand_seed(t_dsrand *x, t_floatarg seed) {

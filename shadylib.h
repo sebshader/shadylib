@@ -259,9 +259,9 @@ typedef struct _shadylib_listelem
 typedef struct _shadylib_alist
 {
     t_pd l_pd;          /* object to point inlets to */
+    t_shadylib_listelem *l_vec;  /* pointer to items */
     int l_n;            /* number of items */
     int l_npointer;     /* number of pointers */
-    t_shadylib_listelem *l_vec;  /* pointer to items */
 } t_shadylib_alist;
 
 #if HAVE_ALLOCA
@@ -288,3 +288,70 @@ EXTERN void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, i
 EXTERN void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count);
 EXTERN void shadylib_alist_setup(void);
 EXTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);
+
+//linear congruential method from "Algorithms in C" by Robert Sedgewick
+#define m 16777216 /* 2^24: 24 digits are 0 */
+#define m1 4096 /* 2^12 */
+/*#define b 2375621 arbitrary number ending in ...(even digit)21
+                       with 1 digit less than m */
+
+/*below is a program to test the number generator
+//chisquare: test if within 128 (2*sqrt(4096)) of 4096
+
+#include <stdio.h>
+
+#define m 16777216 
+#define m1 4096
+#define b 2375621
+
+//you can (and should) substitute 60000 with other values greater than 40960
+#define N 60000
+
+int mult(int p, int q) {
+	int p1, p0, q1, q0;
+	p1 = p/m1; p0 = p%m1;
+	q1 = q/m1; q0 = q%m1;
+	return (((p0*q1 + p1*q0)%m1)*m1 + p0*q0)%m;
+}
+
+int randomtest(int in) {
+	in = (mult(in, b) + 1)%m;
+	return in;
+}
+
+int tab[m1];
+
+int main (int argc, char **argv) {
+	int state = 0, i;
+	float result;
+	for(i = 0; i < m1; i++) tab[i] = 0;
+	for(i = 0; i < N; i++) {
+		state = randomtest(state); 
+		tab[state/m1]++;
+	}
+	state = 0;
+	for(i = 0; i < m1; i++) {
+		state += tab[i]*tab[i];
+	}
+	printf("state = %i\n", state);
+	result = (((float)state)/N)*m1 - N;
+	printf("result = %f\n", result);
+	printf("difference: %f (absolute value should be < 128)\n", m1 - result);
+}
+
+*/
+
+/* 579 = b/m1, 4037 = b%m1 */
+inline int mult(unsigned int p) {
+	unsigned int p1, p0;
+	p1 = p/m1; p0 = p%m1;
+	return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
+}
+
+inline int randlcm(unsigned int in) {
+	in = (mult(in) + 1)%m;
+	return in;
+}
+
+#undef m
+#undef m1
