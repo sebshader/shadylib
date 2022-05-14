@@ -1,4 +1,4 @@
-#N canvas 363 239 450 300 10;
+#N canvas 363 239 421 319 10;
 #X obj 86 138 syphon blah 23 8 hamburger;
 #X msg 113 88 blah;
 #X msg 96 66 symbol hamburger;
@@ -17,6 +17,14 @@ message is checked. For other "anything" messages the selector is checked
 #X msg 241 74 blah 23 8 hamburger;
 #X obj 86 159 print match;
 #X obj 242 168 print no match;
+#X msg 6 53 bang;
+#X msg 366 57 bang;
+#X msg 299 127 symbol bang;
+#X text 26 279 note: a "bang" will match the symbol "bang" \, not an
+empty list (created by sending "bang" to the right inlet);
+#X msg 17 95 list;
+#X msg 23 128 symbol;
+#X msg 297 148 symbol;
 #X connect 0 0 12 0;
 #X connect 0 1 13 0;
 #X connect 1 0 0 0;
@@ -28,3 +36,9 @@ message is checked. For other "anything" messages the selector is checked
 #X connect 9 0 0 0;
 #X connect 10 0 0 1;
 #X connect 11 0 0 1;
+#X connect 14 0 0 0;
+#X connect 15 0 0 1;
+#X connect 16 0 0 1;
+#X connect 18 0 0 0;
+#X connect 19 0 0 0;
+#X connect 20 0 0 1;

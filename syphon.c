@@ -20,17 +20,32 @@ static void *syphon_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
     return (x);
 }
 
+static void syphon_bang(t_syphon *x)
+{
+    int n;
+    t_shadylib_listelem *current;
+    for(n = x->x_alist.l_n, current = x->x_alist.l_vec; n--; current++) {
+        if(current->l_a.a_type == A_SYMBOL
+            && &s_bang == current->l_a.a_w.w_symbol) {
+            outlet_bang(x->x_obj.ob_outlet);
+            return;
+        }
+    }
+    outlet_bang(x->x_rejectout);
+}
+
 static void syphon_list(t_syphon *x, t_symbol *s,
     int argc, t_atom *argv)
 {
     int n;
     t_shadylib_listelem *current;
-    for(n = x->x_alist.l_n, current = x->x_alist.l_vec; n--; current++) {
-        if(shadylib_atoms_eq(argv, &current->l_a)) {
-            outlet_list(x->x_obj.ob_outlet, s, argc, argv);
-            return;
+    if(argc)
+        for(n = x->x_alist.l_n, current = x->x_alist.l_vec; n--; current++) {
+            if(shadylib_atoms_eq(argv, &current->l_a)) {
+                outlet_list(x->x_obj.ob_outlet, s, argc, argv);
+                return;
+            }
         }
-    }
     outlet_list(x->x_rejectout, s, argc, argv);
 }
 
@@ -91,4 +106,5 @@ void syphon_setup(void)
     class_addsymbol(syphon_class, syphon_symbol);
     class_addfloat(syphon_class, syphon_float);
     class_addanything(syphon_class, syphon_anything);
+    class_addbang(syphon_class, syphon_bang);
 }
