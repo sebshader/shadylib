@@ -5,10 +5,9 @@
 #X text 14 9 this takes a pathname relative to the root canvas and
 transforms it into an absolute pathname;
 #X msg 307 96 ../test.pd;
-#X msg 95 70 /this/is/alsready/absolutemm;
 #X text 43 264 leaves absolute paths alone;
 #N canvas 258 144 450 300 levels 0;
-#X floatatom 139 159 5 0 0 0 - - -;
+#X floatatom 139 159 5 0 0 0 - - - 0;
 #X text 144 139 0 works here but not as a creation argument;
 #X obj 84 211 print;
 #X text 46 33 creation argument/right inlet is level (defaults to root
@@ -20,8 +19,11 @@ canvas);
 #X connect 5 0 2 0;
 #X restore 123 198 pd levels;
 #X obj 242 147 ./makerpath;
-#X connect 1 0 8 0;
-#X connect 2 0 8 0;
-#X connect 4 0 8 0;
-#X connect 5 0 8 0;
-#X connect 8 0 0 0;
+#X msg 91 111 c:/so_is/this;
+#X msg 19 67 /this/is/alsready/absolutemm;
+#X connect 1 0 7 0;
+#X connect 2 0 7 0;
+#X connect 4 0 7 0;
+#X connect 7 0 0 0;
+#X connect 8 0 7 0;
+#X connect 9 0 7 0;

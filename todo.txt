@@ -1,6 +1,6 @@
 figure out garray + switch~ redrawing mystery?
 pipebang tempo args?
-percents - list of percent values, output the interval # chosen.
 find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, sndfread etc.,)
 look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
+review objects that use file names too
