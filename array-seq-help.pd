@@ -1,13 +1,13 @@
 #N canvas 452 23 873 467 12;
-#X floatatom 271 334 5 0 0 0 multiplier - -;
-#X floatatom 375 386 5 0 0 0 vertical_offset - -;
+#X floatatom 271 334 5 0 0 0 multiplier - - 0;
+#X floatatom 375 386 5 0 0 0 vertical_offset - - 0;
 #X obj 361 85 loadbang;
 #N canvas 0 22 450 278 (subpatch) 0;
 #X array seq 100 float 2;
 #X coords 0 200 100 0 200 140 1 0 0;
 #X restore 100 20 graph;
-#X obj 19 203 bng 15 250 50 0 empty empty do_it 17 7 0 10 -262144 -1
--1;
+#X obj 19 203 bng 15 250 50 0 empty empty do_it 17 7 0 10 #fcfcfc #000000
+#000000;
 #X text 392 329 arguments: multiplier (1 by default \, and if 0 see
 "const" message to arrays for filling constant values) \, offset \,
 name;
@@ -20,20 +20,20 @@ name;
 to last-first/(size-1) and offset to the first value;
 #X msg 179 367 set seq;
 #X obj 10 150 tabread seq;
-#X floatatom 17 104 5 0 100 0 - - -;
-#X floatatom 12 174 5 0 0 0 - - -;
+#X floatatom 17 104 5 0 100 0 - - - 0;
+#X floatatom 12 174 5 0 0 0 - - - 0;
 #X msg 15 235 wraprange 150 50;
+#X obj 198 414 ./array-seq 1 0 seq;
 #X text 143 205 treats the array like there's 1 more value. like range
 but uses size instead of size-1. This is useful if you have a "wrapped"
-table (for instance "rangewrap 0 100" would start at 0 and end at 99
+table (for instance "wraprange 0 100" would start at 0 and end at 99
 instead of 100 making each step a whole 1);
-#X obj 198 414 ./array-seq 1 0 seq;
-#X connect 0 0 17 1;
-#X connect 1 0 17 2;
+#X connect 0 0 16 1;
+#X connect 1 0 16 2;
 #X connect 2 0 7 0;
-#X connect 4 0 17 0;
-#X connect 9 0 17 0;
-#X connect 11 0 17 0;
+#X connect 4 0 16 0;
+#X connect 9 0 16 0;
+#X connect 11 0 16 0;
 #X connect 12 0 14 0;
 #X connect 13 0 12 0;
-#X connect 15 0 17 0;
+#X connect 15 0 16 0;

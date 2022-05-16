@@ -1,14 +1,14 @@
 #N canvas 373 23 1067 710 10;
 #X declare -lib zexy -lib iemlib;
 #X msg 454 360 start;
-#X symbolatom 204 172 35 0 0 0 - - -;
-#X symbolatom 204 192 35 0 0 0 - - -;
+#X symbolatom 204 172 35 0 0 0 - - - 0;
+#X symbolatom 204 192 35 0 0 0 - - - 0;
 #X msg 464 410 stop;
 #X obj 276 217 t b b;
 #X obj 144 621 outlet;
 #X obj 227 93 inlet;
 #X text 231 78 filename;
-#X symbolatom 413 153 10 0 0 1 additional_flag - -;
+#X symbolatom 413 153 10 0 0 1 additional_flag - - 0;
 #X obj 587 84 inlet;
 #X obj 162 300 savepanel;
 #X obj 170 71 inlet~;
@@ -43,7 +43,6 @@
 #X obj 131 5 inlet;
 #X obj 155 262 outlet;
 #X obj 160 54 list length;
-#X msg 171 196 set open \$2 \$3 \$1;
 #X msg 181 170 adddollar \$1;
 #X obj 167 76 t f f;
 #X obj 166 119 until;
@@ -53,22 +52,23 @@
 #X obj 130 31 t l b l b;
 #X msg 204 110 2;
 #X obj 181 141 ekext/cup;
-#X connect 0 0 10 0;
-#X connect 2 0 5 0;
-#X connect 3 0 1 0;
-#X connect 4 0 3 0;
-#X connect 5 0 7 0;
-#X connect 5 1 11 0;
-#X connect 6 0 12 0;
-#X connect 7 0 6 0;
-#X connect 8 0 3 0;
-#X connect 9 0 3 0;
-#X connect 10 0 3 0;
-#X connect 10 1 9 0;
-#X connect 10 2 2 0;
-#X connect 10 3 8 0;
-#X connect 11 0 12 0;
-#X connect 12 0 4 0;
+#X msg 171 196;
+#X connect 0 0 9 0;
+#X connect 2 0 4 0;
+#X connect 3 0 12 0;
+#X connect 4 0 6 0;
+#X connect 4 1 10 0;
+#X connect 5 0 11 0;
+#X connect 6 0 5 0;
+#X connect 7 0 12 0;
+#X connect 8 0 12 0;
+#X connect 9 0 12 0;
+#X connect 9 1 8 0;
+#X connect 9 2 2 0;
+#X connect 9 3 7 0;
+#X connect 10 0 11 0;
+#X connect 11 0 3 0;
+#X connect 12 0 1 0;
 #X restore 354 336 pd listmanip;
 #X text 584 62 flag;
 #X text 191 616 current filename;
@@ -92,16 +92,16 @@
 #X obj 18 271 mergefilename /;
 #X obj 27 153 splitfilename /;
 #X obj 35 92 splitfilename /;
-#X obj 419 171 cnv 15 150 36 empty empty empty 20 12 0 14 -260097 -66577
+#X obj 419 171 cnv 15 150 36 empty empty empty 20 12 0 14 #fc8000 #404040
 0;
-#X obj 421 191 bng 15 250 50 0 empty empty write 17 7 0 10 -262144
--1 -1;
-#X obj 421 172 bng 15 250 50 0 empty empty open 17 7 0 10 -262144 -1
--1;
-#X obj 498 191 bng 15 250 50 0 empty empty stop 17 7 0 10 -262144 -1
--1;
+#X obj 421 191 bng 15 250 50 0 empty empty write 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 421 172 bng 15 250 50 0 empty empty open 17 7 0 10 #fcfcfc #000000
+#000000;
+#X obj 498 191 bng 15 250 50 0 empty empty stop 17 7 0 10 #fcfcfc #000000
+#000000;
 #X obj 465 172 bng 15 250 50 0 empty empty increment_name 17 7 0 10
--262144 -1 -1;
+#fcfcfc #000000 #000000;
 #X obj 158 333 ./makerpath;
 #X connect 0 0 42 0;
 #X connect 2 0 48 0;
