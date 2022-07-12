@@ -28,7 +28,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
 {
     t_symbol *c = x->x_s;
     size_t strlength = strlen(c->s_name);
-    char namebuf[MAXPDSTRING];
+    char namebuf[MAXPDSTRING + 1];
     t_atom *outv;
     int outc = 0, firstindex = 0, i, firstpass = 0;
     for(i = 0; i < argc; i++){

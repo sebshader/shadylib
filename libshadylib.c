@@ -612,6 +612,8 @@ static const char* print_atomtype (t_atomtype intype) {
         case A_GIMME: return "A_GIMME";
         case A_CANT: return "A_CANT";
     }
+    pd_error(0, "shadylib print_atomtype: no such atomtype");
+    return "";
 }
 
 int shadylib_atoms_eq(t_atom *first, t_atom *second) {
