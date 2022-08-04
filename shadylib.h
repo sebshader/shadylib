@@ -147,7 +147,7 @@ typedef union
 
 //#define IS_DENORMAL(f) (((*(unsigned int *)&(f))&0x7f800000) == 0) 
 
-#define SHADYLIB_IS_DENORMAL(f) (((((shadylib_t_flint)(f)).i) & 0x7f800000) == 0)
+#define SHADYLIB_IS_NOT_DENORMAL(f) (((((shadylib_t_flint)(f)).i) & 0x7f800000) != 0)
 
 #elif PD_FLOAT_PRECISION == 64
 
@@ -157,12 +157,12 @@ typedef union
     t_float f;
 } shadylib_t_flint;
 
-#define SHADYLIB_IS_DENORMAL(f) (((((shadylib_t_flint)(f)).i[1]) & 0x7ff00000) == 0)
+#define SHADYLIB_IS_NOT_DENORMAL(f) (((((shadylib_t_flint)(f)).i[1]) & 0x7ff00000) != 0)
 
 #endif // endif PD_FLOAT_PRECISION
 
 #else   // if not defined(__i386__) || defined(__x86_64__)
-#define SHADYLIB_IS_DENORMAL(f) 0
+#define SHADYLIB_IS_NOT_DENORMAL(f) 1
 #endif // end if defined(__i386__) || defined(__x86_64__)
 
 EXTERN void shadylib_checkalign(void);

@@ -166,7 +166,7 @@ t_int *nead_perform(t_int *w)
 	}
     /* save state */
 
-    ctl->c_state = SHADYLIB_IS_DENORMAL(state) ? 0 : state;
+    ctl->c_state = SHADYLIB_IS_NOT_DENORMAL(state)*state;
     ctl->c_target = target;
     return (w+4);
 }
