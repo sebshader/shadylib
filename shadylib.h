@@ -157,7 +157,8 @@ typedef union
     t_float f;
 } shadylib_t_flint;
 
-#define SHADYLIB_IS_NOT_DENORMAL(f) (((((shadylib_t_flint)(f)).i[1]) & 0x7ff00000) != 0)
+/* Hope HIOFFSET works alright here.. */
+#define SHADYLIB_IS_NOT_DENORMAL(f) (((((shadylib_t_flint)(f)).i[SHADYLIB_HIOFFSET]) & 0x7ff00000) != 0)
 
 #endif // endif PD_FLOAT_PRECISION
 
