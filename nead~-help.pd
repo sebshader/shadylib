@@ -11,8 +11,8 @@
 #X msg 399 167 curves 0 0;
 #X msg 401 139 curves 1 1;
 #X msg 327 173 3000;
-#X obj 251 110 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 251 110 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#000000 #000000;
 #X text 396 90 this is for beginning release in the middle of the attack
 phase if desired;
 #X obj 365 67 del 500;
@@ -21,7 +21,8 @@ phase if desired;
 #X msg 191 413 \; pd dsp 1;
 #X obj 246 312 tabwrite~ \$0-test;
 #X msg 482 163 curves 0.9 0.9;
-#X obj 231 201 ./nead~ 1000 1000 1;
+#X obj 231 201 ./nead~ 1000 1000;
+#X text 428 34 args: attack & decay in ms;
 #X connect 0 0 5 0;
 #X connect 0 0 17 0;
 #X connect 1 0 5 0;

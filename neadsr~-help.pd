@@ -1,14 +1,14 @@
-#N canvas 151 57 986 681 10;
+#N canvas 151 57 986 673 10;
 #X obj 53 357 *~;
-#X floatatom 207 105 5 0 0 0 - - -;
-#X floatatom 346 163 5 0 0 0 - - -;
+#X floatatom 207 105 5 0 0 0 - - - 0;
+#X floatatom 346 163 5 0 0 0 - - - 0;
 #X msg 151 89 stop;
 #X text 458 342 exponential attack/decay/sustain/release envelope;
-#X floatatom 393 173 5 0 0 0 - - -;
-#X floatatom 496 164 5 0 0 0 - - -;
+#X floatatom 393 173 5 0 0 0 - - - 0;
+#X floatatom 496 164 5 0 0 0 - - - 0;
 #X text 387 133 sustain level;
-#X obj 176 108 tgl 15 0 empty empty empty 0 -6 0 8 -262144 -1 -1 0
-1;
+#X obj 176 108 tgl 15 0 empty empty empty 0 -6 0 8 #fcfcfc #000000
+#000000 0 1;
 #X msg 179 192 0;
 #X obj 177 133 metro 2000;
 #X msg 666 212 curves 0 0 0;
@@ -18,12 +18,12 @@
 #X msg 394 151 0.2;
 #X msg 430 153 0.8;
 #X msg 266 92 100;
-#X floatatom 594 136 5 0 0 0 - - -;
+#X floatatom 594 136 5 0 0 0 - - - 0;
 #X msg 580 160 curves \$1 \$1 \$1 5;
 #X text 553 244 exponential part based on 60db;
 #X obj 350 322 spigot;
-#X obj 387 299 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 387 299 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
 #X text 407 296 graph;
 #X text 750 186 all linear;
 #X text 752 210 all exponential;
@@ -43,8 +43,8 @@
 #X coords 0 1 88000 0 200 140 1 0 0;
 #X restore 548 434 graph;
 #X obj 134 419 ./oscope~;
-#X floatatom 431 413 5 0 0 0 - - -;
-#X floatatom 439 495 10 0 0 0 - - -;
+#X floatatom 431 413 5 0 0 0 - - - 0;
+#X floatatom 439 495 10 0 0 0 - - - 0;
 #X msg 296 92 500 0.2;
 #X text 264 71 every stage: list of time + curvature;
 #X text 586 83 attack \, decay and release curves logarithmic level
@@ -56,6 +56,8 @@
 #X obj 47 424 ./outputc~;
 #X obj 17 276 ./smoother~ 5;
 #X obj 167 278 ./neadsr~ 500 300 0.5 1000;
+#X text 559 25 args: attack (ms) \, decay (ms) \, sustain (0-1) \,
+release (ms);
 #X connect 0 0 48 0;
 #X connect 0 0 48 1;
 #X connect 1 0 10 1;
