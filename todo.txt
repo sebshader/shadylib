@@ -4,3 +4,4 @@ find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, s
 look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
 review objects that use file names too
+less branching in envelopes maybe

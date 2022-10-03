@@ -70,57 +70,63 @@ static void noteson_lowest(t_noteson *x, t_notesonelem *insert) {
 
 static void noteson_float(t_noteson *x, t_float f)
 {
-    t_notesonelem *notesonelem, *e2, *e3;
+    t_notesonelem *e1, *e2;
 	t_atom *outv;
 	int outc;
     if (x->x_velo != 0)
     {
-        notesonelem = (t_notesonelem *)getbytes(sizeof *notesonelem);
-        notesonelem->e_value = f;
+        e1 = (t_notesonelem *)getbytes(sizeof *e1);
+        e1->e_value = f;
 		x->size++;
         if (!x->x_first) {
-			x->x_first = notesonelem;
-			notesonelem->e_next = 0;
+			x->x_first = e1;
+			e1->e_next = 0;
 		} else    /* LATER replace with a faster algorithm */
 			switch(x->mode) {
 				case 0:
-					notesonelem->e_next = x->x_first;
-					x->x_first = notesonelem;
+					e1->e_next = x->x_first;
+					x->x_first = e1;
 					break;
 				case 1:
-					noteson_highest(x, notesonelem);
+					noteson_highest(x, e1);
 					break;
 				case 2:
-					noteson_lowest(x, notesonelem);
+					noteson_lowest(x, e1);
 			}
     }
     else
     {
-        if (x->x_first) {
-			if (x->x_first->e_value == f)
-		    {
-			    notesonelem = x->x_first;
-		        x->x_first = x->x_first->e_next;
-				x->size--;
-				freebytes(notesonelem, sizeof(*notesonelem));
-			} else
-				for (e2 = x->x_first; (e3 = e2->e_next); e2 = e3)
-					if (e3->e_value == f) {
-						e2->e_next = e3->e_next;
-						freebytes(e3, sizeof(*e3));
-						x->size--;
-					}
-        }
+        if(x->x_first) {
+		e1 = x->x_first;
+		e2 = e1->e_next;
+		if (e1->e_value == f) {
+			e1 = x->x_first;
+			x->x_first = x->x_first->e_next;
+			x->size--;
+			freebytes(e1, sizeof(*e1));
+		}
+		else
+			while(e2) {
+				if(e2->e_value == f) {
+					e1->e_next = e2->e_next;
+					freebytes(e2, sizeof(*e2));
+					x->size--;
+					break;
+				}
+				e1 = e2;
+				e2 = e1->e_next;
+			}	
+	}
     }
 	outc = x->size;
 	if(!outc) {
 		outlet_bang(x->s_empty);
 		return;
 	}
-	e2 = x->x_first;
+	e1 = x->x_first;
 	SHADYLIB_ATOMS_ALLOCA(outv, outc);
-	for (int n = 0; n < outc; n++, e2 = e2->e_next)
-        SETFLOAT(outv + n, e2->e_value);
+	for (int n = 0; n < outc; n++, e1 = e1->e_next)
+        	SETFLOAT(outv + n, e1->e_value);
 	outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
     SHADYLIB_ATOMS_FREEA(outv, outc);
 }
