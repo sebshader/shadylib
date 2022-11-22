@@ -12,7 +12,8 @@ typedef struct _inrange {
 } t_inrange;
 
 static void inrange_float(t_inrange *x, t_floatarg in) {
-	if(in >= x->x_lo && in <= x->x_hi)
+    /* in >= x->x_lo && in <= x->x_hi */
+	if((x->x_lo - in) * (x->x_hi - in) <= 0.0)
 		outlet_float(x->f_out1, in);
 	else outlet_float(x->f_out2, in);
 }
