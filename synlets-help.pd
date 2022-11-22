@@ -1,70 +1,73 @@
-#N canvas 311 23 516 404 10;
-#X obj 118 152 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#N canvas 311 23 498 443 10;
+#X obj 118 162 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 89 81 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 89 91 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 203 81 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 203 91 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X floatatom 111 78 5 0 0 0 - - - 0;
-#X floatatom 224 83 5 0 0 0 - - - 0;
-#X floatatom 153 148 5 0 0 0 - - - 0;
-#X floatatom 190 146 5 0 0 0 - - - 0;
-#X msg 158 79 set 1;
+#X floatatom 111 88 5 0 0 0 - - - 0;
+#X floatatom 224 93 5 0 0 0 - - - 0;
+#X floatatom 153 158 5 0 0 0 - - - 0;
+#X floatatom 190 156 5 0 0 0 - - - 0;
+#X msg 158 89 set 1;
 #X text 25 43 after receiving a number of bangs specified by both 1st
 and 2nd arguments \, (or numbers sent to 1st and 2nd inlets) output
 a bang;
-#X text 6 181 "set" to a trigger inlet sets the step # for that inlet
+#X text 9 225 "set" to a trigger inlet sets the step # for that inlet
 (1-based);
-#X msg 36 86 set 4;
-#X obj 40 213 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X msg 36 96 set 4;
+#X obj 43 257 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 42 262 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 45 306 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X floatatom 106 266 5 0 0 0 - - - 0;
-#X floatatom 71 266 5 0 0 0 - - - 0;
-#X obj 108 212 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X floatatom 109 310 5 0 0 0 - - - 0;
+#X floatatom 74 310 5 0 0 0 - - - 0;
+#X obj 111 256 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 228 208 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 243 249 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 189 204 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 192 248 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X floatatom 208 265 5 0 0 0 - - - 0;
-#X floatatom 246 265 5 0 0 0 - - - 0;
-#X obj 189 265 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X floatatom 211 309 5 0 0 0 - - - 0;
+#X floatatom 249 309 5 0 0 0 - - - 0;
+#X obj 192 309 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 360 208 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 363 252 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 309 204 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 312 248 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X floatatom 328 265 5 0 0 0 - - - 0;
-#X floatatom 366 265 5 0 0 0 - - - 0;
-#X obj 309 265 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X floatatom 331 309 5 0 0 0 - - - 0;
+#X floatatom 369 309 5 0 0 0 - - - 0;
+#X obj 312 309 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X text 218 289 # of bangs defaults to 1;
-#X obj 86 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X text 221 333 # of bangs defaults to 1;
+#X obj 89 341 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 62 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 65 331 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X obj 136 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 139 341 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 111 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 114 341 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 161 297 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
+#X obj 164 341 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc
 #000000 #000000;
-#X obj 62 349 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#X obj 65 393 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000
 #000000;
-#X floatatom 81 346 5 0 0 0 - - - 0;
-#X floatatom 101 365 5 0 0 0 - - - 0;
-#X floatatom 121 346 5 0 0 0 - - - 0;
-#X floatatom 141 365 5 0 0 0 - - - 0;
-#X floatatom 161 346 5 0 0 0 - - - 0;
-#X obj 309 231 ./synlets 5;
-#X obj 122 116 ./synlets 4 3;
-#X obj 189 231 ./synlets;
-#X obj 42 240 ./synlets 0 0;
-#X obj 62 321 ./synlets 4 3 2 1 0;
+#X floatatom 84 390 5 0 0 0 - - - 0;
+#X floatatom 104 409 5 0 0 0 - - - 0;
+#X floatatom 124 390 5 0 0 0 - - - 0;
+#X floatatom 144 409 5 0 0 0 - - - 0;
+#X floatatom 164 390 5 0 0 0 - - - 0;
+#X obj 312 275 ./synlets 5;
+#X obj 122 126 ./synlets 4 3;
+#X obj 192 275 ./synlets;
+#X obj 45 284 ./synlets 0 0;
+#X obj 65 365 ./synlets 4 3 2 1 0;
 #X text 18 10 syncs inlets: waits for a number of bangs in each inlet
 before banging and resetting all;
+#X text 12 183 note!: 'set'ting a value may skip the output for that
+inlet! set to the value before the trigger to output on the next bang
+;
 #X connect 1 0 39 0;
 #X connect 2 0 39 1;
 #X connect 3 0 39 0;
