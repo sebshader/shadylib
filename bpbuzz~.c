@@ -86,7 +86,8 @@ static t_int *bpbuzz_perform(t_int *w) {
 			res2 = res1 + (res2 - res1)*res3;
 			#endif
 		}
-		rat = shadylib_clamp(max/freq, 1, SHADYLIB_MAXHARM);
+        rat = max/freq - 1;
+		rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
 		n2 = rat;
 		frat = rat - n2;
 		n2 *= 2;
