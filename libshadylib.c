@@ -58,7 +58,7 @@ void shadylib_freetabs(t_class* UNUSED(dummy)) {
 /* create sine and cosecant tables */
 /* copied symmetric table pr: https://github.com/pure-data/pure-data/pull/106 */
 void shadylib_makebuzz(void) {
-	double phase = 0;
+	double phsinc = 2*M_PI/SHADYLIB_BUZZSIZE;
 	int i;
     t_sample *sinPtr;	
 	if(shadylib_sintbl) return;
@@ -66,9 +66,8 @@ void shadylib_makebuzz(void) {
 	shadylib_sintbl = (t_sample *)getbytes(sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2);
     sinPtr = shadylib_sintbl;
 	shadylib_cosectbl = shadylib_sintbl + SHADYLIB_BUZZSIZE + 1;
-	double phsinc = 2*M_PI/SHADYLIB_BUZZSIZE;
-	for(i = SHADYLIB_BUZZSIZE/4; i--; sinPtr++, phase += phsinc) {
-		*sinPtr = (t_sample)sin(phase);
+	for(i = 0; i < SHADYLIB_BUZZSIZE/4; sinPtr++, i++) {
+		*sinPtr = (t_sample)sin(i*phsinc);
     }
     *sinPtr++ = 1.;
 	for (i = SHADYLIB_BUZZSIZE/4; i--; sinPtr++)
