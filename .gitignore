@@ -3,4 +3,5 @@
 *.pd_linux
 *.dylib
 *.so
+commands.txt
 tags
