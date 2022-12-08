@@ -110,7 +110,7 @@ static t_int *bpbuzz_perform(t_int *w) {
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
 		#endif
-
+        /* crossfade to last harmonic */
 		tabrd = res1;
 		res4 = res1 - tabrd;
 		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
@@ -185,7 +185,7 @@ gotfinal:
 		res3 = (res3*res2 - 1)/n2;
 		res1 = res4 + fread*2;
 		#endif
-
+        /* crossfade to last harmonic */
 		tabrd = res1;
 		res4 = res1 - tabrd;
 		tabrd = tabrd & (SHADYLIB_BUZZSIZE - 1);
@@ -209,8 +209,8 @@ gotfinal2:
 		dphase += res2*dconv;
 		res1 = phase + oduty + dphase;
 		tabrd = res1*2;
+        /* calculate phase offset for bp */
 		if(tabrd > n2) {
-			
 			dphase = dphase - duty + oduty;
 			oduty = duty;
 			duty = shadylib_clamp(*in2, 0, 1);

@@ -5,3 +5,5 @@ look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
 review objects that use file names too
 less branching in envelopes maybe
+
+figure out behavior discrepancy between operator~ and osc~ aliasing
