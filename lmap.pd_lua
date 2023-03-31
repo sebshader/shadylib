@@ -58,4 +58,4 @@ function lmap:in_1(sel, atoms)
 		else
 			self.map[sel] = atoms
 		end
-end 
+end
