@@ -2,6 +2,7 @@
 *.pd_darwin
 *.pd_linux
 *.dylib
+*.dll
 *.so
 commands.txt
 tags

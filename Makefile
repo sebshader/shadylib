@@ -55,6 +55,6 @@ install: install-examples
 install-examples: all
 	$(INSTALL_DIR) $(installpath)/examples/deprecated
 	$(INSTALL_DATA) $(wildcard examples/deprecated/*) \
-		$(installpath)/examples/deprecated
+		"$(installpath)/examples/deprecated"
 	$(INSTALL_DATA) $(wildcard examples/*.tcl examples/*.pd examples/*.pd_lua) \
 		$(installpath)/examples
