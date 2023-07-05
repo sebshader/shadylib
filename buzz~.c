@@ -59,6 +59,7 @@ static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
         x->x_f = 0;
+        x->phase = 0.0;
         return (x);
     }
     else
@@ -69,6 +70,7 @@ static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
         x->x_f = 0;
+        x->phase = 0.0;
         return (x);
     }
 }
