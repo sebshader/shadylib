@@ -3,17 +3,17 @@
 static t_class *inrange_class;
 
 typedef struct _inrange {
-	t_object x_obj;
-	t_float x_left;
-	t_float x_right;
-	t_outlet *f_out1, *f_out2;
+    t_object x_obj;
+    t_float x_left;
+    t_float x_right;
+    t_outlet *f_out1, *f_out2;
 } t_inrange;
 
 static void inrange_float(t_inrange *x, t_floatarg in) {
     /* in >= x->x_lo && in <= x->x_hi */
-	if((x->x_left - in) * (x->x_right - in) <= 0.0)
-		outlet_float(x->f_out1, in);
-	else outlet_float(x->f_out2, in);
+    if((x->x_left - in) * (x->x_right - in) <= 0.0)
+        outlet_float(x->f_out1, in);
+    else outlet_float(x->f_out2, in);
 }
 
 static void *inrange_new(t_floatarg f1, t_floatarg f2)

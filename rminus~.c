@@ -11,12 +11,12 @@ typedef struct _scalarrminus
 
 static void *rminus_new(t_floatarg g)
 {
-	t_scalarrminus *x = (t_scalarrminus *)pd_new(scalarrminus_class);
-	floatinlet_new(&x->x_obj, &x->x_g);
-	x->x_g = g;
-	outlet_new(&x->x_obj, &s_signal);
-	x->x_f = 0;
-	return (x);
+    t_scalarrminus *x = (t_scalarrminus *)pd_new(scalarrminus_class);
+    floatinlet_new(&x->x_obj, &x->x_g);
+    x->x_g = g;
+    outlet_new(&x->x_obj, &s_signal);
+    x->x_f = 0;
+    return (x);
 }
 
 static t_int *scalarrminus_perform(t_int *w)
@@ -25,7 +25,7 @@ static t_int *scalarrminus_perform(t_int *w)
     t_float f = *(t_float *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
     int n = (int)(w[4]);
-    while (n--) *out++ = f - *in++; 
+    while (n--) *out++ = f - *in++;
     return (w+5);
 }
 
@@ -51,7 +51,7 @@ static void scalarrminus_dsp(t_scalarrminus *x, t_signal **sp)
     if (sp[0]->s_n&7)
         dsp_add(scalarrminus_perform, 4, sp[0]->s_vec, &x->x_g,
             sp[1]->s_vec, sp[0]->s_n);
-    else        
+    else
         dsp_add(scalarrminus_perf8, 4, sp[0]->s_vec, &x->x_g,
             sp[1]->s_vec, sp[0]->s_n);
 }

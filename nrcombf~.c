@@ -45,16 +45,16 @@ static t_int *nrcombf_perform(t_int *w)
     int phase = x->c_phase, nsamps = x->c_n;
     int idelsamps;
     t_sample limit = nsamps - 3;
-    t_sample *vp = x->c_vec, *bp, *wp = vp + phase, 
-    	*ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
+    t_sample *vp = x->c_vec, *bp, *wp = vp + phase,
+        *ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
     phase += n;
     while (n--)
     {
-    	t_sample f = *in++;
+        t_sample f = *in++;
         if (PD_BIGORSMALL(f))
             f = 0;
         t_sample delsamps = x->x_sr * (*time++), frac;
-        
+
         t_sample a, b, c, d, cminusb;
         if (!(delsamps >= 1.f))    /* too small or NAN */
             delsamps = 1.f;
@@ -118,16 +118,16 @@ static t_int *nnrcombf_perform(t_int *w)
     int phase = x->c_phase, nsamps = x->c_n;
     int idelsamps;
     t_sample limit = nsamps - 3;
-    t_sample *vp = x->c_vec, *bp, *wp = vp + phase, 
-    	*ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
+    t_sample *vp = x->c_vec, *bp, *wp = vp + phase,
+        *ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
     phase += n;
     while (n--)
     {
-    	t_sample f = *in++;
+        t_sample f = *in++;
         if (PD_BIGORSMALL(f))
             f = 0;
         t_sample delsamps = x->x_sr * (*time++), frac;
-        
+
         t_sample a, b, c, d, cminusb;
         if (!(delsamps >= 1.f))    /* too small or NAN */
             delsamps = 1.f;
@@ -179,66 +179,66 @@ static t_int *nnrcombf_perform(t_int *w)
 
 static void nrcombf_dsp(t_nrcombf *x, t_signal **sp)
 {
-	if(x->norm)
-		dsp_add(nnrcombf_perform, 6, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, 
-    		sp[3]->s_vec, x, sp[0]->s_n);
-    else dsp_add(nrcombf_perform, 7, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, 
-    	sp[3]->s_vec, sp[4]->s_vec, x, sp[0]->s_n);
-   	x->x_sr = sp[0]->s_sr * 0.001;
+    if(x->norm)
+        dsp_add(nnrcombf_perform, 6, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec,
+            sp[3]->s_vec, x, sp[0]->s_n);
+    else dsp_add(nrcombf_perform, 7, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec,
+        sp[3]->s_vec, sp[4]->s_vec, x, sp[0]->s_n);
+       x->x_sr = sp[0]->s_sr * 0.001;
     nrcombf_updatesr(x, sp[0]->s_sr);
 }
 
 static void *nrcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
 {
-	t_float time = 1000;
-	t_float size = 0.0;
-	t_float fb = 0;
-	t_symbol *sarg;
-	int norm = 0, i = 0, which = 0;
+    t_float time = 1000;
+    t_float size = 0.0;
+    t_float fb = 0;
+    t_symbol *sarg;
+    int norm = 0, i = 0, which = 0;
     t_nrcombf *x = (t_nrcombf *)pd_new(nrcombf_class);
     for(; i < argc; i++)
-    	if (argv[i].a_type == A_FLOAT) {
-    		switch (which) {
-    			case 0:
-					time = atom_getfloatarg(i, argc, argv);
-					if (time < 0.0) time = 0.0;
-					break;
-				case 1:
-					fb = atom_getfloatarg(i, argc, argv);
-					break;
-				case 2:
-					size = atom_getfloatarg(i, argc, argv);
-				default:;
-			}
-			which++;
-    	} else {
-    		sarg = atom_getsymbolarg(i, argc, argv);
-    		if (sarg == gensym("-n")) norm = 1;
-    		else if(sarg == gensym("-l")) {
-    			i++;
-    			if(i < argc)
-    				size = atom_getfloatarg(i, argc, argv);
-    		}
-		}
+        if (argv[i].a_type == A_FLOAT) {
+            switch (which) {
+                case 0:
+                    time = atom_getfloatarg(i, argc, argv);
+                    if (time < 0.0) time = 0.0;
+                    break;
+                case 1:
+                    fb = atom_getfloatarg(i, argc, argv);
+                    break;
+                case 2:
+                    size = atom_getfloatarg(i, argc, argv);
+                default:;
+            }
+            which++;
+        } else {
+            sarg = atom_getsymbolarg(i, argc, argv);
+            if (sarg == gensym("-n")) norm = 1;
+            else if(sarg == gensym("-l")) {
+                i++;
+                if(i < argc)
+                    size = atom_getfloatarg(i, argc, argv);
+            }
+        }
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, fb);
     if(size <= 0.0) size = time;
-	x->x_ttime = size;
-	if(!norm)
-		signalinlet_new(&x->x_obj, 1.0);
+    x->x_ttime = size;
+    if(!norm)
+        signalinlet_new(&x->x_obj, 1.0);
     outlet_new(&x->x_obj, &s_signal);
     x->x_f = 0;
     x->c_n = 0;
     x->c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
-    memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(SHADYLIB_XTRASAMPS));
+    memset((char *)(x->c_vec), 0,
+        sizeof(t_sample)*(SHADYLIB_XTRASAMPS));
     x->norm = norm;
     return(x);
 }
 
 static void nrcombf_clear(t_nrcombf *x) {
-	memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(x->c_n + SHADYLIB_XTRASAMPS));
+    memset((char *)(x->c_vec), 0,
+        sizeof(t_sample)*(x->c_n + SHADYLIB_XTRASAMPS));
 }
 
 static void nrcombf_free(t_nrcombf *x)
@@ -249,12 +249,12 @@ static void nrcombf_free(t_nrcombf *x)
 
 void nrcombf_tilde_setup(void)
 {
-    nrcombf_class = class_new(gensym("nrcombf~"), 
+    nrcombf_class = class_new(gensym("nrcombf~"),
         (t_newmethod)nrcombf_new, (t_method)nrcombf_free,
         sizeof(t_nrcombf), 0, A_GIMME, 0);
     CLASS_MAINSIGNALIN(nrcombf_class, t_nrcombf, x_f);
     class_addmethod(nrcombf_class, (t_method)nrcombf_dsp,
         gensym("dsp"), A_CANT, 0);
     class_addmethod(nrcombf_class, (t_method)nrcombf_clear,
-    	gensym("clear"), 0);
+        gensym("clear"), 0);
 }

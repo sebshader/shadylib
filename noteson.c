@@ -13,18 +13,18 @@ typedef struct _notesonelem
 typedef struct _noteson
 {
     t_object x_obj;
-	t_outlet *s_empty;
+    t_outlet *s_empty;
     float x_velo;
-	int mode;
-	int size;
+    int mode;
+    int size;
     t_notesonelem *x_first;
 } t_noteson;
 
 static void noteson_mode(t_noteson *x, t_float mode) {
-	int imode = mode;
-	if(imode < 0) imode = 0;
-	else if(imode > 2) imode = 2;
-	x->mode = imode;
+    int imode = mode;
+    if(imode < 0) imode = 0;
+    else if(imode > 2) imode = 2;
+    x->mode = imode;
 }
 
 static void *noteson_new(t_floatarg mode)
@@ -33,101 +33,101 @@ static void *noteson_new(t_floatarg mode)
     x->x_velo = 0;
     floatinlet_new(&x->x_obj, &x->x_velo);
     outlet_new(&x->x_obj, &s_list);
-	x->s_empty = outlet_new(&x->x_obj, &s_bang);
+    x->s_empty = outlet_new(&x->x_obj, &s_bang);
     x->x_first = 0;
-	noteson_mode(x, mode);
+    noteson_mode(x, mode);
     return (x);
 }
 
 static void noteson_highest(t_noteson *x, t_notesonelem *insert) {
-	t_notesonelem *current;
-	if(insert->e_value > x->x_first->e_value) {
-		insert->e_next = x->x_first;
-		x->x_first = insert;
-		return;
-	}
-	current = x->x_first;
-	while(current->e_next && current->e_next->e_value > insert->e_value)
-		current = current->e_next;
-	insert->e_next = current->e_next;
-	current->e_next = insert;
+    t_notesonelem *current;
+    if(insert->e_value > x->x_first->e_value) {
+        insert->e_next = x->x_first;
+        x->x_first = insert;
+        return;
+    }
+    current = x->x_first;
+    while(current->e_next && current->e_next->e_value > insert->e_value)
+        current = current->e_next;
+    insert->e_next = current->e_next;
+    current->e_next = insert;
 }
 
 static void noteson_lowest(t_noteson *x, t_notesonelem *insert) {
-	t_notesonelem *current;
-	if(insert->e_value < x->x_first->e_value) {
-		insert->e_next = x->x_first;
-		x->x_first = insert;
-		return;
-	}
-	current = x->x_first;
-	while(current->e_next && current->e_next->e_value < insert->e_value)
-		current = current->e_next;
-	insert->e_next = current->e_next;
-	current->e_next = insert;
+    t_notesonelem *current;
+    if(insert->e_value < x->x_first->e_value) {
+        insert->e_next = x->x_first;
+        x->x_first = insert;
+        return;
+    }
+    current = x->x_first;
+    while(current->e_next && current->e_next->e_value < insert->e_value)
+        current = current->e_next;
+    insert->e_next = current->e_next;
+    current->e_next = insert;
 }
 
 
 static void noteson_float(t_noteson *x, t_float f)
 {
     t_notesonelem *e1, *e2;
-	t_atom *outv;
-	int outc;
+    t_atom *outv;
+    int outc;
     if (x->x_velo != 0)
     {
         e1 = (t_notesonelem *)getbytes(sizeof *e1);
         e1->e_value = f;
-		x->size++;
+        x->size++;
         if (!x->x_first) {
-			x->x_first = e1;
-			e1->e_next = 0;
-		} else    /* LATER replace with a faster algorithm */
-			switch(x->mode) {
-				case 0:
-					e1->e_next = x->x_first;
-					x->x_first = e1;
-					break;
-				case 1:
-					noteson_highest(x, e1);
-					break;
-				case 2:
-					noteson_lowest(x, e1);
-			}
+            x->x_first = e1;
+            e1->e_next = 0;
+        } else    /* LATER replace with a faster algorithm */
+            switch(x->mode) {
+                case 0:
+                    e1->e_next = x->x_first;
+                    x->x_first = e1;
+                    break;
+                case 1:
+                    noteson_highest(x, e1);
+                    break;
+                case 2:
+                    noteson_lowest(x, e1);
+            }
     }
     else
     {
         if(x->x_first) {
-		e1 = x->x_first;
-		e2 = e1->e_next;
-		if (e1->e_value == f) {
-			e1 = x->x_first;
-			x->x_first = x->x_first->e_next;
-			x->size--;
-			freebytes(e1, sizeof(*e1));
-		}
-		else
-			while(e2) {
-				if(e2->e_value == f) {
-					e1->e_next = e2->e_next;
-					freebytes(e2, sizeof(*e2));
-					x->size--;
-					break;
-				}
-				e1 = e2;
-				e2 = e1->e_next;
-			}	
-	}
+        e1 = x->x_first;
+        e2 = e1->e_next;
+        if (e1->e_value == f) {
+            e1 = x->x_first;
+            x->x_first = x->x_first->e_next;
+            x->size--;
+            freebytes(e1, sizeof(*e1));
+        }
+        else
+            while(e2) {
+                if(e2->e_value == f) {
+                    e1->e_next = e2->e_next;
+                    freebytes(e2, sizeof(*e2));
+                    x->size--;
+                    break;
+                }
+                e1 = e2;
+                e2 = e1->e_next;
+            }
     }
-	outc = x->size;
-	if(!outc) {
-		outlet_bang(x->s_empty);
-		return;
-	}
-	e1 = x->x_first;
-	SHADYLIB_ATOMS_ALLOCA(outv, outc);
-	for (int n = 0; n < outc; n++, e1 = e1->e_next)
-        	SETFLOAT(outv + n, e1->e_value);
-	outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
+    }
+    outc = x->size;
+    if(!outc) {
+        outlet_bang(x->s_empty);
+        return;
+    }
+    e1 = x->x_first;
+    SHADYLIB_ATOMS_ALLOCA(outv, outc);
+    for (int n = 0; n < outc; n++, e1 = e1->e_next)
+            SETFLOAT(outv + n, e1->e_value);
+    outlet_list(x->x_obj.ob_outlet, &s_list, outc, outv);
     SHADYLIB_ATOMS_FREEA(outv, outc);
 }
 
@@ -139,13 +139,13 @@ static void noteson_clear(t_noteson *x)
         x->x_first = notesonelem->e_next;
         freebytes(notesonelem, sizeof(*notesonelem));
     }
-	x->size = 0;
+    x->size = 0;
 }
 
 static void noteson_flush(t_noteson *x)
 {
     noteson_clear(x);
-	outlet_bang(x->s_empty);
+    outlet_bang(x->s_empty);
 }
 
 void noteson_setup(void)
@@ -156,6 +156,6 @@ void noteson_setup(void)
     class_addfloat(noteson_class, noteson_float);
     class_addmethod(noteson_class, (t_method)noteson_flush, gensym("flush"), 0);
     class_addmethod(noteson_class, (t_method)noteson_clear, gensym("clear"), 0);
-	class_addmethod(noteson_class, (t_method)noteson_mode, gensym("mode"), A_DEFFLOAT, 0);
+    class_addmethod(noteson_class, (t_method)noteson_mode, gensym("mode"), A_DEFFLOAT, 0);
 }
 

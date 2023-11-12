@@ -2,7 +2,7 @@
 // can replace with tabosc4~
 // most of this code comes from pd. just the interpolation shematic is diferent.
 
-/* 
+/*
 This software is copyrighted by Miller Puckette and others.  The following
 terms (the "Standard Improved BSD License") apply to all files associated with
 the software unless explicitly disclaimed in individual files:
@@ -13,12 +13,12 @@ met:
 
 1. Redistributions of source code must retain the above copyright
    notice, this list of conditions and the following disclaimer.
-2. Redistributions in binary form must reproduce the above  
-   copyright notice, this list of conditions and the following 
+2. Redistributions in binary form must reproduce the above
+   copyright notice, this list of conditions and the following
    disclaimer in the documentation and/or other materials provided
    with the distribution.
 3. The name of the author may not be used to endorse or promote
-   products derived from this software without specific prior 
+   products derived from this software without specific prior
    written permission.
 
 THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY
@@ -27,7 +27,7 @@ THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A
 PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR
 BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
 EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,   
+TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
 DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
 ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
 LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING
@@ -52,8 +52,8 @@ static void *tabread4hs_tilde_new(t_symbol *s) {
     x->x_arrayname = s;
     x->x_vec = 0;
     outlet_new(&x->x_obj, &s_signal);
-	inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
-	x->x_f = 0;
+    inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
+    x->x_f = 0;
     return (x);
 }
 
@@ -62,11 +62,11 @@ static t_int *tabread4hs_tilde_perform(t_int *w) {
     t_sample *in1 = (t_sample *)(w[2]);
     t_sample *in2 = (t_sample *)(w[3]);
     t_sample *out = (t_sample *)(w[4]);
-    int n = (int)(w[5]);    
+    int n = (int)(w[5]);
     int maxindex;
     t_word *buf = x->x_vec, *wp;
     int i;
-    
+
     maxindex = x->x_npoints - 3;
 
     if (!buf) goto zero;
@@ -103,18 +103,18 @@ static t_int *tabread4hs_tilde_perform(t_int *w) {
         b = wp[0].w_float;
         c = wp[1].w_float;
         d = wp[2].w_float;
-        
-		// 4-point, 3rd-order Hermite (x-form)
-		a1 = 0.5f * (c - a);
-		#ifdef FP_FAST_FMAF
-		a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
-		a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
-		*out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
-		#else
-		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		*out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
-		#endif
+
+        // 4-point, 3rd-order Hermite (x-form)
+        a1 = 0.5f * (c - a);
+        #ifdef FP_FAST_FMAF
+        a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
+        a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
+        *out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
+        #else
+        a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
+        a3 = 0.5f * (d - a) + 1.5f * (b - c);
+        *out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
+        #endif
     }
     return (w+6);
  zero:
@@ -125,7 +125,7 @@ static t_int *tabread4hs_tilde_perform(t_int *w) {
 
 static void tabread4hs_tilde_set(t_tabread4hs_tilde *x, t_symbol *s) {
     t_garray *a;
-    
+
     x->x_arrayname = s;
     if (!(a = (t_garray *)pd_findbyclass(x->x_arrayname, garray_class))) {
         if (*s->s_name)

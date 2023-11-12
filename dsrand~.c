@@ -9,42 +9,42 @@
 static t_class *dsrand_class;
 
 typedef struct _dsrand {
-	t_object x_obj;
-	t_float x_f;
-	float x_ahead; //second to last value generated
-	float x_behind; //last value generated
-	unsigned int x_state; //current "behind" state (int)
-	t_sample x_lastin;
+    t_object x_obj;
+    t_float x_f;
+    float x_ahead; //second to last value generated
+    float x_behind; //last value generated
+    unsigned int x_state; //current "behind" state (int)
+    t_sample x_lastin;
 } t_dsrand;
 
 // get a number from -1 to 1
 static inline float ritoflt(unsigned int toflt) {
-	return toflt*(1/8388607.5f) - 1;
+    return toflt*(1/8388607.5f) - 1;
 }
 
 static void dsrand_seed(t_dsrand *x, t_floatarg seed) {
-	unsigned int modman = seed;
-	x->x_state = modman%m;
+    unsigned int modman = seed;
+    x->x_state = modman%m;
 }
 
 static t_int *dsrand_perform(t_int *w) {
-	t_dsrand  *x = (t_dsrand *)(w[1]);
-	t_sample *in = (t_sample *)(w[2]);
-	t_sample *out1 = (t_sample *)(w[3]);
+    t_dsrand  *x = (t_dsrand *)(w[1]);
+    t_sample *in = (t_sample *)(w[2]);
+    t_sample *out1 = (t_sample *)(w[3]);
     t_sample *out2 = (t_sample *)(w[4]);
     int n = (int)(w[5]);
     float ahead = x->x_ahead, behind = x->x_behind;
     t_sample lastin = x->x_lastin;
     unsigned int state = x->x_state;
     while(n--) {
-    	if(*in < lastin) {
-    		state = randlcm(state);
-    		ahead = behind;
-    		behind = ritoflt(state);
-    	}
-    	lastin = *in++;
-    	*out1++ = behind;
-    	*out2++ = ahead;
+        if(*in < lastin) {
+            state = randlcm(state);
+            ahead = behind;
+            behind = ritoflt(state);
+        }
+        lastin = *in++;
+        *out1++ = behind;
+        *out2++ = ahead;
     }
     x->x_ahead = ahead; x->x_behind = behind;
     x->x_lastin = lastin;
@@ -59,22 +59,22 @@ static void dsrand_dsp(t_dsrand *x, t_signal **sp) {
 
 // b = 4103221
 static int dsrand_makeseed(void) {
-	unsigned int p1, p0;
-	static unsigned int nextseed = 13458715;
+    unsigned int p1, p0;
+    static unsigned int nextseed = 13458715;
 
-	p1 = nextseed/m1; p0 = nextseed%m1;
-	nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
-	return nextseed;
+    p1 = nextseed/m1; p0 = nextseed%m1;
+    nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+    return nextseed;
 }
 
 static void *dsrand_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
-	unsigned int state; 
+    unsigned int state;
     t_dsrand *x = (t_dsrand *)pd_new(dsrand_class);
 
-	if(argc)
-		state = atom_getint(argv);
-	else
-		state = dsrand_makeseed();
+    if(argc)
+        state = atom_getint(argv);
+    else
+        state = dsrand_makeseed();
 
     outlet_new(&x->x_obj, &s_signal);
     outlet_new(&x->x_obj, &s_signal);

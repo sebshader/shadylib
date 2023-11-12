@@ -59,7 +59,7 @@ static void calc_derivatives(FLOAT *dstate, FLOAT *state, t_params *params)
     dstate[3] = k * (satstate2 - clip(state[3], sat, satinv));
 }
 
-static void solver_euler(FLOAT *state, FLOAT *errorestimate, 
+static void solver_euler(FLOAT *state, FLOAT *errorestimate,
     FLOAT stepsize, t_params *params)
 {
     FLOAT cumerror = 0;
@@ -78,7 +78,7 @@ static void solver_euler(FLOAT *state, FLOAT *errorestimate,
         params->p_derivativeswere[i] = derivatives[i];
 }
 
-static void solver_rungekutte(FLOAT *state, FLOAT *errorestimate, 
+static void solver_rungekutte(FLOAT *state, FLOAT *errorestimate,
     FLOAT stepsize, t_params *params)
 {
     FLOAT cumerror = 0;
@@ -101,7 +101,7 @@ static void solver_rungekutte(FLOAT *state, FLOAT *errorestimate,
         tempstate[i] = state[i] + stepsize * deriv3[i];
     calc_derivatives(deriv4, tempstate, params);
     for (i = 0; i < DIM; i++)
-        state[i] += (1./6.) * stepsize * 
+        state[i] += (1./6.) * stepsize *
             (deriv1[i] + 2 * deriv2[i] + 2 * deriv3[i] + deriv4[i]);
 #if CALCERROR
     calc_derivatives(deriv1, state, params);
@@ -116,7 +116,7 @@ static void solver_rungekutte(FLOAT *state, FLOAT *errorestimate,
     calc_derivatives(deriv4, tempstate, params);
     for (i = 0; i < DIM; i++)
     {
-        backstate[i] = state[i ]- (1./6.) * stepsize * 
+        backstate[i] = state[i ]- (1./6.) * stepsize *
             (deriv1[i] + 2 * deriv2[i] + 2 * deriv3[i] + deriv4[i]);
         *errorestimate += (backstate[i] > oldstate[i] ?
             backstate[i] - oldstate[i] : oldstate[i] - backstate[i]);
@@ -192,7 +192,7 @@ static void *ripbob_new( void)
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
     x->x_f = 0;
     ripbob_clear(x);
-    ripbob_saturation(x, 3); 
+    ripbob_saturation(x, 3);
     ripbob_oversample(x, 2);
 #ifdef CALCERROR
     x->x_cumerror = 0;

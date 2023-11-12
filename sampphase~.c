@@ -38,37 +38,37 @@ static t_int *sampphase_perform(t_int *w)
     int bool = x->x_samptrue;
     union shadylib_tabfudge tf;
     tf.tf_d = x->x_phase + (double)SHADYLIB_UNITBIT32;
-	float conv = x->x_conv;
-	
+    float conv = x->x_conv;
+
     if (bool) {
-    	t_sample samp = x->x_held;
-    	while (n--) {
-    		if ((*in != 0.0 && samp == 0.0) ||\
-				 (tf.tf_i[SHADYLIB_HIOFFSET] != SHADYLIB_NORMHIPART)) samp = *in;
-			in++;
-			tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
-    		*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
-    		*out2++ = samp;
-    		tf.tf_d += samp * conv;
-		}
-		x->x_held = samp;
+        t_sample samp = x->x_held;
+        while (n--) {
+            if ((*in != 0.0 && samp == 0.0) ||\
+                 (tf.tf_i[SHADYLIB_HIOFFSET] != SHADYLIB_NORMHIPART)) samp = *in;
+            in++;
+            tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+            *out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
+            *out2++ = samp;
+            tf.tf_d += samp * conv;
+        }
+        x->x_held = samp;
     } else {
-    	double dphase = tf.tf_d;
-    	while (n--) {
-    		tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
-    		dphase += *in * conv;
-        	*out2++ = *in++;
-        	*out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
-        	tf.tf_d = dphase;
-    	}
-	}
+        double dphase = tf.tf_d;
+        while (n--) {
+            tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
+            dphase += *in * conv;
+            *out2++ = *in++;
+            *out1++ = tf.tf_d - SHADYLIB_UNITBIT32;
+            tf.tf_d = dphase;
+        }
+    }
     tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
-   	x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
+       x->x_phase = tf.tf_d - SHADYLIB_UNITBIT32;
     return (w+6);
 }
 
 static void sampphase_dsp(t_sampphase *x, t_signal **sp)
-{ 
+{
     x->x_conv = 1./sp[0]->s_sr;
     dsp_add(sampphase_perform, 5, x, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, sp[0]->s_n);
 }
@@ -87,7 +87,7 @@ void sampphase_tilde_setup(void)
 {
     sampphase_class = class_new(gensym("sampphase~"), (t_newmethod)sampphase_new, 0, sizeof(t_sampphase), 0, A_DEFFLOAT, A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(sampphase_class, t_sampphase, x_f);
-    class_addmethod(sampphase_class, (t_method)sampphase_dsp, gensym("dsp"), 
+    class_addmethod(sampphase_class, (t_method)sampphase_dsp, gensym("dsp"),
     A_CANT, 0);
     class_addmethod(sampphase_class, (t_method)sampphase_ft1,
         gensym("ft1"), A_FLOAT, 0);

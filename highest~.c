@@ -18,20 +18,20 @@ typedef struct _highest
 } t_highest;
 
 static void highest_set(t_highest *x, t_float nsamps) {
-	x->x_result = 0;
-	x->x_count = 0;
-	if(nsamps != 0.0) {
-		int isamps = shadylib_min(fabsf(nsamps), MAXPRD);
-		int n = x->x_blocksize;
-    	x->x_period = isamps;
-		/* get next multiple of n */
-		x->x_realperiod = isamps+(n-1) - (isamps+(n-1)&(n-1));
+    x->x_result = 0;
+    x->x_count = 0;
+    if(nsamps != 0.0) {
+        int isamps = shadylib_min(fabsf(nsamps), MAXPRD);
+        int n = x->x_blocksize;
+        x->x_period = isamps;
+        /* get next multiple of n */
+        x->x_realperiod = isamps+(n-1) - ((isamps+(n-1))&(n-1));
     }
 }
 
 static void highest_tilde_tick(t_highest *x) {
-	outlet_float(x->x_outlet, x->x_result);
-	x->x_result = 0;
+    outlet_float(x->x_outlet, x->x_result);
+    x->x_result = 0;
 }
 
 static void highest_tilde_free(t_highest *x)           /* cleanup on free */
@@ -40,8 +40,8 @@ static void highest_tilde_free(t_highest *x)           /* cleanup on free */
 }
 
 static void *highest_tilde_new(t_floatarg nsamps) {
-	t_highest *x = (t_highest *)pd_new(highest_tilde_class);
-	x->x_outlet = outlet_new(&x->x_obj, &s_float);
+    t_highest *x = (t_highest *)pd_new(highest_tilde_class);
+    x->x_outlet = outlet_new(&x->x_obj, &s_float);
     x->x_clock = clock_new(x, (t_method)highest_tilde_tick);
     x->x_blocksize = 64;
     if(!nsamps) x->x_period = 1024;
@@ -51,41 +51,41 @@ static void *highest_tilde_new(t_floatarg nsamps) {
 }
 
 static t_int *highest_tilde_perform(t_int *w) {
-	t_highest *x = (t_highest *)(w[1]);
-	t_sample *in = (t_sample *)(w[2]);
-	int n = (int)(w[3]);
-	t_sample result = x->x_result, temp;
-	x->x_count += n;
-	if(x->x_count >= x->x_realperiod) {
-		x->x_count = 0;
-		clock_delay(x->x_clock, 0L);
-	}
-	while(n--) {
-		temp = fabs(*in);
-		if(result < temp) result = temp;
-		in++;
-	}
-	
-	x->x_result = result;
-	
-	
-	return (w+4);
+    t_highest *x = (t_highest *)(w[1]);
+    t_sample *in = (t_sample *)(w[2]);
+    int n = (int)(w[3]);
+    t_sample result = x->x_result, temp;
+    x->x_count += n;
+    if(x->x_count >= x->x_realperiod) {
+        x->x_count = 0;
+        clock_delay(x->x_clock, 0L);
+    }
+    while(n--) {
+        temp = fabs(*in);
+        if(result < temp) result = temp;
+        in++;
+    }
+
+    x->x_result = result;
+
+
+    return (w+4);
 }
 
 static void highest_tilde_dsp(t_highest *x, t_signal **sp)
 {
-	/* assume n is a power of 2 */
-	int n = sp[0]->s_n;
-	x->x_blocksize = n;
-	/* get next multiple of n */
-	x->x_realperiod = x->x_period+(n-1) - (x->x_period+(n-1)&(n-1));
+    /* assume n is a power of 2 */
+    int n = sp[0]->s_n;
+    x->x_blocksize = n;
+    /* get next multiple of n */
+    x->x_realperiod = x->x_period+(n-1) - ((x->x_period+(n-1))&(n-1));
     x->x_count = 0;
     dsp_add(highest_tilde_perform, 3, x, sp[0]->s_vec, n);
 }
 
 void highest_tilde_setup(void)
 {
-	highest_tilde_class = class_new(gensym("highest~"), (t_newmethod)highest_tilde_new, (t_method)highest_tilde_free,
+    highest_tilde_class = class_new(gensym("highest~"), (t_newmethod)highest_tilde_new, (t_method)highest_tilde_free,
         sizeof(t_highest), 0, A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(highest_tilde_class, t_highest, x_f);
     class_addmethod(highest_tilde_class, (t_method)highest_tilde_dsp,

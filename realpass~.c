@@ -43,18 +43,18 @@ static t_int *realpass_perform(t_int *w)
     int phase = x->c_phase, nsamps = x->c_n;
     int idelsamps;
     t_sample limit = nsamps - 3;
-    t_sample *vp = x->c_vec, *bp, *wp = vp + phase, 
-    	*ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
+    t_sample *vp = x->c_vec, *bp, *wp = vp + phase,
+        *ep = vp + (nsamps + SHADYLIB_XTRASAMPS);
     t_sample delsamps, frac, a, b, c, d, cminusb;
     phase += n;
     while (n--)
     {
-    	t_sample f = *in++;
+        t_sample f = *in++;
         if (PD_BIGORSMALL(f))
             f = 0;
 
         delsamps = x->x_sr * (*time++);
-        
+
         if (!(delsamps >= 1.f))    /* too small or NAN */
             delsamps = 1.f;
         if (delsamps > limit)           /* too big */
@@ -88,7 +88,7 @@ static t_int *realpass_perform(t_int *w)
         #else
         c = f - delsamps*a;
         #endif
-        *wp++ = c;        
+        *wp++ = c;
         *out++ = c*a + delsamps;
         if (wp == ep)
         {
@@ -106,9 +106,9 @@ static t_int *realpass_perform(t_int *w)
 
 static void realpass_dsp(t_realpass *x, t_signal **sp)
 {
-    dsp_add(realpass_perform, 6, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec, 
-    	sp[3]->s_vec, x, sp[0]->s_n);
-   	x->x_sr = sp[0]->s_sr * 0.001;
+    dsp_add(realpass_perform, 6, sp[0]->s_vec, sp[1]->s_vec, sp[2]->s_vec,
+        sp[3]->s_vec, x, sp[0]->s_n);
+       x->x_sr = sp[0]->s_sr * 0.001;
     realpass_updatesr(x, sp[0]->s_sr);
 }
 
@@ -118,7 +118,7 @@ static void *realpass_new(t_float time, t_float coef, t_float size)
     if(size <= 0.0) size = 1000;
     if(time < 0.0) time = 0.0;
     x->x_ttime = size;
-    
+
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, coef);
 
@@ -126,14 +126,14 @@ static void *realpass_new(t_float time, t_float coef, t_float size)
     x->x_f = 0;
     x->c_n = 0;
     x->c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
-    memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(SHADYLIB_XTRASAMPS));
+    memset((char *)(x->c_vec), 0,
+        sizeof(t_sample)*(SHADYLIB_XTRASAMPS));
     return(x);
 }
 
 static void realpass_clear(t_realpass *x) {
-	memset((char *)(x->c_vec), 0, 
-		sizeof(t_sample)*(x->c_n + SHADYLIB_XTRASAMPS));
+    memset((char *)(x->c_vec), 0,
+        sizeof(t_sample)*(x->c_n + SHADYLIB_XTRASAMPS));
 }
 
 static void realpass_free(t_realpass *x)
@@ -144,12 +144,12 @@ static void realpass_free(t_realpass *x)
 
 void realpass_tilde_setup(void)
 {
-    realpass_class = class_new(gensym("realpass~"), 
+    realpass_class = class_new(gensym("realpass~"),
         (t_newmethod)realpass_new, (t_method)realpass_free,
         sizeof(t_realpass), 0, A_DEFFLOAT, A_DEFFLOAT, A_DEFFLOAT, 0);
     CLASS_MAINSIGNALIN(realpass_class, t_realpass, x_f);
     class_addmethod(realpass_class, (t_method)realpass_dsp,
         gensym("dsp"), A_CANT, 0);
     class_addmethod(realpass_class, (t_method)realpass_clear,
-    	gensym("clear"), 0);
+        gensym("clear"), 0);
 }

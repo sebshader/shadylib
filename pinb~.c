@@ -14,10 +14,10 @@ static void *sigpinb_new() {
 }
 
 static t_int *sigpinb_perform(t_int *w) {
-	t_sample *out = (t_sample *)(w[1]);
+    t_sample *out = (t_sample *)(w[1]);
     int n = (int)(w[2]);
     for(int i = 0; i < n; i++) {
-    	*out++ = i;
+        *out++ = i;
     }
     return (w + 3);
 }

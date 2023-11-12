@@ -12,17 +12,17 @@ typedef struct _sigvdhs
     t_float x_n;
     int x_zerodel;      /* 0 or vecsize depending on read/write order */
     t_shadylib_delwritectl *x_cspace; /* pointer to the current delwritec~ ctl*/
-	t_float x_mode;			/* which kind of interpolation? */
+    t_float x_mode;            /* which kind of interpolation? */
     t_float x_f;
 } t_sigvdhs;
 
 static void *sigvdhs_new(t_symbol *s, t_floatarg mode)
 {
     t_sigvdhs *x = (t_sigvdhs *)pd_new(sigvdhs_class);
-	floatinlet_new(&x->x_obj, &x->x_mode);
-	if (mode < 0) mode = 0;
-	else if (mode > 2) mode = 2;
-	x->x_mode = mode;
+    floatinlet_new(&x->x_obj, &x->x_mode);
+    if (mode < 0) mode = 0;
+    else if (mode > 2) mode = 2;
+    x->x_mode = mode;
     x->x_sym = s;
     x->x_sr = 1;
     x->x_n = 1;
@@ -64,7 +64,7 @@ static t_int *sigvdhs_perform_no(t_int *w)
     while (n--)
     {
         idelsamps = x->x_sr * *in++ - zerodel;
-        
+
         if (idelsamps < 1) idelsamps = 1;
         if (idelsamps > limit) idelsamps = limit;
         idelsamps += n;
@@ -92,7 +92,7 @@ static t_int *sigvdhs_perform_lin(t_int *w)
     while (n--)
     {
         t_sample delsamps = x->x_sr * *in++ - zerodel, frac;
-        
+
         t_sample a, b;
         if (delsamps < 1.00001f) delsamps = 1.00001f;
         if (delsamps > limit) delsamps = limit;
@@ -104,11 +104,11 @@ static t_int *sigvdhs_perform_lin(t_int *w)
         if (bp < vp + 2) bp += nsamps;
         b = bp[-1];
         a = bp[0];
-		#ifdef FP_FAST_FMAF
-		*out++ =  fmaf(b - a, frac, a);
-		#else
-		*out++ = a + (b - a)*frac;
-		#endif
+        #ifdef FP_FAST_FMAF
+        *out++ =  fmaf(b - a, frac, a);
+        #else
+        *out++ = a + (b - a)*frac;
+        #endif
     }
     return (w+6);
 }
@@ -130,7 +130,7 @@ static t_int *sigvdhs_perform_hs(t_int *w)
     while (n--)
     {
         t_sample delsamps = x->x_sr * *in++ - zerodel, frac;
-        
+
         t_sample a, b, c, d;
         double a3,a1,a2;
         if (delsamps < 1.00001f) delsamps = 1.00001f;
@@ -146,16 +146,16 @@ static t_int *sigvdhs_perform_hs(t_int *w)
         b = bp[-1];
         a = bp[0];
         // 4-point, 3rd-order Hermite (x-form)
-		a1 = 0.5f * (c - a);
-		#ifdef FP_FAST_FMAF
-		a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
-		a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
-		*out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
-		#else
-		a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-		a3 = 0.5f * (d - a) + 1.5f * (b - c);
-		*out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
-		#endif
+        a1 = 0.5f * (c - a);
+        #ifdef FP_FAST_FMAF
+        a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
+        a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
+        *out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
+        #else
+        a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
+        a3 = 0.5f * (d - a) + 1.5f * (b - c);
+        *out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
+        #endif
     }
     return (w+6);
 }
@@ -168,18 +168,18 @@ static void sigvdhs_dsp(t_sigvdhs *x, t_signal **sp)
     x->x_n = sp[0]->s_n;
     if (delwriter)
     {
-		t_perfroutine modefn;
-		switch((int)x->x_mode) {
-			case 2:
-				modefn = sigvdhs_perform_no;
-				break;
-			case 1:
-				modefn = sigvdhs_perform_lin;
-				break;
-			default:
-				modefn = sigvdhs_perform_hs;
-		}
-		/* no updatesr() but pd doesn't either for vd~/delread4~ ?? */
+        t_perfroutine modefn;
+        switch((int)x->x_mode) {
+            case 2:
+                modefn = sigvdhs_perform_no;
+                break;
+            case 1:
+                modefn = sigvdhs_perform_lin;
+                break;
+            default:
+                modefn = sigvdhs_perform_hs;
+        }
+        /* no updatesr() but pd doesn't either for vd~/delread4~ ?? */
         shadylib_sigdelwritec_checkvecsize(delwriter, sp[0]->s_n);
         x->x_zerodel = (delwriter->x_sortno == ugen_getsortno() ?
             0 : delwriter->x_vecsize);

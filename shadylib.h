@@ -70,16 +70,16 @@ union shadylib_tabfudge
 /* union for setting floats or receiving signals */
 union shadylib_floatpoint
 {
-	t_sample *vec;
-	t_float val;
+    t_sample *vec;
+    t_float val;
 };
 
 typedef struct _shadylib_oscctl
 {
-	union shadylib_floatpoint invals[2];
-	int num; /* number of msg inlets: 0, 1, or 2 
-		0 is all signals, 1 is an add inlet,
-		2 is a multiply inlet and an add inlet */
+    union shadylib_floatpoint invals[2];
+    int num; /* number of msg inlets: 0, 1, or 2 
+        0 is all signals, 1 is an add inlet,
+        2 is a multiply inlet and an add inlet */
 } t_shadylib_oscctl;
 
 typedef struct _shadylib_delwritectl
@@ -173,10 +173,10 @@ EXTERN void shadylib_checkalign(void);
 #define SHADYLIB_ENVELOPE_MAX   (1.0 - SHADYLIB_ENVELOPE_RANGE)
 
 typedef struct _shadylib_stage {
-	t_float lin; // 0.001 for fully exponential (60 db), 1.0 for fully linear
-	t_float op;  // geometric multiplier or linear subtraction (if lin == 1.0)
-	t_float base;// addition for each stage
-	t_int nsamp; // # of samples in stage
+    t_float lin; // 0.001 for fully exponential (60 db), 1.0 for fully linear
+    t_float op;  // geometric multiplier or linear subtraction (if lin == 1.0)
+    t_float base;// addition for each stage
+    t_int nsamp; // # of samples in stage
 } t_shadylib_stage;     
 
 EXTERN t_class *shadylib_sigdelwritec_class;
@@ -192,9 +192,9 @@ EXTERN void shadylib_ms2rxfade (t_shadylib_stage *stage);
 #define SHADYLIB_TABLESIZE 2048 /* size of tables in shadylook~ */
 
 typedef enum _tabtype {
-	REXP,
-	GAUS,
-	CAUCH
+    REXP,
+    GAUS,
+    CAUCH
 } t_shadylib_tabtype;
 
 EXTERN t_float shadylib_readtab(t_shadylib_tabtype type, t_float index);
@@ -246,7 +246,7 @@ EXTERN t_sample *shadylib_cosectbl;
 #endif
 
 /* bigger that this we use alloc, not alloca */
-#define SHADYLIB_LIST_NGETBYTE 100 
+#define SHADYLIB_LIST_NGETBYTE 100
 
 /* -------------- utility functions: storage, copying  -------------- */
     /* List element for storage.  Keep an atom and, in case it's a pointer,
@@ -270,7 +270,7 @@ typedef struct _shadylib_alist
     SHADYLIB_LIST_NGETBYTE ? alloca((n) * sizeof(t_atom)) : \
     getbytes((n) * sizeof(t_atom))))
 #define SHADYLIB_ATOMS_FREEA(x, n) ( \
-    ((n) < SHADYLIB_LIST_NGETBYTE || (freebytes((x), (n) * sizeof(t_atom)), 0)))
+    ((n) < SHADYLIB_LIST_NGETBYTE || (freebytes((x), (n) * sizeof(t_atom)), 0)));
 #else
 #define SHADYLIB_ATOMS_ALLOCA(x, n) ((x) = (t_atom *)getbytes((n) * \
         sizeof(t_atom)))
@@ -309,49 +309,49 @@ EXTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);
 #define N 60000
 
 int mult(int p, int q) {
-	int p1, p0, q1, q0;
-	p1 = p/m1; p0 = p%m1;
-	q1 = q/m1; q0 = q%m1;
-	return (((p0*q1 + p1*q0)%m1)*m1 + p0*q0)%m;
+    int p1, p0, q1, q0;
+    p1 = p/m1; p0 = p%m1;
+    q1 = q/m1; q0 = q%m1;
+    return (((p0*q1 + p1*q0)%m1)*m1 + p0*q0)%m;
 }
 
 int randomtest(int in) {
-	in = (mult(in, b) + 1)%m;
-	return in;
+    in = (mult(in, b) + 1)%m;
+    return in;
 }
 
 int tab[m1];
 
 int main (int argc, char **argv) {
-	int state = 0, i;
-	float result;
-	for(i = 0; i < m1; i++) tab[i] = 0;
-	for(i = 0; i < N; i++) {
-		state = randomtest(state); 
-		tab[state/m1]++;
-	}
-	state = 0;
-	for(i = 0; i < m1; i++) {
-		state += tab[i]*tab[i];
-	}
-	printf("state = %i\n", state);
-	result = (((float)state)/N)*m1 - N;
-	printf("result = %f\n", result);
-	printf("difference: %f (absolute value should be < 128)\n", m1 - result);
+    int state = 0, i;
+    float result;
+    for(i = 0; i < m1; i++) tab[i] = 0;
+    for(i = 0; i < N; i++) {
+        state = randomtest(state); 
+        tab[state/m1]++;
+    }
+    state = 0;
+    for(i = 0; i < m1; i++) {
+        state += tab[i]*tab[i];
+    }
+    printf("state = %i\n", state);
+    result = (((float)state)/N)*m1 - N;
+    printf("result = %f\n", result);
+    printf("difference: %f (absolute value should be < 128)\n", m1 - result);
 }
 
 */
 
 /* 579 = b/m1, 4037 = b%m1 */
 inline int mult(unsigned int p) {
-	unsigned int p1, p0;
-	p1 = p/m1; p0 = p%m1;
-	return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
+    unsigned int p1, p0;
+    p1 = p/m1; p0 = p%m1;
+    return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
 }
 
 inline int randlcm(unsigned int in) {
-	in = (mult(in) + 1)%m;
-	return in;
+    in = (mult(in) + 1)%m;
+    return in;
 }
 
 #undef m

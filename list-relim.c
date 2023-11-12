@@ -5,7 +5,7 @@ static t_class *list_relim_class;
 typedef struct _list_relim
 {
     t_object x_obj;
-    t_symbol *x_s; 
+    t_symbol *x_s;
 } t_list_relim;
 
 static void *list_relim_new(t_symbol *s)
@@ -24,14 +24,14 @@ static void list_relim_list(t_list_relim *x, t_symbol* s,
     size_t strlength = strlen(c->s_name);
     size_t strdiff = (MAXPDSTRING - 1) - strlength;
     char namebuf[MAXPDSTRING];
-    strncpy(namebuf, c->s_name, strlength);
+    strncpy(namebuf, c->s_name, MAXPDSTRING);
     t_atom *outv;
     SHADYLIB_ATOMS_ALLOCA(outv, argc);
     shadylib_atoms_copy(argc, argv, outv);
     for(int i = 0; i < argc; i++){
-		if(outv[i].a_type == A_SYMBOL) {
-			const char *against = atom_getsymbol(outv+i)->s_name;
-			size_t alength = strlen(against);
+        if(outv[i].a_type == A_SYMBOL) {
+            const char *against = atom_getsymbol(outv+i)->s_name;
+            size_t alength = strlen(against);
             for(size_t k = 0; k < alength; k += strlength)
                 if (strncmp(c->s_name, against + k, strlength) != 0)
                     goto cont;
@@ -52,14 +52,14 @@ static void list_relim_anything(t_list_relim *x, t_symbol *s,
     size_t strdiff = (MAXPDSTRING - 1) - strlength;
     const char *against;
     char namebuf[MAXPDSTRING];
-    strncpy(namebuf, c->s_name, strlength);
+    strncpy(namebuf, c->s_name, MAXPDSTRING);
     t_atom *outv;
     SHADYLIB_ATOMS_ALLOCA(outv, argc);
     shadylib_atoms_copy(argc, argv, outv);
     for(int i = 0; i < argc; i++){
-		if(outv[i].a_type == A_SYMBOL) {
-			against = atom_getsymbol(outv+i)->s_name;
-			alength = strlen(against);
+        if(outv[i].a_type == A_SYMBOL) {
+            against = atom_getsymbol(outv+i)->s_name;
+            alength = strlen(against);
             for(size_t k = 0; k < alength; k += strlength)
                 if (strncmp(c->s_name, against + k, strlength) != 0)
                     goto cont;

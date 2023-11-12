@@ -17,12 +17,12 @@ typedef struct _scalarrover
 
 static void *rover_new(t_floatarg g)
 {
-	t_scalarrover *x = (t_scalarrover *)pd_new(scalarrover_class);
-	floatinlet_new(&x->x_obj, &x->x_g);
-	x->x_g = g;
-	outlet_new(&x->x_obj, &s_signal);
-	x->x_f = 0;
-	return (x);
+    t_scalarrover *x = (t_scalarrover *)pd_new(scalarrover_class);
+    floatinlet_new(&x->x_obj, &x->x_g);
+    x->x_g = g;
+    outlet_new(&x->x_obj, &s_signal);
+    x->x_f = 0;
+    return (x);
 }
 
 static t_int *scalarrover_perform(t_int *w)
@@ -33,8 +33,8 @@ static t_int *scalarrover_perform(t_int *w)
     int n = (int)(w[4]);
     t_sample g;
     while (n--) {
-    	g = *in++;
-    	*out++ = (g ? f / g : 0); 
+        g = *in++;
+        *out++ = (g ? f / g : 0);
     }
     return (w+5);
 }

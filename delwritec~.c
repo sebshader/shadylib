@@ -7,7 +7,7 @@
 static void sigdelwritec_clear (t_shadylib_sigdelwritec *x) /* added by Orm Finnendahl */
 {
   if (x->x_cspace.c_n > 0)
-    memset(x->x_cspace.c_vec, 0, sizeof(t_sample)*(x->x_cspace.c_n + 
+    memset(x->x_cspace.c_vec, 0, sizeof(t_sample)*(x->x_cspace.c_n +
         SHADYLIB_XTRASAMPS));
 }
 

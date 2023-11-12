@@ -16,17 +16,17 @@ typedef struct _percents
 
 // b = 4103221
 static int percents_makeseed(void) {
-	unsigned int p1, p0;
-	static unsigned int nextseed = 13458715;
+    unsigned int p1, p0;
+    static unsigned int nextseed = 13458715;
 
-	p1 = nextseed/m1; p0 = nextseed%m1;
-	nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
-	return nextseed;
+    p1 = nextseed/m1; p0 = nextseed%m1;
+    nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+    return nextseed;
 }
 
 static void percents_seed(t_percents *x, t_floatarg seed) {
-	unsigned int modman = seed;
-	x->x_state = modman%m;
+    unsigned int modman = seed;
+    x->x_state = modman%m;
 }
 
 static void percents_bang(t_percents *x)
@@ -69,7 +69,7 @@ static void percents_list(t_percents *x, t_symbol *s, int argc, t_atom *argv)
     for(int i = 0; i < argc; i++) {
         if(argv[i].a_type == A_FLOAT) newargc++;
     }
-    if (!(x->l_vec = (t_float *)getbytes(newargc * 
+    if (!(x->l_vec = (t_float *)getbytes(newargc *
         sizeof(*x->l_vec))))
     {
         x->l_n = 0;

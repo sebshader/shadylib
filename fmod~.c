@@ -29,7 +29,7 @@ static t_int *sigfmod_perform(t_int *w)
     int n = (int)(w[4]);
     //if(f == 0) f = 1;
     while (n--)
-    {   
+    {
         *out++ = fmodf(*in++, f);
     }
     return (w + 5);

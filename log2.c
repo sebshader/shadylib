@@ -4,17 +4,17 @@
 static t_class *log2_class;
 
 typedef struct _log2 {
-	t_object x_obj;
+    t_object x_obj;
 } t_log2;
 
 static void log2_float(t_log2 *x, t_floatarg in) {
-	outlet_float(x->x_obj.ob_outlet, log2(in));
+    outlet_float(x->x_obj.ob_outlet, log2(in));
 }
-	
+
 static void *log2_new(void)
 {
     t_log2 *x = (t_log2 *)pd_new(log2_class);
-	outlet_new(&x->x_obj, &s_float);
+    outlet_new(&x->x_obj, &s_float);
     return (x);
 }
 

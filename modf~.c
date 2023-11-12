@@ -17,12 +17,12 @@ static void *sigmodf_new() {
 
 static t_int *sigmodf_perform(t_int *w) {
     t_sample *in = (t_sample *)(w[1]);
-	t_sample *out1 = (t_sample *)(w[2]);
+    t_sample *out1 = (t_sample *)(w[2]);
     t_sample *out2 = (t_sample *)(w[3]);
     int n = (int)(w[4]);
     float fint;
-    while (n--) {   
-    	*out2++ = modff(*in++, &fint);
+    while (n--) {
+        *out2++ = modff(*in++, &fint);
         *out1++ = fint;
     }
     return (w + 5);
