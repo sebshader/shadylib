@@ -1,3 +1,4 @@
+#define SHADYLIB_SHARED
 #include "shadylib.h"
 
 t_float *shadylib_gaustab; /* e^(-x^2) */
@@ -7,7 +8,7 @@ t_sample *shadylib_sintbl;
 t_sample *shadylib_cosectbl;
 static unsigned char aligned = 0; //doesn't have to be fast
 
-t_float shadylib_readtab(t_shadylib_tabtype type, t_float index) {
+INTERN t_float shadylib_readtab(t_shadylib_tabtype type, t_float index) {
     t_float *tab = shadylib_rexptab + (type * SHADYLIB_TABLESIZE);
     int iindex;
     t_float frac, index2;
@@ -27,7 +28,7 @@ t_float shadylib_readtab(t_shadylib_tabtype type, t_float index) {
     }
 }
 
-void shadylib_maketabs(void) {
+INTERN void shadylib_maketabs(void) {
     double lnths;
     t_float incr = 4.f/(SHADYLIB_TABLESIZE - 1);
     t_float sqr;
@@ -48,7 +49,7 @@ void shadylib_maketabs(void) {
     shadylib_rexptab[SHADYLIB_TABLESIZE - 1] = 0;
 }
 
-void shadylib_freetabs(t_class* UNUSED(dummy)) {
+INTERN void shadylib_freetabs(t_class* UNUSED(dummy)) {
     if(shadylib_rexptab) {
         freebytes(shadylib_rexptab, sizeof(t_float)*SHADYLIB_TABLESIZE*3);
         shadylib_rexptab = NULL;
@@ -57,7 +58,7 @@ void shadylib_freetabs(t_class* UNUSED(dummy)) {
 
 /* create sine and cosecant tables */
 /* copied symmetric table pr: https://github.com/pure-data/pure-data/pull/106 */
-void shadylib_makebuzz(void) {
+INTERN void shadylib_makebuzz(void) {
     double phsinc = 2*M_PI/SHADYLIB_BUZZSIZE;
     int i;
     t_sample *sinPtr;
@@ -86,7 +87,7 @@ void shadylib_makebuzz(void) {
     }
 }
 
-void shadylib_freebuzz(t_class* UNUSED(dummy)) {
+INTERN void shadylib_freebuzz(t_class* UNUSED(dummy)) {
     if(shadylib_sintbl) {
         freebytes(shadylib_sintbl,
             sizeof(sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2));
@@ -94,22 +95,22 @@ void shadylib_freebuzz(t_class* UNUSED(dummy)) {
     }
 }
 
-t_float shadylib_scalerange (t_float a) {
+INTERN t_float shadylib_scalerange (t_float a) {
     return (a - SHADYLIB_ENVELOPE_RANGE)/SHADYLIB_ENVELOPE_MAX;
 }
 
-t_float shadylib_ain2reala(t_float a) {
+INTERN t_float shadylib_ain2reala(t_float a) {
     return exp2(log2(SHADYLIB_ENVELOPE_RANGE)*(1 - a));
 }
 
-t_int shadylib_ms2samps(t_float time, t_float sr)
+INTERN t_int shadylib_ms2samps(t_float time, t_float sr)
 {
     t_int samp = (t_int)(sr*time/1000.0);
     if(samp < 1) samp = 1;
     return samp;
 }
 
-void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp) {
+INTERN void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp) {
     a = shadylib_clamp(a, 0.0, 1.0);
     if(a != 1.0) { /*exponential*/
         a = shadylib_ain2reala(a);
@@ -124,7 +125,7 @@ void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp) {
     }
 }
 
-void shadylib_ms2axfade (t_shadylib_stage *stage) {
+INTERN void shadylib_ms2axfade (t_shadylib_stage *stage) {
     if (stage->lin != 1.0) {
         stage->op = exp2(log2(stage->lin)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - stage->lin);
@@ -134,7 +135,7 @@ void shadylib_ms2axfade (t_shadylib_stage *stage) {
     }
 }
 
-void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
+INTERN void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
     a = shadylib_clamp(a, 0.0, 1.0);
     if(a != 1.0) {/*exponential*/
         a = shadylib_ain2reala(a);
@@ -149,7 +150,7 @@ void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
     }
 }
 
-void shadylib_ms2dxfade (t_shadylib_stage *stage) {
+INTERN void shadylib_ms2dxfade (t_shadylib_stage *stage) {
     if(stage->lin != 1.0) {
         stage->op = exp2(log2(stage->lin*SHADYLIB_ENVELOPE_MAX + SHADYLIB_ENVELOPE_RANGE)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - stage->lin);
@@ -159,7 +160,7 @@ void shadylib_ms2dxfade (t_shadylib_stage *stage) {
     }
 }
 
-void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
+INTERN void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
     a = shadylib_clamp(a, 0.0, 1.0);
     if(a != 1.0) {/*exponential*/
         a = shadylib_ain2reala(a);
@@ -174,7 +175,7 @@ void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
     }
 }
 
-void shadylib_ms2rxfade (t_shadylib_stage *stage) {
+INTERN void shadylib_ms2rxfade (t_shadylib_stage *stage) {
     if(stage->lin != 1.0) {
         stage->op = exp2(log2(stage->lin*SHADYLIB_ENVELOPE_MAX + SHADYLIB_ENVELOPE_RANGE)/stage->nsamp);
         stage->base = stage->lin*(stage->op - 1)/(1 - stage->lin);
@@ -187,7 +188,7 @@ void shadylib_ms2rxfade (t_shadylib_stage *stage) {
 /* needed for delay objects */
 t_class *shadylib_sigdelwritec_class;
 
-void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr) /* added by Mathieu Bouchard */
+INTERN void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr) /* added by Mathieu Bouchard */
 {
     int nsamps = x->x_deltime * sr * (t_float)(0.001f);
     if (nsamps < 1) nsamps = 1;
@@ -203,7 +204,7 @@ void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr) /* 
 }
 
     /* routine to check that all delwrites/delreads/vds have same vecsize */
-void shadylib_sigdelwritec_checkvecsize(t_shadylib_sigdelwritec *x, int vecsize)
+INTERN void shadylib_sigdelwritec_checkvecsize(t_shadylib_sigdelwritec *x, int vecsize)
 {
     if (x->x_rsortno != ugen_getsortno())
     {
@@ -220,7 +221,7 @@ void shadylib_sigdelwritec_checkvecsize(t_shadylib_sigdelwritec *x, int vecsize)
 #endif
 }
 
-void shadylib_checkalign(void) {
+INTERN void shadylib_checkalign(void) {
     union shadylib_tabfudge tf;
     if(aligned) return;
     tf.tf_d = SHADYLIB_UNITBIT32 + 0.5;
@@ -229,7 +230,7 @@ void shadylib_checkalign(void) {
     else aligned = 1;
 }
 
-t_int *shadylib_opd_perf0(t_int *w) {
+INTERN t_int *shadylib_opd_perf0(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -270,7 +271,7 @@ t_int *shadylib_opd_perf0(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_opd_perf1(t_int *w) {
+INTERN t_int *shadylib_opd_perf1(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -311,7 +312,7 @@ t_int *shadylib_opd_perf1(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_opd_perf2(t_int *w) {
+INTERN t_int *shadylib_opd_perf2(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -352,7 +353,7 @@ t_int *shadylib_opd_perf2(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_recd_perf0(t_int *w) {
+INTERN t_int *shadylib_recd_perf0(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -372,7 +373,7 @@ t_int *shadylib_recd_perf0(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_recd_perf1(t_int *w) {
+INTERN t_int *shadylib_recd_perf1(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -391,7 +392,7 @@ t_int *shadylib_recd_perf1(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_recd_perf2(t_int *w) {
+INTERN t_int *shadylib_recd_perf2(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -410,7 +411,7 @@ t_int *shadylib_recd_perf2(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_trid_perf0(t_int *w) {
+INTERN t_int *shadylib_trid_perf0(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -434,7 +435,7 @@ t_int *shadylib_trid_perf0(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_trid_perf1(t_int *w) {
+INTERN t_int *shadylib_trid_perf1(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -458,7 +459,7 @@ t_int *shadylib_trid_perf1(t_int *w) {
     return (w+5);
 }
 
-t_int *shadylib_trid_perf2(t_int *w) {
+INTERN t_int *shadylib_trid_perf2(t_int *w) {
     t_shadylib_oscctl *x = (t_shadylib_oscctl *)(w[1]);
     t_sample *in = (t_sample *)(w[2]);
     t_sample *out = (t_sample *)(w[3]);
@@ -482,7 +483,7 @@ t_int *shadylib_trid_perf2(t_int *w) {
     return (w+5);
 }
 
-void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to)
+INTERN void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to)
 {
     int i;
     for (i = 0; i < argc; i++)
@@ -491,14 +492,14 @@ void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to)
 
 t_class *shadylib_alist_class;
 
-void shadylib_alist_init(t_shadylib_alist *x)
+INTERN void shadylib_alist_init(t_shadylib_alist *x)
 {
     x->l_pd = shadylib_alist_class;
     x->l_n = x->l_npointer = 0;
     x->l_vec = 0;
 }
 
-void shadylib_alist_clear(t_shadylib_alist *x)
+INTERN void shadylib_alist_clear(t_shadylib_alist *x)
 {
     int i;
     for (i = 0; i < x->l_n; i++)
@@ -510,7 +511,7 @@ void shadylib_alist_clear(t_shadylib_alist *x)
         freebytes(x->l_vec, x->l_n * sizeof(*x->l_vec));
 }
 
-void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* UNUSED(s), int argc,
+INTERN void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* UNUSED(s), int argc,
     t_atom *argv, int where)
 {
     int i, j;
@@ -527,7 +528,7 @@ void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* UNUSED(s), int argc,
 }
 
     /* set contents to a list */
-void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv)
+INTERN void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv)
 {
     shadylib_alist_clear(x);
     if (!(x->l_vec = (t_shadylib_listelem *)getbytes(argc * sizeof(*x->l_vec))))
@@ -542,7 +543,7 @@ void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *arg
 }
 
     /* set contents to an arbitrary non-list message */
-void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv)
+INTERN void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv)
 {
     int i;
     shadylib_alist_clear(x);
@@ -567,14 +568,14 @@ void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom 
     }
 }
 
-void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, int count)
+INTERN void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, int count)
 {
     int i;
     for (i = 0; i < count; i++)
         to[i] = x->l_vec[onset + i].l_a;
 }
 
-void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count)
+INTERN void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count)
 {
     int i;
     y->l_pd = shadylib_alist_class;
@@ -597,7 +598,7 @@ void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, i
     }
 }
 
-void shadylib_alist_setup(void)
+INTERN void shadylib_alist_setup(void)
 {
     shadylib_alist_class = class_new(gensym("list inlet"),
         0, 0, sizeof(t_shadylib_alist), 0, 0);
@@ -624,7 +625,7 @@ static const char* print_atomtype (t_atomtype intype) {
     return "";
 }
 
-int shadylib_atoms_eq(t_atom *first, t_atom *second) {
+INTERN int shadylib_atoms_eq(t_atom *first, t_atom *second) {
     if (first->a_type == second->a_type) {
         switch(first->a_type) {
             case A_FLOAT:

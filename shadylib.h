@@ -1,5 +1,18 @@
+#ifndef INCLUDE_SHADYLIB_H__
+#define INCLUDE_SHADYLIB_H__
+
 #include "m_pd.h"
 #include <math.h>
+
+#ifdef _WIN32
+#ifdef SHADYLIB_SHARED
+#define INTERN __declspec(dllexport) extern
+#else
+#define INTERN __declspec(dllimport) extern
+#endif /* SHADYLIB_SHARED */
+#else
+#define INTERN extern
+#endif /* _WIN32 */
 
 /* this seems faster than fmin/fmax sometimes bc of type conversion */
 #define shadylib_min(X, Y)  ((X) < (Y) ? (X) : (Y))
@@ -7,17 +20,15 @@
 /* clamp x between y and z */
 #define shadylib_clamp(X, Y, Z) ((X) > (Z) ? (Z) : ((X) < (Y) ? (Y) : (X)))
 
-/* suppress unused warnings */
 #ifdef __GNUC__
-#  define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+# define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+# define UNUSED_FUNCTION(x) __attribute__((__unused__)) UNUSED ## x
+# if __GNUC__ >= 9
+#  pragma GCC diagnostic ignored "-Wcast-function-type"
+# endif
 #else
-#  define UNUSED(x) UNUSED_ ## x
-#endif
-
-#ifdef __GNUC__
-#  define UNUSED_FUNCTION(x) __attribute__((__unused__)) UNUSED_ ## x
-#else
-#  define UNUSED_FUNCTION(x) UNUSED_ ## x
+# define UNUSED(x) UNUSED_ ## x
+# define UNUSED_FUNCTION(x) UNUSED ## x
 #endif
 
 #define SHADYLIB_UNITBIT32 1572864.  /* 3*2^19; bit 32 has place value 1 */
@@ -44,16 +55,16 @@
 #define BYTE_ORDER LITTLE_ENDIAN
 #endif
 
-#if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN)                         
-#error No byte order defined                                                    
+#if !defined(BYTE_ORDER) || !defined(LITTLE_ENDIAN)
+#error No byte order defined
 #endif
 
 #if BYTE_ORDER == LITTLE_ENDIAN
-# define SHADYLIB_HIOFFSET 1     
-# define SHADYLIB_LOWOFFSET 0                                                       
-#else                                                                           
-# define SHADYLIB_HIOFFSET 0    /* word offset to find MSB */                             
-# define SHADYLIB_LOWOFFSET 1    /* word offset to find LSB */                            
+# define SHADYLIB_HIOFFSET 1
+# define SHADYLIB_LOWOFFSET 0
+#else
+# define SHADYLIB_HIOFFSET 0    /* word offset to find MSB */
+# define SHADYLIB_LOWOFFSET 1    /* word offset to find LSB */
 #endif
 
 #define SHADYLIB_TRUE 1
@@ -77,7 +88,7 @@ union shadylib_floatpoint
 typedef struct _shadylib_oscctl
 {
     union shadylib_floatpoint invals[2];
-    int num; /* number of msg inlets: 0, 1, or 2 
+    int num; /* number of msg inlets: 0, 1, or 2
         0 is all signals, 1 is an add inlet,
         2 is a multiply inlet and an add inlet */
 } t_shadylib_oscctl;
@@ -103,8 +114,8 @@ typedef struct _shadylib_sigdelwritec
 
 /* ugen_getsortno in pd binary <= 0.51.3 at least */
 EXTERN int ugen_getsortno(void);
-EXTERN void shadylib_sigdelwritec_checkvecsize(t_shadylib_sigdelwritec *x, int vecsize);
-EXTERN void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr);
+INTERN void shadylib_sigdelwritec_checkvecsize(t_shadylib_sigdelwritec *x, int vecsize);
+INTERN void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr);
 #define SHADYLIB_XTRASAMPS 4
 #define SHADYLIB_SAMPBLK 4
 #define SHADYLIB_DEFDELVS 64  /* LATER get this from canvas at DSP time */
@@ -112,7 +123,7 @@ EXTERN void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float 
 EXTERN t_class *sigdelwritec_class;
 
 /*
- *   utility functions used in pd EXTERNals 
+ *   utility functions used in pd EXTERNals
  *   Copyright (c) 2000-2014 by Tom Schouten & Seb Shader
  *
  *   This program is free software; you can redistribute it and/or modify
@@ -145,7 +156,7 @@ typedef union
 
 /* check if floating point number is denormal */
 
-//#define IS_DENORMAL(f) (((*(unsigned int *)&(f))&0x7f800000) == 0) 
+//#define IS_DENORMAL(f) (((*(unsigned int *)&(f))&0x7f800000) == 0)
 
 #define SHADYLIB_IS_NOT_DENORMAL(f) (((((shadylib_t_flint)(f)).i) & 0x7f800000) != 0)
 
@@ -166,7 +177,7 @@ typedef union
 #define SHADYLIB_IS_NOT_DENORMAL(f) 1
 #endif // end if defined(__i386__) || defined(__x86_64__)
 
-EXTERN void shadylib_checkalign(void);
+INTERN void shadylib_checkalign(void);
 
 /* exponential range for envelopes is 60dB */
 #define SHADYLIB_ENVELOPE_RANGE 0.001
@@ -177,17 +188,17 @@ typedef struct _shadylib_stage {
     t_float op;  // geometric multiplier or linear subtraction (if lin == 1.0)
     t_float base;// addition for each stage
     t_int nsamp; // # of samples in stage
-} t_shadylib_stage;     
+} t_shadylib_stage;
 
-EXTERN t_class *shadylib_sigdelwritec_class;
+INTERN t_class *shadylib_sigdelwritec_class;
 
-EXTERN t_int shadylib_ms2samps(t_float time, t_float sr);
-EXTERN void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp);
-EXTERN void shadylib_ms2axfade (t_shadylib_stage *stage);
-EXTERN void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp);
-EXTERN void shadylib_ms2dxfade (t_shadylib_stage *stage);
-EXTERN void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp);
-EXTERN void shadylib_ms2rxfade (t_shadylib_stage *stage);
+INTERN t_int shadylib_ms2samps(t_float time, t_float sr);
+INTERN void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp);
+INTERN void shadylib_ms2axfade (t_shadylib_stage *stage);
+INTERN void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp);
+INTERN void shadylib_ms2dxfade (t_shadylib_stage *stage);
+INTERN void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp);
+INTERN void shadylib_ms2rxfade (t_shadylib_stage *stage);
 
 #define SHADYLIB_TABLESIZE 2048 /* size of tables in shadylook~ */
 
@@ -197,29 +208,29 @@ typedef enum _tabtype {
     CAUCH
 } t_shadylib_tabtype;
 
-EXTERN t_float shadylib_readtab(t_shadylib_tabtype type, t_float index);
+INTERN t_float shadylib_readtab(t_shadylib_tabtype type, t_float index);
 
-EXTERN void shadylib_maketabs(void);
-EXTERN void shadylib_freetabs(t_class *dummy);
+INTERN void shadylib_maketabs(void);
+INTERN void shadylib_freetabs(t_class *dummy);
 
 /*buzz stuff */
-EXTERN void shadylib_makebuzz(void);
-EXTERN void shadylib_freebuzz(t_class *dummy);
+INTERN void shadylib_makebuzz(void);
+INTERN void shadylib_freebuzz(t_class *dummy);
 
-EXTERN t_int *shadylib_opd_perf0(t_int *w);
-EXTERN t_int *shadylib_opd_perf1(t_int *w);
-EXTERN t_int *shadylib_opd_perf2(t_int *w);
+INTERN t_int *shadylib_opd_perf0(t_int *w);
+INTERN t_int *shadylib_opd_perf1(t_int *w);
+INTERN t_int *shadylib_opd_perf2(t_int *w);
 
-EXTERN t_int *shadylib_recd_perf0(t_int *w);
-EXTERN t_int *shadylib_recd_perf1(t_int *w);
-EXTERN t_int *shadylib_recd_perf2(t_int *w);
+INTERN t_int *shadylib_recd_perf0(t_int *w);
+INTERN t_int *shadylib_recd_perf1(t_int *w);
+INTERN t_int *shadylib_recd_perf2(t_int *w);
 
-EXTERN t_int *shadylib_trid_perf0(t_int *w);
-EXTERN t_int *shadylib_trid_perf1(t_int *w);
-EXTERN t_int *shadylib_trid_perf2(t_int *w);
+INTERN t_int *shadylib_trid_perf0(t_int *w);
+INTERN t_int *shadylib_trid_perf1(t_int *w);
+INTERN t_int *shadylib_trid_perf2(t_int *w);
 
-EXTERN t_sample *shadylib_sintbl;
-EXTERN t_sample *shadylib_cosectbl;
+INTERN t_sample *shadylib_sintbl;
+INTERN t_sample *shadylib_cosectbl;
 
 /* used in the cosecant table for values very close to 1/0 */
 #define SHADYLIB_BADVAL 1e20f
@@ -277,18 +288,18 @@ typedef struct _shadylib_alist
 #define SHADYLIB_ATOMS_FREEA(x, n) (freebytes((x), (n) * sizeof(t_atom)))
 #endif
 
-EXTERN void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to);
-EXTERN t_class *shadylib_alist_class;
-EXTERN void shadylib_alist_init(t_shadylib_alist *x);
-EXTERN void shadylib_alist_clear(t_shadylib_alist *x);
-EXTERN void shadylib_alist_copyin(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv,
+INTERN void shadylib_atoms_copy(int argc, t_atom *from, t_atom *to);
+INTERN t_class *shadylib_alist_class;
+INTERN void shadylib_alist_init(t_shadylib_alist *x);
+INTERN void shadylib_alist_clear(t_shadylib_alist *x);
+INTERN void shadylib_alist_copyin(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv,
     int where);
-EXTERN void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv);
-EXTERN void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv);
-EXTERN void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, int count);
-EXTERN void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count);
-EXTERN void shadylib_alist_setup(void);
-EXTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);
+INTERN void shadylib_alist_list(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv);
+INTERN void shadylib_alist_anything(t_shadylib_alist *x, t_symbol *s, int argc, t_atom *argv);
+INTERN void shadylib_alist_toatoms(t_shadylib_alist *x, t_atom *to, int onset, int count);
+INTERN void shadylib_alist_clone(t_shadylib_alist *x, t_shadylib_alist *y, int onset, int count);
+INTERN void shadylib_alist_setup(void);
+INTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);
 
 //linear congruential method from "Algorithms in C" by Robert Sedgewick
 #define m 16777216 /* 2^24: 24 digits are 0 */
@@ -301,7 +312,7 @@ EXTERN int shadylib_atoms_eq(t_atom *first, t_atom *second);
 
 #include <stdio.h>
 
-#define m 16777216 
+#define m 16777216
 #define m1 4096
 #define b 2375621
 
@@ -327,7 +338,7 @@ int main (int argc, char **argv) {
     float result;
     for(i = 0; i < m1; i++) tab[i] = 0;
     for(i = 0; i < N; i++) {
-        state = randomtest(state); 
+        state = randomtest(state);
         tab[state/m1]++;
     }
     state = 0;
@@ -356,3 +367,5 @@ inline int randlcm(unsigned int in) {
 
 #undef m
 #undef m1
+
+#endif /* INCLUDE_SHADYLIB_H__ */
