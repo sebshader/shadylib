@@ -24,7 +24,7 @@ static void list_relim_list(t_list_relim *x, t_symbol* s,
     size_t strlength = strlen(c->s_name);
     size_t strdiff = (MAXPDSTRING - 1) - strlength;
     char namebuf[MAXPDSTRING];
-    strncpy(namebuf, c->s_name, MAXPDSTRING);
+    strcpy(namebuf, c->s_name);
     t_atom *outv;
     SHADYLIB_ATOMS_ALLOCA(outv, argc);
     shadylib_atoms_copy(argc, argv, outv);
@@ -52,7 +52,7 @@ static void list_relim_anything(t_list_relim *x, t_symbol *s,
     size_t strdiff = (MAXPDSTRING - 1) - strlength;
     const char *against;
     char namebuf[MAXPDSTRING];
-    strncpy(namebuf, c->s_name, MAXPDSTRING);
+    strcpy(namebuf, c->s_name);
     t_atom *outv;
     SHADYLIB_ATOMS_ALLOCA(outv, argc);
     shadylib_atoms_copy(argc, argv, outv);
