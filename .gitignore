@@ -4,5 +4,7 @@
 *.dylib
 *.dll
 *.so
+.cache
 commands.txt
 tags
+compile_commands.json

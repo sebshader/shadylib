@@ -90,7 +90,7 @@ INTERN void shadylib_makebuzz(void) {
 INTERN void shadylib_freebuzz(t_class* UNUSED(dummy)) {
     if(shadylib_sintbl) {
         freebytes(shadylib_sintbl,
-            sizeof(sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2));
+            sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2);
         shadylib_sintbl = NULL;
     }
 }
@@ -365,7 +365,7 @@ INTERN t_int *shadylib_recd_perf0(t_int *w) {
     inter.tf_d = 1.0;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967295);
+        casto = (uint32_t)(*in++ * (t_sample)4294967295);
         /* set the sign bit of double 1.0 */
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         *out++ = inter.tf_d*(*mul++) + (*add++);
@@ -385,7 +385,7 @@ INTERN t_int *shadylib_recd_perf1(t_int *w) {
     inter.tf_d = 1.0;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967295);
+        casto = (uint32_t)(*in++ * (t_sample)4294967295);
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         *out++ = inter.tf_d*(*mul++) + add;
     }
@@ -404,7 +404,7 @@ INTERN t_int *shadylib_recd_perf2(t_int *w) {
     inter.tf_d = 1.0;
     while (n--)
     {
-        casto = (uint32_t)(*in++ * 4294967295);
+        casto = (uint32_t)(*in++ * (t_sample)4294967295);
         inter.tf_i[SHADYLIB_HIOFFSET] = 1072693248 | (casto & 2147483648); /* bit 31 */
         *out++ = inter.tf_d*mul + add;
     }
