@@ -15,10 +15,10 @@
 #X obj 97 246 table freqs 100;
 #X obj 615 237 s freqs;
 #X obj 619 477 pack f 5;
-#X msg 581 48 220 440 670 880;
+#X msg 562 48 220 440 670 880;
 #X obj 393 497 tabread freqs;
 #X obj 498 475 tabread freqs;
-#X listbox 591 78 20 0 0 0 frequencies - - 0;
+#X listbox 562 78 30 0 0 0 frequencies - - 0;
 #X text 32 19 takes index 0-1 and length \, outputs 2 indices (1 for even \, 1 for odd) and a level corresponding to the even (left) oscillator's linear gain;
 #X text 18 355 here a table of frequencies is rolled through while using cosine-crossfading on each of the sine frequencies. When an even-indexed frequency is reached the odd oscillator switches to the next odd-indexed frequency and visa-versa;
 #X obj 447 734 ./outputc~;

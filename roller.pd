@@ -19,7 +19,7 @@
 #X obj 315 391 abs;
 #X obj 308 309 * 2;
 #X obj 138 509 outlet;
-#X obj 217 483 outlet;
+#X obj 204 495 outlet;
 #X obj 315 415 outlet;
 #X obj 205 93 - 1;
 #X obj 145 116 *;
@@ -28,6 +28,8 @@
 #X obj 145 140 t f f;
 #X msg 221 160 set -1;
 #X obj 207 69 max 1;
+#X obj 210 460 moses;
+#X obj 138 475 moses;
 #X connect 0 0 23 0;
 #X connect 1 0 27 0;
 #X connect 1 0 28 0;
@@ -39,13 +41,13 @@
 #X connect 4 0 3 0;
 #X connect 5 0 8 0;
 #X connect 6 0 11 0;
-#X connect 6 0 19 0;
+#X connect 6 0 30 0;
 #X connect 7 0 12 0;
-#X connect 7 0 20 0;
+#X connect 7 0 29 0;
 #X connect 8 0 6 0;
 #X connect 8 1 7 0;
-#X connect 11 0 20 0;
-#X connect 12 0 19 0;
+#X connect 11 0 29 0;
+#X connect 12 0 30 0;
 #X connect 13 0 18 0;
 #X connect 15 0 16 0;
 #X connect 16 0 17 0;
@@ -59,3 +61,7 @@
 #X connect 26 1 16 1;
 #X connect 27 0 4 0;
 #X connect 28 0 22 0;
+#X connect 28 0 29 1;
+#X connect 28 0 30 1;
+#X connect 29 0 20 0;
+#X connect 30 0 19 0;
