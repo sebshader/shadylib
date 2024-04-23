@@ -1,6 +1,7 @@
 #include "shadylib.h"
+#include <math.h>
 
-#define MAX_HARM 254.0
+#define MAX_HARM 254.f
 //#define COSTAB_2 (COSTABSIZE >> 1)
 static t_class* tcheb_tilde_class;
 
@@ -18,7 +19,7 @@ static t_int *tcheb_tilde_perform(t_int *w) {
     double t1, t2, tin, temp;
     while(n--) {
         inord = *in2++;
-        inord = shadylib_clamp(inord, 0.0, MAX_HARM);
+        inord = shadylib_clamp(inord, 0.f, MAX_HARM);
         newo = inord + 2;
         /* this is basically a binary stack for even-odd computations
         we do (n+1)/2 because later we can only do 2n - 1 for odd
@@ -67,7 +68,7 @@ static t_int *tcheb_tilde_perform(t_int *w) {
     return (w + 5);
 }
 
-static void tcheb_tilde_dsp(t_tcheb_tilde* UNUSED(x), t_signal **sp) {
+static void tcheb_tilde_dsp(t_tcheb_tilde* SHADYLIB_UNUSED(x), t_signal **sp) {
     dsp_add(tcheb_tilde_perform, 4, sp[0]->s_vec,  sp[1]->s_vec,
         sp[2]->s_vec, sp[0]->s_n);
 }

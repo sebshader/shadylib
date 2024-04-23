@@ -26,7 +26,7 @@ static void rectoratord_dsp(t_rectoratord *x, t_signal **sp) {
     }
 }
 
-static void *rectoratord_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *rectoratord_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_rectoratord *x = (t_rectoratord *)pd_new(rectoratord_class);
     outlet_new(&x->x_obj, &s_signal);
     switch(argc) {

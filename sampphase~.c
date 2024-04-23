@@ -18,11 +18,11 @@ typedef struct _sampphase
 static void *sampphase_new(t_floatarg f, t_floatarg t)
 {
     t_sampphase *x = (t_sampphase *)pd_new(sampphase_class);
-    x->x_samptrue = (t == 0);
+    x->x_samptrue = (t == 0.f);
     x->x_f = f;
     x->x_held = f;
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("ft1"));
-    x->x_phase = 0;
+    x->x_phase = 0.0;
     outlet_new(&x->x_obj, &s_signal);
     outlet_new(&x->x_obj, &s_signal);
     return (x);
@@ -43,7 +43,7 @@ static t_int *sampphase_perform(t_int *w)
     if (bool) {
         t_sample samp = x->x_held;
         while (n--) {
-            if ((*in != 0.0 && samp == 0.0) ||\
+            if ((*in != 0.f && samp == 0.f) ||\
                  (tf.tf_i[SHADYLIB_HIOFFSET] != SHADYLIB_NORMHIPART)) samp = *in;
             in++;
             tf.tf_i[SHADYLIB_HIOFFSET] = SHADYLIB_NORMHIPART;
@@ -80,7 +80,7 @@ static void sampphase_ft1(t_sampphase *x, t_float f)
 
 static void sampphase_hold(t_sampphase *x, t_float f)
 {
-    x->x_samptrue = (f != 0.);
+    x->x_samptrue = (f != 0.f);
 }
 
 void sampphase_tilde_setup(void)

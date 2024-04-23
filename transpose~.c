@@ -1,4 +1,5 @@
 #include "shadylib.h"
+#include <math.h>
 
 static t_class *transpose_tilde_class;
 
@@ -25,7 +26,7 @@ t_int *transpose_tilde_perform(t_int *w)
     return (w+4);
 }
 
-static void transpose_tilde_dsp(t_transpose_tilde* UNUSED(x), t_signal **sp) {
+static void transpose_tilde_dsp(t_transpose_tilde* SHADYLIB_UNUSED(x), t_signal **sp) {
     dsp_add(transpose_tilde_perform, 3,
         sp[0]->s_vec, sp[1]->s_vec, sp[0]->s_n);
 }

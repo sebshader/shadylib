@@ -1,5 +1,6 @@
 #include "shadylib.h"
 #include <float.h>
+#include <math.h>
 
 static t_class *buzz_class, *scalarbuzz_class;
 /* this algorithm is mainly from supercollider
@@ -26,21 +27,21 @@ typedef struct _scalarbuzz {
 } t_scalarbuzz;
 
 static void scalarbuzz_phase(t_scalarbuzz *x, t_float f) {
-    f *= .5;
+    f *= .5f;
     x->phase = f - floorf(f);
 }
 
 static void buzz_phase(t_buzz *x, t_float f) {
-    f *= .5;
+    f *= .5f;
     x->phase = f - floorf(f);
 }
 
 static void scalarbuzz_freq(t_scalarbuzz *x, t_float f) {
-    x->x_g = shadylib_clamp(f, 0, x->max);
+    x->x_g = shadylib_clamp(f, 0.f, x->max);
     x->argset = 0;
 }
 
-static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
+static void *buzz_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom* argv)
 {
     if (argc > 1) post("buzz~: extra arguments ignored");
     if (argc)
@@ -58,7 +59,7 @@ static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
         }
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
-        x->x_f = 0;
+        x->x_f = 0.f;
         x->phase = 0.0;
         return (x);
     }
@@ -69,7 +70,7 @@ static void *buzz_new(t_symbol* UNUSED(s), int argc, t_atom* argv)
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("phase"));
         outlet_new(&x->x_obj, &s_signal);
         outlet_new(&x->x_obj, &s_signal);
-        x->x_f = 0;
+        x->x_f = 0.f;
         x->phase = 0.0;
         return (x);
     }
@@ -89,7 +90,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
     double g = x->x_g;
     float max = x->max;
     while(n--) {
-        freq = fabsf(*in++);
+        freq = shadylib_absf(*in++);
         freq = shadylib_min(freq, max);
         fread = phase*SHADYLIB_BUZZSIZE;
         tabrd = fread;
@@ -105,8 +106,8 @@ static t_int *scalarbuzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(fabs(res2)  < 0.0005f) {
-                *out1++ = 1;
+            if(shadylib_absd(res2)  < 0.0005) {
+                *out1++ = 1.f;
                 *out2++ = phase;
                 #ifdef FP_FAST_FMA
                 phase = fma(freq, conv, phase);
@@ -116,7 +117,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
                 n2 = phase;
                 phase = phase - n2;
                 continue;
-            } else res2 = 1/res2;
+            } else res2 = 1.0/res2;
         } else {
             #ifdef FP_FAST_FMA
             res2 = fma(res2 - res1, res3, res1);
@@ -124,8 +125,8 @@ static t_int *scalarbuzz_perform(t_int *w) {
             res2 = res1 + (res2 - res1)*res3;
             #endif
         }
-        rat = g/freq - 1;
-        rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
+        rat = g/freq - 1.0;
+        rat = shadylib_clamp(rat, 1.0, SHADYLIB_MAXHARM);
         n2 = rat;
         frat = rat - n2;
         n2 *= 2;
@@ -146,8 +147,8 @@ static t_int *scalarbuzz_perform(t_int *w) {
         res1 = fma(fread, 2, res4);
         #else
         res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
-        res3 = (res3*res2 - 1)/n2;
-        res1 = res4 + fread*2;
+        res3 = (res3*res2 - 1.0)/n2;
+        res1 = res4 + fread*2.0;
         #endif
 
         tabrd = res1;
@@ -162,8 +163,8 @@ static t_int *scalarbuzz_perform(t_int *w) {
         *out1++ = fma(res3, 1-frat, res1*frat);
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
-        res1 = (res1*res2 - 1)/(n2 + 2);
-        *out1++ = res3*(1 - frat) + res1*(frat);
+        res1 = (res1*res2 - 1.0)/(n2 + 2);
+        *out1++ = res3*(1.0 - frat) + res1*(frat);
         #endif
 
         *out2++ = phase;
@@ -194,7 +195,7 @@ static t_int *buzz_perform(t_int *w) {
     uint32_t tabrd, tabrd2, n2;
 
     while(n--) {
-        freq = fabsf(*in++);
+        freq = shadylib_absf(*in++);
         freq = shadylib_min(freq, max);
         g = *in2++;
         g = shadylib_min(g, max);
@@ -212,8 +213,8 @@ static t_int *buzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(fabs(res2)  < 0.0005f) {
-                *out1++ = 1;
+            if(shadylib_absd(res2)  < 0.0005) {
+                *out1++ = 1.0f;
                 *out2++ = phase;
                 #ifdef FP_FAST_FMA
                 phase = fma(freq, conv, phase);
@@ -223,7 +224,7 @@ static t_int *buzz_perform(t_int *w) {
                 n2 = phase;
                 phase = phase - n2;
                 continue;
-            } else res2 = 1/res2;
+            } else res2 = 1.0/res2;
         } else {
             #ifdef FP_FAST_FMA
             res2 = fma(res2 - res1, res3, res1);
@@ -231,8 +232,8 @@ static t_int *buzz_perform(t_int *w) {
             res2 = res1 + (res2 - res1)*res3;
             #endif
         }
-        rat = g/freq - 1;
-        rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
+        rat = g/freq - 1.0;
+        rat = shadylib_clamp(rat, 1.0, SHADYLIB_MAXHARM);
         n2 = rat;
         frat = rat - n2;
         n2 *= 2;
@@ -253,8 +254,8 @@ static t_int *buzz_perform(t_int *w) {
         res1 = fma(fread, 2, res4);
         #else
         res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
-        res3 = (res3*res2 - 1)/n2;
-        res1 = res4 + fread*2;
+        res3 = (res3*res2 - 1.0)/n2;
+        res1 = res4 + fread*2.0;
         #endif
 
         tabrd = res1;
@@ -269,8 +270,8 @@ static t_int *buzz_perform(t_int *w) {
         *out1++ = fma(res3, 1-frat, res1*frat);
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
-        res1 = (res1*res2 - 1)/(n2 + 2);
-        *out1++ = res3*(1 - frat) + res1*(frat);
+        res1 = (res1*res2 - 1.0)/(n2 + 2);
+        *out1++ = res3*(1.0 - frat) + res1*(frat);
         #endif
 
         *out2++ = phase;
@@ -296,7 +297,7 @@ static void buzz_dsp(t_buzz *x, t_signal **sp)
 
 static void scalarbuzz_dsp(t_scalarbuzz *x, t_signal **sp)
 {
-    float max = sp[0]->s_sr/2;
+    float max = sp[0]->s_sr*0.5f;
     if (x->max != max) {
         x->max = max;
         if (x->argset) x->x_g = max;

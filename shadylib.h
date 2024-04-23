@@ -2,7 +2,6 @@
 #define INCLUDE_SHADYLIB_H__
 
 #include "m_pd.h"
-#include <math.h>
 
 #ifdef _WIN32
 #ifdef SHADYLIB_SHARED
@@ -19,16 +18,26 @@
 #define shadylib_max(X, Y)  ((X) > (Y) ? (X) : (Y))
 /* clamp x between y and z */
 #define shadylib_clamp(X, Y, Z) ((X) > (Z) ? (Z) : ((X) < (Y) ? (Y) : (X)))
+/* absolute value */
+#define shadylib_absi(X)  ((X) < (0) ? (-X) : (X))
+#define shadylib_absd(X)  ((X) < (0.) ? (-X) : (X))
+#define shadylib_absf(X)  ((X) < (0.f) ? (-X) : (X))
 
 #ifdef __GNUC__
-# define UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
-# define UNUSED_FUNCTION(x) __attribute__((__unused__)) UNUSED ## x
-# if __GNUC__ >= 9
-#  pragma GCC diagnostic ignored "-Wcast-function-type"
+    #define SHADYLIB_UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
+    #define SHADYLIB_UNUSED_FUNCTION(x) __attribute__((__unused__)) UNUSED ## x
+    #if __GNUC__ >= 9
+    #pragma GCC diagnostic ignored "-Wcast-function-type"
 # endif
 #else
-# define UNUSED(x) UNUSED_ ## x
-# define UNUSED_FUNCTION(x) UNUSED ## x
+    #define SHADYLIB_UNUSED(x) UNUSED_ ## x
+    #define SHADYLIB_UNUSED_FUNCTION(x) UNUSED ## x
+#endif
+
+#if defined(__GNUC__) || defined(__clang__)
+    #define SHADYLIB_UNUSED_ATTRIBUTE __attribute__((unused))
+#else
+    #define SHADYLIB_UNUSED_ATTRIBUTE
 #endif
 
 #define SHADYLIB_UNITBIT32 1572864.  /* 3*2^19; bit 32 has place value 1 */
@@ -242,7 +251,6 @@ INTERN t_sample *shadylib_cosectbl;
 #define SHADYLIB_MAXHARM ((int)((4294967295/(2*SHADYLIB_BUZZSIZE)) - 2))
 
 /* memset */
-#include <string.h>
 
 #ifdef _WIN32
 # include <malloc.h> /* MSVC or mingw on windows */
@@ -360,9 +368,8 @@ inline int mult(unsigned int p) {
     return (((p0*579 + p1*4037)%m1)*m1 + p0*4037)%m;
 }
 
-inline int randlcm(unsigned int in) {
-    in = (mult(in) + 1)%m;
-    return in;
+inline unsigned int randlcm(unsigned int in) {
+    return (mult(in) + 1)&(m - 1);
 }
 
 #undef m

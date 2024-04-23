@@ -1,6 +1,3 @@
-/* Supercollider Code */
-
-#include <math.h>
 #include "m_pd.h"
 
 static t_class *siglag_class;
@@ -19,7 +16,7 @@ static void *siglag_new(t_float f)
         (t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal),
             f);
     outlet_new(&x->x_obj, &s_signal);
-    x->x_last = 0;
+    x->x_last = 0.0;
     return (x);
 }
 

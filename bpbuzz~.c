@@ -1,4 +1,5 @@
 #include "shadylib.h"
+#include <math.h>
 
 static t_class *bpbuzz_class;
 /* this algorithm is mainly from supercollider
@@ -18,14 +19,14 @@ typedef struct _bpbuzz {
 } t_bpbuzz;
 
 static void bpbuzz_phase(t_bpbuzz *x, t_float f) {
-    f *= .5;
+    f *= .5f;
     x->phase = f - floorf(f);
 }
 
-static void *bpbuzz_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *bpbuzz_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_bpbuzz *x = (t_bpbuzz *)pd_new(bpbuzz_class);
-    float oduty = argc ? atom_getfloatarg(0, argc, argv) : 0.5;
-    x->phase = 0.0;
+    float oduty = argc ? atom_getfloatarg(0, argc, argv) : 0.5f;
+    x->phase = 0.0f;
 
     pd_float(
         (t_pd *)inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal),
@@ -54,7 +55,7 @@ static t_int *bpbuzz_perform(t_int *w) {
     uint32_t tabrd, tabrd2, n2;
 
     for(int i=0; i < n; i++) {
-        freq = fabs(*in++);
+        freq = shadylib_absf(*in++);
         freq = shadylib_min(freq, max);
         fread = phase*SHADYLIB_BUZZSIZE;
         tabrd = fread;
@@ -70,15 +71,15 @@ static t_int *bpbuzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(fabs(res2)  < 0.0005f) {
-                final = 1;
+            if(shadylib_absd(res2)  < 0.0005) {
+                final = 1.0;
 
-                rat = shadylib_clamp(max/freq, 1, SHADYLIB_MAXHARM);
+                rat = shadylib_clamp(max/freq, 1.0, SHADYLIB_MAXHARM);
                 n2 = rat;
                 n2 *= 2;
 
                 goto gotfinal;
-            } else res2 = 1/res2;
+            } else res2 = 1.0/res2;
         } else {
             #ifdef FP_FAST_FMA
             res2 = fma(res2 - res1, res3, res1);
@@ -86,8 +87,8 @@ static t_int *bpbuzz_perform(t_int *w) {
             res2 = res1 + (res2 - res1)*res3;
             #endif
         }
-        rat = max/freq - 1;
-        rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
+        rat = max/freq - 1.0;
+        rat = shadylib_clamp(rat, 1.0, SHADYLIB_MAXHARM);
         n2 = rat;
         frat = rat - n2;
         n2 *= 2;
@@ -107,8 +108,8 @@ static t_int *bpbuzz_perform(t_int *w) {
         res1 = fma(fread, 2, res4);
         #else
         res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
-        res3 = (res3*res2 - 1)/n2;
-        res1 = res4 + fread*2;
+        res3 = (res3*res2 - 1.0)/n2;
+        res1 = res4 + fread*2.0;
         #endif
         /* crossfade to last harmonic */
         tabrd = res1;
@@ -123,8 +124,8 @@ static t_int *bpbuzz_perform(t_int *w) {
         final = fma(res3, 1-frat, res1*frat);
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
-        res1 = (res1*res2 - 1)/(n2 + 2);
-        final = res3*(1 - frat) + res1*(frat);
+        res1 = (res1*res2 - 1.0)/(n2 + 2);
+        final = res3*(1.0 - frat) + res1*(frat);
         #endif
 
 gotfinal:
@@ -133,8 +134,8 @@ gotfinal:
             rat = phase + oduty + dphase;
             goto gotfinal2;
         }
-        rat = max*(1 - ((1 - 2*dconv)*dconv))/freq - 1;
-        rat = shadylib_clamp(rat, 1, SHADYLIB_MAXHARM);
+        rat = max*(1.0 - ((1.0 - 2.0*dconv)*dconv))/freq - 1.0;
+        rat = shadylib_clamp(rat, 1.0, SHADYLIB_MAXHARM);
         n2 = rat;
         frat = rat - n2;
         n2 *= 2;
@@ -155,10 +156,10 @@ gotfinal:
             res1 = shadylib_sintbl[tabrd];
             res2 = shadylib_sintbl[tabrd2];
             res2 = res1 + (res2 - res1)*res3;
-            if(fabs(res2)  < 0.0005f) {
-                res3 = 1;
+            if(shadylib_absd(res2)  < 0.0005) {
+                res3 = 1.0;
                 goto gotfinal2;
-            } else res2 = 1/res2;
+            } else res2 = 1.0/res2;
         } else {
             #ifdef FP_FAST_FMA
             res2 = fma(res2 - res1, res3, res1);
@@ -182,8 +183,8 @@ gotfinal:
         res1 = fma(fread, 2, res4);
         #else
         res3 = res3 + (shadylib_sintbl[tabrd] - res3)*res1;
-        res3 = (res3*res2 - 1)/n2;
-        res1 = res4 + fread*2;
+        res3 = (res3*res2 - 1.0)/n2;
+        res1 = res4 + fread*2.0;
         #endif
         /* crossfade to last harmonic */
         tabrd = res1;
@@ -198,22 +199,22 @@ gotfinal:
         res3 = fma(res3, 1-frat, res1*frat);
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
-        res1 = (res1*res2 - 1)/(n2 + 2);
-        res3 = res3*(1 - frat) + res1*(frat);
+        res1 = (res1*res2 - 1.0)/(n2 + 2);
+        res3 = res3*(1.0 - frat) + res1*(frat);
         #endif
 
 gotfinal2:
-        n2 = rat*2;
+        n2 = rat*2.0;
         res2 = freq*conv;
         phase += res2;
         dphase += res2*dconv;
         res1 = phase + oduty + dphase;
-        tabrd = res1*2;
+        tabrd = res1*2.0;
         /* calculate phase offset for bp */
         if(tabrd > n2) {
             dphase = dphase - duty + oduty;
             oduty = duty;
-            duty = shadylib_clamp(*in2, 0, 1);
+            duty = shadylib_clamp(*in2, 0.0, 1.0);
             #ifdef FP_FAST_FMA
             duty = fma(duty, -0.49, .495);
             #else

@@ -13,7 +13,7 @@ typedef struct _frandom {
 
 static void frandom_seed(t_frandom *x, t_floatarg seed) {
     unsigned int modman = seed;
-    x->x_state = modman%m;
+    x->x_state = modman&(m - 1);
 }
 
 static void frandom_bang(t_frandom *x) {
@@ -29,12 +29,12 @@ static int frandom_makeseed(void) {
     unsigned int p1, p0;
     static unsigned int nextseed = 13458715;
 
-    p1 = nextseed/m1; p0 = nextseed%m1;
-    nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+    p1 = nextseed/m1; p0 = nextseed&(m1 - 1);
+    nextseed = (((p0*1001 + p1*3125)&(m1 - 1))*m1 + p0*3125)&(m - 1);
     return nextseed;
 }
 
-static void *frandom_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *frandom_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     unsigned int state;
     t_frandom *x = (t_frandom *)pd_new(frandom_class);
 

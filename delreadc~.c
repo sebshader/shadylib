@@ -37,7 +37,7 @@ static void sigdelreadc_float(t_sigdelreadc *x, t_float f)
     x->x_deltime = f;
     if (delwriter)
     {
-        x->x_delsamps = (int)(0.5 + x->x_sr * x->x_deltime)
+        x->x_delsamps = (int)(0.5f + x->x_sr * x->x_deltime)
             + x->x_n - x->x_zerodel;
         if (x->x_delsamps < x->x_n) x->x_delsamps = x->x_n;
         else if (x->x_delsamps > delwriter->x_cspace.c_n)
@@ -52,7 +52,7 @@ static void sigdelreadc_set(t_sigdelreadc *x, t_symbol *s) {
     if (delwriter) {
         x->x_sym = s;
         if(pd_getdspstate()) {
-            shadylib_sigdelwritec_updatesr(delwriter, x->x_sr*1000);
+            shadylib_sigdelwritec_updatesr(delwriter, x->x_sr*1000.f);
             shadylib_sigdelwritec_checkvecsize(delwriter, x->x_n);
             x->x_zerodel = (delwriter->x_sortno == ugen_getsortno() ?
                 0 : delwriter->x_vecsize);

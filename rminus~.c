@@ -15,7 +15,7 @@ static void *rminus_new(t_floatarg g)
     floatinlet_new(&x->x_obj, &x->x_g);
     x->x_g = g;
     outlet_new(&x->x_obj, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 

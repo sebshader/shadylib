@@ -33,7 +33,7 @@ static t_int *downsample_tilde_perform(t_int *w) {
             held = temp_in1;
             dphase = dphase - (int)dphase;
         }
-        dphase += shadylib_max(rate, 0.0) * conv;
+        dphase += shadylib_max(rate, 0.f) * conv;
         *out++ = held;
     }
     x->x_held = held;
@@ -47,7 +47,7 @@ static void downsample_tilde_dsp(t_downsample_tilde* x, t_signal **sp) {
         sp[2]->s_vec, sp[0]->s_n);
 }
 
-static void* downsample_tilde_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void* downsample_tilde_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_downsample_tilde* x = (t_downsample_tilde*) pd_new(downsample_tilde_class);
     /* unfortunately no way to tell if we've received a new value from the inlet
      it seems (or else we could track the samplerate when it changes)*/
@@ -55,7 +55,7 @@ static void* downsample_tilde_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
         sys_getsr());
 
     x->x_phase = 1.0;
-    x->x_held = 0.0;
+    x->x_held = 0.f;
 
     outlet_new(&x->x_obj, &s_signal);
     return (void*) x;

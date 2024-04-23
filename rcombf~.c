@@ -1,5 +1,6 @@
 /* recirculating comb filter */
 #include "shadylib.h"
+#include <string.h>
 
 static t_class *rcombf_class;
 /*modified from pd source */
@@ -128,7 +129,7 @@ static t_int *nrcombf_perform(t_int *w)
             f = 0;
         feedback = *fb++;
         feedback = shadylib_clamp(feedback, -0x1.fffffp-1, 0x1.fffffp-1);
-        f *= 1 - fabsf(feedback);
+        f *= 1.f - shadylib_absf(feedback);
         delsamps = x->x_sr * (*time++);
 
         if (!(delsamps >= 1.f))    /* too small or NAN */
@@ -189,11 +190,11 @@ static void rcombf_dsp(t_rcombf *x, t_signal **sp)
     rcombf_updatesr(x, sp[0]->s_sr);
 }
 
-static void *rcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
+static void *rcombf_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 {
-    t_float time = 1000;
-    t_float size = 0.0;
-    t_float fb = 0;
+    t_float time = 1000.f;
+    t_float size = 0.f;
+    t_float fb = 0.f;
     t_symbol *sarg;
     int norm = 0, i = 0, which = 0;
     t_rcombf *x = (t_rcombf *)pd_new(rcombf_class);
@@ -202,7 +203,7 @@ static void *rcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
             switch (which) {
                 case 0:
                     time = atom_getfloatarg(i, argc, argv);
-                    if (time < 0.0) time = 0.0;
+                    if (time < 0.f) time = 0.f;
                     break;
                 case 1:
                     fb = atom_getfloatarg(i, argc, argv);
@@ -223,12 +224,12 @@ static void *rcombf_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
         }
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, fb);
-    if(size <= 0.0) size = time;
+    if(size <= 0.f) size = time;
     x->x_ttime = size;
     if(!norm)
-        signalinlet_new(&x->x_obj, 1.0);
+        signalinlet_new(&x->x_obj, 1.f);
     outlet_new(&x->x_obj, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     x->c_n = 0;
     x->c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
     memset((char *)(x->c_vec), 0,

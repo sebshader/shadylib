@@ -19,7 +19,7 @@ typedef struct _dsrand {
 
 // get a number from -1 to 1
 static inline float ritoflt(unsigned int toflt) {
-    return toflt*(1/8388607.5f) - 1;
+    return toflt*(1/8388607.5f) - 1.f;
 }
 
 static void dsrand_seed(t_dsrand *x, t_floatarg seed) {
@@ -67,7 +67,7 @@ static int dsrand_makeseed(void) {
     return nextseed;
 }
 
-static void *dsrand_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *dsrand_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     unsigned int state;
     t_dsrand *x = (t_dsrand *)pd_new(dsrand_class);
 
@@ -78,9 +78,9 @@ static void *dsrand_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
 
     outlet_new(&x->x_obj, &s_signal);
     outlet_new(&x->x_obj, &s_signal);
-    x->x_lastin = 0;
-    x->x_ahead = 0;
-    x->x_behind = 0;
+    x->x_lastin = 0.f;
+    x->x_ahead = 0.f;
+    x->x_behind = 0.f;
     state %= m;
     x->x_state = state;
     return (x);

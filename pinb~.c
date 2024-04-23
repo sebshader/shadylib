@@ -22,7 +22,7 @@ static t_int *sigpinb_perform(t_int *w) {
     return (w + 3);
 }
 
-static void sigpinb_dsp(t_pinb* UNUSED(x), t_signal **sp)
+static void sigpinb_dsp(t_pinb* SHADYLIB_UNUSED(x), t_signal **sp)
 {
     dsp_add(sigpinb_perform, 2, sp[0]->s_vec, sp[0]->s_n);
 }

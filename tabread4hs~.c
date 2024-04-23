@@ -50,10 +50,10 @@ typedef struct _tabread4hs_tilde {
 static void *tabread4hs_tilde_new(t_symbol *s) {
     t_tabread4hs_tilde *x = (t_tabread4hs_tilde *)pd_new(tabread4hs_tilde_class);
     x->x_arrayname = s;
-    x->x_vec = 0;
+    x->x_vec = NULL;
     outlet_new(&x->x_obj, &s_signal);
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 
@@ -91,7 +91,7 @@ static t_int *tabread4hs_tilde_perform(t_int *w) {
         double findex = *in1++;
         findex += *in2++;
         int index = findex;
-        t_sample frac, a, b, c, d;
+        double frac, a, b, c, d;
         double a3,a1,a2;
         if (index < 1)
             index = 1, frac = 0;
@@ -105,20 +105,20 @@ static t_int *tabread4hs_tilde_perform(t_int *w) {
         d = wp[2].w_float;
 
         // 4-point, 3rd-order Hermite (x-form)
-        a1 = 0.5f * (c - a);
+        a1 = 0.5 * (c - a);
         #ifdef FP_FAST_FMAF
-        a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
-        a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
+        a2 =  fmaf(2, c, fmaf(0.5, d, fmaf(2.5, b, a)));
+        a3 = fmaf(0.5, (d - a), 1.5 * (b - c));
         *out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
         #else
-        a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-        a3 = 0.5f * (d - a) + 1.5f * (b - c);
+        a2 = a - 2.5 * b + 2.0 * c - 0.5 * d;
+        a3 = 0.5 * (d - a) + 1.5 * (b - c);
         *out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
         #endif
     }
     return (w+6);
  zero:
-    while (n--) *out++ = 0;
+    while (n--) *out++ = 0.f;
 
     return (w+6);
 }

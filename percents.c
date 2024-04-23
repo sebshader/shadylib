@@ -20,13 +20,13 @@ static int percents_makeseed(void) {
     static unsigned int nextseed = 13458715;
 
     p1 = nextseed/m1; p0 = nextseed%m1;
-    nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+    nextseed = (((p0*1001 + p1*3125)&(m1 - 1))*m1 + p0*3125)&(m - 1);
     return nextseed;
 }
 
 static void percents_seed(t_percents *x, t_floatarg seed) {
     unsigned int modman = seed;
-    x->x_state = modman%m;
+    x->x_state = modman&(m - 1);
 }
 
 static void percents_bang(t_percents *x)
@@ -35,7 +35,7 @@ static void percents_bang(t_percents *x)
     t_float rand;
     t_float *current;
     x->x_state = randlcm(x->x_state);
-    rand = x->x_state*(1/167772.16f);
+    rand = x->x_state*(1.0/167772.16);
     outlet_float(x->x_percentout, rand);
     for(current = x->l_vec; bucket < x->l_n; current++, bucket++) {
         if (rand < *current) {
@@ -47,7 +47,7 @@ static void percents_bang(t_percents *x)
 }
 
 static inline void percents_copyin(t_percents* x,
-    t_symbol* UNUSED(s), int argc, t_atom *argv, int where)
+    t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv, int where)
 {
     int i, j;
     for (i = 0, j = where; i < argc; i++)
@@ -86,7 +86,7 @@ static void percents_free(t_percents *x)
         freebytes(x->l_vec, x->l_n * sizeof(*x->l_vec));
 }
 
-static void *percents_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
+static void *percents_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 {
     t_percents *x = (t_percents *)pd_new(percents_class);
     outlet_new(&x->x_obj, &s_float);

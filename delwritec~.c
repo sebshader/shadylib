@@ -22,7 +22,7 @@ static void *sigdelwritec_new(t_symbol *s, t_floatarg msec)
     x->x_cspace.c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
     x->x_sortno = 0;
     x->x_vecsize = 0;
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 
@@ -40,7 +40,7 @@ static t_int *sigdelwritec_perform(t_int *w)
     {
         t_sample f = *in++;
         if (PD_BIGORSMALL(f))
-            f = 0;
+            f = 0.f;
         *bp++ = f;
         if (bp == ep)
         {

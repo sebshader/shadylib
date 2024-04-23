@@ -20,15 +20,15 @@ static void *sigvdhs_new(t_symbol *s, t_floatarg mode)
 {
     t_sigvdhs *x = (t_sigvdhs *)pd_new(sigvdhs_class);
     floatinlet_new(&x->x_obj, &x->x_mode);
-    if (mode < 0) mode = 0;
-    else if (mode > 2) mode = 2;
+    if (mode < 0.f) mode = 0.f;
+    else if (mode > 2.f) mode = 2.f;
     x->x_mode = mode;
     x->x_sym = s;
-    x->x_sr = 1;
+    x->x_sr = 1.f;
     x->x_n = 1;
     x->x_zerodel = 0;
     outlet_new(&x->x_obj, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 
@@ -131,7 +131,7 @@ static t_int *sigvdhs_perform_hs(t_int *w)
     {
         t_sample delsamps = x->x_sr * *in++ - zerodel, frac;
 
-        t_sample a, b, c, d;
+        double a, b, c, d;
         double a3,a1,a2;
         if (delsamps < 1.00001f) delsamps = 1.00001f;
         if (delsamps > limit) delsamps = limit;
@@ -146,14 +146,14 @@ static t_int *sigvdhs_perform_hs(t_int *w)
         b = bp[-1];
         a = bp[0];
         // 4-point, 3rd-order Hermite (x-form)
-        a1 = 0.5f * (c - a);
+        a1 = 0.5 * (c - a);
         #ifdef FP_FAST_FMAF
-        a2 =  fmaf(2.f, c, fmaf(0.5f, d, fmaf(2.5, b, a)));
-        a3 = fmaf(0.5f, (d - a), 1.5f * (b - c));
+        a2 =  fmaf(2., c, fmaf(0.5, d, fmaf(2.5, b, a)));
+        a3 = fmaf(0.5, (d - a), 1.5 * (b - c));
         *out++ =  fmaf(fmaf(fmaf(a3, frac, a2), frac, a1), frac, b);
         #else
-        a2 = a - 2.5 * b + 2.f * c - 0.5f * d;
-        a3 = 0.5f * (d - a) + 1.5f * (b - c);
+        a2 = a - 2.5 * b + 2.0 * c - 0.5 * d;
+        a3 = 0.5 * (d - a) + 1.5 * (b - c);
         *out++ =  ((a3 * frac + a2) * frac + a1) * frac + b;
         #endif
     }

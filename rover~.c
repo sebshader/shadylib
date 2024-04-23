@@ -21,7 +21,7 @@ static void *rover_new(t_floatarg g)
     floatinlet_new(&x->x_obj, &x->x_g);
     x->x_g = g;
     outlet_new(&x->x_obj, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 
@@ -34,7 +34,7 @@ static t_int *scalarrover_perform(t_int *w)
     t_sample g;
     while (n--) {
         g = *in++;
-        *out++ = (g ? f / g : 0);
+        *out++ = (g != 0.f ? f / g : 0);
     }
     return (w+5);
 }

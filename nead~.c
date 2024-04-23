@@ -17,6 +17,7 @@
  *   Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.*/
 
 #include "shadylib.h"
+#include <math.h>
 
 typedef struct neadctl {
     t_shadylib_stage c_attack;
@@ -33,18 +34,18 @@ typedef struct nead {
 } t_nead;
 
 static void nead_float(t_nead *x, t_floatarg f) {
-    if(f == 0.0) {
+    if(f == 0.f) {
         if(x->x_ctl.c_target) {
             x->x_ctl.c_target = 0;
             x->x_ctl.c_linr = x->x_ctl.c_state*x->x_ctl.c_decay.base;
         }
     } else {
         x->x_ctl.c_target = 1;
-        if(f < 0.0) x->x_ctl.c_state = 0.0;
+        if(f < 0.f) x->x_ctl.c_state = 0.f;
     }
 }
 
-static void nead_attack(t_nead* x, t_symbol* UNUSED(s), int argc,
+static void nead_attack(t_nead* x, t_symbol* SHADYLIB_UNUSED(s), int argc,
     t_atom *argv) {
     t_int samps;
     int abool;
@@ -62,7 +63,7 @@ static void nead_attack(t_nead* x, t_symbol* UNUSED(s), int argc,
     }
 }
 
-static void nead_decay(t_nead* x, t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void nead_decay(t_nead* x, t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_int samps;
     int abool;
     if(argc > 0) {
@@ -136,8 +137,8 @@ t_int *nead_perform(t_int *w)
             #else
             state = state*stage.op + stage.base;
             #endif
-            if(state >= 1.0) {
-                state = 1.0;
+            if(state >= 1.f) {
+                state = 1.f;
                 target = 0;
                 ctl->c_linr = ctl->c_decay.base;
                 break;
@@ -146,7 +147,7 @@ t_int *nead_perform(t_int *w)
     }
     if (!target) {
         /*decay*/
-        if(state == 0.0) while(n--) *out++ = 0.0;
+        if(state == 0.f) while(n--) *out++ = 0.f;
         else {
             stage = ctl->c_decay;
             stage.base = ctl->c_linr;
@@ -157,8 +158,8 @@ t_int *nead_perform(t_int *w)
                 #else
                 state = state*stage.op + stage.base;
                 #endif
-                if(state <= 0.0) {
-                    state = 0.0;
+                if(state <= 0.f) {
+                    state = 0.f;
                     for(;n;n--) *out++ = state;
                 }
             }
@@ -175,11 +176,10 @@ void nead_dsp(t_nead *x, t_signal **sp)
 {
     if(sp[0]->s_sr != x->x_sr) {/*need to recalculate everything*/
         t_shadylib_stage thistage;
-        float factor = sp[0]->s_sr/x->x_sr;
+        double factor = sp[0]->s_sr/(double)x->x_sr;
         x->x_sr = sp[0]->s_sr;
         thistage = x->x_ctl.c_attack;
         thistage.nsamp *= factor;
-        /*should be better because they are low powers/roots? idk tho*/
         thistage.op = pow(thistage.op, 1.0/factor);
         thistage.base = (1 - thistage.op)/(1 - thistage.lin);
         x->x_ctl.c_attack = thistage;
@@ -199,14 +199,14 @@ void *nead_new(t_floatarg attack, t_floatarg decay) {
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("attack"));
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_float, gensym("decay"));
     outlet_new(&x->x_obj, &s_signal);
-    x->x_ctl.c_state = 0;
+    x->x_ctl.c_state = 0.f;
     x->x_ctl.c_target = 0;
     x->x_sr = sys_getsr();
     x->x_ctl.c_attack.nsamp = shadylib_ms2samps(attack, x->x_sr);
-    shadylib_f2axfade(1-(log(1.0/3.0)/log(SHADYLIB_ENVELOPE_RANGE)),
+    shadylib_f2axfade(1.0-(log(1.0/3.0)/log(SHADYLIB_ENVELOPE_RANGE)),
         &(x->x_ctl.c_attack), 0); /* 1/3 by default */
     x->x_ctl.c_decay.nsamp = shadylib_ms2samps(decay, x->x_sr);
-    shadylib_f2rxfade(0.0, &(x->x_ctl.c_decay), 0);
+    shadylib_f2rxfade(0.f, &(x->x_ctl.c_decay), 0);
     return (void *)x;
 }
 

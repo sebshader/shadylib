@@ -9,7 +9,7 @@ typedef struct _syphon
     t_outlet *x_rejectout;
 } t_syphon;
 
-static void *syphon_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
+static void *syphon_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 {
     t_syphon *x = (t_syphon *)pd_new(syphon_class);
     shadylib_alist_init(&x->x_alist);

@@ -34,7 +34,7 @@ static t_int *op_perf0(t_int *w) {
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, *mul++, *add++);
         #else
@@ -68,7 +68,7 @@ static t_int *op_perf1(t_int *w) {
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, *mul++, add);
         #else
@@ -102,7 +102,7 @@ static t_int *op_perf2(t_int *w) {
         casto = (uint32_t)tf.tf_i[SHADYLIB_LOWOFFSET];
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, mul, add);
         #else
@@ -139,7 +139,7 @@ static void triangulator_ft1(t_triangulator *x, t_float f)
     x->x_phase = f + .25;
 }
 
-static void *triangulator_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *triangulator_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_triangulator *x = (t_triangulator *)pd_new(triangulator_class);
     x->x_phase = 0.25;
     outlet_new(&x->x_obj, &s_signal);

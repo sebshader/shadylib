@@ -131,7 +131,7 @@ static void proxy_set(t_proxy *x, t_floatarg val) {
     }
 }
 
-static void *synlets_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
+static void *synlets_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 {
     t_proxy *iter;
 

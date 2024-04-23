@@ -1,4 +1,5 @@
 #include "shadylib.h"
+#include <math.h>
 #define SINSQRSIZE 512
 
 static t_sample *sinsqr_tbl;
@@ -14,7 +15,7 @@ static void vosim_maketab(void) {
     }
 }
 
-static void vosim_freetab(t_class* UNUSED(dummy)) {
+static void vosim_freetab(t_class* SHADYLIB_UNUSED(dummy)) {
     freebytes(sinsqr_tbl, (SINSQRSIZE) * sizeof(t_sample));
 }
 
@@ -70,30 +71,30 @@ static t_int *vosim_perform(t_int *w) {
             caster = outphase;
             outphase = outphase - caster;
             res = outphase;
-            inphase = 0;
+            inphase = 0.0;
             phsinc = *in;
-            phsinc = shadylib_max(phsinc, 0);
+            phsinc = shadylib_max(phsinc, 0.f);
             outfreq = phsinc*conv;
             infreq = shadylib_max(phsinc, *cen)*conv;
         } else if (inphase >= 1.) {
-            phsinc = shadylib_max(*in, 0);
+            phsinc = shadylib_max(*in, 0.f);
             outfreq = phsinc*conv;
             infreq = shadylib_max(phsinc, *cen)*conv;
             caster = inphase;
             inphase = inphase - caster;
             /* routphase is now the limit */
             phsinc = outfreq/infreq;
-            routphase = shadylib_min(1 - phsinc, duty);
+            routphase = shadylib_min(1.f - phsinc, duty);
             routphase = routphase - outphase - res;
-            if(routphase < 0) {
-                curdec = 0;
+            if(routphase < 0.0) {
+                curdec = 0.f;
             } else {
-                curdec *= shadylib_clamp(decay, -1.0, 1.0);
+                curdec *= shadylib_clamp(decay, -1.f, 1.f);
                 /* a little fading */
-                curdec *= shadylib_min(routphase/phsinc, 1.0);
+                curdec *= shadylib_min(routphase/phsinc, 1.f);
             }
-         } else if (outfreq == 0 || curdec == 0 || outfreq == infreq) {
-            phsinc = shadylib_max(*in, 0);
+         } else if (outfreq == 0.f || curdec == 0.f || outfreq == infreq) {
+            phsinc = shadylib_max(*in, 0.f);
             outfreq = phsinc*conv;
             infreq = shadylib_max(phsinc, *cen)*conv;
         }
@@ -136,7 +137,7 @@ static void vosim_reset(t_vosim *x)
 }
 
 /* args: frequency, center freq., duty cycle, decay */
-static void *vosim_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *vosim_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_vosim *x = (t_vosim *)pd_new(vosim_class);
     x->x_f = 0.0;
     x->x_conv = 1.0;

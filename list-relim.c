@@ -1,4 +1,5 @@
 #include "shadylib.h"
+#include <string.h>
 
 static t_class *list_relim_class;
 

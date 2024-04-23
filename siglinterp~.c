@@ -24,7 +24,7 @@ typedef struct _scalarsiglinterp
     t_float x_g;            /* inlet value */
 } t_scalarsiglinterp;
 
-static void *siglinterp_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
+static void *siglinterp_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 {
     int nsigs;
     if(argc) {
@@ -43,7 +43,7 @@ static void *siglinterp_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
         x->x_g = atom_getfloatarg(1, argc, argv);
         x->in = (t_sample **)getbytes(x->n_in * sizeof(t_sample *));
         outlet_new(&x->x_obj, &s_signal);
-        x->x_f = 0;
+        x->x_f = 0.f;
         return (x);
     }
     else
@@ -55,7 +55,7 @@ static void *siglinterp_new(t_symbol* UNUSED(s), int argc, t_atom *argv)
         inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
         x->in = (t_sample **)getbytes(x->n_in * sizeof(t_sample *));
         outlet_new(&x->x_obj, &s_signal);
-        x->x_f = 0;
+        x->x_f = 0.f;
         return (x);
     }
 }
@@ -78,14 +78,14 @@ t_int *scalarsiglinterp_perform(t_int *w)
     int n = (int)(w[4]);
     int index = findex;
     if (index < 0)
-        index = 0, frac = 0;
+        index = 0, frac = 0.f;
     else if (index > x->n_in - 2)
-        index = x->n_in - 2, frac = 1;
+        index = x->n_in - 2, frac = 1.f;
     else frac = findex - index;
     in1 = x->in[index];
     in2 = x->in[index+1];
     while (n--)
-        *out++ = ((*in2++) * frac) + *in1++*(1-frac);
+        *out++ = ((*in2++) * frac) + *in1++*(1.f-frac);
     return (w+5);
 }
 
@@ -97,22 +97,22 @@ t_int *scalarsiglinterp_perf8(t_int *w)
     int n = (int)(w[4]);
     int index = findex;
     if (index < 0)
-        index = 0, frac = 0;
+        index = 0, frac = 0.f;
     else if (index > x->n_in - 2)
-        index = x->n_in - 2, frac = 1;
+        index = x->n_in - 2, frac = 1.f;
     else frac = findex - index;
     in1 = x->in[index];
     in2 = x->in[index+1];
     for (; n; n -= 8, in1 += 8, in2 += 8, out += 8)
     {
-        out[0] = ((in2[0]) * frac) + in1[0]*(1-frac);
-        out[1] = ((in2[1]) * frac) + in1[1]*(1-frac);
-        out[2] = ((in2[2]) * frac) + in1[2]*(1-frac);
-        out[3] = ((in2[3]) * frac) + in1[3]*(1-frac);
-        out[4] = ((in2[4]) * frac) + in1[4]*(1-frac);
-        out[5] = ((in2[5]) * frac) + in1[5]*(1-frac);
-        out[6] = ((in2[6]) * frac) + in1[6]*(1-frac);
-        out[7] = ((in2[7]) * frac) + in1[7]*(1-frac);
+        out[0] = ((in2[0]) * frac) + in1[0]*(1.f-frac);
+        out[1] = ((in2[1]) * frac) + in1[1]*(1.f-frac);
+        out[2] = ((in2[2]) * frac) + in1[2]*(1.f-frac);
+        out[3] = ((in2[3]) * frac) + in1[3]*(1.f-frac);
+        out[4] = ((in2[4]) * frac) + in1[4]*(1.f-frac);
+        out[5] = ((in2[5]) * frac) + in1[5]*(1.f-frac);
+        out[6] = ((in2[6]) * frac) + in1[6]*(1.f-frac);
+        out[7] = ((in2[7]) * frac) + in1[7]*(1.f-frac);
     }
     return (w+5);
 }
@@ -127,14 +127,14 @@ t_int *siglinterp_perform(t_int *w)
     for (int i = 0; i < n; i++) {
         index = *findex;
         if (index < 0)
-            index = 0, frac = 0;
+            index = 0, frac = 0.f;
         else if (index > x->n_in - 2)
-            index = x->n_in - 2, frac = 1;
+            index = x->n_in - 2, frac = 1.f;
         else frac = *findex - index;
         findex++;
         in1 = x->in[index++];
         in2 = x->in[index];
-        *out++ = in2[i]*frac + in1[i]*(1-frac);
+        *out++ = in2[i]*frac + in1[i]*(1.f-frac);
     }
     return (w+5);
 }

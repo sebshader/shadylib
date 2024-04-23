@@ -1,3 +1,4 @@
+#include <math.h>
 #define SHADYLIB_SHARED
 #include "shadylib.h"
 
@@ -30,7 +31,7 @@ INTERN t_float shadylib_readtab(t_shadylib_tabtype type, t_float index) {
 
 INTERN void shadylib_maketabs(void) {
     double lnths;
-    t_float incr = 4.f/(SHADYLIB_TABLESIZE - 1);
+    t_float incr = 4.0/(SHADYLIB_TABLESIZE - 1);
     t_float sqr;
     if (shadylib_rexptab) return;
     shadylib_rexptab = getbytes(sizeof(t_float)*SHADYLIB_TABLESIZE*3);
@@ -49,7 +50,7 @@ INTERN void shadylib_maketabs(void) {
     shadylib_rexptab[SHADYLIB_TABLESIZE - 1] = 0;
 }
 
-INTERN void shadylib_freetabs(t_class* UNUSED(dummy)) {
+INTERN void shadylib_freetabs(t_class* SHADYLIB_UNUSED(dummy)) {
     if(shadylib_rexptab) {
         freebytes(shadylib_rexptab, sizeof(t_float)*SHADYLIB_TABLESIZE*3);
         shadylib_rexptab = NULL;
@@ -87,7 +88,7 @@ INTERN void shadylib_makebuzz(void) {
     }
 }
 
-INTERN void shadylib_freebuzz(t_class* UNUSED(dummy)) {
+INTERN void shadylib_freebuzz(t_class* SHADYLIB_UNUSED(dummy)) {
     if(shadylib_sintbl) {
         freebytes(shadylib_sintbl,
             sizeof(t_sample) * (SHADYLIB_BUZZSIZE + 1)*2);
@@ -111,77 +112,77 @@ INTERN t_int shadylib_ms2samps(t_float time, t_float sr)
 }
 
 INTERN void shadylib_f2axfade (t_float a, t_shadylib_stage *stage, int samesamp) {
-    a = shadylib_clamp(a, 0.0, 1.0);
-    if(a != 1.0) { /*exponential*/
+    a = shadylib_clamp(a, 0.f, 1.f);
+    if(a != 1.f) { /*exponential*/
         a = shadylib_ain2reala(a);
         if(stage->lin == a && samesamp) return;
         stage->lin = a;
         stage->op = exp2(log2(a)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - a);
     } else { /*linear*/
-        stage->lin = 1.0;
-        stage->op = 1.0;
+        stage->lin = 1.f;
+        stage->op = 1.f;
         stage->base = 1.0/stage->nsamp;
     }
 }
 
 INTERN void shadylib_ms2axfade (t_shadylib_stage *stage) {
-    if (stage->lin != 1.0) {
+    if (stage->lin != 1.f) {
         stage->op = exp2(log2(stage->lin)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - stage->lin);
     } else {
         stage->base = 1.0/stage->nsamp;
-        stage->op = 1.0; //linear
+        stage->op = 1.f; //linear
     }
 }
 
 INTERN void shadylib_f2dxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
-    a = shadylib_clamp(a, 0.0, 1.0);
-    if(a != 1.0) {/*exponential*/
+    a = shadylib_clamp(a, 0.f, 1.f);
+    if(a != 1.f) {/*exponential*/
         a = shadylib_ain2reala(a);
         if(stage->lin == shadylib_scalerange(a) && samesamp) return;
         stage->lin = shadylib_scalerange(a);
         stage->op = exp2(log2(a)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - stage->lin);
     } else {/*linear*/
-        stage->lin = 1.0;
+        stage->lin = 1.f;
         stage->base = 1.0/stage->nsamp;
-        stage->op = 1.0;
+        stage->op = 1.f;
     }
 }
 
 INTERN void shadylib_ms2dxfade (t_shadylib_stage *stage) {
-    if(stage->lin != 1.0) {
+    if(stage->lin != 1.f) {
         stage->op = exp2(log2(stage->lin*SHADYLIB_ENVELOPE_MAX + SHADYLIB_ENVELOPE_RANGE)/stage->nsamp);
         stage->base = (1 - stage->op)/(1 - stage->lin);
     } else {
         stage->base = 1.0/stage->nsamp;
-        stage->op = 1.0;
+        stage->op = 1.f;
     }
 }
 
 INTERN void shadylib_f2rxfade(t_float a, t_shadylib_stage *stage, int samesamp) {
-    a = shadylib_clamp(a, 0.0, 1.0);
-    if(a != 1.0) {/*exponential*/
+    a = shadylib_clamp(a, 0.f, 1.f);
+    if(a != 1.f) {/*exponential*/
         a = shadylib_ain2reala(a);
         if(stage->lin == shadylib_scalerange(a) && samesamp) return;
         stage->lin = shadylib_scalerange(a);
         stage->op = exp2(log2(a)/stage->nsamp);
         stage->base = stage->lin*(stage->op - 1)/(1 - stage->lin);
     } else {/*linear*/
-        stage->lin = 1.0;
+        stage->lin = 1.f;
         stage->base = -1.0/stage->nsamp;
-        stage->op = 1.0;
+        stage->op = 1.f;
     }
 }
 
 INTERN void shadylib_ms2rxfade (t_shadylib_stage *stage) {
-    if(stage->lin != 1.0) {
+    if(stage->lin != 1.f) {
         stage->op = exp2(log2(stage->lin*SHADYLIB_ENVELOPE_MAX + SHADYLIB_ENVELOPE_RANGE)/stage->nsamp);
         stage->base = stage->lin*(stage->op - 1)/(1 - stage->lin);
     } else {
         stage->base = -1.0/stage->nsamp;
-        stage->op = 1.0;
+        stage->op = 1.f;
     }
 }
 
@@ -190,7 +191,7 @@ t_class *shadylib_sigdelwritec_class;
 
 INTERN void shadylib_sigdelwritec_updatesr (t_shadylib_sigdelwritec *x, t_float sr) /* added by Mathieu Bouchard */
 {
-    int nsamps = x->x_deltime * sr * (t_float)(0.001f);
+    int nsamps = x->x_deltime * sr * 0.001f;
     if (nsamps < 1) nsamps = 1;
     nsamps += ((- nsamps) & (SHADYLIB_SAMPBLK - 1));
     nsamps += SHADYLIB_DEFDELVS;
@@ -425,7 +426,7 @@ INTERN t_int *shadylib_trid_perf0(t_int *w) {
         casto = (uint32_t)(*in++ * 4294967296);
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, *mul++, *add++);
         #else
@@ -449,7 +450,7 @@ INTERN t_int *shadylib_trid_perf1(t_int *w) {
         casto = (uint32_t)(*in++ * 4294967296);
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, *mul++, add);
         #else
@@ -473,7 +474,7 @@ INTERN t_int *shadylib_trid_perf2(t_int *w) {
         casto = (uint32_t)(*in++ * 4294967296);
         if(casto & 2147483648) /* bit 31 */
             casto = ~casto;
-        inter = (t_sample)casto/1073741823.5 - 1;
+        inter = (t_sample)casto/1073741823.5 - 1.f;
         #ifdef FP_FAST_FMAF
         *out++ = fmaf(inter, mul, add);
         #else
@@ -511,7 +512,7 @@ INTERN void shadylib_alist_clear(t_shadylib_alist *x)
         freebytes(x->l_vec, x->l_n * sizeof(*x->l_vec));
 }
 
-INTERN void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* UNUSED(s), int argc,
+INTERN void shadylib_alist_copyin(t_shadylib_alist* x, t_symbol* SHADYLIB_UNUSED(s), int argc,
     t_atom *argv, int where)
 {
     int i, j;

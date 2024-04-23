@@ -1,5 +1,6 @@
 /* real allpass filter */
 #include "shadylib.h"
+#include <string.h>
 
 static t_class *realpass_class;
 /*modified from pd source */
@@ -18,7 +19,7 @@ typedef struct _realpass
 
 static void realpass_updatesr (t_realpass *x, t_float sr) /* added by Mathieu Bouchard */
 {
-    int nsamps = x->x_ttime * sr * (t_float)(0.001f);
+    int nsamps = x->x_ttime * sr * 0.001f;
     if (nsamps < 1) nsamps = 1;
     nsamps += ((- nsamps) & (SHADYLIB_SAMPBLK - 1));
     nsamps += SHADYLIB_DEFDELVS;
@@ -82,7 +83,7 @@ static t_int *realpass_perform(t_int *w)
         );
         #endif
         a = *coef++;
-        a = shadylib_clamp(a, -1.0, 1.0);
+        a = shadylib_clamp(a, -1.f, 1.f);
         #ifdef FP_FAST_FMAF
         c = fmaf(delsamps, -a, f);
         #else
@@ -115,15 +116,15 @@ static void realpass_dsp(t_realpass *x, t_signal **sp)
 static void *realpass_new(t_float time, t_float coef, t_float size)
 {
     t_realpass *x = (t_realpass *)pd_new(realpass_class);
-    if(size <= 0.0) size = 1000;
-    if(time < 0.0) time = 0.0;
+    if(size <= 0.f) size = 1000.f;
+    if(time < 0.f) time = 0.f;
     x->x_ttime = size;
 
     signalinlet_new(&x->x_obj, time);
     signalinlet_new(&x->x_obj, coef);
 
     outlet_new(&x->x_obj, &s_signal);
-    x->x_f = 0;
+    x->x_f = 0.f;
     x->c_n = 0;
     x->c_vec = getbytes(SHADYLIB_XTRASAMPS * sizeof(t_sample));
     memset((char *)(x->c_vec), 0,

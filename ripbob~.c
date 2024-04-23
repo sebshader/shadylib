@@ -3,7 +3,7 @@
 /* copyright 2015 Miller Puckette - BSD license */
 
 #include "m_pd.h"
-#include <math.h>
+#include "shadylib.h"
 #define DIM 4
 #define FLOAT double
 
@@ -59,10 +59,10 @@ static void calc_derivatives(FLOAT *dstate, FLOAT *state, t_params *params)
     dstate[3] = k * (satstate2 - clip(state[3], sat, satinv));
 }
 
-static void solver_euler(FLOAT *state, FLOAT *errorestimate,
+/* static void solver_euler(FLOAT *state, FLOAT *errorestimate,
     FLOAT stepsize, t_params *params)
 {
-    FLOAT cumerror = 0;
+    // FLOAT cumerror = 0;
     int i;
     FLOAT derivatives[DIM];
     calc_derivatives(derivatives, state, params);
@@ -76,15 +76,15 @@ static void solver_euler(FLOAT *state, FLOAT *errorestimate,
     }
     for (i = 0; i < DIM; i++)
         params->p_derivativeswere[i] = derivatives[i];
-}
+} */
 
 static void solver_rungekutte(FLOAT *state, FLOAT *errorestimate,
     FLOAT stepsize, t_params *params)
 {
-    FLOAT cumerror = 0;
+    // FLOAT cumerror = 0;
     int i;
     FLOAT deriv1[DIM], deriv2[DIM], deriv3[DIM], deriv4[DIM], tempstate[DIM];
-    FLOAT oldstate[DIM], backstate[DIM];
+    // FLOAT oldstate[DIM], backstate[DIM];
 #if CALCERROR
     for (i = 0; i < DIM; i++)
         oldstate[i] = state[i];
@@ -163,7 +163,7 @@ static void ripbob_clear(t_ripbob *x)
         x->x_state[i] = x->x_params.p_derivativeswere[i] = 0;
 }
 
-static void ripbob_error(t_ripbob *x)
+static void ripbob_error(t_ripbob *SHADYLIB_UNUSED(x))
 {
 #ifdef CALCERROR
     outlet_float(x->x_out2,
@@ -239,7 +239,7 @@ static void ripbob_dsp(t_ripbob *x, t_signal **sp)
 
 void ripbob_tilde_setup(void)
 {
-    int i;
+    // int i;
     ripbob_class = class_new(gensym("ripbob~"),
         (t_newmethod)ripbob_new, 0, sizeof(t_ripbob), 0, 0);
     class_addmethod(ripbob_class, (t_method)ripbob_saturation, gensym("saturation"),

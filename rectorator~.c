@@ -121,7 +121,7 @@ static void rectorator_ft1(t_rectorator *x, t_float f)
     x->x_phase = f;
 }
 
-static void *rectorator_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *rectorator_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_rectorator *x = (t_rectorator *)pd_new(rectorator_class);
     x->x_phase = 0;
     outlet_new(&x->x_obj, &s_signal);

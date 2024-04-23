@@ -25,12 +25,12 @@ static t_int *multator_saw_perf0(t_int *w)
         f = *in++;
         k = f;
         #ifdef FP_FAST_FMAF
-        if (k <= f) f = fmaf(f-k, 2, -1);
-        else f = fmaf(f-k+1, 2, -1);
+        if (k <= f) f = fmaf(f-k, 2.f, -1.f);
+        else f = fmaf(f-k+1, 2.f, -1.f);
         *out++ = fmaf(f, *mul++, *add++);
         #else
-        if (k <= f) f = (f-k)*2 - 1;
-        else f = (f-k+1)*2 - 1;
+        if (k <= f) f = (f-k)*2.f - 1.f;
+        else f = (f-k+1.f)*2.f - 1.f;
         *out++ = f*(*mul++) + (*add++);
         #endif
     }
@@ -52,12 +52,12 @@ static t_int *multator_saw_perf1(t_int *w)
         f = *in++;
         k = f;
         #ifdef FP_FAST_FMAF
-        if (k <= f) f = fmaf(f-k, 2, -1);
-        else f = fmaf(f-k+1, 2, -1);
+        if (k <= f) f = fmaf(f-k, 2.f, -1.f);
+        else f = fmaf(f-k+1, 2.f, -1.f);
         *out++ = fmaf(f, *mul++, add);
         #else
-        if (k <= f) f = (f-k)*2 - 1;
-        else f = (f-k+1)*2 - 1;
+        if (k <= f) f = (f-k)*2.f - 1.f;
+        else f = (f-k+1.f)*2.f - 1.f;
         *out++ = f*(*mul++) + add;
         #endif
     }
@@ -79,12 +79,12 @@ static t_int *multator_saw_perf2(t_int *w)
         f = *in++;
         k = f;
         #ifdef FP_FAST_FMAF
-        if (k <= f) f = fmaf(f-k, 2, -1);
-        else f = fmaf(f-k+1, 2, -1);
+        if (k <= f) f = fmaf(f-k, 2.f, -1.f);
+        else f = fmaf(f-k+1, 2.f, -1.f);
         *out++ = fmaf(f, mul, add);
         #else
-        if (k <= f) f = (f-k)*2 - 1;
-        else f = (f-k+1)*2 - 1;
+        if (k <= f) f = (f-k)*2.f - 1.f;
+        else f = (f-k+1.f)*2.f - 1.f;
         *out++ = f*mul + add;
         #endif
     }
@@ -154,7 +154,7 @@ static void multatord_dsp(t_multatord *x, t_signal **sp) {
     }
 }
 
-static void *multatord_new(t_symbol* UNUSED(s), int argc, t_atom *argv) {
+static void *multatord_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_multatord *x = (t_multatord *)pd_new(multatord_class);
     outlet_new(&x->x_obj, &s_signal);
     x->rwave = (argc >= 3) ? atom_getfloatarg(2, argc, argv) : 0;

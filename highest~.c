@@ -18,10 +18,10 @@ typedef struct _highest
 } t_highest;
 
 static void highest_set(t_highest *x, t_float nsamps) {
-    x->x_result = 0;
+    x->x_result = 0.f;
     x->x_count = 0;
-    if(nsamps != 0.0) {
-        int isamps = shadylib_min(fabsf(nsamps), MAXPRD);
+    if(nsamps != 0.f) {
+        int isamps = shadylib_min(shadylib_absf(nsamps), MAXPRD);
         int n = x->x_blocksize;
         x->x_period = isamps;
         /* get next multiple of n */
@@ -46,7 +46,7 @@ static void *highest_tilde_new(t_floatarg nsamps) {
     x->x_blocksize = 64;
     if(!nsamps) x->x_period = 1024;
     else highest_set(x , nsamps);
-    x->x_f = 0;
+    x->x_f = 0.f;
     return (x);
 }
 
@@ -58,10 +58,10 @@ static t_int *highest_tilde_perform(t_int *w) {
     x->x_count += n;
     if(x->x_count >= x->x_realperiod) {
         x->x_count = 0;
-        clock_delay(x->x_clock, 0L);
+        clock_delay(x->x_clock, 0.0);
     }
     while(n--) {
-        temp = fabs(*in);
+        temp = shadylib_absf(*in);
         if(result < temp) result = temp;
         in++;
     }
