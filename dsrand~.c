@@ -24,7 +24,7 @@ static inline float ritoflt(unsigned int toflt) {
 
 static void dsrand_seed(t_dsrand *x, t_floatarg seed) {
     unsigned int modman = seed;
-    x->x_state = modman%m;
+    x->x_state = modman &(m - 1);
 }
 
 static t_int *dsrand_perform(t_int *w) {
@@ -62,8 +62,8 @@ static int dsrand_makeseed(void) {
     unsigned int p1, p0;
     static unsigned int nextseed = 13458715;
 
-    p1 = nextseed/m1; p0 = nextseed%m1;
-    nextseed = (((p0*1001 + p1*3125)%m1)*m1 + p0*3125)%m;
+    p1 = nextseed/m1; p0 = nextseed & (m1 - 1);
+    nextseed = (((p0*1001 + p1*3125) & (m1 - 1))*m1 + p0*3125) & (m - 1);
     return nextseed;
 }
 

@@ -35,8 +35,8 @@ datadirs = \
 shared.sources = \
 	libshadylib.c
 
-# .. broke after 0.6.0
-cflags = -DVERSION='"$(lib.version)"'
+# .. broke after pdlibbuilder 6.6.0
+cflags = -DVERSION='"$(lib.version)"' -Wno-implicit-fallthrough
 
 DATE_FMT = %Y/%m/%d at %H:%M:%S UTC
 ifdef SOURCE_DATE_EPOCH
