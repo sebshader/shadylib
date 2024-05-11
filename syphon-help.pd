@@ -6,12 +6,8 @@
 #X msg 75 38 40;
 #X msg 34 15 symbol cats;
 #X msg 202 41 cats 24 blah hamburger 23;
-#X text 27 198 syphon outputs incoming messages out the left outlet
-if the incoming 1st element matches one of the elements of the list
-;
-#X text 27 237 for lists \, floats \, and symbols the content of the
-message is checked. For other "anything" messages the selector is checked
-;
+#X text 27 198 syphon outputs incoming messages out the left outlet if the incoming 1st element matches one of the elements of the list;
+#X text 27 237 for lists \, floats \, and symbols the content of the message is checked. For other "anything" messages the selector is checked;
 #X msg 127 13 list hamburger blah;
 #X msg 247 99 list 40 hamburger;
 #X msg 241 74 blah 23 8 hamburger;
@@ -20,8 +16,7 @@ message is checked. For other "anything" messages the selector is checked
 #X msg 6 53 bang;
 #X msg 366 57 bang;
 #X msg 299 127 symbol bang;
-#X text 26 279 note: a "bang" will match the symbol "bang" \, not an
-empty list (created by sending "bang" to the right inlet);
+#X text 26 279 note: a "bang" will match the symbol "bang" \, not an empty list (created by sending "bang" to the right inlet);
 #X msg 17 95 list;
 #X msg 23 128 symbol;
 #X msg 297 148 symbol;

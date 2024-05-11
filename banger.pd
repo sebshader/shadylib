@@ -1,13 +1,11 @@
 #N canvas 264 117 450 300 10;
 #X obj 152 44 loadbang;
-#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 -62784 -262144
--62784 1 1;
+#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 #3c50fc #fcfcfc #3c50fc 0 1;
 #X obj 181 224 outlet;
 #X obj 203 86 f \$1;
 #X obj 232 225 outlet;
 #X obj 243 52 inlet;
-#X obj 77 7 bng 15 250 50 0 \$0-bang \$0-NOTHING empty 17 7 0 10 -262144
--1 -1;
+#X obj 77 7 bng 15 250 50 0 \$0-bang \$0-NOTHING empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 203 111 sel 0;
 #X obj 169 135 r \$0-tog;
 #X obj 242 80 s \$0-totog;
@@ -29,7 +27,7 @@
 #X msg 136 188 color \$1 0 18;
 #X obj 163 255 outlet;
 #X obj 201 222 send \$0-totog;
-#X obj 130 112 zexy/nop;
+#X obj 130 112 t f;
 #X connect 0 0 11 0;
 #X connect 1 0 9 0;
 #X connect 1 1 12 0;

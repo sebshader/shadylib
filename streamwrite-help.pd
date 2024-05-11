@@ -1,32 +1,27 @@
 #N canvas 409 106 905 642 10;
 #X obj 429 208 random 50;
 #X text 439 140 start stream;
-#X obj 282 98 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
+#X obj 282 98 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 298 350 spigot;
-#X obj 327 328 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 327 328 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X msg 262 208 0;
 #X text 138 207 0 outputs last list;
-#X floatatom 523 228 5 0 0 0 - - -;
+#X floatatom 523 228 5 0 0 0 - - - 0;
 #X text 518 207 (turn off and use this instead);
-#X obj 426 163 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 426 163 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 0 1;
 #X obj 302 382 print;
 #X obj 418 96 loadbang;
 #X text 346 380 this can clog up the console;
-#X floatatom 375 292 5 0 0 0 - - -;
+#X floatatom 375 292 5 0 0 0 - - - 0;
 #X text 421 295 number of events in list;
 #X msg 359 204 gertrude;
 #X obj 178 436 print playback;
 #X msg 56 281 1;
 #X obj 295 432 print done;
 #X obj 435 181 metro 300;
-#X text 333 463 every event has the format: / <time (1 float)> <whatever
-the event was>;
+#X text 333 463 every event has the format: / <time (1 float)> <whatever the event was>;
 #X msg 278 181 this is a / longer thing;
-#X obj 446 238 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 446 238 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X msg 167 291 tempo 120 permin;
 #X text 270 308 tempos should match;
 #X msg 616 279 tempo 120 permin;
@@ -36,19 +31,15 @@ the event was>;
 #X obj 615 380 print;
 #X msg 567 230 list bang 45;
 #X text 31 27 records a series of timestamp-events;
-#X text 311 11 send a "1" in the left inlet to start writing whatever
-comes into the right inlet as a stream of timestamped events. Then
-when a "0" is received in the left outlet the list is passed to the
-left outlet and the right outlet reports the # of recorded events;
+#X text 311 11 send a "1" in the left inlet to start writing whatever comes into the right inlet as a stream of timestamped events. Then when a "0" is received in the left outlet the list is passed to the left outlet and the right outlet reports the # of recorded events;
 #X msg 415 130 1;
 #X text 94 98 start/stop writing automation;
-#X text 82 158 after starting click message boxes to record events
-;
-#X text 551 90 arguments are tempo in the style of [metro]/[delay]
-;
+#X text 82 158 after starting click message boxes to record events;
+#X text 551 90 arguments are tempo in the style of [metro]/[delay];
 #X text 84 280 play back;
 #X obj 312 261 ./streamwrite 60 permin;
 #X obj 178 404 ./streamread 60 permin;
+#X text 247 531 multi-element 'anythings' are currently converted to lists;
 #X connect 0 0 38 1;
 #X connect 2 0 38 0;
 #X connect 3 0 10 0;

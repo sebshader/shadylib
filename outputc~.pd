@@ -1,9 +1,7 @@
 #N canvas 494 345 535 480 10;
-#X obj 108 115 hsl 42 23 0.01 1 1 0 \$0-v \$0-v1 volume 7 12 1 9 -245500
--13381 -1 0 0;
-#X obj 157 117 tgl 18 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle
-dsp 2 9 1 9 -262144 -262144 -62784 0 1;
-#N canvas 851 349 482 356 dsp 0;
+#X obj 108 115 hsl 42 23 0.01 1 1 0 \$0-v \$0-v1 volume 7 12 1 9 #ececec #0c4410 #000000 0 0;
+#X obj 157 117 tgl 18 0 THIS_IS_HERE_TO_GET_RID_OF_THE_OUTLET \$0-dsp-toggle dsp 2 9 1 9 #3c50fc #fcfcfc #3c50fc 0 1;
+#N canvas 1034 267 482 356 dsp 1;
 #X obj 32 76 inlet;
 #X obj 130 138 select 0 1;
 #X obj 130 61 route dsp;
@@ -17,28 +15,28 @@ dsp 2 9 1 9 -262144 -262144 -62784 0 1;
 #X msg 130 164 0;
 #X msg 56 97 set \$1;
 #X obj 32 125 change;
-#X obj 130 112 zexy/nop;
 #X msg 158 164 18;
 #X msg 136 188 color \$1 0 18;
+#X obj 130 112 t f;
 #X connect 0 0 12 0;
 #X connect 1 0 10 0;
-#X connect 1 1 14 0;
+#X connect 1 1 13 0;
 #X connect 2 0 11 0;
-#X connect 2 0 13 0;
 #X connect 2 0 8 0;
+#X connect 2 0 15 0;
 #X connect 3 0 2 0;
 #X connect 4 0 8 0;
 #X connect 5 0 6 0;
 #X connect 7 0 9 0;
 #X connect 8 0 11 0;
-#X connect 8 0 13 0;
-#X connect 10 0 15 0;
+#X connect 8 0 15 0;
+#X connect 10 0 14 0;
 #X connect 11 0 12 0;
 #X connect 12 0 5 0;
-#X connect 13 0 1 0;
-#X connect 13 0 7 0;
-#X connect 14 0 15 0;
-#X connect 15 0 9 0;
+#X connect 13 0 14 0;
+#X connect 14 0 9 0;
+#X connect 15 0 1 0;
+#X connect 15 0 7 0;
 #X restore 170 204 pd dsp logic;
 #X obj 211 22 inlet~;
 #X obj 96 293 line~;
@@ -69,12 +67,9 @@ dsp 2 9 1 9 -262144 -262144 -62784 0 1;
 #X msg 52 179 1;
 #X obj 116 426 outlet~;
 #X obj 30 415 outlet~;
-#X obj 101 141 cnv 15 78 36 empty empty empty 20 12 0 14 -260097 -66577
-0;
-#X obj 102 143 bng 15 250 50 0 empty empty Start_rec. 17 7 0 10 -258113
--4160 -1;
-#X obj 102 161 bng 15 250 50 0 empty empty Stop_rec. 17 7 0 10 -4034
--4160 -1;
+#X obj 101 141 cnv 15 78 36 empty empty empty 20 12 0 14 #fc8000 #404040 0;
+#X obj 102 143 bng 15 250 50 0 empty empty Start_rec. 17 7 0 10 #fc0400 #0400fc #000000;
+#X obj 102 161 bng 15 250 50 0 empty empty Stop_rec. 17 7 0 10 #00fc04 #0400fc #000000;
 #X connect 0 0 15 0;
 #X connect 0 0 24 0;
 #X connect 0 0 19 0;
