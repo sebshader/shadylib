@@ -151,7 +151,7 @@ static t_int *moop_perform(t_int *w) {
     t_sample tin, tin2, tout;
     /* just to store sign (avoid fabs) */
     double sgn = copysign(1.0, period);
-    period = shadylib_absd(period);
+    period = fabs(period);
 
     if(buffer.x_vec) {
         tout = moop_rd(buffer, sample);

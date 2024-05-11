@@ -90,7 +90,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
     double g = x->x_g;
     float max = x->max;
     while(n--) {
-        freq = shadylib_absf(*in++);
+        freq = shadylib_pdfloat_abs(*in++);
         freq = shadylib_min(freq, max);
         fread = phase*SHADYLIB_BUZZSIZE;
         tabrd = fread;
@@ -106,7 +106,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(shadylib_absd(res2)  < 0.0005) {
+            if(fabs(res2)  < 0.0005) {
                 *out1++ = 1.f;
                 *out2++ = phase;
                 #ifdef FP_FAST_FMA
@@ -195,7 +195,7 @@ static t_int *buzz_perform(t_int *w) {
     uint32_t tabrd, tabrd2, n2;
 
     while(n--) {
-        freq = shadylib_absf(*in++);
+        freq = shadylib_pdfloat_abs(*in++);
         freq = shadylib_min(freq, max);
         g = *in2++;
         g = shadylib_min(g, max);
@@ -213,7 +213,7 @@ static t_int *buzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(shadylib_absd(res2)  < 0.0005) {
+            if(fabs(res2)  < 0.0005) {
                 *out1++ = 1.0f;
                 *out2++ = phase;
                 #ifdef FP_FAST_FMA

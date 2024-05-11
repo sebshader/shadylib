@@ -129,7 +129,7 @@ static t_int *nrcombf_perform(t_int *w)
             f = 0;
         feedback = *fb++;
         feedback = shadylib_clamp(feedback, -0x1.fffffp-1, 0x1.fffffp-1);
-        f *= 1.f - shadylib_absf(feedback);
+        f *= 1.f - shadylib_pdfloat_abs(feedback);
         delsamps = x->x_sr * (*time++);
 
         if (!(delsamps >= 1.f))    /* too small or NAN */

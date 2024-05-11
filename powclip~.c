@@ -69,7 +69,7 @@ static void *powclip_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 }
 
 static inline t_sample powclip_calculate (t_sample in1, double in2) {
-    t_sample absin1 = shadylib_absf(in1);
+    t_sample absin1 = shadylib_pdfloat_abs(in1);
     absin1 = shadylib_min(absin1, 1.f);
     if(in2 <= 0.0) return copysignf(absin1, in1);
     else if(in2 >= 1.0) {
@@ -118,7 +118,7 @@ t_int *scalarpowclip_perform(t_int *w)
         t_sample fred, val;
         while (n--) {
             tin = *in++;
-            abstin = shadylib_min(shadylib_absf(tin), 1.f);
+            abstin = shadylib_min(shadylib_pdfloat_abs(tin), 1.f);
             fred = abstin * (BASTABSIZE - 2);
             readpoint = fred;
             fred -= readpoint;
@@ -134,7 +134,7 @@ t_int *scalarpowclip_perform(t_int *w)
         double finverse = 1.0/f, fscale = 1.0/(1.0 - f);
         while (n--) {
             tin = *in++;
-            abstin = shadylib_min(shadylib_absf(tin), 1.f);
+            abstin = shadylib_min(shadylib_pdfloat_abs(tin), 1.f);
             #ifdef FP_FAST_FMAF
             *out++ = copysignf(fmaf(-f, pow(abstin, finverse), abstin)*fscale,
                 tin);

@@ -159,9 +159,9 @@ static t_int *nnrcombf_perform(t_int *w)
         a = *fb++;
         a = shadylib_clamp(a, -0x1.fffffp-1, 0x1.fffffp-1);
         #ifdef FP_FAST_FMAF
-        *out++ = fmaf(delsamps, a, f)/(1.f + shadylib_absf(a));
+        *out++ = fmaf(delsamps, a, f)/(1.f + shadylib_pdfloat_abs(a));
         #else
-        *out++ = (f + delsamps*a)/(1.f + shadylib_absf(a));
+        *out++ = (f + delsamps*a)/(1.f + shadylib_pdfloat_abs(a));
         #endif
         *wp++ = f;
         if (wp == ep)

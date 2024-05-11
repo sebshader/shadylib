@@ -55,7 +55,7 @@ static t_int *bpbuzz_perform(t_int *w) {
     uint32_t tabrd, tabrd2, n2;
 
     for(int i=0; i < n; i++) {
-        freq = shadylib_absf(*in++);
+        freq = shadylib_pdfloat_abs(*in++);
         freq = shadylib_min(freq, max);
         fread = phase*SHADYLIB_BUZZSIZE;
         tabrd = fread;
@@ -71,7 +71,7 @@ static t_int *bpbuzz_perform(t_int *w) {
             #else
             res2 = res1 + (res2 - res1)*res3;
             #endif
-            if(shadylib_absd(res2)  < 0.0005) {
+            if(fabs(res2)  < 0.0005) {
                 final = 1.0;
 
                 rat = shadylib_clamp(max/freq, 1.0, SHADYLIB_MAXHARM);
@@ -156,7 +156,7 @@ gotfinal:
             res1 = shadylib_sintbl[tabrd];
             res2 = shadylib_sintbl[tabrd2];
             res2 = res1 + (res2 - res1)*res3;
-            if(shadylib_absd(res2)  < 0.0005) {
+            if(fabs(res2)  < 0.0005) {
                 res3 = 1.0;
                 goto gotfinal2;
             } else res2 = 1.0/res2;

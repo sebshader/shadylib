@@ -21,7 +21,7 @@ static void highest_set(t_highest *x, t_float nsamps) {
     x->x_result = 0.f;
     x->x_count = 0;
     if(nsamps != 0.f) {
-        int isamps = shadylib_min(shadylib_absf(nsamps), MAXPRD);
+        int isamps = shadylib_min(shadylib_pdfloat_abs(nsamps), MAXPRD);
         int n = x->x_blocksize;
         x->x_period = isamps;
         /* get next multiple of n */
@@ -61,7 +61,7 @@ static t_int *highest_tilde_perform(t_int *w) {
         clock_delay(x->x_clock, 0.0);
     }
     while(n--) {
-        temp = shadylib_absf(*in);
+        temp = shadylib_pdfloat_abs(*in);
         if(result < temp) result = temp;
         in++;
     }

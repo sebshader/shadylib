@@ -18,10 +18,14 @@
 #define shadylib_max(X, Y)  ((X) > (Y) ? (X) : (Y))
 /* clamp x between y and z */
 #define shadylib_clamp(X, Y, Z) ((X) > (Z) ? (Z) : ((X) < (Y) ? (Y) : (X)))
-/* absolute value */
-#define shadylib_absi(X)  ((X) < (0) ? (-X) : (X))
-#define shadylib_absd(X)  ((X) < (0.) ? (-X) : (X))
-#define shadylib_absf(X)  ((X) < (0.f) ? (-X) : (X))
+
+#if PD_FLOATSIZE == 64
+#include <math.h>
+#define shadylib_pdfloat_abs(X) fabs(X)
+#else
+#include <math.h>
+#define shadylib_pdfloat_abs(X) fabsf(X)
+#endif
 
 #ifdef __GNUC__
     #define SHADYLIB_UNUSED(x) UNUSED_ ## x __attribute__((__unused__))
@@ -369,7 +373,7 @@ inline int mult(unsigned int p) {
 }
 
 inline unsigned int randlcm(unsigned int in) {
-    return (mult(in) + 1)&(m - 1);
+    return (mult(in) + 1) & (m - 1);
 }
 
 #undef m
