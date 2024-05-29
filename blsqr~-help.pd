@@ -3,22 +3,18 @@
 #X obj 565 244 ./oscope~;
 #X text 573 210 outlet 2: phase;
 #X obj 205 43 mtof;
-#X floatatom 203 22 5 0 0 0 - - -;
-#X text 420 73 note: changed behavior - up to shadylib 2.1.3 if the
-second argument was present the 2nd inlet would be non-functional.
-This is not the case anymore thanks to new inlet~ capabilities: default
-pulse-width is 0.5 \, which is overridden by the 1st argument \, which
-is overridden by the 2nd signal inlet;
+#X floatatom 203 22 5 0 0 0 - - - 0;
+#X text 420 73 note: changed behavior - up to shadylib 2.1.3 if the second argument was present the 2nd inlet would be non-functional. This is not the case anymore thanks to new inlet~ capabilities: default pulse-width is 0.5 \, which is overridden by the 1st argument \, which is overridden by the 2nd signal inlet;
 #X text 382 43 inlets: frequency \, pulse width \, set phase.;
-#X obj 242 108 ./operator~ 0.4 0.5 0.5;
 #X obj 232 210 ./outputc~;
 #X obj 215 131 ./blsqr~;
 #X obj 198 69 ./smoother~ 50;
-#X connect 3 0 10 0;
+#X obj 242 108 ./triangulator~ 0.3 0.5 0.5;
+#X connect 3 0 9 0;
 #X connect 4 0 3 0;
-#X connect 7 0 9 1;
-#X connect 9 0 0 0;
+#X connect 8 0 0 0;
+#X connect 8 0 7 0;
+#X connect 8 0 7 1;
+#X connect 8 1 1 0;
 #X connect 9 0 8 0;
-#X connect 9 0 8 1;
-#X connect 9 1 1 0;
-#X connect 10 0 9 0;
+#X connect 10 0 8 1;

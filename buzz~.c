@@ -133,7 +133,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
         #ifdef FP_FAST_FMA
         res4 = fma(n2, fread, fread);
         #else
-        res4 = fread*(n2 + 1);
+        res4 = fread*n2 + fread;
         #endif
         tabrd = res4;
         res1 = res4 - tabrd;
@@ -164,7 +164,7 @@ static t_int *scalarbuzz_perform(t_int *w) {
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
         res1 = (res1*res2 - 1.0)/(n2 + 2);
-        *out1++ = res3*(1.0 - frat) + res1*(frat);
+        *out1++ = res3*(1.0 - frat) + res1*frat;
         #endif
 
         *out2++ = phase;
@@ -240,7 +240,7 @@ static t_int *buzz_perform(t_int *w) {
         #ifdef FP_FAST_FMA
         res4 = fma(n2, fread, fread);
         #else
-        res4 = fread*(n2 + 1);
+        res4 = fread*n2 + fread;
         #endif
         tabrd = res4;
         res1 = res4 - tabrd;
@@ -271,7 +271,7 @@ static t_int *buzz_perform(t_int *w) {
         #else
         res1 = res1 + (shadylib_sintbl[tabrd] - res1)*res4;
         res1 = (res1*res2 - 1.0)/(n2 + 2);
-        *out1++ = res3*(1.0 - frat) + res1*(frat);
+        *out1++ = res3*(1.0 - frat) + res1*frat;
         #endif
 
         *out2++ = phase;

@@ -7,10 +7,10 @@ static t_sample *sinsqr_tbl;
 static t_class *vosim_class;
 
 static void vosim_maketab(void) {
-    t_sample incr = M_PI/(SINSQRSIZE - 1), val;
+    t_sample val;
     sinsqr_tbl = getbytes((SINSQRSIZE) * sizeof(t_sample));
     for(int i = 0; i < SINSQRSIZE; i++) {
-        val = sin(incr*i);
+        val = sin((M_PI*i)/(double)(SINSQRSIZE - 1));
         sinsqr_tbl[i] = val*val;
     }
 }
@@ -98,7 +98,7 @@ static t_int *vosim_perform(t_int *w) {
             outfreq = phsinc*conv;
             infreq = shadylib_max(phsinc, *cen)*conv;
         }
-        *out++ = readtab(inphase*(SINSQRSIZE- 1))*curdec;
+        *out++ = readtab(inphase*(SINSQRSIZE - 1))*curdec;
         outphase += outfreq;
         inphase += infreq;
         in++;

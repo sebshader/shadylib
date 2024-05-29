@@ -22,9 +22,13 @@
 #if PD_FLOATSIZE == 64
 #include <math.h>
 #define shadylib_pdfloat_abs(X) fabs(X)
+#define shadylib_copysign(X, Y) copysign(X, Y)
+#define shadylib_floor(X) floor(X)
 #else
 #include <math.h>
 #define shadylib_pdfloat_abs(X) fabsf(X)
+#define shadylib_copysign(X, Y) copysignf(X, Y)
+#define shadylib_floor(X) floorf(X)
 #endif
 
 #ifdef __GNUC__

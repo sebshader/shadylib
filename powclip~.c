@@ -71,7 +71,7 @@ static void *powclip_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv)
 static inline t_sample powclip_calculate (t_sample in1, double in2) {
     t_sample absin1 = shadylib_pdfloat_abs(in1);
     absin1 = shadylib_min(absin1, 1.f);
-    if(in2 <= 0.0) return copysignf(absin1, in1);
+    if(in2 <= 0.0) return shadylib_copysign(absin1, in1);
     else if(in2 >= 1.0) {
         int readpoint;
         t_sample fred = absin1 * (BASTABSIZE - 2), val;
@@ -79,14 +79,14 @@ static inline t_sample powclip_calculate (t_sample in1, double in2) {
         fred -= readpoint;
         val = base_table[readpoint++];
     #ifdef FP_FAST_FMAF
-        return copysignf(fmaf(fred, (base_table[readpoint] - val), val), in1);
+        return shadylib_copysign(fmaf(fred, (base_table[readpoint] - val), val), in1);
     } else {
-        return copysignf(fmaf(-in2, pow(absin1, 1.0/in2), absin1)/(1 - in2), in1);
+        return shadylib_copysign(fmaf(-in2, pow(absin1, 1.0/in2), absin1)/(1 - in2), in1);
     }
     #else
-        return copysignf(val + (base_table[readpoint] - val)*fred, in1);
+        return shadylib_copysign(val + (base_table[readpoint] - val)*fred, in1);
     } else {
-        return copysignf((absin1 - in2*pow(absin1, 1.0/in2))/(1. - in2), in1);
+        return shadylib_copysign((absin1 - in2*pow(absin1, 1.0/in2))/(1. - in2), in1);
     }
     #endif
 }
@@ -124,22 +124,22 @@ t_int *scalarpowclip_perform(t_int *w)
             fred -= readpoint;
             val = base_table[readpoint++];
             #ifdef FP_FAST_FMAF
-            *out++ = copysignf(fmaf(fred, (base_table[readpoint] - val),
+            *out++ = shadylib_copysign(fmaf(fred, (base_table[readpoint] - val),
                 val), tin);
             #else
-            *out++ = copysignf(val + (base_table[readpoint] - val)*fred, tin);
+            *out++ = shadylib_copysign(val + (base_table[readpoint] - val)*fred, tin);
             #endif
         }
     } else {
-        double finverse = 1.0/f, fscale = 1.0/(1.0 - f);
+        double finverse = 1.0/f;
         while (n--) {
             tin = *in++;
             abstin = shadylib_min(shadylib_pdfloat_abs(tin), 1.f);
             #ifdef FP_FAST_FMAF
-            *out++ = copysignf(fmaf(-f, pow(abstin, finverse), abstin)*fscale,
+            *out++ = shadylib_copysign(fmaf(-f, pow(abstin, finverse), abstin)/(1.0 - f),
                 tin);
             #else
-            *out++ = copysignf((abstin - f*pow(abstin, finverse))*fscale, tin);
+            *out++ = shadylib_copysign((abstin - f*pow(abstin, finverse))/(1.0 - f), tin);
             #endif
         }
     }

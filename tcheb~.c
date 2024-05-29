@@ -1,5 +1,4 @@
 #include "shadylib.h"
-#include <math.h>
 
 #define MAX_HARM 254.f
 //#define COSTAB_2 (COSTABSIZE >> 1)
@@ -15,7 +14,7 @@ static t_int *tcheb_tilde_perform(t_int *w) {
         *out = (t_sample*) (w[3]);
     int n = (int) (w[4]), l;
     uint32_t newo, dir;
-    t_sample inord; //change floorf below for pd-double
+    t_sample inord;
     double t1, t2, tin, temp;
     while(n--) {
         inord = *in2++;
@@ -62,7 +61,7 @@ static t_int *tcheb_tilde_perform(t_int *w) {
             }
             dir >>= 1;
         }
-        inord = inord - floorf(inord);
+        inord = inord - shadylib_floor(inord);
         *out++ = (t_sample)(t1 + (t2 - t1)*inord);
     }
     return (w + 5);
