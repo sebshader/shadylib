@@ -1,51 +1,42 @@
-#N canvas 252 90 763 597 10;
-#X floatatom 173 43 5 0 0 0 frequency - -;
+#N canvas 825 147 763 597 10;
+#X floatatom 173 43 5 0 0 0 frequency - - 0;
 #X obj 174 99 line~;
 #X obj 174 73 pack f 10;
 #N canvas 0 22 450 278 (subpatch) 0;
-#X array \$0-test 4691 float 2;
-#X coords 0 1 4691 -1 200 140 1 0 0;
-#X restore 162 293 graph;
-#X obj 389 168 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X array \$0-test 1160 float 2;
+#X coords 0 1 1160 -1 200 140 1 0 0;
+#X restore 129 291 graph;
+#X obj 389 168 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 337 222 tabwrite~ \$0-test;
-#X floatatom 514 103 5 0 0 1 frequency_to_graph - -;
-#X floatatom 630 132 5 0 0 0 periods_to_graph - -;
+#X floatatom 514 103 5 0 0 1 frequency_to_graph - - 0;
+#X floatatom 630 132 5 0 0 0 periods_to_graph - - 0;
 #X msg 512 302 resize \$1;
 #X obj 512 272 * 5;
 #X obj 512 230 swap;
 #X obj 476 11 loadbang;
 #X obj 533 194 samplerate~;
-#X obj 539 175 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
+#X obj 539 175 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 512 251 /;
 #X obj 512 323 s \$0-test;
 #X obj 483 211 f;
-#X obj 389 124 bng 15 250 50 0 empty empty resize_and_graph 17 7 0
-10 -262144 -1 -1;
+#X obj 389 124 bng 15 250 50 0 empty empty resize_and_graph 17 7 0 10 #fcfcfc #000000 #000000;
 #X obj 514 82 spigot 1;
-#X obj 559 59 tgl 15 1 empty empty empty 17 7 0 10 -262144 -1 -1 1
-1;
+#X obj 559 59 tgl 15 1 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000 1 1;
 #X obj 389 145 t b b;
-#X obj 416 169 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
--1 -1;
-#X floatatom 602 293 5 0 0 0 - - -;
+#X obj 416 169 bng 15 250 50 0 empty empty empty 17 7 0 10 #fcfcfc #000000 #000000;
+#X floatatom 602 293 5 0 0 0 - - - 0;
 #X obj 174 120 phasor~;
 #X text 128 9 takes a phasor~ and outputs velvet noise;
 #X msg 559 36 1;
-#X text 97 531 see - V. Välimäki \, H. Lehtonen and M. Takanen "A
-Perceptual Study on Velvet Noise and Its Variants at Different Pulse
-Densities";
-#X text 94 440 1st argument/2nd inlet is grid-like factor: 1 (default)
-is less grid-like \, 0 will output a pulse periodically;
-#X floatatom 229 104 5 0 0 1 temporal_bias - -;
-#X floatatom 239 124 5 0 0 1 impulse_bias - -;
-#X text 96 472 2nd argument/3rd inlet is noise bias: will influence
-the probability of the impulses being positive or negative (has effect
-from -1 to 1);
+#X text 97 531 see - V. Välimäki \, H. Lehtonen and M. Takanen "A Perceptual Study on Velvet Noise and Its Variants at Different Pulse Densities";
+#X text 94 440 1st argument/2nd inlet is grid-like factor: 1 (default) is less grid-like \, 0 will output a pulse periodically;
+#X floatatom 229 104 5 0 0 1 temporal_bias - - 0;
+#X floatatom 239 124 5 0 0 1 impulse_bias - - 0;
+#X text 96 472 2nd argument/3rd inlet is noise bias: will influence the probability of the impulses being positive or negative (has effect from -1 to 1);
 #X obj 554 151 r pd-dsp-started;
 #X obj 173 150 ./velvet~ 1 0;
 #X obj 166 197 ./outputc~;
+#X text 391 377 update 2024-07-27: used idea from pd forum user manuals to improve implementation;
 #X connect 0 0 2 0;
 #X connect 0 0 18 0;
 #X connect 1 0 23 0;
