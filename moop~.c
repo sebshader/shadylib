@@ -245,11 +245,15 @@ static void moop_dsp(t_moop *x, t_signal **sp) {
         sp[2]->s_vec, sp[3]->s_vec, sp[4]->s_vec, sp[0]->s_n);
 }
 
-static void *moop_new(t_floatarg range, t_floatarg hold, t_symbol *s) {
+static void *moop_new(t_symbol* SHADYLIB_UNUSED(s), int argc, t_atom *argv) {
     t_moop *x = (t_moop *)pd_new(moop_class);
     outlet_new(&x->x_obj, &s_signal);
     outlet_new(&x->x_obj, &s_signal);
     outlet_new(&x->x_obj, &s_signal);
+    t_float range = atom_getfloatarg(0, argc, argv);
+    t_float hold = atom_getfloatarg(1, argc, argv);
+    t_symbol *s = atom_getsymbolarg(2, argc, argv);
+
     inlet_new(&x->x_obj, &x->x_obj.ob_pd, &s_signal, &s_signal);
 
     moop_range(x, range);
@@ -269,7 +273,7 @@ static void *moop_new(t_floatarg range, t_floatarg hold, t_symbol *s) {
 
 void moop_tilde_setup(void) {
     moop_class = class_new(gensym("moop~"), (t_newmethod)moop_new, 0,
-        sizeof(t_moop), 0, A_DEFFLOAT, A_DEFFLOAT, A_DEFSYM, 0);
+        sizeof(t_moop), 0, A_GIMME, 0);
     class_addmethod(moop_class, (t_method)moop_dsp, gensym("dsp"), A_CANT, 0);
     CLASS_MAINSIGNALIN(moop_class, t_moop, x_f);
     class_addmethod(moop_class, (t_method)moop_tilde_set,

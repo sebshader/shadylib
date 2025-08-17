@@ -34,8 +34,7 @@ static void list_relim_list(t_list_relim *x, t_symbol* s,
             const char *against = atom_getsymbol(outv+i)->s_name;
             size_t alength = strlen(against);
             for(size_t k = 0; k < alength; k += strlength)
-                if (strncmp(c->s_name, against + k, strlength) != 0)
-                    goto cont;
+                if (strncmp(c->s_name, against + k, strlength) != 0) goto cont;
             strncpy(namebuf+strlength, against, strdiff);
             outv[i].a_w.w_symbol = gensym(namebuf);
         }
@@ -67,7 +66,7 @@ static void list_relim_anything(t_list_relim *x, t_symbol *s,
             strncpy(namebuf+strlength, against, strdiff);
             outv[i].a_w.w_symbol = gensym(namebuf);
         }
-        cont:;
+    cont:;
     }
     against = s->s_name;
     alength = strlen(against);

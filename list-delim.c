@@ -25,7 +25,7 @@ static inline int testatoms(t_symbol *tester, t_atom *against){
 }
 
 static void list_delim_list(t_list_delim *x, t_symbol* s,
-    int argc, t_atom *argv)
+                            int argc, t_atom *argv)
 {
     t_symbol *c = x->x_s;
     size_t strlength = strlen(c->s_name);
@@ -42,13 +42,11 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
                         const char *against = atom_getsymbol(outv+j)->s_name;
                         size_t alength = strlen(against);
                         for(size_t k = 0; k < alength; k += strlength)
-                            if (strncmp(c->s_name, against + k, strlength)
-                                != 0)
-                                goto cont;
+                            if (strncmp(c->s_name, against + k, strlength) != 0) goto cont;
                         strncpy(namebuf, against+strlength, MAXPDSTRING);
                         outv[j].a_w.w_symbol = gensym(namebuf);
                     }
-                    cont:;
+                cont:;
                 }
                 outlet_list(x->x_obj.ob_outlet, s, outc, outv);
                 SHADYLIB_ATOMS_FREEA(outv, outc);
@@ -76,7 +74,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
                 strncpy(namebuf, against+strlength, MAXPDSTRING);
                 outv[j].a_w.w_symbol = gensym(namebuf);
             }
-            cont2:;
+        cont2:;
         }
         outlet_list(x->x_obj.ob_outlet, s, outc, outv);
         SHADYLIB_ATOMS_FREEA(outv, outc);
@@ -84,7 +82,7 @@ static void list_delim_list(t_list_delim *x, t_symbol* s,
 }
 
 static void list_delim_anything(t_list_delim *x, t_symbol *s,
-    int argc, t_atom *argv)
+                                int argc, t_atom *argv)
 {
     t_atom *outv;
     SHADYLIB_ATOMS_ALLOCA(outv, argc+1);
@@ -97,8 +95,8 @@ static void list_delim_anything(t_list_delim *x, t_symbol *s,
 void setup_list0x2ddelim(void)
 {
     list_delim_class = class_new(gensym("list-delim"),
-        (t_newmethod)list_delim_new, 0,
-        sizeof(t_list_delim), 0, A_DEFSYM, 0);
+                                 (t_newmethod)list_delim_new, 0,
+                                 sizeof(t_list_delim), 0, A_DEFSYM, 0);
     class_addlist(list_delim_class, list_delim_list);
     class_addanything(list_delim_class, list_delim_anything);
 }
