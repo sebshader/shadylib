@@ -1,11 +1,11 @@
-figure out garray + switch~ redrawing mystery? https://github.com/pure-data/pure-data/issues/2136
+
 pipebang tempo args?
 find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, sndfread etc.,)
 look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
 review objects that use file names too
 less branching in envelopes maybe
-add variables scoped by subpatch
+add variables scoped by subpatch?
 figure out autotune
 
 figure out behavior discrepancy between operator~ and osc~ aliasing
