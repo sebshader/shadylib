@@ -1,6 +1,6 @@
 #N canvas 264 117 450 300 10;
 #X obj 116 47 loadbang;
-#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 #3c50fc #fcfcfc #3c50fc 0 1;
+#X obj 59 7 tgl 15 0 \$0-tog \$0-totog empty 17 7 0 10 #fcfcfc #fcfcfc #3c50fc 0 1;
 #X obj 131 230 outlet;
 #X obj 153 92 f \$1;
 #X obj 182 231 outlet;
@@ -52,8 +52,8 @@
 #X msg 177 139 1;
 #X obj 279 153 r pd-dsp-started;
 #X obj 279 174 outlet;
-#X connect 0 0 3 0;
-#X connect 0 0 2 0;
+#X obj 112 72 del 0;
+#X connect 0 0 15 0;
 #X connect 3 0 7 0;
 #X connect 5 0 9 0;
 #X connect 7 1 12 0;
@@ -62,4 +62,6 @@
 #X connect 11 0 4 0;
 #X connect 12 0 11 0;
 #X connect 13 0 14 0;
+#X connect 15 0 3 0;
+#X connect 15 0 2 0;
 #X coords 0 -1 1 1 90 19 1 5 5;

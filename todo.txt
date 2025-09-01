@@ -1,11 +1,13 @@
-
 pipebang tempo args?
-find vanilla replacements for list2symbol & mr.peach? (dispatchOSC, makerpath, sndfread etc.,)
+find vanilla replacements for mr.peach? (dispatchOSC, etc.,)
+    - not until pd has time tags for OSC
 look into [list] extensions (list-pop?)
 figure out voisim~ aliasing
 review objects that use file names too
 less branching in envelopes maybe
 add variables scoped by subpatch?
+add singleton object type
 figure out autotune
+add polyblep oscillator
 
-figure out behavior discrepancy between operator~ and osc~ aliasing
+figure out behavior discrepancy between operator~ and osc~ aliasing?
